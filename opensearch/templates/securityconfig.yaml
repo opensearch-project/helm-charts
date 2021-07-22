@@ -1,0 +1,16 @@
+{{- if and .Values.securityConfig.config.securityConfigSecret .Values.securityConfig.config.data }}
+apiVersion: v1
+kind: Secret
+metadata:
+  name: {{ .Values.securityConfig.config.securityConfigSecret }}
+  namespace: {{ .Release.Namespace }}
+  labels:
+    app: { { .Chart.Name } }
+    release: { { .Release.Name } }
+    heritage: { { .Release.Service } }
+type: Opaque
+data:
+  {{- range $key, $val := .Values.securityConfig.config.data }}
+  {{ $key }}: {{ $val | b64enc | quote }}
+  {{- end }}
+  {{- end}}
