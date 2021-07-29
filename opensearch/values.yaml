@@ -96,7 +96,8 @@ hostAliases: []
 #  - "bar.local"
 
 image: "opensearchproject/opensearch"
-imageTag: "latest"
+# override image tag, which is .Chart.AppVersion by default
+imageTag: ""
 imagePullPolicy: "IfNotPresent"
 
 podAnnotations: {}
