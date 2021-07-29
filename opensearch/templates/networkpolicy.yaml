@@ -2,7 +2,7 @@ apiVersion: networking.k8s.io/v1
 kind: NetworkPolicy
 metadata:
   creationTimestamp: null
-  name: opensearch-net
+  name: {{ template "opensearch.uname" . }}-opensearch-net
 spec:
   ingress:
     - from:
