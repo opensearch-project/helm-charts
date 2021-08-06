@@ -4,22 +4,14 @@ kind: StatefulSet
 metadata:
   name: {{ template "opensearch.uname" . }}
   labels:
-    heritage: {{ .Release.Service | quote }}
-    release: {{ .Release.Name | quote }}
-    chart: "{{ .Chart.Name }}"
-    app: "{{ template "opensearch.uname" . }}"
-    {{- range $key, $value := .Values.labels }}
-    {{ $key }}: {{ $value | quote }}
-    {{- end }}
+    {{- include "opensearch.labels" . | nindent 4 }}
   annotations:
     majorVersion: "{{ include "opensearch.majorVersion" . }}"
 spec:
   serviceName: {{ template "opensearch.uname" . }}-headless
   selector:
     matchLabels:
-      release: {{ .Release.Name | quote }}
-      chart: "{{ .Chart.Name }}"
-      app: "{{ template "opensearch.uname" . }}"
+      {{- include "opensearch.selectorLabels" . | nindent 6 }}
   replicas: {{ .Values.replicas }}
   podManagementPolicy: {{ .Values.podManagementPolicy }}
   updateStrategy:
@@ -30,12 +22,7 @@ spec:
       name: {{ template "opensearch.uname" . }}
     {{- if .Values.persistence.labels.enabled }}
       labels:
-        release: {{ .Release.Name | quote }}
-        chart: "{{ .Chart.Name }}"
-        app: "{{ template "opensearch.uname" . }}"
-        {{- range $key, $value := .Values.labels }}
-        {{ $key }}: {{ $value | quote }}
-        {{- end }}
+        {{- include "opensearch.labels" . | nindent 8 }}
     {{- end }}
     {{- with .Values.persistence.annotations  }}
       annotations:
@@ -61,12 +48,7 @@ spec:
     metadata:
       name: "{{ template "opensearch.uname" . }}"
       labels:
-        release: {{ .Release.Name | quote }}
-        chart: "{{ .Chart.Name }}"
-        app: "{{ template "opensearch.uname" . }}"
-        {{- range $key, $value := .Values.labels }}
-        {{ $key }}: {{ $value | quote }}
-        {{- end }}
+        {{- include "opensearch.labels" . | nindent 8 }}
       annotations:
         {{- range $key, $value := .Values.podAnnotations }}
         {{ $key }}: {{ $value | quote }}
@@ -113,10 +95,14 @@ spec:
           requiredDuringSchedulingIgnoredDuringExecution:
           - labelSelector:
               matchExpressions:
-              - key: app
+              - key: app.kubernetes.io/instance
                 operator: In
                 values:
-                - "{{ template "opensearch.uname" .}}"
+                - {{ .Release.Name }}
+              - key: app.kubernetes.io/name
+                operator: In
+                values:
+                - {{ include "opensearch.name" . }}
             topologyKey: {{ .Values.antiAffinityTopologyKey }}
       {{- else if eq .Values.antiAffinity "soft" }}
         podAntiAffinity:
@@ -126,10 +112,14 @@ spec:
               topologyKey: {{ .Values.antiAffinityTopologyKey }}
               labelSelector:
                 matchExpressions:
-                - key: app
+                - key: app.kubernetes.io/instance
                   operator: In
                   values:
-                  - "{{ template "opensearch.uname" . }}"
+                  - {{ .Release.Name }}
+                - key: app.kubernetes.io/name
+                  operator: In
+                  values:
+                  - {{ include "opensearch.name" . }}
       {{- end }}
       {{- with .Values.nodeAffinity }}
         nodeAffinity:
