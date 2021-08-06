@@ -17,6 +17,7 @@ roles:
 replicas: 3
 minimumMasterNodes: 1
 
+# if not set, falls back to parsing .Values.imageTag, then .Chart.appVersion.
 majorVersion: ""
 
 # Allows you to add any config files in {{ .Values.configPath }}/config
