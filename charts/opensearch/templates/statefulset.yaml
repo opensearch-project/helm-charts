@@ -150,10 +150,10 @@ spec:
         configMap:
           name: {{ template "opensearch.uname" . }}-config
       {{- end }}
-      {{- if and .Values.securityConfig.config.securityConfigSecret .Values.securityConfig.config.data }}
+      {{- if .Values.securityConfig.config.data }}
       - name: security-config
         secret:
-         secretName: {{ .Values.securityConfig.config.securityConfigSecret }}
+          secretName: {{ include "opensearch.uname" . }}-securityconfig
       {{- end }}
       {{- if .Values.securityConfig.actionGroupsSecret }}
       - name: action-groups
@@ -369,7 +369,7 @@ spec:
           name: tenants
           subPath: tenants.yml
         {{- end }}
-        {{- if and .Values.securityConfig.config.securityConfigSecret .Values.securityConfig.config.data  }}
+        {{- if .Values.securityConfig.config.data  }}
         - mountPath: {{ .Values.securityConfig.path }}
           name: security-config
         {{- end }}
