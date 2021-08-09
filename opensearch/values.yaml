@@ -64,8 +64,6 @@ config:
         system_indices:
           enabled: true
           indices: [".opendistro-alerting-config", ".opendistro-alerting-alert*", ".opendistro-anomaly-results*", ".opendistro-anomaly-detector*", ".opendistro-anomaly-checkpoints", ".opendistro-anomaly-detection-state", ".opendistro-reports-*", ".opendistro-notifications-*", ".opendistro-notebooks", ".opendistro-asynchronous-search-response*"]
-    node:
-      max_local_storage_nodes: 3
     ######## End OpenSearch Security Demo Configuration ########
   # log4j2.properties: 
 
