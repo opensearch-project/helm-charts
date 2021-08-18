@@ -149,6 +149,41 @@ spec:
         - name: config
           configMap:
             name: {{ template "opensearch.uname" . }}-config
+        {{- end }}      
+        {{- if and .Values.securityConfig.config.securityConfigSecret .Values.securityConfig.config.data }}
+        - name: security-config
+          secret:
+           secretName: {{ .Values.securityConfig.config.securityConfigSecret }}
+        {{- end }}
+        {{- if .Values.securityConfig.actionGroupsSecret }}
+        - name: action-groups
+          secret:
+            secretName: {{ .Values.securityConfig.actionGroupsSecret }}
+        {{- end }}
+        {{- if .Values.securityConfig.configSecret }}
+        - name: security-config
+          secret:
+            secretName: {{ .Values.securityConfig.configSecret }}
+        {{- end }}
+        {{- if .Values.securityConfig.internalUsersSecret }}
+        - name: internal-users-config
+          secret:
+            secretName: {{ .Values.securityConfig.internalUsersSecret }}
+        {{- end }}
+        {{- if .Values.securityConfig.rolesSecret }}
+        - name: roles
+          secret:
+            secretName: {{ .Values.securityConfig.rolesSecret }}
+        {{- end }}
+        {{- if .Values.securityConfig.rolesMappingSecret }}
+        - name: role-mapping
+          secret:
+            secretName: {{ .Values.securityConfig.rolesMappingSecret }}
+        {{- end -}}
+        {{- if .Values.securityConfig.tenantsSecret }}
+        - name: tenants
+          secret:
+            secretName: {{ .Values.securityConfig.tenantsSecret }}
         {{- end }}
 {{- if .Values.keystore }}
         - name: keystore
@@ -270,14 +305,26 @@ spec:
           - name: node.{{ $role }}
             value: "{{ $enabled }}"
           {{- end }}
+{{- if .Values.extraEnvs }}
+{{ toYaml .Values.extraEnvs | indent 10 }}
+{{- end }}
+{{- if .Values.envFrom }}
+        envFrom:
+{{ toYaml .Values.envFrom | indent 10 }}
+{{- end }}
+        volumeMounts:
+          {{- if .Values.persistence.enabled }}
+          - name: "{{ template "opensearch.uname" . }}"
+            mountPath: /usr/share/opensearch/data
+          {{- end }}
           {{- if .Values.securityConfig.enabled }}
           {{- if .Values.securityConfig.actionGroupsSecret }}
           - mountPath: {{ .Values.securityConfig.path }}/action_groups.yml
-              name: action-groups
-              subPath: action_groups.yml
+            name: action-groups
+            subPath: action_groups.yml
           {{- end }}
           {{- if .Values.securityConfig.configSecret }}
-            - mountPath: {{ .Values.securityConfig.path }}/config.yml
+          - mountPath: {{ .Values.securityConfig.path }}/config.yml
             name: security-config
             subPath: config.yml
           {{- end }}
@@ -304,19 +351,7 @@ spec:
           {{- if and .Values.securityConfig.config.securityConfigSecret .Values.securityConfig.config.data  }}
           - mountPath: {{ .Values.securityConfig.path }}
             name: security-config
-        {{- end }}
-        {{- end }}
-{{- if .Values.extraEnvs }}
-{{ toYaml .Values.extraEnvs | indent 10 }}
-{{- end }}
-{{- if .Values.envFrom }}
-        envFrom:
-{{ toYaml .Values.envFrom | indent 10 }}
-{{- end }}
-        volumeMounts:
-          {{- if .Values.persistence.enabled }}
-          - name: "{{ template "opensearch.uname" . }}"
-            mountPath: /usr/share/opensearch/data
+          {{- end }}
           {{- end }}
 {{ if .Values.keystore }}
           - name: keystore
