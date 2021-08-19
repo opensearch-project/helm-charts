@@ -10,7 +10,7 @@
 
 ## OpenSearch Project Charts
 
-A community repository for OpenSearch Project related Helm charts.
+A community repository for Helm Charts of OpenSearch Project.
 
 ## Contributing
 
