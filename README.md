@@ -8,7 +8,7 @@
 - [License](#license)
 - [Copyright](#copyright)
 
-## OpenSearch DevOps
+## OpenSearch Project Charts
 
 A community repository for OpenSearch Project related Helm charts.
 
