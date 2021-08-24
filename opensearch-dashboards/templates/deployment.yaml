@@ -143,7 +143,7 @@ spec:
           {{- end }}
           {{- range $path, $config := .Values.config }}
           - name: config
-            mountPath: /usr/share/dashboards/config/{{ $path }}
+            mountPath: /usr/share/opensearch-dashboards/config/{{ $path }}
             subPath: {{ $path }}
           {{- end }}
       {{- if .Values.extraContainers }}
