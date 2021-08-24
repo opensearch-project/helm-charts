@@ -20,7 +20,8 @@ minimumMasterNodes: 1
 majorVersion: ""
 
 
-# Allows you to add any config files in /usr/share/opensearch/config/
+# Allows you to add any config files in {{ .Values.configPath }}/config
+opensearchHome: /usr/share/opensearch
 # such as opensearch.yml and log4j2.properties
 config:
   opensearch.yml:
@@ -65,7 +66,7 @@ config:
           enabled: true
           indices: [".opendistro-alerting-config", ".opendistro-alerting-alert*", ".opendistro-anomaly-results*", ".opendistro-anomaly-detector*", ".opendistro-anomaly-checkpoints", ".opendistro-anomaly-detection-state", ".opendistro-reports-*", ".opendistro-notifications-*", ".opendistro-notebooks", ".opendistro-asynchronous-search-response*"]
     ######## End OpenSearch Security Demo Configuration ########
-  # log4j2.properties: 
+  # log4j2.properties:
 
 # Extra environment variables to append to this nodeGroup
 # This will be appended to the current 'env:' key. You can use any of the kubernetes env
