@@ -115,7 +115,7 @@ podAnnotations: {}
 # additionals labels
 labels: {}
 
-esJavaOpts: "-Xmx512M -Xms512M"
+opensearchJavaOpts: "-Xmx512M -Xms512M"
 
 resources:
   requests:
