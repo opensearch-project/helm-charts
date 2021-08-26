@@ -19,7 +19,6 @@ minimumMasterNodes: 1
 
 majorVersion: ""
 
-
 # Allows you to add any config files in {{ .Values.configPath }}/config
 opensearchHome: /usr/share/opensearch
 # such as opensearch.yml and log4j2.properties
@@ -64,7 +63,19 @@ config:
           roles_enabled: ["all_access", "security_rest_api_access"]
         system_indices:
           enabled: true
-          indices: [".opendistro-alerting-config", ".opendistro-alerting-alert*", ".opendistro-anomaly-results*", ".opendistro-anomaly-detector*", ".opendistro-anomaly-checkpoints", ".opendistro-anomaly-detection-state", ".opendistro-reports-*", ".opendistro-notifications-*", ".opendistro-notebooks", ".opendistro-asynchronous-search-response*"]
+          indices:
+            [
+              ".opendistro-alerting-config",
+              ".opendistro-alerting-alert*",
+              ".opendistro-anomaly-results*",
+              ".opendistro-anomaly-detector*",
+              ".opendistro-anomaly-checkpoints",
+              ".opendistro-anomaly-detection-state",
+              ".opendistro-reports-*",
+              ".opendistro-notifications-*",
+              ".opendistro-notebooks",
+              ".opendistro-asynchronous-search-response*",
+            ]
     ######## End OpenSearch Security Demo Configuration ########
   # log4j2.properties:
 
@@ -86,7 +97,6 @@ envFrom: []
 # This is useful for mounting certificates for security and for mounting
 # the X-Pack license
 secretMounts: []
-
 
 hostAliases: []
 #- ip: "127.0.0.1"
@@ -246,14 +256,14 @@ podSecurityContext:
 securityContext:
   capabilities:
     drop:
-    - ALL
+      - ALL
   # readOnlyRootFilesystem: true
   runAsNonRoot: true
   runAsUser: 1000
 
 securityConfig:
   enabled: true
-  path: "/usr/share/elasticsearch/plugins/opendistro_security/securityconfig"
+  path: "/usr/share/opensearch/plugins/opensearch-security/securityconfig"
   actionGroupsSecret:
   configSecret:
   internalUsersSecret:
@@ -331,7 +341,6 @@ lifecycle: {}
   #         ES_URL=http://localhost:9200
   #         while [[ "$(curl -s -o /dev/null -w '%{http_code}\n' $ES_URL)" != "200" ]]; do sleep 1; done
   #         curl -XPUT "$ES_URL/_template/$TEMPLATE_NAME" -H 'Content-Type: application/json' -d'{"index_patterns":['\""$INDEX_PATTERN"\"'],"settings":{"number_of_shards":'$SHARD_COUNT',"number_of_replicas":'$REPLICA_COUNT'}}'
-
 
 keystore: []
 
