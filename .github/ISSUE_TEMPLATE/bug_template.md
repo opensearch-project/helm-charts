@@ -1,7 +1,7 @@
 ---
 name: Bug report
 about: Create a report to help us improve
-title: "[BUG][Component Name]"
+title: "[BUG][Chart Name]"
 labels: 'bug, untriaged'
 assignees: ''
 ---
@@ -19,8 +19,8 @@ Steps to reproduce the behavior:
 **Expected behavior**
 A clear and concise description of what you expected to happen.
 
-**Component**
-Please list all components currently enabled. (Helm, etc.)
+**Chart Name**
+Specify the Chart which is affected?
 
 **Screenshots**
 If applicable, add screenshots to help explain your problem.
