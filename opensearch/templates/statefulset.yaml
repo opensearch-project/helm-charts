@@ -368,7 +368,7 @@ spec:
           {{- end }}
           {{- range $path, $config := .Values.config }}
           - name: config
-            mountPath: {{ .Values.opensearchHome }}/config/{{ $path }}
+            mountPath: {{ $.Values.opensearchHome }}/config/{{ $path }}
             subPath: {{ $path }}
           {{- end -}}
         {{- if .Values.extraVolumeMounts }}
