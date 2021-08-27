@@ -1,6 +1,6 @@
 <img src="https://opensearch.org/assets/brand/SVG/Logo/opensearch_logo_default.svg" height="64px"/>
 
-- [Charts](#charts)
+- [OpenSearch Project Helm-Charts](#helm-charts)
 - [Contributing](#contributing)
 - [Getting Help](#getting-help)
 - [Code of Conduct](#code-of-conduct)
@@ -8,7 +8,7 @@
 - [License](#license)
 - [Copyright](#copyright)
 
-## OpenSearch Project Charts
+## OpenSearch Project Helm-Charts
 
 A community repository for Helm Charts of OpenSearch Project.
 
