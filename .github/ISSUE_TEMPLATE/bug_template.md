@@ -27,7 +27,7 @@ If applicable, add screenshots to help explain your problem.
 
 **Host/Environment (please complete the following information):**
  - Helm Version: [e.g. 3.x.x]
- - Kubernetes Version [e.g. 1.16.x]
+ - Kubernetes Version: [e.g. 1.16.x]
 
 **Additional context**
 Add any other context about the problem here.
