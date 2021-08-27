@@ -26,8 +26,8 @@ Specify the Chart which is affected?
 If applicable, add screenshots to help explain your problem.
 
 **Host/Environment (please complete the following information):**
- - OS: [e.g. Linux/Windows]
- - Version [e.g. 1.0.0]
+ - Helm Version: [e.g. 3.x.x]
+ - Kubernetes Version [e.g. 1.16.x]
 
 **Additional context**
 Add any other context about the problem here.
