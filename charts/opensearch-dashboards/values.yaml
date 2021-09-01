@@ -58,25 +58,24 @@ securityContext:
   runAsNonRoot: true
   runAsUser: 1000
 
-config:
-  opensearch_dashboards.yml:
-    server:
-      name: dashboards
-      host: 0.0.0.0
+config: {}
+  ## Default OpenSearch Dashboards configuration from docker image of Dashboards
+  #  opensearch_dashboards.yml:
+  #   server:
+  #     name: dashboards
+  #     host: 0.0.0.0
 
-      ssl:
-        enabled: false
-      ## Dashboards TLS Config (if providing TLS Certs uncomment below, and ensure files are present in container)
-      # enabled: true
-      # key: /usr/share/opensearch-dashboards/certs/dashboards-key.pem
-      # certificate: /usr/share/opensearch-dashboards/certs/dashboards-crt.pem
+  ## Dashboards TLS Config (Ensure the cert files are present before enabling SSL
+      # ssl:
+      #   enabled: true
+      #   key: /usr/share/opensearch-dashboards/certs/dashboards-key.pem
+      #   certificate: /usr/share/opensearch-dashboards/certs/dashboards-crt.pem
 
     # determines how dashboards will verify certificates (needs to be none for default opensearch certificates to work)
-    opensearch:
-      ssl:
-        verificationMode: none
+    # opensearch:
+    #   ssl:
+    #     certificateAuthorities: /usr/share/opensearch-dashboards/certs/dashboards-root-ca.pem
         # if utilizing custom CA certs for connection to opensearch, provide the CA here
-        # certificateAuthorities: /usr/share/opensearch-dashboards/certs/dashboards-root-ca.pem
 
 priorityClassName: ""
 
