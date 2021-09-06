@@ -29,7 +29,7 @@ spec:
     {{- end }}
   {{- end }}
   rules:
-  {{- if semverCompare ">=1.19" .Capabilities.KubeVersion.Version -}}
+  {{- if semverCompare ">=1.19-0" .Capabilities.KubeVersion.Version -}}
     {{- range .Values.ingress.hosts }}
     - host: {{ .host | quote }}
       http:
