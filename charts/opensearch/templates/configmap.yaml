@@ -1,0 +1,16 @@
+{{- if .Values.config }}
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ template "opensearch.uname" . }}-config
+  labels:
+    heritage: {{ .Release.Service | quote }}
+    release: {{ .Release.Name | quote }}
+    chart: "{{ .Chart.Name }}"
+    app: "{{ template "opensearch.uname" . }}"
+data:
+{{- range $configName, $configYaml := .Values.config }}
+  {{ $configName }}: |
+    {{- toYaml $configYaml | nindent 4 }}
+{{- end -}}
+{{- end -}}
