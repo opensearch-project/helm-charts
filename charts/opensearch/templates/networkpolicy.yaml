@@ -1,0 +1,14 @@
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  creationTimestamp: null
+  name: {{ template "opensearch.uname" . }}-opensearch-net
+spec:
+  ingress:
+    - from:
+        - podSelector:
+            matchLabels:
+              {{ template "opensearch.uname" . }}-transport-client: "true"
+  podSelector:
+    matchLabels:
+      {{ template "opensearch.uname" . }}-transport-client: "true"
