@@ -5,9 +5,9 @@ metadata:
   name: {{ .Values.securityConfig.config.securityConfigSecret }}
   namespace: {{ .Release.Namespace }}
   labels:
-    app: "{{ .Chart.Name }}"
-    release: {{ .Release.Name | quote }}
-    heritage: {{ .Release.Service | quote }}
+    app: {{ .Chart.Name }}
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
 type: Opaque
 data:
   {{- range $key, $val := .Values.securityConfig.config.data }}
