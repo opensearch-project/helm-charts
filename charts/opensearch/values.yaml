@@ -196,18 +196,6 @@ extraContainers: []
   #   image: busybox
   #   command: ['do', 'something']
 
-extraInitContainers:
- - name: volume-chmod
-   image: busybox
-   command: ['sh', '-c']
-   args:
-     - 'chown -R 1000:1000 /usr/share/opensearch'
-   securityContext:
-     runAsUser: 0
-   volumeMounts:
-     - mountPath: /usr/share/opensearch/data
-       name: opensearch-cluster-master
-
 # This is the PriorityClass settings as defined in
 # https://kubernetes.io/docs/concepts/configuration/pod-priority-preemption/#priorityclass
 priorityClassName: ""
@@ -285,7 +273,8 @@ securityConfig:
       # config.yml: |-
       # internal_users.yml: |-
       # roles.yml: |-
-      # rolesMapping.yml: |-
+      # roles_mapping.yml: |-
+      # action_groups.yml: |-
     # tenants.yml: |-
 
 # How long to wait for opensearch to stop gracefully
