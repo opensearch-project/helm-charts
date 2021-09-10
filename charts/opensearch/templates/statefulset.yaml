@@ -71,7 +71,7 @@ spec:
         {{- range $key, $value := .Values.podAnnotations }}
         {{ $key }}: {{ $value | quote }}
         {{- end }}
-        {{/* This forces a restart if the configmap has changed */}}
+        {{- /* This forces a restart if the configmap has changed */}}
         {{- if .Values.config }}
         configchecksum: {{ include (print .Template.BasePath "/configmap.yaml") . | sha256sum | trunc 63 }}
         {{- end }}
