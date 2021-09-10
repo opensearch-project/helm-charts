@@ -138,9 +138,9 @@ spec:
       terminationGracePeriodSeconds: {{ .Values.terminationGracePeriod }}
       volumes:
       {{- range .Values.secretMounts }}
-      - name: {{ .name }}
+      - name: {{ .name | required "secretMount .name is required" }}
         secret:
-          secretName: {{ .secretName }}
+          secretName: {{ .secretName | required "secretMount .secretName is required" }}
           {{- if .defaultMode }}
           defaultMode: {{ .defaultMode }}
           {{- end }}
@@ -359,8 +359,8 @@ spec:
         {{- end }}
         {{- end }}
         {{- range .Values.secretMounts }}
-        - name: {{ .name }}
-          mountPath: {{ .path }}
+        - name: {{ .name | required "secretMount .name is required" }}
+          mountPath: {{ .path | required "secretMount .path is required" }}
           {{- if .subPath }}
           subPath: {{ .subPath }}
           {{- end }}
