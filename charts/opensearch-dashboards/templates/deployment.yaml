@@ -123,6 +123,37 @@ spec:
         envFrom:
 {{ toYaml .Values.envFrom | indent 10 }}
 {{- end }}
+
+        {{- if and .Values.probes.readiness.enabled .Values.probes.readiness.custom }}
+        readinessProbe:
+{{ .Values.probes.readiness.custom | toYaml | indent 10 }}
+        {{- else if .Values.probes.readiness.enabled }}
+        readinessProbe:
+          httpGet:
+            path: /api/status
+            port: {{ .Values.service.httpPortName | default "http" }}
+          initialDelaySeconds: 30
+          periodSeconds: 10
+        {{- end }}
+        {{- if and .Values.probes.liveness.enabled .Values.probes.liveness.custom }}
+        livenessProbe:
+{{ .Values.probes.liveness.custom | toYaml | indent 10 }}
+        {{- else if .Values.probes.liveness.enabled }}
+        livenessProbe:
+          tcpSocket:
+            port: {{ .Values.service.httpPortName | default "http" }}
+          periodSeconds: 15
+        {{- end }}
+        {{- if and .Values.probes.startup.enabled .Values.probes.startup.custom }}
+        startupProbe:
+{{ .Values.probes.startup.custom | toYaml | indent 10 }}
+        {{- else if .Values.probes.startup.enabled }}
+        startupProbe:
+          tcpSocket:
+            port: {{ .Values.service.httpPortName | default "http" }}
+          failureThreshold: 30
+          periodSeconds: 5
+        {{- end }}
         ports:
         - containerPort: {{ .Values.service.port }}
           name: {{ .Values.service.httpPortName | default "http" }}

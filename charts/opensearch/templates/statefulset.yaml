@@ -44,7 +44,7 @@ spec:
     spec:
       accessModes:
       {{- range .Values.persistence.accessModes }}
-      - {{ . | quote }}
+        - {{ . | quote }}
       {{- end }}
       resources:
         requests:
@@ -71,9 +71,12 @@ spec:
         {{- range $key, $value := .Values.podAnnotations }}
         {{ $key }}: {{ $value | quote }}
         {{- end }}
-        {{- /* This forces a restart if the configmap has changed */}}
+        {{/* This forces a restart if the configmap has changed */}}
         {{- if .Values.config }}
         configchecksum: {{ include (print .Template.BasePath "/configmap.yaml") . | sha256sum | trunc 63 }}
+        {{- end }}
+        {{- if and .Values.probes.readiness.enabled .Values.probes.readiness.username .Values.probes.readiness.password }}
+        lifecyclesecretchecksum: {{ include (print .Template.BasePath "/lifecycle-secret.yaml") . | sha256sum | trunc 63 }}
         {{- end }}
     spec:
       {{- if .Values.schedulerName }}
@@ -83,8 +86,8 @@ spec:
 {{ toYaml .Values.podSecurityContext | indent 8 }}
         {{- if .Values.sysctl.enabled }}
         sysctls:
-        - name: vm.max_map_count
-          value: {{ .Values.sysctlVmMaxMapCount | quote }}
+          - name: vm.max_map_count
+            value: {{ .Values.sysctlVmMaxMapCount | quote }}
         {{- end }}
         {{- if .Values.fsGroup }}
         fsGroup: {{ .Values.fsGroup }} # Deprecated value, please use .Values.podSecurityContext.fsGroup
@@ -137,70 +140,70 @@ spec:
       {{- end }}
       terminationGracePeriodSeconds: {{ .Values.terminationGracePeriod }}
       volumes:
-      {{- range .Values.secretMounts }}
-      - name: {{ .name | required "secretMount .name is required" }}
-        secret:
-          secretName: {{ .secretName | required "secretMount .secretName is required" }}
-          {{- if .defaultMode }}
-          defaultMode: {{ .defaultMode }}
-          {{- end }}
-      {{- end }}
-      {{- if .Values.config }}
-      - name: config
-        configMap:
-          name: {{ template "opensearch.uname" . }}-config
-      {{- end }}
-      {{- if and .Values.securityConfig.config.securityConfigSecret .Values.securityConfig.config.data }}
-      - name: security-config
-        secret:
-         secretName: {{ .Values.securityConfig.config.securityConfigSecret }}
-      {{- end }}
-      {{- if .Values.securityConfig.actionGroupsSecret }}
-      - name: action-groups
-        secret:
-          secretName: {{ .Values.securityConfig.actionGroupsSecret }}
-      {{- end }}
-      {{- if .Values.securityConfig.configSecret }}
-      - name: security-config
-        secret:
-          secretName: {{ .Values.securityConfig.configSecret }}
-      {{- end }}
-      {{- if .Values.securityConfig.internalUsersSecret }}
-      - name: internal-users-config
-        secret:
-          secretName: {{ .Values.securityConfig.internalUsersSecret }}
-      {{- end }}
-      {{- if .Values.securityConfig.rolesSecret }}
-      - name: roles
-        secret:
-          secretName: {{ .Values.securityConfig.rolesSecret }}
-      {{- end }}
-      {{- if .Values.securityConfig.rolesMappingSecret }}
-      - name: role-mapping
-        secret:
-          secretName: {{ .Values.securityConfig.rolesMappingSecret }}
-      {{- end -}}
-      {{- if .Values.securityConfig.tenantsSecret }}
-      - name: tenants
-        secret:
-          secretName: {{ .Values.securityConfig.tenantsSecret }}
-      {{- end }}
+        {{- range .Values.secretMounts }}
+        - name: {{ .name }}
+          secret:
+            secretName: {{ .secretName }}
+            {{- if .defaultMode }}
+            defaultMode: {{ .defaultMode }}
+            {{- end }}
+        {{- end }}
+        {{- if .Values.config }}
+        - name: config
+          configMap:
+            name: {{ template "opensearch.uname" . }}-config
+        {{- end }}
+        {{- if and .Values.securityConfig.config.securityConfigSecret .Values.securityConfig.config.data }}
+        - name: security-config
+          secret:
+           secretName: {{ .Values.securityConfig.config.securityConfigSecret }}
+        {{- end }}
+        {{- if .Values.securityConfig.actionGroupsSecret }}
+        - name: action-groups
+          secret:
+            secretName: {{ .Values.securityConfig.actionGroupsSecret }}
+        {{- end }}
+        {{- if .Values.securityConfig.configSecret }}
+        - name: security-config
+          secret:
+            secretName: {{ .Values.securityConfig.configSecret }}
+        {{- end }}
+        {{- if .Values.securityConfig.internalUsersSecret }}
+        - name: internal-users-config
+          secret:
+            secretName: {{ .Values.securityConfig.internalUsersSecret }}
+        {{- end }}
+        {{- if .Values.securityConfig.rolesSecret }}
+        - name: roles
+          secret:
+            secretName: {{ .Values.securityConfig.rolesSecret }}
+        {{- end }}
+        {{- if .Values.securityConfig.rolesMappingSecret }}
+        - name: role-mapping
+          secret:
+            secretName: {{ .Values.securityConfig.rolesMappingSecret }}
+        {{- end -}}
+        {{- if .Values.securityConfig.tenantsSecret }}
+        - name: tenants
+          secret:
+            secretName: {{ .Values.securityConfig.tenantsSecret }}
+        {{- end }}
 {{- if .Values.keystore }}
-      - name: keystore
-        emptyDir: {}
-      {{- range .Values.keystore }}
-      - name: keystore-{{ .secretName }}
-        secret: {{ toYaml . | nindent 12 }}
-      {{- end }}
+        - name: keystore
+          emptyDir: {}
+        {{- range .Values.keystore }}
+        - name: keystore-{{ .secretName }}
+          secret: {{ toYaml . | nindent 12 }}
+        {{- end }}
 {{ end }}
       {{- if .Values.extraVolumes }}
       # Currently some extra blocks accept strings
       # to continue with backwards compatibility this is being kept
       # whilst also allowing for yaml to be specified too.
       {{- if eq "string" (printf "%T" .Values.extraVolumes) }}
-{{ tpl .Values.extraVolumes . | indent 6 }}
+{{ tpl .Values.extraVolumes . | indent 8 }}
       {{- else }}
-{{ toYaml .Values.extraVolumes | indent 6 }}
+{{ toYaml .Values.extraVolumes | indent 8 }}
       {{- end }}
       {{- end }}
       {{- if .Values.imagePullSecrets }}
@@ -224,18 +227,18 @@ spec:
           #!/usr/bin/env bash
           set -euo pipefail
 
-          {{ .Values.opensearchHome }}/bin/opensearch-keystore create
+          opensearch-keystore create
 
           for i in /tmp/keystoreSecrets/*/*; do
             key=$(basename $i)
             echo "Adding file $i to keystore key $key"
-            {{ .Values.opensearchHome }}/bin/opensearch-keystore add-file "$key" "$i"
+            opensearch-keystore add-file "$key" "$i"
           done
 
           # Add the bootstrap password since otherwise the opensearch entrypoint tries to do this on startup
           if [ ! -z ${PASSWORD+x} ]; then
             echo 'Adding env $PASSWORD to keystore as key bootstrap.password'
-            echo "$PASSWORD" | {{ .Values.opensearchHome }}/bin/opensearch-keystore add -x bootstrap.password
+            echo "$PASSWORD" | opensearch-keystore add -x bootstrap.password
           fi
 
           cp -a {{ .Values.opensearchHome }}/config/opensearch.keystore /tmp/keystore/
@@ -243,12 +246,12 @@ spec:
         envFrom: {{ toYaml .Values.envFrom | nindent 10 }}
         resources: {{ toYaml .Values.initResources | nindent 10 }}
         volumeMounts:
-        - name: keystore
-          mountPath: /tmp/keystore
-        {{- range .Values.keystore }}
-        - name: keystore-{{ .secretName }}
-          mountPath: /tmp/keystoreSecrets/{{ .secretName }}
-        {{- end }}
+          - name: keystore
+            mountPath: /tmp/keystore
+          {{- range .Values.keystore }}
+          - name: keystore-{{ .secretName }}
+            mountPath: /tmp/keystoreSecrets/{{ .secretName }}
+          {{- end }}
 {{ end }}
       {{- if .Values.extraInitContainers }}
       # Currently some extra blocks accept strings
@@ -272,104 +275,154 @@ spec:
           containerPort: {{ .Values.httpPort }}
         - name: transport
           containerPort: {{ .Values.transportPort }}
+        {{- if and .Values.probes.readiness.enabled .Values.probes.readiness.username .Values.probes.readiness.password }}
+        readinessProbe:
+          exec:
+            command:
+            - sh
+            - -c
+            {{- if .Values.probes.readiness.acceptableStatuses }}
+            - 'curl --fail --silent -u $READINESS_USERNAME:$READINESS_PASSWORD http://localhost:9200/_cat/health | grep -P "({{ join "|" .Values.probes.readiness.acceptableStatuses }})"'
+            {{- else }}
+            - 'curl --fail --silent -u $READINESS_USERNAME:$READINESS_PASSWORD http://localhost:9200/_cat/health'
+            {{- end }}
+          initialDelaySeconds: {{ default 10 .Values.probes.readiness.delay }}
+          periodSeconds: {{ default 10 .Values.probes.readiness.interval }}
+        {{- else if and .Values.probes.readiness.enabled .Values.probes.readiness.custom -}}
+        readinessProbe:
+{{ .Values.probes.readiness.custom | toYaml | indent 10}}
+        {{- end }}
+        {{- if and .Values.probes.liveness.enabled .Values.probes.liveness.custom }}
+        livenessProbe:
+{{ .Values.probes.liveness.custom | toYaml | indent 10}}
+        {{- else if .Values.probes.liveness.enabled }}
+        livenessProbe:
+          tcpSocket:
+            port: transport
+          periodSeconds: {{ default 10 .Values.probes.liveness.interval }}
+        {{- end }}
+        {{- if and .Values.probes.startup.enabled .Values.probes.startup.custom }}
+        startupProbe:
+{{ .Values.probes.startup.custom | toYaml | indent 10 }}
+        {{- else if .Values.probes.startup.enabled }}
+        startupProbe:
+          tcpSocket:
+            port: transport
+          initialDelaySeconds: {{ default 15 .Values.probes.startup.delay }}
+          periodSeconds: {{ default 5 .Values.probes.startup.interval }}
+        {{- end }}
+
         resources:
 {{ toYaml .Values.resources | indent 10 }}
         env:
-        - name: node.name
-          valueFrom:
-            fieldRef:
-              fieldPath: metadata.name
-        {{- if eq .Values.roles.master "true" }}
-        {{- if ge (int (include "opensearch.majorVersion" .)) 7 }}
-        - name: cluster.initial_master_nodes
-          value: "{{ template "opensearch.endpoints" . }}"
-        {{- else }}
-        - name: discovery.zen.minimum_master_nodes
-          value: "{{ .Values.minimumMasterNodes }}"
-        {{- end }}
-        {{- end }}
-        {{- if lt (int (include "opensearch.majorVersion" .)) 7 }}
-        - name: discovery.zen.ping.unicast.hosts
-          value: "{{ template "opensearch.masterService" . }}-headless"
-        {{- else }}
-        - name: discovery.seed_hosts
-          value: "{{ template "opensearch.masterService" . }}-headless"
-        {{- end }}
-        - name: cluster.name
-          value: "{{ .Values.clusterName }}"
-        - name: network.host
-          value: "{{ .Values.networkHost }}"
-        - name: OPENSEARCH_JAVA_OPTS
-          value: "{{ .Values.opensearchJavaOpts }}"
-        {{- range $role, $enabled := .Values.roles }}
-        - name: node.{{ $role }}
-          value: "{{ $enabled }}"
-        {{- end }}
-{{- if .Values.extraEnvs }}
-{{ toYaml .Values.extraEnvs | indent 10 }}
-{{- end }}
-{{- if .Values.envFrom }}
-        envFrom:
-{{ toYaml .Values.envFrom | indent 10 }}
-{{- end }}
-        volumeMounts:
-        {{- if .Values.persistence.enabled }}
-        - name: "{{ template "opensearch.uname" . }}"
-          mountPath: {{ .Values.opensearchHome }}/data
-        {{- end }}
-        {{- if .Values.keystore }}
-        - name: keystore
-          mountPath: {{ .Values.opensearchHome }}/config/opensearch.keystore
-          subPath: opensearch.keystore
-        {{- end }}
-        {{- if .Values.securityConfig.enabled }}
-        {{- if .Values.securityConfig.actionGroupsSecret }}
-        - mountPath: {{ .Values.securityConfig.path }}/action_groups.yml
-          name: action-groups
-          subPath: action_groups.yml
-        {{- end }}
-        {{- if .Values.securityConfig.configSecret }}
-        - mountPath: {{ .Values.securityConfig.path }}/config.yml
-          name: security-config
-          subPath: config.yml
-        {{- end }}
-        {{- if .Values.securityConfig.internalUsersSecret }}
-        - mountPath: {{ .Values.securityConfig.path }}/internal_users.yml
-          name: internal-users-config
-          subPath: internal_users.yml
-        {{- end }}
-        {{- if .Values.securityConfig.rolesSecret }}
-        - mountPath: {{ .Values.securityConfig.path }}/roles.yml
-          name: roles
-          subPath: roles.yml
-        {{- end }}
-        {{- if .Values.securityConfig.rolesMappingSecret }}
-        - mountPath: {{ .Values.securityConfig.path }}/roles_mapping.yml
-          name: role-mapping
-          subPath: roles_mapping.yml
-        {{- end }}
-        {{- if .Values.securityConfig.tenantsSecret }}
-        - mountPath: {{ .Values.securityConfig.path }}/tenants.yml
-          name: tenants
-          subPath: tenants.yml
-        {{- end }}
-        {{- if and .Values.securityConfig.config.securityConfigSecret .Values.securityConfig.config.data  }}
-        - mountPath: {{ .Values.securityConfig.path }}
-          name: security-config
-        {{- end }}
-        {{- end }}
-        {{- range .Values.secretMounts }}
-        - name: {{ .name | required "secretMount .name is required" }}
-          mountPath: {{ .path | required "secretMount .path is required" }}
-          {{- if .subPath }}
-          subPath: {{ .subPath }}
+          - name: node.name
+            valueFrom:
+              fieldRef:
+                fieldPath: metadata.name
+          {{- if eq .Values.roles.master "true" }}
+          {{- if ge (int (include "opensearch.majorVersion" .)) 7 }}
+          - name: cluster.initial_master_nodes
+            value: "{{ template "opensearch.endpoints" . }}"
+          {{- else }}
+          - name: discovery.zen.minimum_master_nodes
+            value: "{{ .Values.minimumMasterNodes }}"
           {{- end }}
+          {{- end }}
+          {{- if lt (int (include "opensearch.majorVersion" .)) 7 }}
+          - name: discovery.zen.ping.unicast.hosts
+            value: "{{ template "opensearch.masterService" . }}-headless"
+          {{- else }}
+          - name: discovery.seed_hosts
+            value: "{{ template "opensearch.masterService" . }}-headless"
+          {{- end }}
+          - name: cluster.name
+            value: "{{ .Values.clusterName }}"
+          - name: network.host
+            value: "{{ .Values.networkHost }}"
+          - name: ES_JAVA_OPTS
+            value: "{{ .Values.esJavaOpts }}"
+          {{- range $role, $enabled := .Values.roles }}
+          - name: node.{{ $role }}
+            value: "{{ $enabled }}"
+          {{- end }}
+
+          {{- if .Values.extraEnvs }}
+{{ toYaml .Values.extraEnvs | indent 10 }}
+          {{- end }}
+        {{- if or .Values.envFrom (and .Values.probes.readiness.enabled .Values.probes.readiness.username .Values.probes.readiness.password) }}
+        envFrom:
+        {{- if and .Values.probes.readiness.enabled .Values.probes.readiness.username .Values.probes.readiness.password }}
+        - secretRef:
+            name:  {{ template "opensearch.uname" . }}-probes
         {{- end }}
-        {{- range $path, $config := .Values.config }}
-        - name: config
-          mountPath: {{ $.Values.opensearchHome }}/config/{{ $path }}
-          subPath: {{ $path }}
-        {{- end -}}
+        {{- if .Values.envFrom }}
+{{ toYaml .Values.envFrom | indent 10 }}
+        {{- end }}
+        {{- end }}
+        volumeMounts:
+          {{- if .Values.persistence.enabled }}
+          - name: "{{ template "opensearch.uname" . }}"
+            mountPath: {{ .Values.opensearchHome }}/data
+          {{- end }}
+          {{- if .Values.keystore }}
+          - name: keystore
+            mountPath: {{ .Values.opensearchHome }}/config/opensearch.keystore
+            subPath: opensearch.keystore
+          {{- end }}
+          {{- if .Values.keystore }}
+          - name: keystore
+            mountPath: /usr/share/opensearch/config/opensearch.keystore
+            subPath: opensearch.keystore
+          {{- end }}
+          {{- if .Values.securityConfig.enabled }}
+          {{- if .Values.securityConfig.actionGroupsSecret }}
+          - mountPath: {{ .Values.securityConfig.path }}/action_groups.yml
+            name: action-groups
+            subPath: action_groups.yml
+          {{- end }}
+          {{- if .Values.securityConfig.configSecret }}
+          - mountPath: {{ .Values.securityConfig.path }}/config.yml
+            name: security-config
+            subPath: config.yml
+          {{- end }}
+          {{- if .Values.securityConfig.internalUsersSecret }}
+          - mountPath: {{ .Values.securityConfig.path }}/internal_users.yml
+            name: internal-users-config
+            subPath: internal_users.yml
+          {{- end }}
+          {{- if .Values.securityConfig.rolesSecret }}
+          - mountPath: {{ .Values.securityConfig.path }}/roles.yml
+            name: roles
+            subPath: roles.yml
+          {{- end }}
+          {{- if .Values.securityConfig.rolesMappingSecret }}
+          - mountPath: {{ .Values.securityConfig.path }}/roles_mapping.yml
+            name: role-mapping
+            subPath: roles_mapping.yml
+          {{- end }}
+          {{- if .Values.securityConfig.tenantsSecret }}
+          - mountPath: {{ .Values.securityConfig.path }}/tenants.yml
+            name: tenants
+            subPath: tenants.yml
+          {{- end }}
+          {{- if and .Values.securityConfig.config.securityConfigSecret .Values.securityConfig.config.data  }}
+          - mountPath: {{ .Values.securityConfig.path }}
+            name: security-config
+          {{- end }}
+          {{- end }}
+
+          {{- range .Values.secretMounts }}
+          - name: {{ .name }}
+            mountPath: {{ .path }}
+            {{- if .subPath }}
+            subPath: {{ .subPath }}
+            {{- end }}
+          {{- end }}
+          {{- range $path, $config := .Values.config }}
+          - name: config
+            mountPath: {{ .Values.opensearchHome }}/config/{{ $path }}
+            subPath: {{ $path }}
+          {{- end -}}
         {{- if .Values.extraVolumeMounts }}
         # Currently some extra blocks accept strings
         # to continue with backwards compatibility this is being kept
@@ -424,16 +477,16 @@ spec:
         resources:
 {{ toYaml .Values.sidecarResources | indent 10 }}
         env:
-        - name: NODE_NAME
-          valueFrom:
-            fieldRef:
-              fieldPath: metadata.name
+          - name: NODE_NAME
+            valueFrom:
+              fieldRef:
+                fieldPath: metadata.name
         {{- if .Values.extraEnvs }}
-{{ toYaml .Values.extraEnvs | indent 8 }}
+{{ toYaml .Values.extraEnvs | indent 10 }}
         {{- end }}
         {{- if .Values.envFrom }}
         envFrom:
-{{ toYaml .Values.envFrom | indent 8 }}
+{{ toYaml .Values.envFrom | indent 10 }}
         {{- end }}
       {{- end }}
       {{- end }}

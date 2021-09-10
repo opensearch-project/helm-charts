@@ -58,24 +58,30 @@ securityContext:
   runAsNonRoot: true
   runAsUser: 1000
 
-config: {}
-  ## Default OpenSearch Dashboards configuration from docker image of Dashboards
-  #  opensearch_dashboards.yml:
-  #   server:
-  #     name: dashboards
-  #     host: 0.0.0.0
+config:
+  opensearch_dashboards.yml:
+    server:
+      name: dashboards
+      host: 0.0.0.0
 
-  ## Dashboards TLS Config (Ensure the cert files are present before enabling SSL
-      # ssl:
-      #   enabled: true
-      #   key: /usr/share/opensearch-dashboards/certs/dashboards-key.pem
-      #   certificate: /usr/share/opensearch-dashboards/certs/dashboards-crt.pem
+      ## Dashboards TLS Config
+      ssl:
+        enabled: false
+        key: /usr/share/opensearch-dashboards/certs/dashboards-key.pem
+        certificate: /usr/share/opensearch-dashboards/certs/dashboards-crt.pem
+    opensearch.ssl.certificateAuthorities: /usr/share/opensearch-dashboards/certs/dashboards-root-ca.pem
 
-    # determines how dashboards will verify certificates (needs to be none for default opensearch certificates to work)
-    # opensearch:
-    #   ssl:
-    #     certificateAuthorities: /usr/share/opensearch-dashboards/certs/dashboards-root-ca.pem
-        # if utilizing custom CA certs for connection to opensearch, provide the CA here
+probes:
+  readiness:
+    enabled: true
+    custom:
+      tcpSocket:
+        port: http
+      periodSeconds: 15
+  liveness:
+    enabled: true
+  startup:
+    enabled: true
 
 priorityClassName: ""
 
@@ -107,8 +113,7 @@ service:
 
 ingress:
   enabled: false
-  annotations:
-    {}
+  annotations: {}
     # kubernetes.io/ingress.class: nginx
     # kubernetes.io/tls-acme: "true"
   hosts:

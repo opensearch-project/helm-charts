@@ -60,3 +60,14 @@ Create the name of the service account to use
     {{- default "default" .Values.serviceAccount.name }}
 {{- end }}
 {{- end }}
+
+{{/*
+Define standard labels for frequently used metadata.
+*/}}
+{{- define "opensearch-dashboards.standard" -}}
+app: {{ template "opensearch-dashboards.fullname" . }}
+chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
+release: "{{ .Release.Name }}"
+heritage: "{{ .Release.Service }}"
+{{- end -}}
+
