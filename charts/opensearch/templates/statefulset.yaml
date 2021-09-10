@@ -299,8 +299,8 @@ spec:
           value: "{{ .Values.clusterName }}"
         - name: network.host
           value: "{{ .Values.networkHost }}"
-        - name: ES_JAVA_OPTS
-          value: "{{ .Values.esJavaOpts }}"
+        - name: OPENSEARCH_JAVA_OPTS
+          value: "{{ .Values.opensearchJavaOpts }}"
         {{- range $role, $enabled := .Values.roles }}
         - name: node.{{ $role }}
           value: "{{ $enabled }}"
