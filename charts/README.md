@@ -22,8 +22,8 @@ This chart is tested with the latest 1.0.0-rc1 version.
 * The chart deploys a StatefulSet and by default will do an automated rolling
   update of your cluster. It does this by waiting for the cluster health to become
   green after each instance is updated.
-* It is important to verify that the JVM heap size in `esJavaOpts` and to set
-  the CPU/Memory `resources` to something suitable for your cluster.
+* It is important to verify that the JVM heap size in `opensearchJavaOpts` and
+  to set the CPU/Memory `resources` to something suitable for your cluster.
 * To simplify chart and maintenance each set of node groups is deployed as a
   separate Helm release. Without doing this it isn't possible to resize persistent
   volumes in a StatefulSet. By setting it up this way it makes it possible to add
