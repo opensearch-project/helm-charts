@@ -196,6 +196,11 @@ extraContainers: []
   #   image: busybox
   #   command: ['do', 'something']
 
+extraInitContainers: []
+  # - name: do-somethings
+  #   image: busybox
+  #   command: ['do', 'something']
+
 # This is the PriorityClass settings as defined in
 # https://kubernetes.io/docs/concepts/configuration/pod-priority-preemption/#priorityclass
 priorityClassName: ""
