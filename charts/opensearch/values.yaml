@@ -34,9 +34,9 @@ config:
     # discovery.zen.minimum_master_nodes: 1
 
     # Setting network.host to a non-loopback address enables the annoying bootstrap checks. "Single-node" mode disables them again.
-    #discovery.type: single-node
+    # discovery.type: single-node
 
-    ######## Start OpenSearch Security Demo Configuration ########
+    # Start OpenSearch Security Demo Configuration
     # WARNING: revise all the lines below before you go into production
     plugins:
       security:
@@ -99,10 +99,10 @@ envFrom: []
 secretMounts: []
 
 hostAliases: []
-#- ip: "127.0.0.1"
-#  hostnames:
-#  - "foo.local"
-#  - "bar.local"
+# - ip: "127.0.0.1"
+#   hostnames:
+#   - "foo.local"
+#   - "bar.local"
 
 image: "opensearchproject/opensearch"
 # override image tag, which is .Chart.AppVersion by default
@@ -169,13 +169,13 @@ persistence:
   labels:
     # Add default labels for the volumeClaimTemplate of the StatefulSet
     enabled: false
-  ## OpenSearch Persistent Volume Storage Class
-  ## If defined, storageClassName: <storageClass>
-  ## If set to "-", storageClassName: "", which disables dynamic provisioning
-  ## If undefined (the default) or set to null, no storageClassName spec is
-  ##   set, choosing the default provisioner.  (gp2 on AWS, standard on
-  ##   GKE, AWS & OpenStack)
-  ##
+  # OpenSearch Persistent Volume Storage Class
+  # If defined, storageClassName: <storageClass>
+  # If set to "-", storageClassName: "", which disables dynamic provisioning
+  # If undefined (the default) or set to null, no storageClassName spec is
+  #   set, choosing the default provisioner.  (gp2 on AWS, standard on
+  #   GKE, AWS & OpenStack)
+  #
   # storageClass: "-"
   accessModes:
     - ReadWriteOnce
@@ -270,8 +270,8 @@ securityConfig:
   rolesSecret:
   rolesMappingSecret:
   tenantsSecret:
-  #The following option simplifies securityConfig by using a single secret and specifying the respective secrets in the corresponding files instead of creating different secrets for config,internal users, roles, roles mapping and tenants
-  #Note that this is an alternative to the above secrets and shouldn't be used if the above secrets are used
+  # The following option simplifies securityConfig by using a single secret and specifying the respective secrets in the corresponding files instead of creating different secrets for config,internal users, roles, roles mapping and tenants
+  # Note that this is an alternative to the above secrets and shouldn't be used if the above secrets are used
   config:
     securityConfigSecret:
     data: {}

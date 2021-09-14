@@ -12,6 +12,16 @@
 
 A community repository for Helm Charts of OpenSearch Project.
 
+```shell
+helm repo add opensearch https://opensearch-project.github.io/helm-charts/
+helm search repo opensearch
+```
+
+## Status
+
+![Testing](https://github.com/opensearch-project/helm-charts/workflows/Lint%20and%20Test%20Charts/badge.svg)
+![Release](https://github.com/opensearch-project/helm-charts/workflows/Release%20Charts/badge.svg)
+
 ## Contributing
 
 See [developer guide](DEVELOPER_GUIDE.md) and [how to contribute to this project](CONTRIBUTING.md). 
