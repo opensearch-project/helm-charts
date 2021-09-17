@@ -1,18 +1,10 @@
 name: Lint and Test Charts
 
-on:
-  push:
-    branches-ignore:
-    - 'main'
-    - 'repository'
-    
-  pull_request:
-    branches:
-    - '**'
-
+on: pull_request
+  
 jobs:
   lint-test:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v2
@@ -20,9 +12,9 @@ jobs:
           fetch-depth: 0
 
       - name: Install Helm
-        uses: azure/setup-helm@v1
+        uses: azure/setup-helm@v1.1
         with:
-          version: v3.4.1
+          version: v3.7.0
 
       - uses: actions/setup-python@v2
         with:

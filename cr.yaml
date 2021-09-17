@@ -1,4 +1,0 @@
-# See https://github.com/helm/chart-releaser-action
-owner: opensearch-project
-git-repo: helm-charts
-pages-branch: repository
