@@ -12,6 +12,8 @@
 
 A community repository for Helm Charts of OpenSearch Project.
 
+## Installation
+
 ```shell
 helm repo add opensearch https://opensearch-project.github.io/helm-charts/
 helm search repo opensearch
