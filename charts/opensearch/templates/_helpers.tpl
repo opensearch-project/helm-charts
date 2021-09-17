@@ -55,7 +55,7 @@ We truncate at 63 chars because some Kubernetes name fields are limited to this 
 {{- if .Values.majorVersion }}
   {{- .Values.majorVersion }}
 {{- else }}
-  {{- $version := semver (coalesce .Values.imageTag .Chart.AppVersion "7") }}
+  {{- $version := semver (coalesce .Values.imageTag .Chart.AppVersion "1") }}
   {{- $version.Major }}
 {{- end }}
 {{- end }}
