@@ -279,7 +279,8 @@ securityConfig:
       # config.yml: |-
       # internal_users.yml: |-
       # roles.yml: |-
-      # rolesMapping.yml: |-
+      # roles_mapping.yml: |-
+      # action_groups.yml: |-
     # tenants.yml: |-
 
 # How long to wait for opensearch to stop gracefully
