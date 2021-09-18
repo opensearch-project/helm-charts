@@ -11,7 +11,7 @@ This Helm chart is a lightweight way to configure and run the official [OpenSear
 
 ## Installing
 
-This chart is tested with the latest 1.0.0-rc1 version.
+This chart is tested with the latest 1.0.0 version.
 
 * Clone this repo
 * Install it:
