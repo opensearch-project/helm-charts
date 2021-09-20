@@ -32,10 +32,10 @@ config:
 
     # # minimum_master_nodes need to be explicitly set when bound on a public IP
     # # set to 1 to allow single node clusters
-    # discovery.zen.minimum_master_nodes: 1
+    discovery.zen.minimum_master_nodes: 1
 
     # Setting network.host to a non-loopback address enables the annoying bootstrap checks. "Single-node" mode disables them again.
-    #discovery.type: single-node
+    discovery.type: single-node
 
     ######## Start OpenSearch Security Demo Configuration ########
     # WARNING: revise all the lines below before you go into production
@@ -367,3 +367,14 @@ fsGroup: ""
 ## Also see: https://kubernetes.io/docs/tasks/administer-cluster/sysctl-cluster/
 sysctl:
   enabled: false
+
+
+## Enable the Prometheus Exporter for OpenSearch https://github.com/aparo/opensearch-prometheus-exporter
+prometheus:
+  enabled: true
+
+## Enable to add 3rd Party / Custom plugins not offered in the default OpenSearch image. 
+plugins:
+  enabled: false
+  installList:
+  - example-plugin # Rest Plugin
