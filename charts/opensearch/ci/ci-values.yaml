@@ -14,10 +14,9 @@ roles:
   data: "true"
   remote_cluster_client: "true"
 
-replicas: 3
+replicas: 1
 minimumMasterNodes: 1
 
-# if not set, falls back to parsing .Values.imageTag, then .Chart.appVersion.
 majorVersion: ""
 
 # Allows you to add any config files in {{ .Values.opensearchHome }}/config
@@ -279,8 +278,7 @@ securityConfig:
       # config.yml: |-
       # internal_users.yml: |-
       # roles.yml: |-
-      # roles_mapping.yml: |-
-      # action_groups.yml: |-
+      # rolesMapping.yml: |-
     # tenants.yml: |-
 
 # How long to wait for opensearch to stop gracefully
