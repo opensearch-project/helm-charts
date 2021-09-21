@@ -1,6 +1,6 @@
 # OpenSearch Helm Chart
 
-This Helm chart installs [OpenSearch](https://github.com/opensearch-project/OpenSearch) with configurable TLS, RBAC and much more configuration. This chart caters a number of different use cases and setups.
+This Helm chart installs [OpenSearch](https://github.com/opensearch-project/OpenSearch) with configurable TLS, RBAC and much more configurations. This chart caters a number of different use cases and setups.
 
 - [Requirements](#requirements)
 - [Installing the chart](#installing)
@@ -11,7 +11,7 @@ This Helm chart installs [OpenSearch](https://github.com/opensearch-project/Open
 
 * Kubernetes >= 1.14
 * Helm >= 2.17.0
-* Recommended that you have at least 8 GiB of memory available for this deployment. You can expect the deployment to fail if, say, you have less than 4 GiB of memory available.
+* We recommend you to have 8 GiB of memory available for this deployment, or at least 4 GiB for the minimum requirement. Else, the deployment is expected to fail.
 
 ## Installing
 
@@ -30,7 +30,7 @@ The command deploys OpenSearch with its associated components (data statefulsets
 ## Uninstalling
 To delete/uninstall the chart with the release name `my-release`:
 ```
-❯ helm delete my-release
+❯ helm uninstall my-release
 ```
 
 ## Configuration
