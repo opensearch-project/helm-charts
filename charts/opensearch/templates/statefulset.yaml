@@ -320,7 +320,6 @@ spec:
         - name: node.{{ $role }}
           value: "{{ $enabled }}"
         {{- end }}
-
         {{- if .Values.extraEnvs }}
 {{ toYaml .Values.extraEnvs | indent 10 }}
         {{- end }}
