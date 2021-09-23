@@ -227,7 +227,7 @@ spec:
         volumeMounts:
           - name: "{{ template "opensearch.uname" . }}"
             mountPath: {{ .Values.opensearchHome }}/data
-{{- end }}      
+{{- end }}
 {{ if .Values.keystore }}
       - name: keystore
         image: "{{ .Values.image }}:{{ .Values.imageTag | default .Chart.AppVersion }}"
@@ -244,7 +244,7 @@ spec:
           for i in /tmp/keystoreSecrets/*/*; do
             key=$(basename $i)
             echo "Adding file $i to keystore key $key"
-            opensearch-keystore add-file "$key" "$i"
+            {{ .Values.opensearchHome }}/bin/opensearch-keystore add-file "$key" "$i"
           done
 
           # Add the bootstrap password since otherwise the opensearch entrypoint tries to do this on startup
@@ -423,16 +423,9 @@ spec:
           {{- end }}
           {{- end }}
 
-          {{- range .Values.secretMounts }}
-          - name: {{ .name }}
-            mountPath: {{ .path }}
-            {{- if .subPath }}
-            subPath: {{ .subPath }}
-            {{- end }}
-          {{- end }}
           {{- range $path, $config := .Values.config }}
           - name: config
-            mountPath: {{ .Values.opensearchHome }}/config/{{ $path }}
+            mountPath: {{ $.Values.opensearchHome }}/config/{{ $path }}
             subPath: {{ $path }}
           {{- end -}}
         {{- if .Values.extraVolumeMounts }}

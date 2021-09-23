@@ -145,3 +145,15 @@ nodeSelector: {}
 tolerations: []
 
 affinity: {}
+
+probes:
+  readiness:
+    enabled: true
+    custom:
+      tcpSocket:
+        port: http
+      periodSeconds: 15
+  liveness:
+    enabled: true
+  startup:
+    enabled: true
