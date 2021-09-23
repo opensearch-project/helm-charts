@@ -2,8 +2,7 @@
 apiVersion: rbac.authorization.k8s.io/v1
 kind: RoleBinding
 metadata:
-  labels:
-{{ include "opensearch-dashboards.standard" . | indent 4 }}
+  labels: {{ include "opensearch-dashboards.standard" . | nindent 4 }}
   name: {{ template "opensearch-dashboards.fullname" . }}-dashboards-rolebinding
 roleRef:
   kind: Role

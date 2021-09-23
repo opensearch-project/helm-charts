@@ -117,7 +117,7 @@ podAnnotations: {}
 # additionals labels
 labels: {}
 
-esJavaOpts: "-Xmx512M -Xms512M"
+opensearchJavaOpts: "-Xmx512M -Xms512M"
 
 resources:
   requests:
@@ -265,7 +265,7 @@ securityContext:
 
 securityConfig:
   enabled: true
-  path: "/usr/share/elasticsearch/plugins/opendistro_security/securityconfig"
+  path: "/usr/share/opensearch/plugins/opensearch-security/securityconfig"
   actionGroupsSecret:
   configSecret:
   internalUsersSecret:
