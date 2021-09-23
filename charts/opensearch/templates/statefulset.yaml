@@ -290,40 +290,50 @@ spec:
         resources:
 {{ toYaml .Values.resources | indent 10 }}
         env:
-          - name: node.name
-            valueFrom:
-              fieldRef:
-                fieldPath: metadata.name
-          {{- if eq .Values.roles.master "true" }}
-          {{- if ge (int (include "opensearch.majorVersion" .)) 7 }}
-          - name: cluster.initial_master_nodes
-            value: "{{ template "opensearch.endpoints" . }}"
-          {{- else }}
-          - name: discovery.zen.minimum_master_nodes
-            value: "{{ .Values.minimumMasterNodes }}"
-          {{- end }}
-          {{- end }}
-          {{- if lt (int (include "opensearch.majorVersion" .)) 7 }}
-          - name: discovery.zen.ping.unicast.hosts
-            value: "{{ template "opensearch.masterService" . }}-headless"
-          {{- else }}
-          - name: discovery.seed_hosts
-            value: "{{ template "opensearch.masterService" . }}-headless"
-          {{- end }}
-          - name: cluster.name
-            value: "{{ .Values.clusterName }}"
-          - name: network.host
-            value: "{{ .Values.networkHost }}"
-          - name: ES_JAVA_OPTS
-            value: "{{ .Values.esJavaOpts }}"
-          {{- range $role, $enabled := .Values.roles }}
-          - name: node.{{ $role }}
-            value: "{{ $enabled }}"
-          {{- end }}
+        - name: node.name
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.name
+        {{- if eq .Values.roles.master "true" }}
+        {{- if ge (int (include "opensearch.majorVersion" .)) 7 }}
+        - name: cluster.initial_master_nodes
+          value: "{{ template "opensearch.endpoints" . }}"
+        {{- else }}
+        - name: discovery.zen.minimum_master_nodes
+          value: "{{ .Values.minimumMasterNodes }}"
+        {{- end }}
+        {{- end }}
+        {{- if lt (int (include "opensearch.majorVersion" .)) 7 }}
+        - name: discovery.zen.ping.unicast.hosts
+          value: "{{ template "opensearch.masterService" . }}-headless"
+        {{- else }}
+        - name: discovery.seed_hosts
+          value: "{{ template "opensearch.masterService" . }}-headless"
+        {{- end }}
+        - name: cluster.name
+          value: "{{ .Values.clusterName }}"
+        - name: network.host
+          value: "{{ .Values.networkHost }}"
+        - name: ES_JAVA_OPTS
+          value: "{{ .Values.esJavaOpts }}"
+        {{- range $role, $enabled := .Values.roles }}
+        - name: node.{{ $role }}
+          value: "{{ $enabled }}"
+        {{- end }}
 
-          {{- if .Values.extraEnvs }}
+        {{- if .Values.extraEnvs }}
 {{ toYaml .Values.extraEnvs | indent 10 }}
-          {{- end }}
+        {{- end }}
+        {{- if or .Values.envFrom (and .Values.probes.readiness.enabled .Values.probes.readiness.username .Values.probes.readiness.password) }}
+        envFrom:
+        {{- if and .Values.probes.readiness.enabled .Values.probes.readiness.username .Values.probes.readiness.password }}
+        - secretRef:
+            name:  {{ template "opensearch.uname" . }}-probes
+        {{- end }}
+        {{- if .Values.envFrom }}
+{{ toYaml .Values.envFrom | indent 10 }}
+        {{- end }}
+        {{- end }}
 
         {{- if and .Values.probes.readiness.enabled .Values.probes.readiness.username .Values.probes.readiness.password }}
         readinessProbe:
@@ -362,16 +372,6 @@ spec:
           periodSeconds: {{ default 5 .Values.probes.startup.interval }}
         {{- end }}
 
-        {{- if or .Values.envFrom (and .Values.probes.readiness.enabled .Values.probes.readiness.username .Values.probes.readiness.password) }}
-        envFrom:
-        {{- if and .Values.probes.readiness.enabled .Values.probes.readiness.username .Values.probes.readiness.password }}
-        - secretRef:
-            name:  {{ template "opensearch.uname" . }}-probes
-        {{- end }}
-        {{- if .Values.envFrom }}
-{{ toYaml .Values.envFrom | indent 10 }}
-        {{- end }}
-        {{- end }}
         volumeMounts:
           {{- if .Values.persistence.enabled }}
           - name: "{{ template "opensearch.uname" . }}"
