@@ -14,14 +14,12 @@ roles:
   data: "true"
   remote_cluster_client: "true"
 
-replicas: 3
+replicas: 1
 minimumMasterNodes: 1
 
-# if not set, falls back to parsing .Values.imageTag, then .Chart.appVersion.
 majorVersion: ""
 
-
-# Allows you to add any config files in {{ .Values.configPath }}/config
+# Allows you to add any config files in {{ .Values.opensearchHome }}/config
 opensearchHome: /usr/share/opensearch
 # such as opensearch.yml and log4j2.properties
 config:
@@ -117,7 +115,7 @@ podAnnotations: {}
 # additionals labels
 labels: {}
 
-esJavaOpts: "-Xmx512M -Xms512M"
+opensearchJavaOpts: "-Xmx512M -Xms512M"
 
 resources:
   requests:
@@ -265,7 +263,7 @@ securityContext:
 
 securityConfig:
   enabled: true
-  path: "/usr/share/elasticsearch/plugins/opendistro_security/securityconfig"
+  path: "/usr/share/opensearch/plugins/opensearch-security/securityconfig"
   actionGroupsSecret:
   configSecret:
   internalUsersSecret:
@@ -280,8 +278,7 @@ securityConfig:
       # config.yml: |-
       # internal_users.yml: |-
       # roles.yml: |-
-      # roles_mapping.yml: |-
-      # action_groups.yml: |-
+      # rolesMapping.yml: |-
     # tenants.yml: |-
 
 # How long to wait for opensearch to stop gracefully
@@ -324,37 +321,6 @@ nameOverride: ""
 fullnameOverride: ""
 
 masterTerminationFix: false
-
-probes:
-  startup:
-    enabled: true
-    interval: 5
-    delay: 15
-  # Enabled by default, utilizes tcpSocket to check the transport port of the pod
-  liveness:
-    enabled: true
-    interval: 10
-  # ensure the username and password used for READINESS_USERNAME and READINESS_PASSWORD has permissions to access /_cat/health otherwise the pod will never start
-  readiness:
-    enabled: false
-    interval: 10
-    delay: 30
-    # Default utilizes READINESS_USERNAME and READINESS_PASSWORD to query _cat/health for status
-    default: true
-    username: admin
-    password: admin
-    # This adjusts the readiness check to require certain statuses, you may want this on your data nodes to ensure nodes are only restarted when they are fully healed
-    acceptableStatuses: []
-    # acceptableStatuses: ["green", "yellow"]
-    # A custom check can be passed in below, if username and password are set then can be used as described in default
-    # custom:
-    #   exec:
-    #     command:
-    #       - sh
-    #       - -c
-    #       - 'curl -u $READINESS_USER:$READINESS_PASS http://localhost:9200/_cluster/health | grep "(yellow|green)"'
-    #   initialDelaySeconds: 5
-    #   periodSeconds: 5
 
 lifecycle: {}
   # preStop:

@@ -214,8 +214,20 @@ spec:
       {{- if .Values.hostAliases }}
       hostAliases: {{ toYaml .Values.hostAliases | nindent 8 }}
       {{- end }}
-      {{- if or (.Values.extraInitContainers) (.Values.keystore) }}
+      {{- if or (.Values.extraInitContainers) (.Values.keystore) (.Values.persistence.enabled) }}
       initContainers:
+{{- if .Values.persistence.enabled }}
+      - name: fsgroup-volume
+        image: busybox
+        command: ['sh', '-c']
+        args:
+          - 'chown -R 1000:1000 /usr/share/opensearch/data'
+        securityContext:
+          runAsUser: 0
+        volumeMounts:
+          - name: "{{ template "opensearch.uname" . }}"
+            mountPath: {{ .Values.opensearchHome }}/data
+{{- end }}      
 {{ if .Values.keystore }}
       - name: keystore
         image: "{{ .Values.image }}:{{ .Values.imageTag | default .Chart.AppVersion }}"

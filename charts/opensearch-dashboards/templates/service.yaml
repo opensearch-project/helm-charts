@@ -21,13 +21,13 @@ spec:
 {{ toYaml . | indent 4 }}
 {{- end }}
   ports:
-    - port: {{ .Values.service.port }}
+  - port: {{ .Values.service.port }}
 {{- if .Values.service.nodePort }}
-      nodePort: {{ .Values.service.nodePort }}
+    nodePort: {{ .Values.service.nodePort }}
 {{- end }}
-      protocol: TCP
-      name: {{ .Values.service.httpPortName | default "http" }}
-      targetPort: {{ .Values.service.port }}
+    protocol: TCP
+    name: {{ .Values.service.httpPortName | default "http" }}
+    targetPort: {{ .Values.service.port }}
   selector:
     app: {{ .Chart.Name }}
     release: {{ .Release.Name | quote }}
