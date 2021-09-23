@@ -20,8 +20,7 @@ minimumMasterNodes: 1
 # if not set, falls back to parsing .Values.imageTag, then .Chart.appVersion.
 majorVersion: ""
 
-
-# Allows you to add any config files in {{ .Values.configPath }}/config
+# Allows you to add any config files in {{ .Values.opensearchHome }}/config
 opensearchHome: /usr/share/opensearch
 # such as opensearch.yml and log4j2.properties
 config:

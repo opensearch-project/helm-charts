@@ -314,8 +314,8 @@ spec:
           value: "{{ .Values.clusterName }}"
         - name: network.host
           value: "{{ .Values.networkHost }}"
-        - name: ES_JAVA_OPTS
-          value: "{{ .Values.esJavaOpts }}"
+        - name: OPENSEARCH_JAVA_OPTS
+          value: "{{ .Values.opensearchJavaOpts }}"
         {{- range $role, $enabled := .Values.roles }}
         - name: node.{{ $role }}
           value: "{{ $enabled }}"
@@ -373,62 +373,62 @@ spec:
         {{- end }}
 
         volumeMounts:
-          {{- if .Values.persistence.enabled }}
-          - name: "{{ template "opensearch.uname" . }}"
-            mountPath: {{ .Values.opensearchHome }}/data
-          {{- end }}
-          {{- if .Values.keystore }}
-          - name: keystore
-            mountPath: {{ .Values.opensearchHome }}/config/opensearch.keystore
-            subPath: opensearch.keystore
-          {{- end }}
-          {{- if .Values.keystore }}
-          - name: keystore
-            mountPath: /usr/share/opensearch/config/opensearch.keystore
-            subPath: opensearch.keystore
-          {{- end }}
-          {{- if .Values.securityConfig.enabled }}
-          {{- if .Values.securityConfig.actionGroupsSecret }}
-          - mountPath: {{ .Values.securityConfig.path }}/action_groups.yml
-            name: action-groups
-            subPath: action_groups.yml
-          {{- end }}
-          {{- if .Values.securityConfig.configSecret }}
-          - mountPath: {{ .Values.securityConfig.path }}/config.yml
-            name: security-config
-            subPath: config.yml
-          {{- end }}
-          {{- if .Values.securityConfig.internalUsersSecret }}
-          - mountPath: {{ .Values.securityConfig.path }}/internal_users.yml
-            name: internal-users-config
-            subPath: internal_users.yml
-          {{- end }}
-          {{- if .Values.securityConfig.rolesSecret }}
-          - mountPath: {{ .Values.securityConfig.path }}/roles.yml
-            name: roles
-            subPath: roles.yml
-          {{- end }}
-          {{- if .Values.securityConfig.rolesMappingSecret }}
-          - mountPath: {{ .Values.securityConfig.path }}/roles_mapping.yml
-            name: role-mapping
-            subPath: roles_mapping.yml
-          {{- end }}
-          {{- if .Values.securityConfig.tenantsSecret }}
-          - mountPath: {{ .Values.securityConfig.path }}/tenants.yml
-            name: tenants
-            subPath: tenants.yml
-          {{- end }}
-          {{- if and .Values.securityConfig.config.securityConfigSecret .Values.securityConfig.config.data  }}
-          - mountPath: {{ .Values.securityConfig.path }}
-            name: security-config
-          {{- end }}
-          {{- end }}
+        {{- if .Values.persistence.enabled }}
+        - name: "{{ template "opensearch.uname" . }}"
+          mountPath: {{ .Values.opensearchHome }}/data
+        {{- end }}
+        {{- if .Values.keystore }}
+        - name: keystore
+          mountPath: {{ .Values.opensearchHome }}/config/opensearch.keystore
+          subPath: opensearch.keystore
+        {{- end }}
+        {{- if .Values.keystore }}
+        - name: keystore
+          mountPath: /usr/share/opensearch/config/opensearch.keystore
+          subPath: opensearch.keystore
+        {{- end }}
+        {{- if .Values.securityConfig.enabled }}
+        {{- if .Values.securityConfig.actionGroupsSecret }}
+        - mountPath: {{ .Values.securityConfig.path }}/action_groups.yml
+          name: action-groups
+          subPath: action_groups.yml
+        {{- end }}
+        {{- if .Values.securityConfig.configSecret }}
+        - mountPath: {{ .Values.securityConfig.path }}/config.yml
+          name: security-config
+          subPath: config.yml
+        {{- end }}
+        {{- if .Values.securityConfig.internalUsersSecret }}
+        - mountPath: {{ .Values.securityConfig.path }}/internal_users.yml
+          name: internal-users-config
+          subPath: internal_users.yml
+        {{- end }}
+        {{- if .Values.securityConfig.rolesSecret }}
+        - mountPath: {{ .Values.securityConfig.path }}/roles.yml
+          name: roles
+          subPath: roles.yml
+        {{- end }}
+        {{- if .Values.securityConfig.rolesMappingSecret }}
+        - mountPath: {{ .Values.securityConfig.path }}/roles_mapping.yml
+          name: role-mapping
+          subPath: roles_mapping.yml
+        {{- end }}
+        {{- if .Values.securityConfig.tenantsSecret }}
+        - mountPath: {{ .Values.securityConfig.path }}/tenants.yml
+          name: tenants
+          subPath: tenants.yml
+        {{- end }}
+        {{- if and .Values.securityConfig.config.securityConfigSecret .Values.securityConfig.config.data  }}
+        - mountPath: {{ .Values.securityConfig.path }}
+          name: security-config
+        {{- end }}
+        {{- end }}
 
-          {{- range $path, $config := .Values.config }}
-          - name: config
-            mountPath: {{ $.Values.opensearchHome }}/config/{{ $path }}
-            subPath: {{ $path }}
-          {{- end -}}
+        {{- range $path, $config := .Values.config }}
+        - name: config
+          mountPath: {{ $.Values.opensearchHome }}/config/{{ $path }}
+          subPath: {{ $path }}
+        {{- end -}}
         {{- if .Values.extraVolumeMounts }}
         # Currently some extra blocks accept strings
         # to continue with backwards compatibility this is being kept
