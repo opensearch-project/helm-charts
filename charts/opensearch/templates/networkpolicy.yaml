@@ -5,9 +5,9 @@ metadata:
 spec:
   ingress:
   - from:
-      - podSelector:
-          matchLabels:
-            {{ template "opensearch.uname" . }}-transport-client: "true"
+    - podSelector:
+        matchLabels:
+          {{ template "opensearch.uname" . }}-transport-client: "true"
   podSelector:
     matchLabels:
       {{ template "opensearch.uname" . }}-transport-client: "true"

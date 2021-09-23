@@ -382,11 +382,6 @@ spec:
           mountPath: {{ .Values.opensearchHome }}/config/opensearch.keystore
           subPath: opensearch.keystore
         {{- end }}
-        {{- if .Values.keystore }}
-        - name: keystore
-          mountPath: /usr/share/opensearch/config/opensearch.keystore
-          subPath: opensearch.keystore
-        {{- end }}
         {{- if .Values.securityConfig.enabled }}
         {{- if .Values.securityConfig.actionGroupsSecret }}
         - mountPath: {{ .Values.securityConfig.path }}/action_groups.yml
@@ -423,7 +418,13 @@ spec:
           name: security-config
         {{- end }}
         {{- end }}
-
+        {{- range .Values.secretMounts }}
+        - name: {{ .name | required "secretMount .name is required" }}
+          mountPath: {{ .path | required "secretMount .path is required" }}
+          {{- if .subPath }}
+          subPath: {{ .subPath }}
+          {{- end }}
+        {{- end }}
         {{- range $path, $config := .Values.config }}
         - name: config
           mountPath: {{ $.Values.opensearchHome }}/config/{{ $path }}
