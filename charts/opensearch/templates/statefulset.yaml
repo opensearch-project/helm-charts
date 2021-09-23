@@ -287,43 +287,6 @@ spec:
           containerPort: {{ .Values.httpPort }}
         - name: transport
           containerPort: {{ .Values.transportPort }}
-        {{- if and .Values.probes.readiness.enabled .Values.probes.readiness.username .Values.probes.readiness.password }}
-        readinessProbe:
-          exec:
-            command:
-            - sh
-            - -c
-            {{- if .Values.probes.readiness.acceptableStatuses }}
-            - 'curl --fail --silent -u $READINESS_USERNAME:$READINESS_PASSWORD http://localhost:9200/_cat/health | grep -P "({{ join "|" .Values.probes.readiness.acceptableStatuses }})"'
-            {{- else }}
-            - 'curl --fail --silent -u $READINESS_USERNAME:$READINESS_PASSWORD http://localhost:9200/_cat/health'
-            {{- end }}
-          initialDelaySeconds: {{ default 10 .Values.probes.readiness.delay }}
-          periodSeconds: {{ default 10 .Values.probes.readiness.interval }}
-        {{- else if and .Values.probes.readiness.enabled .Values.probes.readiness.custom -}}
-        readinessProbe:
-{{ .Values.probes.readiness.custom | toYaml | indent 10}}
-        {{- end }}
-        {{- if and .Values.probes.liveness.enabled .Values.probes.liveness.custom }}
-        livenessProbe:
-{{ .Values.probes.liveness.custom | toYaml | indent 10}}
-        {{- else if .Values.probes.liveness.enabled }}
-        livenessProbe:
-          tcpSocket:
-            port: transport
-          periodSeconds: {{ default 10 .Values.probes.liveness.interval }}
-        {{- end }}
-        {{- if and .Values.probes.startup.enabled .Values.probes.startup.custom }}
-        startupProbe:
-{{ .Values.probes.startup.custom | toYaml | indent 10 }}
-        {{- else if .Values.probes.startup.enabled }}
-        startupProbe:
-          tcpSocket:
-            port: transport
-          initialDelaySeconds: {{ default 15 .Values.probes.startup.delay }}
-          periodSeconds: {{ default 5 .Values.probes.startup.interval }}
-        {{- end }}
-
         resources:
 {{ toYaml .Values.resources | indent 10 }}
         env:
@@ -361,6 +324,44 @@ spec:
           {{- if .Values.extraEnvs }}
 {{ toYaml .Values.extraEnvs | indent 10 }}
           {{- end }}
+
+        {{- if and .Values.probes.readiness.enabled .Values.probes.readiness.username .Values.probes.readiness.password }}
+        readinessProbe:
+          exec:
+            command:
+            - sh
+            - -c
+            {{- if .Values.probes.readiness.acceptableStatuses }}
+            - 'curl --fail --silent -u $READINESS_USERNAME:$READINESS_PASSWORD http://localhost:9200/_cat/health | grep -P "({{ join "|" .Values.probes.readiness.acceptableStatuses }})"'
+            {{- else }}
+            - 'curl --fail --silent -u $READINESS_USERNAME:$READINESS_PASSWORD http://localhost:9200/_cat/health'
+            {{- end }}
+          initialDelaySeconds: {{ default 10 .Values.probes.readiness.delay }}
+          periodSeconds: {{ default 10 .Values.probes.readiness.interval }}
+        {{- else if and .Values.probes.readiness.enabled .Values.probes.readiness.custom -}}
+        readinessProbe:
+{{ .Values.probes.readiness.custom | toYaml | indent 10}}
+        {{- end }}
+        {{- if and .Values.probes.liveness.enabled .Values.probes.liveness.custom }}
+        livenessProbe:
+{{ .Values.probes.liveness.custom | toYaml | indent 10}}
+        {{- else if .Values.probes.liveness.enabled }}
+        livenessProbe:
+          tcpSocket:
+            port: transport
+          periodSeconds: {{ default 10 .Values.probes.liveness.interval }}
+        {{- end }}
+        {{- if and .Values.probes.startup.enabled .Values.probes.startup.custom }}
+        startupProbe:
+{{ .Values.probes.startup.custom | toYaml | indent 10 }}
+        {{- else if .Values.probes.startup.enabled }}
+        startupProbe:
+          tcpSocket:
+            port: transport
+          initialDelaySeconds: {{ default 15 .Values.probes.startup.delay }}
+          periodSeconds: {{ default 5 .Values.probes.startup.interval }}
+        {{- end }}
+
         {{- if or .Values.envFrom (and .Values.probes.readiness.enabled .Values.probes.readiness.username .Values.probes.readiness.password) }}
         envFrom:
         {{- if and .Values.probes.readiness.enabled .Values.probes.readiness.username .Values.probes.readiness.password }}
@@ -482,16 +483,16 @@ spec:
         resources:
 {{ toYaml .Values.sidecarResources | indent 10 }}
         env:
-          - name: NODE_NAME
-            valueFrom:
-              fieldRef:
-                fieldPath: metadata.name
+        - name: NODE_NAME
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.name
         {{- if .Values.extraEnvs }}
-{{ toYaml .Values.extraEnvs | indent 10 }}
+{{ toYaml .Values.extraEnvs | indent 8 }}
         {{- end }}
         {{- if .Values.envFrom }}
         envFrom:
-{{ toYaml .Values.envFrom | indent 10 }}
+{{ toYaml .Values.envFrom | indent 8 }}
         {{- end }}
       {{- end }}
       {{- end }}
