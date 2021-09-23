@@ -44,7 +44,7 @@ spec:
     spec:
       accessModes:
       {{- range .Values.persistence.accessModes }}
-        - {{ . | quote }}
+      - {{ . | quote }}
       {{- end }}
       resources:
         requests:
@@ -71,7 +71,7 @@ spec:
         {{- range $key, $value := .Values.podAnnotations }}
         {{ $key }}: {{ $value | quote }}
         {{- end }}
-        {{/* This forces a restart if the configmap has changed */}}
+        {{- /* This forces a restart if the configmap has changed */}}
         {{- if .Values.config }}
         configchecksum: {{ include (print .Template.BasePath "/configmap.yaml") . | sha256sum | trunc 63 }}
         {{- end }}
@@ -86,8 +86,8 @@ spec:
 {{ toYaml .Values.podSecurityContext | indent 8 }}
         {{- if .Values.sysctl.enabled }}
         sysctls:
-          - name: vm.max_map_count
-            value: {{ .Values.sysctlVmMaxMapCount | quote }}
+        - name: vm.max_map_count
+          value: {{ .Values.sysctlVmMaxMapCount | quote }}
         {{- end }}
         {{- if .Values.fsGroup }}
         fsGroup: {{ .Values.fsGroup }} # Deprecated value, please use .Values.podSecurityContext.fsGroup
@@ -140,70 +140,70 @@ spec:
       {{- end }}
       terminationGracePeriodSeconds: {{ .Values.terminationGracePeriod }}
       volumes:
-        {{- range .Values.secretMounts }}
-        - name: {{ .name }}
-          secret:
-            secretName: {{ .secretName }}
-            {{- if .defaultMode }}
-            defaultMode: {{ .defaultMode }}
-            {{- end }}
-        {{- end }}
-        {{- if .Values.config }}
-        - name: config
-          configMap:
-            name: {{ template "opensearch.uname" . }}-config
-        {{- end }}
-        {{- if and .Values.securityConfig.config.securityConfigSecret .Values.securityConfig.config.data }}
-        - name: security-config
-          secret:
-           secretName: {{ .Values.securityConfig.config.securityConfigSecret }}
-        {{- end }}
-        {{- if .Values.securityConfig.actionGroupsSecret }}
-        - name: action-groups
-          secret:
-            secretName: {{ .Values.securityConfig.actionGroupsSecret }}
-        {{- end }}
-        {{- if .Values.securityConfig.configSecret }}
-        - name: security-config
-          secret:
-            secretName: {{ .Values.securityConfig.configSecret }}
-        {{- end }}
-        {{- if .Values.securityConfig.internalUsersSecret }}
-        - name: internal-users-config
-          secret:
-            secretName: {{ .Values.securityConfig.internalUsersSecret }}
-        {{- end }}
-        {{- if .Values.securityConfig.rolesSecret }}
-        - name: roles
-          secret:
-            secretName: {{ .Values.securityConfig.rolesSecret }}
-        {{- end }}
-        {{- if .Values.securityConfig.rolesMappingSecret }}
-        - name: role-mapping
-          secret:
-            secretName: {{ .Values.securityConfig.rolesMappingSecret }}
-        {{- end -}}
-        {{- if .Values.securityConfig.tenantsSecret }}
-        - name: tenants
-          secret:
-            secretName: {{ .Values.securityConfig.tenantsSecret }}
-        {{- end }}
-{{- if .Values.keystore }}
-        - name: keystore
-          emptyDir: {}
-        {{- range .Values.keystore }}
-        - name: keystore-{{ .secretName }}
-          secret: {{ toYaml . | nindent 12 }}
-        {{- end }}
-{{ end }}
+      {{- range .Values.secretMounts }}
+      - name: {{ .name | required "secretMount .name is required" }}
+        secret:
+          secretName: {{ .secretName | required "secretMount .secretName is required" }}
+          {{- if .defaultMode }}
+          defaultMode: {{ .defaultMode }}
+          {{- end }}
+      {{- end }}
+      {{- if .Values.config }}
+      - name: config
+        configMap:
+          name: {{ template "opensearch.uname" . }}-config
+      {{- end }}
+      {{- if and .Values.securityConfig.config.securityConfigSecret .Values.securityConfig.config.data }}
+      - name: security-config
+        secret:
+         secretName: {{ .Values.securityConfig.config.securityConfigSecret }}
+      {{- end }}
+      {{- if .Values.securityConfig.actionGroupsSecret }}
+      - name: action-groups
+        secret:
+          secretName: {{ .Values.securityConfig.actionGroupsSecret }}
+      {{- end }}
+      {{- if .Values.securityConfig.configSecret }}
+      - name: security-config
+        secret:
+          secretName: {{ .Values.securityConfig.configSecret }}
+      {{- end }}
+      {{- if .Values.securityConfig.internalUsersSecret }}
+      - name: internal-users-config
+        secret:
+          secretName: {{ .Values.securityConfig.internalUsersSecret }}
+      {{- end }}
+      {{- if .Values.securityConfig.rolesSecret }}
+      - name: roles
+        secret:
+          secretName: {{ .Values.securityConfig.rolesSecret }}
+      {{- end }}
+      {{- if .Values.securityConfig.rolesMappingSecret }}
+      - name: role-mapping
+        secret:
+          secretName: {{ .Values.securityConfig.rolesMappingSecret }}
+      {{- end -}}
+      {{- if .Values.securityConfig.tenantsSecret }}
+      - name: tenants
+        secret:
+          secretName: {{ .Values.securityConfig.tenantsSecret }}
+      {{- end }}
+      {{- if .Values.keystore }}
+      - name: keystore
+        emptyDir: {}
+      {{- range .Values.keystore }}
+      - name: keystore-{{ .secretName }}
+        secret: {{ toYaml . | nindent 12 }}
+      {{- end }}
+      {{ end }}
       {{- if .Values.extraVolumes }}
       # Currently some extra blocks accept strings
       # to continue with backwards compatibility this is being kept
       # whilst also allowing for yaml to be specified too.
       {{- if eq "string" (printf "%T" .Values.extraVolumes) }}
-{{ tpl .Values.extraVolumes . | indent 8 }}
+{{ tpl .Values.extraVolumes . | indent 6 }}
       {{- else }}
-{{ toYaml .Values.extraVolumes | indent 8 }}
+{{ toYaml .Values.extraVolumes | indent 6 }}
       {{- end }}
       {{- end }}
       {{- if .Values.imagePullSecrets }}
@@ -239,7 +239,7 @@ spec:
           #!/usr/bin/env bash
           set -euo pipefail
 
-          opensearch-keystore create
+          {{ .Values.opensearchHome }}/bin/opensearch-keystore create
 
           for i in /tmp/keystoreSecrets/*/*; do
             key=$(basename $i)
@@ -250,7 +250,7 @@ spec:
           # Add the bootstrap password since otherwise the opensearch entrypoint tries to do this on startup
           if [ ! -z ${PASSWORD+x} ]; then
             echo 'Adding env $PASSWORD to keystore as key bootstrap.password'
-            echo "$PASSWORD" | opensearch-keystore add -x bootstrap.password
+            echo "$PASSWORD" | {{ .Values.opensearchHome }}/bin/opensearch-keystore add -x bootstrap.password
           fi
 
           cp -a {{ .Values.opensearchHome }}/config/opensearch.keystore /tmp/keystore/
@@ -258,12 +258,12 @@ spec:
         envFrom: {{ toYaml .Values.envFrom | nindent 10 }}
         resources: {{ toYaml .Values.initResources | nindent 10 }}
         volumeMounts:
-          - name: keystore
-            mountPath: /tmp/keystore
-          {{- range .Values.keystore }}
-          - name: keystore-{{ .secretName }}
-            mountPath: /tmp/keystoreSecrets/{{ .secretName }}
-          {{- end }}
+        - name: keystore
+          mountPath: /tmp/keystore
+        {{- range .Values.keystore }}
+        - name: keystore-{{ .secretName }}
+          mountPath: /tmp/keystoreSecrets/{{ .secretName }}
+        {{- end }}
 {{ end }}
       {{- if .Values.extraInitContainers }}
       # Currently some extra blocks accept strings
