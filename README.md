@@ -1,52 +1,23 @@
-<img src="https://opensearch.org/assets/brand/SVG/Logo/opensearch_logo_default.svg" height="64px"/>
+# OpenSearch Project Kubernetes Helm Charts
 
-- [OpenSearch Project Helm-Charts](#helm-charts)
-- [Installation](#installation)
-- [Status](#status)
-- [Contributing](#contributing)
-- [Getting Help](#getting-help)
-- [Code of Conduct](#code-of-conduct)
-- [Security](#security)
-- [License](#license)
-- [Copyright](#copyright)
+[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0) ![Release Charts](https://github.com/opensearch-project/helm-charts/workflows/Release%20Charts/badge.svg?branch=main)
 
-## OpenSearch Project Helm-Charts
+## Usage
 
-A community repository for Helm Charts of OpenSearch Project.
+[Helm](https://helm.sh) [MUST](https://datatracker.ietf.org/doc/html/rfc2119) be
+installed to use the charts. 
 
-## Installation
+Please refer to Helm's [documentation](https://helm.sh/docs/) to get started.
 
-[OpenSearch Helm chart](https://opensearch.org/docs/opensearch/install/helm/)
+Once Helm is correctly installed, add the repo as follows:
 
-[OpenSearch Dashboards Helm chart](https://opensearch.org/docs/dashboards/install/helm/)
+```console
+helm repo add opensearch https://opensearch-project.github.io/helm-charts
+```
 
-## Status
-
-![Testing](https://github.com/opensearch-project/helm-charts/workflows/Lint%20and%20Test%20Charts/badge.svg)
-![Release](https://github.com/opensearch-project/helm-charts/workflows/Release%20Charts/badge.svg)
-
-## Contributing
-
-See [developer guide](DEVELOPER_GUIDE.md) and [how to contribute to this project](CONTRIBUTING.md). 
-
-## Getting Help
-
-If you find a bug, or have a feature request, please don't hesitate to open an issue in this repository.
-
-For more information, see [project website](https://opensearch.org/) and [documentation](https://opensearch.org/docs). If you need help and are unsure where to open an issue, try [forums](https://discuss.opendistrocommunity.dev/).
-
-## Code of Conduct
-
-This project has adopted the [Amazon Open Source Code of Conduct](CODE_OF_CONDUCT.md). For more information see the [Code of Conduct FAQ](https://aws.github.io/code-of-conduct-faq), or contact [opensource-codeofconduct@amazon.com](mailto:opensource-codeofconduct@amazon.com) with any additional questions or comments.
-
-## Security
-
-If you discover a potential security issue in this project we ask that you notify AWS/Amazon Security via our [vulnerability reporting page](http://aws.amazon.com/security/vulnerability-reporting/). Please do **not** create a public GitHub issue.
+You can then run `helm search repo opensearch` to see the charts.
 
 ## License
 
-This project is licensed under the [Apache v2.0 License](LICENSE.txt).
-
-## Copyright
-
-Copyright OpenSearch Contributors. See [NOTICE](NOTICE.txt) for details.
+<!-- Keep full URL links to repo files because this README syncs from main to gh-pages.  -->
+[Apache 2.0 License](https://github.com/opensearch-project/helm-charts/blob/main/LICENSE.txt).

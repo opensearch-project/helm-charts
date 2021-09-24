@@ -1,2 +1,0 @@
-OpenSearch (https://opensearch.org/)
-Copyright OpenSearch Contributors
