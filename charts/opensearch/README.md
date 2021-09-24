@@ -15,15 +15,13 @@ This Helm chart installs [OpenSearch](https://github.com/opensearch-project/Open
 
 ## Installing
 
-To install the chart with the release name `my-release`:
-- Switch to opensearch directly after cloning the repo
-  `❯ cd charts/opensearch`
-- Run `❯ helm package .`
-- Install using Helm 3:
-`❯ helm install my-release opensearch-1.0.0.tgz`
--  Install using Helm 2
-`❯ helm install --name my-release opensearch-1.0.0.tgz`
+```shell
+helm repo add opensearch https://opensearch-project.github.io/helm-charts/
+helm repo update
+helm install my-release opensearch/opensearch
+```
 
+You can then run `helm search repo opensearch` to see the charts.
 
 The command deploys OpenSearch with its associated components (data statefulsets, masters, clients) on the Kubernetes cluster in the default configuration.
 

@@ -1,23 +1,22 @@
 
 This Helm chart is a lightweight way to configure and run the official [OpenSearch Docker image](https://hub.docker.com/r/opensearchproject/opensearch).
 
-
 - [Installing](#installing)
 - [Usage notes](#usage-notes)
 - [Configuration](#configuration)
 - [Future](#Future)
 
-    
-
 ## Installing
 
-This chart is tested with the latest 1.0.0 version.
+```shell
+helm repo add opensearch https://opensearch-project.github.io/helm-charts/
+helm repo update
+helm install my-release opensearch/opensearch-dashboards
+```
 
-* Clone this repo
-* Install it:
-    - with Helm 3: `helm install oss ./Helm/opensearch`
+You can then run `helm search repo opensearch` to see the charts.
 
-## Usage notes
+## Usage Notes
 
 * The chart deploys a StatefulSet and by default will do an automated rolling
   update of your cluster. It does this by waiting for the cluster health to become
@@ -37,7 +36,6 @@ This chart is tested with the latest 1.0.0 version.
 
 ## Configuration
 TODO : Write about all the parameters used
-
 
 ## Future
 * Create example for different types of configurations for different K8S providers.
