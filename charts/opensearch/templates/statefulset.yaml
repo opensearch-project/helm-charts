@@ -318,7 +318,7 @@ spec:
           value: "{{ $enabled }}"
         {{- end }}
 {{- if .Values.extraEnvs }}
-{{ toYaml .Values.extraEnvs | indent 10 }}
+{{ toYaml .Values.extraEnvs | indent 8 }}
 {{- end }}
 {{- if .Values.envFrom }}
         envFrom:
