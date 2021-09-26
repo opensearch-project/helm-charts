@@ -306,21 +306,11 @@ spec:
             fieldRef:
               fieldPath: metadata.name
         {{- if eq .Values.roles.master "true" }}
-        {{- if ge (int (include "opensearch.majorVersion" .)) 7 }}
         - name: cluster.initial_master_nodes
           value: "{{ template "opensearch.endpoints" . }}"
-        {{- else }}
-        - name: discovery.zen.minimum_master_nodes
-          value: "{{ .Values.minimumMasterNodes }}"
         {{- end }}
-        {{- end }}
-        {{- if lt (int (include "opensearch.majorVersion" .)) 7 }}
-        - name: discovery.zen.ping.unicast.hosts
-          value: "{{ template "opensearch.masterService" . }}-headless"
-        {{- else }}
         - name: discovery.seed_hosts
           value: "{{ template "opensearch.masterService" . }}-headless"
-        {{- end }}
         - name: cluster.name
           value: "{{ .Values.clusterName }}"
         - name: network.host
