@@ -20,6 +20,10 @@ minimumMasterNodes: 1
 # if not set, falls back to parsing .Values.imageTag, then .Chart.appVersion.
 majorVersion: ""
 
+global:
+  # Set if you want to change the default docker registry, e.g. a private one.
+  dockerRegistry: ""
+
 # Allows you to add any config files in {{ .Values.opensearchHome }}/config
 opensearchHome: /usr/share/opensearch
 # such as opensearch.yml and log4j2.properties
