@@ -8,13 +8,9 @@ This Helm chart is a lightweight way to configure and run the official [OpenSear
 
 ## Installing
 
-```shell
-helm repo add opensearch https://opensearch-project.github.io/helm-charts/
-helm repo update
-helm install my-release opensearch/opensearch-dashboards
-```
+[OpenSearch Helm chart](https://opensearch.org/docs/opensearch/install/helm/)
 
-You can then run `helm search repo opensearch` to see the charts.
+[OpenSearch Dashboards Helm chart](https://opensearch.org/docs/dashboards/install/helm/)
 
 ## Usage Notes
 
