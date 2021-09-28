@@ -59,13 +59,13 @@ securityContext:
   runAsUser: 1000
 
 config: {}
-  ## Default OpenSearch Dashboards configuration from docker image of Dashboards
+  # Default OpenSearch Dashboards configuration from docker image of Dashboards
   #  opensearch_dashboards.yml:
   #   server:
   #     name: dashboards
   #     host: 0.0.0.0
 
-  ## Dashboards TLS Config (Ensure the cert files are present before enabling SSL
+  # Dashboards TLS Config (Ensure the cert files are present before enabling SSL
       # ssl:
       #   enabled: true
       #   key: /usr/share/opensearch-dashboards/certs/dashboards-key.pem
@@ -75,7 +75,7 @@ config: {}
     # opensearch:
     #   ssl:
     #     certificateAuthorities: /usr/share/opensearch-dashboards/certs/dashboards-root-ca.pem
-        # if utilizing custom CA certs for connection to opensearch, provide the CA here
+    #     if utilizing custom CA certs for connection to opensearch, provide the CA here
 
 priorityClassName: ""
 
@@ -87,10 +87,10 @@ opensearchAccount:
 labels: {}
 
 hostAliases: []
-#- ip: "127.0.0.1"
-#  hostnames:
-#  - "foo.local"
-#  - "bar.local"
+# - ip: "127.0.0.1"
+#   hostnames:
+#   - "foo.local"
+#   - "bar.local"
 
 serverHost: "0.0.0.0"
 

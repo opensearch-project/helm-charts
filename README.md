@@ -1,6 +1,8 @@
 <img src="https://opensearch.org/assets/brand/SVG/Logo/opensearch_logo_default.svg" height="64px"/>
 
 - [OpenSearch Project Helm-Charts](#helm-charts)
+- [Installation](#installation)
+- [Status](#status)
 - [Contributing](#contributing)
 - [Getting Help](#getting-help)
 - [Code of Conduct](#code-of-conduct)
@@ -12,6 +14,17 @@
 
 A community repository for Helm Charts of OpenSearch Project.
 
+## Installation
+
+[OpenSearch Helm chart](https://opensearch.org/docs/opensearch/install/helm/)
+
+[OpenSearch Dashboards Helm chart](https://opensearch.org/docs/dashboards/install/helm/)
+
+## Status
+
+![Testing](https://github.com/opensearch-project/helm-charts/workflows/Lint%20and%20Test%20Charts/badge.svg)
+![Release](https://github.com/opensearch-project/helm-charts/workflows/Release%20Charts/badge.svg)
+
 ## Contributing
 
 See [developer guide](DEVELOPER_GUIDE.md) and [how to contribute to this project](CONTRIBUTING.md). 
@@ -20,7 +33,7 @@ See [developer guide](DEVELOPER_GUIDE.md) and [how to contribute to this project
 
 If you find a bug, or have a feature request, please don't hesitate to open an issue in this repository.
 
-For more information, see [project website](https://opensearch.org/) and [documentation](https://docs-beta.opensearch.org/). If you need help and are unsure where to open an issue, try [forums](https://discuss.opendistrocommunity.dev/).
+For more information, see [project website](https://opensearch.org/) and [documentation](https://opensearch.org/docs). If you need help and are unsure where to open an issue, try [forums](https://discuss.opendistrocommunity.dev/).
 
 ## Code of Conduct
 
