@@ -368,7 +368,7 @@ fsGroup: ""
 sysctl:
   enabled: false
 
-## Enable to add 3rd Party / Custom plugins not offered in the default OpenSearch image. 
+## Enable to add 3rd Party / Custom plugins not offered in the default OpenSearch image.
 plugins:
   enabled: true
   installList: []
