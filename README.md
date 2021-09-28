@@ -1,29 +1,38 @@
 <img src="https://opensearch.org/assets/brand/SVG/Logo/opensearch_logo_default.svg" height="64px"/>
 
 - [OpenSearch Project Helm-Charts](#helm-charts)
-- [Installation](#installation)
 - [Status](#status)
+- [Installation](#installation)
+- [Change Logs](#change-logs)
 - [Contributing](#contributing)
 - [Getting Help](#getting-help)
 - [Code of Conduct](#code-of-conduct)
 - [Security](#security)
 - [License](#license)
-- [Copyright](#copyright)
 
-## OpenSearch Project Helm-Charts
+## Helm-Charts
 
 A community repository for Helm Charts of OpenSearch Project.
-
-## Installation
-
-[OpenSearch Helm chart](https://opensearch.org/docs/opensearch/install/helm/)
-
-[OpenSearch Dashboards Helm chart](https://opensearch.org/docs/dashboards/install/helm/)
 
 ## Status
 
 ![Testing](https://github.com/opensearch-project/helm-charts/workflows/Lint%20and%20Test%20Charts/badge.svg)
 ![Release](https://github.com/opensearch-project/helm-charts/workflows/Release%20Charts/badge.svg)
+
+## Installation
+
+```shell
+helm repo add opensearch https://opensearch-project.github.io/helm-charts/
+helm repo update
+```
+
+You can then run `helm search repo opensearch` to see the charts.
+
+## Change Logs
+
+Please review the [OpenSearch](charts/opensearch/CHANGELOG.md) and the
+[OpenSearch Dashboards](charts/opensearch/CHANGELOG.md) change logs for the latest 
+release details.
 
 ## Contributing
 
@@ -46,7 +55,3 @@ If you discover a potential security issue in this project we ask that you notif
 ## License
 
 This project is licensed under the [Apache v2.0 License](LICENSE.txt).
-
-## Copyright
-
-Copyright OpenSearch Contributors. See [NOTICE](NOTICE.txt) for details.
