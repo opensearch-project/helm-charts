@@ -75,11 +75,6 @@ spec:
         {{- if .Values.config }}
         configchecksum: {{ include (print .Template.BasePath "/configmap.yaml") . | sha256sum | trunc 63 }}
         {{- end }}
-        {{- if .Values.prometheus.enabled }}
-        prometheus.io/scrape: "true"
-        prometheus.io/port: "9200"
-        prometheus.io/path: "_prometheus/metrics"
-        {{- end }}
     spec:
       {{- if .Values.schedulerName }}
       schedulerName: "{{ .Values.schedulerName }}"
@@ -282,7 +277,7 @@ spec:
       - name: "{{ template "opensearch.name" . }}"
         securityContext:
 {{ toYaml .Values.securityContext | indent 10 }}
-      {{- if or (.Values.prometheus.enabled) (.Values.plugins.enabled) }}
+      {{- if .Values.plugins.enabled }}
         command:
         - sh
         - -c
@@ -290,14 +285,8 @@ spec:
           #!/usr/bin/env bash
           set -euo pipefail
 
-          {{- if .Values.prometheus.enabled }}
-          ./bin/opensearch-plugin install -b https://github.com/aparo/opensearch-prometheus-exporter/releases/download/1.0.0/prometheus-exporter-1.0.0.zip
-          {{- end }}
-
-          {{- if .Values.plugins.enabled }}
           {{- range $plugin := .Values.plugins.installList }}
           ./bin/opensearch-plugin install -b {{ $plugin }}
-          {{- end }}
           {{- end }}
 
           bash opensearch-docker-entrypoint.sh

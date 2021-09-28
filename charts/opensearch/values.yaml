@@ -368,13 +368,8 @@ fsGroup: ""
 sysctl:
   enabled: false
 
-
-## Enable the Prometheus Exporter for OpenSearch https://github.com/aparo/opensearch-prometheus-exporter
-prometheus:
-  enabled: true
-
 ## Enable to add 3rd Party / Custom plugins not offered in the default OpenSearch image. 
 plugins:
-  enabled: false
-  installList:
-  - example-plugin # Rest Plugin
+  enabled: true
+  installList: []
+  # - example-plugin # Rest Plugin
