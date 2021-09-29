@@ -1,6 +1,20 @@
+# See https://github.com/helm/chart-testing-action
 name: Lint and Test Charts
 
-on: [pull_request, workflow_dispatch]
+on: 
+  pull_request:
+    paths:
+      - '.github/workflows/lint-test.yml'
+      - 'charts/opensearch/ci/**'
+      - 'charts/opensearch/templates/**'
+      - 'charts/opensearch/Chart.yaml'
+      - 'charts/opensearch/values.yaml'
+      - 'charts/opensearch-dashboards/ci/**'
+      - 'charts/opensearch-dashboards/templates/**'
+      - 'charts/opensearch-dashboards/Chart.yaml'
+      - 'charts/opensearch-dashboards/values.yaml'
+
+  workflow_dispatch:
   
 jobs:
   lint-test:
