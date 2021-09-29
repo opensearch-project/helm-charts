@@ -5,14 +5,10 @@ on:
   pull_request:
     paths:
       - '.github/workflows/lint-test.yml'
-      - 'charts/opensearch/ci/**'
-      - 'charts/opensearch/templates/**'
-      - 'charts/opensearch/Chart.yaml'
-      - 'charts/opensearch/values.yaml'
-      - 'charts/opensearch-dashboards/ci/**'
-      - 'charts/opensearch-dashboards/templates/**'
-      - 'charts/opensearch-dashboards/Chart.yaml'
-      - 'charts/opensearch-dashboards/values.yaml'
+      - 'charts/**/ci/**'
+      - 'charts/**/templates/**'
+      - 'charts/**/Chart.yaml'
+      - 'charts/**/values.yaml'
 
   workflow_dispatch:
   
