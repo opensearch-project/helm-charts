@@ -387,9 +387,9 @@ spec:
         # to continue with backwards compatibility this is being kept
         # whilst also allowing for yaml to be specified too.
         {{- if eq "string" (printf "%T" .Values.extraVolumeMounts) }}
-{{ tpl .Values.extraVolumeMounts . | indent 10 }}
+{{ tpl .Values.extraVolumeMounts . | indent 8 }}
         {{- else }}
-{{ toYaml .Values.extraVolumeMounts | indent 10 }}
+{{ toYaml .Values.extraVolumeMounts | indent 8 }}
         {{- end }}
         {{- end }}
       {{- if .Values.masterTerminationFix }}
