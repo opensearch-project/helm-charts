@@ -13,8 +13,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 ### Security
 
+--- 
+## [1.0.3] - 2021-SEP-29
+### Added
+### Changed
+- Amended the installation instructions for the `opensearch` and `opensearch-dashboards` charts.
+
+### Deprecated
+### Removed
+### Fixed
+### Security
+
 ---
-## [1.0.2]
+## [1.0.2] - 2021-SEP-27
 
 ### Added
 - Added this change log in compliance with [Keep A Change Log](https://keepachangelog.com/en/1.0.0/).
@@ -27,5 +38,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 ### Security
 
-[Unreleased]: https://github.com/opensearch-project/helm-charts/compare/opensearch-1.0.2...HEAD
+[Unreleased]: https://github.com/opensearch-project/helm-charts/compare/opensearch-1.0.3...HEAD
+[1.0.3]: https://github.com/opensearch-project/helm-charts/compare/opensearch-1.0.2...opensearch-1.0.3
 [1.0.2]: https://github.com/opensearch-project/helm-charts/compare/opensearch-1.0.1...opensearch-1.0.2
