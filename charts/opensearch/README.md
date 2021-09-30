@@ -24,7 +24,6 @@ To install the chart with the release name `my-release`:
 -  Install using Helm 2
 `❯ helm install --name my-release opensearch-1.0.0.tgz`
 
-
 The command deploys OpenSearch with its associated components (data statefulsets, masters, clients) on the Kubernetes cluster in the default configuration.
 
 ## Uninstalling
