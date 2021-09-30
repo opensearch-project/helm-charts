@@ -370,6 +370,6 @@ sysctl:
 
 ## Enable to add 3rd Party / Custom plugins not offered in the default OpenSearch image.
 plugins:
-  enabled: true
+  enabled: false
   installList: []
-  # - example-plugin # Rest Plugin
+  # - https://github.com/aparo/opensearch-prometheus-exporter/releases/download/1.0.0/prometheus-exporter-1.0.0.zip # Third Party Prometheus Plugin

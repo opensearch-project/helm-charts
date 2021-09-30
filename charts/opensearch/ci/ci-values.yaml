@@ -365,3 +365,9 @@ fsGroup: ""
 ## Also see: https://kubernetes.io/docs/tasks/administer-cluster/sysctl-cluster/
 sysctl:
   enabled: false
+
+
+plugins:
+  enabled: true
+  installList:
+    - https://github.com/aparo/opensearch-prometheus-exporter/releases/download/1.0.0/prometheus-exporter-1.0.0.zip # Third Party Prometheus Plugin
