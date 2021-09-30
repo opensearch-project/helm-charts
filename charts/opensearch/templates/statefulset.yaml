@@ -224,7 +224,7 @@ spec:
         volumeMounts:
           - name: "{{ template "opensearch.uname" . }}"
             mountPath: {{ .Values.opensearchHome }}/data
-{{- end }}      
+{{- end }}
 {{ if .Values.keystore }}
       - name: keystore
         image: "{{ .Values.image }}:{{ .Values.imageTag | default .Chart.AppVersion }}"
