@@ -4,7 +4,6 @@ name: Lint and Test Charts
 on: 
   pull_request:
     paths:
-      - '.github/workflows/lint-test.yaml'
       - 'charts/**/ci/**'
       - 'charts/**/templates/**'
       - 'charts/**/Chart.yaml'
