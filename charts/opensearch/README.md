@@ -3,8 +3,9 @@
 This Helm chart installs [OpenSearch](https://github.com/opensearch-project/OpenSearch) with configurable TLS, RBAC and much more configurations. This chart caters a number of different use cases and setups.
 
 - [Requirements](#requirements)
-- [Installing the chart](#installing)
-- [Uninstalling the chart](#uninstalling)
+- [Installing](#installing)
+- [Uninstalling](#uninstalling)
+- [Usage Notes](#usage-notes)
 - [Configuration](#configuration)
 
 ## Requirements
@@ -15,22 +16,40 @@ This Helm chart installs [OpenSearch](https://github.com/opensearch-project/Open
 
 ## Installing
 
-To install the chart with the release name `my-release`:
-- Switch to opensearch directly after cloning the repo
-  `❯ cd charts/opensearch`
-- Run `❯ helm package .`
-- Install using Helm 3:
-`❯ helm install my-release opensearch-1.0.0.tgz`
--  Install using Helm 2
-`❯ helm install --name my-release opensearch-1.0.0.tgz`
+Once you've added this Helm repository as per the repository-level [README](../../README.md#installing) then you can install the chart as follows:
+
+ ```shell
+ helm install my-release opensearch/opensearch
+ ```
 
 The command deploys OpenSearch with its associated components (data statefulsets, masters, clients) on the Kubernetes cluster in the default configuration.
 
+**NOTE:** If using Helm 2 then you'll need to add the [`--name`](https://v2.helm.sh/docs/helm/#options-21) command line argument. If unspecified, Helm 2 will autogenerate a name for you.
+
 ## Uninstalling
 To delete/uninstall the chart with the release name `my-release`:
+
+```shell
+helm uninstall my-release
 ```
-❯ helm uninstall my-release
-```
+
+## Usage Notes
+
+* The chart deploys a StatefulSet and by default will do an automated rolling
+  update of your cluster. It does this by waiting for the cluster health to become
+  green after each instance is updated.
+* It is important to verify that the JVM heap size in `opensearchJavaOpts` and
+  to set the CPU/Memory `resources` to something suitable for your cluster.
+* To simplify chart and maintenance each set of node groups is deployed as a
+  separate Helm release. Without doing this it isn't possible to resize persistent
+  volumes in a StatefulSet. By setting it up this way it makes it possible to add
+  more nodes with a new storage size then drain the old ones. It also solves the
+  problem of allowing the user to determine which node groups to update first when
+  doing upgrades or changes.
+* We have designed this chart to be very un-opinionated about how to configure
+  OpenSearch. It exposes ways to set environment variables and mount secrets
+  inside of the container. Doing this makes it much easier for this chart to
+  support multiple versions with minimal changes.
 
 ## Configuration
 
