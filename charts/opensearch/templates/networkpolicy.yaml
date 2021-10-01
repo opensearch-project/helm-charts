@@ -2,6 +2,7 @@ apiVersion: networking.k8s.io/v1
 kind: NetworkPolicy
 metadata:
   name: {{ template "opensearch.uname" . }}-opensearch-net
+  namespace: {{ .Release.Namespace | quote }}
 spec:
   ingress:
   - from:

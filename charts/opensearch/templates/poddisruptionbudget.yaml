@@ -4,6 +4,7 @@ apiVersion: policy/v1beta1
 kind: PodDisruptionBudget
 metadata:
   name: "{{ template "opensearch.uname" . }}-pdb"
+  namespace: {{ .Release.Namespace | quote }}
 spec:
   maxUnavailable: {{ .Values.maxUnavailable }}
   selector:
