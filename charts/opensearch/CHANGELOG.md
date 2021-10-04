@@ -14,9 +14,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Security
 
 ---
-## [1.0.3]
+## [1.0.4]
 ### Added
 ### Changed
+- Amended installation instructions.
 ### Deprecated
 ### Removed
 ### Fixed
@@ -37,6 +38,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 ### Security
 
-[Unreleased]: https://github.com/opensearch-project/helm-charts/compare/opensearch-1.0.3...HEAD
-[1.0.3]: https://github.com/opensearch-project/helm-charts/compare/opensearch-1.0.2...opensearch-1.0.3
+[Unreleased]: https://github.com/opensearch-project/helm-charts/compare/opensearch-1.0.4...HEAD
+[1.0.4]: https://github.com/opensearch-project/helm-charts/compare/opensearch-1.0.2...opensearch-1.0.4
 [1.0.2]: https://github.com/opensearch-project/helm-charts/compare/opensearch-1.0.1...opensearch-1.0.2
