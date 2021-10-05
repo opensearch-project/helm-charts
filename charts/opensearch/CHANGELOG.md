@@ -23,6 +23,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 
 ---
+## [1.0.4]
+### Added
+### Changed
+- Amended installation instructions.
+### Deprecated
+### Removed
+### Fixed
+- [ISSUE-65](https://github.com/opensearch-project/helm-charts/issues/65): Incorrect indentation for `extraVolumeMounts`, `extraEnvs`, `envFrom` in `statefulset.yaml`.
+### Security
+
+---
 ## [1.0.2]
 
 ### Added
@@ -36,5 +47,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 ### Security
 
-[Unreleased]: https://github.com/opensearch-project/helm-charts/compare/opensearch-1.0.2...HEAD
+[Unreleased]: https://github.com/opensearch-project/helm-charts/compare/opensearch-1.0.4...HEAD
+[1.0.4]: https://github.com/opensearch-project/helm-charts/compare/opensearch-1.0.2...opensearch-1.0.4
 [1.0.2]: https://github.com/opensearch-project/helm-charts/compare/opensearch-1.0.1...opensearch-1.0.2
