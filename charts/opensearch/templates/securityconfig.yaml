@@ -6,8 +6,7 @@ metadata:
   namespace: {{ .Release.Namespace }}
   labels:
     app: {{ .Chart.Name }}
-    release: {{ .Release.Name }}
-    heritage: {{ .Release.Service }}
+    {{- include "opensearch.labels" . | indent 4 }}
 type: Opaque
 data:
   {{- range $key, $val := .Values.securityConfig.config.data }}

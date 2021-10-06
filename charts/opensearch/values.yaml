@@ -113,7 +113,7 @@ imagePullPolicy: "IfNotPresent"
 podAnnotations: {}
   # iam.amazonaws.com/role: es-cluster
 
-# additionals labels
+# Additionals labels on metadata on all resources
 labels: {}
 
 opensearchJavaOpts: "-Xmx512M -Xms512M"

@@ -33,19 +33,24 @@ Create chart name and version as used by the chart label.
 {{/*
 Common labels
 */}}
-{{- define "opensearch-dashboards.labels" -}}
+{{- define "opensearch-dashboards.labels" }}
 helm.sh/chart: {{ include "opensearch-dashboards.chart" . }}
-{{ include "opensearch-dashboards.selectorLabels" . }}
+app.kubernetes.io/managed-by: {{ .Release.Service }}
+app.kubernetes.io/component: dashboards
+app.kubernetes.io/part-of: {{ template "opensearch-dashboards.name" . }}
+{{- include "opensearch-dashboards.selectorLabels" . }}
 {{- if .Chart.AppVersion }}
 app.kubernetes.io/version: {{ .Chart.AppVersion | quote }}
 {{- end }}
-app.kubernetes.io/managed-by: {{ .Release.Service }}
+{{- if .Values.labels }}
+{{ toYaml .Values.labels }}
+{{- end }}
 {{- end }}
 
 {{/*
 Selector labels
 */}}
-{{- define "opensearch-dashboards.selectorLabels" -}}
+{{- define "opensearch-dashboards.selectorLabels" }}
 app.kubernetes.io/name: {{ include "opensearch-dashboards.name" . }}
 app.kubernetes.io/instance: {{ .Release.Name }}
 {{- end }}

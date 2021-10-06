@@ -4,10 +4,8 @@ kind: ConfigMap
 metadata:
   name: {{ template "opensearch.uname" . }}-config
   labels:
-    heritage: {{ .Release.Service | quote }}
-    release: {{ .Release.Name | quote }}
-    chart: "{{ .Chart.Name }}"
     app: "{{ template "opensearch.uname" . }}"
+    {{- include "opensearch.labels" . | indent 4 }}
 data:
 {{- range $configName, $configYaml := .Values.config }}
   {{ $configName }}: |

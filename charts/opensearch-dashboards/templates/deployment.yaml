@@ -2,23 +2,20 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: {{ template "opensearch-dashboards.fullname" . }}
-  labels: {{- include "opensearch-dashboards.labels" . | nindent 4 }}
+  labels:
+    {{- include "opensearch-dashboards.labels" . | indent 4 }}
 spec:
   replicas: {{ .Values.replicaCount }}
   strategy:
 {{ toYaml .Values.updateStrategy | indent 4 }}
   selector:
     matchLabels:
-      app: {{ .Chart.Name }}
-      release: {{ .Release.Name | quote }}
+      {{- include "opensearch-dashboards.selectorLabels" . | indent 4 }}
   template:
     metadata:
       labels:
         app: {{ .Chart.Name }}
-        release: {{ .Release.Name | quote }}
-        {{- range $key, $value := .Values.labels }}
-        {{ $key }}: {{ $value | quote }}
-        {{- end }}
+        {{- include "opensearch-dashboards.labels" . | indent 8 }}
       annotations:
         {{- range $key, $value := .Values.podAnnotations }}
         {{ $key }}: {{ $value | quote }}

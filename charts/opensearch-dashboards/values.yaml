@@ -84,6 +84,7 @@ opensearchAccount:
   keyPassphrase:
     enabled: false
 
+# Additionals labels on metadata on all resources
 labels: {}
 
 hostAliases: []

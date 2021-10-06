@@ -59,3 +59,36 @@ We truncate at 63 chars because some Kubernetes name fields are limited to this 
   {{- $version.Major }}
 {{- end }}
 {{- end }}
+
+{{/*
+Create chart name and version as used by the chart label.
+*/}}
+{{- define "opensearch.chart" -}}
+{{- printf "%s-%s" .Chart.Name .Chart.Version | replace "+" "_" | trunc 63 | trimSuffix "-" -}}
+{{- end -}}
+
+
+{{/*
+Generate basic labels
+*/}}
+{{- define "opensearch.labels" }}
+helm.sh/chart: {{ include "opensearch.chart" . }}
+app.kubernetes.io/managed-by: {{ .Release.Service }}
+app.kubernetes.io/component: opensearch
+app.kubernetes.io/part-of: {{ template "opensearch.name" . }}
+{{- include "opensearch.selectorLabels" . }}
+{{- if .Chart.AppVersion }}
+app.kubernetes.io/version: {{ .Chart.AppVersion | quote }}
+{{- end }}
+{{- if .Values.labels }}
+{{ toYaml .Values.labels }}
+{{- end }}
+{{- end }}
+
+{{/*
+Selector labels
+*/}}
+{{- define "opensearch.selectorLabels" }}
+app.kubernetes.io/name: {{ include "opensearch.name" . }}
+app.kubernetes.io/instance: {{ .Release.Name }}
+{{- end }}

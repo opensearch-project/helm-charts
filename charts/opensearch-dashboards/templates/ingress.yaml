@@ -12,7 +12,7 @@ kind: Ingress
 metadata:
   name: {{ $fullName }}
   labels:
-    {{- include "opensearch-dashboards.labels" . | nindent 4 }}
+    {{- include "opensearch-dashboards.labels" . | indent 4 }}
   {{- with .Values.ingress.annotations }}
   annotations:
     {{- toYaml . | nindent 4 }}

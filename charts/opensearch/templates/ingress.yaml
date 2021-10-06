@@ -8,8 +8,7 @@ metadata:
   name: {{ $fullName }}
   labels:
     app: {{ .Chart.Name }}
-    release: {{ .Release.Name }}
-    heritage: {{ .Release.Service }}
+    {{- include "opensearch.labels" . | indent 4 }}
 {{- with .Values.ingress.annotations }}
   annotations:
 {{ toYaml . | indent 4 }}

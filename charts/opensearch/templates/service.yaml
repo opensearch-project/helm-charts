@@ -8,10 +8,8 @@ metadata:
   name: {{ template "opensearch.uname" . }}
 {{- end }}
   labels:
-    heritage: {{ .Release.Service | quote }}
-    release: {{ .Release.Name | quote }}
-    chart: "{{ .Chart.Name }}"
     app: "{{ template "opensearch.uname" . }}"
+    {{- include "opensearch.labels" . | indent 4 }}
 {{- if .Values.service.labels }}
 {{ toYaml .Values.service.labels | indent 4}}
 {{- end }}
@@ -20,9 +18,8 @@ metadata:
 spec:
   type: {{ .Values.service.type }}
   selector:
-    release: {{ .Release.Name | quote }}
-    chart: "{{ .Chart.Name }}"
     app: "{{ template "opensearch.uname" . }}"
+    {{- include "opensearch.selectorLabels" . | indent 4 }}
   ports:
   - name: {{ .Values.service.httpPortName | default "http" }}
     protocol: TCP
@@ -53,10 +50,8 @@ metadata:
   name: {{ template "opensearch.uname" . }}-headless
 {{- end }}
   labels:
-    heritage: {{ .Release.Service | quote }}
-    release: {{ .Release.Name | quote }}
-    chart: "{{ .Chart.Name }}"
     app: "{{ template "opensearch.uname" . }}"
+    {{- include "opensearch.labels" . | indent 4 }}
 {{- if .Values.service.labelsHeadless }}
 {{ toYaml .Values.service.labelsHeadless | indent 4 }}
 {{- end }}
@@ -68,6 +63,7 @@ spec:
   publishNotReadyAddresses: true
   selector:
     app: "{{ template "opensearch.uname" . }}"
+    {{- include "opensearch.selectorLabels" . | indent 4 }}
   ports:
   - name: {{ .Values.service.httpPortName | default "http" }}
     port: {{ .Values.httpPort }}

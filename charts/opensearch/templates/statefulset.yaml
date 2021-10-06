@@ -4,22 +4,16 @@ kind: StatefulSet
 metadata:
   name: {{ template "opensearch.uname" . }}
   labels:
-    heritage: {{ .Release.Service | quote }}
-    release: {{ .Release.Name | quote }}
-    chart: "{{ .Chart.Name }}"
     app: "{{ template "opensearch.uname" . }}"
-    {{- range $key, $value := .Values.labels }}
-    {{ $key }}: {{ $value | quote }}
-    {{- end }}
+    {{- include "opensearch.labels" . | indent 4 }}
   annotations:
     majorVersion: "{{ include "opensearch.majorVersion" . }}"
 spec:
   serviceName: {{ template "opensearch.uname" . }}-headless
   selector:
     matchLabels:
-      release: {{ .Release.Name | quote }}
-      chart: "{{ .Chart.Name }}"
       app: "{{ template "opensearch.uname" . }}"
+      {{- include "opensearch.selectorLabels" . | indent 4 }}
   replicas: {{ .Values.replicas }}
   podManagementPolicy: {{ .Values.podManagementPolicy }}
   updateStrategy:
@@ -30,12 +24,8 @@ spec:
       name: {{ template "opensearch.uname" . }}
     {{- if .Values.persistence.labels.enabled }}
       labels:
-        release: {{ .Release.Name | quote }}
-        chart: "{{ .Chart.Name }}"
         app: "{{ template "opensearch.uname" . }}"
-        {{- range $key, $value := .Values.labels }}
-        {{ $key }}: {{ $value | quote }}
-        {{- end }}
+        {{- include "opensearch.labels" . | indent 8 }}
     {{- end }}
     {{- with .Values.persistence.annotations  }}
       annotations:
@@ -61,12 +51,8 @@ spec:
     metadata:
       name: "{{ template "opensearch.uname" . }}"
       labels:
-        release: {{ .Release.Name | quote }}
-        chart: "{{ .Chart.Name }}"
         app: "{{ template "opensearch.uname" . }}"
-        {{- range $key, $value := .Values.labels }}
-        {{ $key }}: {{ $value | quote }}
-        {{- end }}
+        {{- include "opensearch.labels" . | indent 8 }}
       annotations:
         {{- range $key, $value := .Values.podAnnotations }}
         {{ $key }}: {{ $value | quote }}
