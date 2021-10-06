@@ -14,7 +14,7 @@ metadata:
   annotations:
     majorVersion: "{{ include "opensearch.majorVersion" . }}"
 spec:
-  serviceName: {{ template "opensearch.uname" . }}-headless
+  serviceName: {{ template "opensearch.serviceName" . }}-headless
   selector:
     matchLabels:
       release: {{ .Release.Name | quote }}

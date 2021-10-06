@@ -43,6 +43,14 @@ We truncate at 63 chars because some Kubernetes name fields are limited to this 
 {{- end -}}
 {{- end -}}
 
+{{- define "opensearch.serviceName" -}}
+{{- if eq .Values.nodeGroup "master" }}
+{{- include "opensearch.masterService" . }}
+{{- else }}
+{{- include "opensearch.uname" . }}
+{{- end }}
+{{- end -}}
+
 {{- define "opensearch.endpoints" -}}
 {{- $replicas := int (toString (.Values.replicas)) }}
 {{- $uname := (include "opensearch.uname" .) }}
