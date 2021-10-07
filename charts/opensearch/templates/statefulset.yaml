@@ -150,10 +150,18 @@ spec:
         configMap:
           name: {{ template "opensearch.uname" . }}-config
       {{- end }}
+      {{- if and .Values.securityConfig.config.data .Values.securityConfig.config.securityConfigSecret }}
+      {{ fail "Only one of .Values.securityConfig.config.data and .Values.securityConfig.config.securityConfigSecret may be defined. Please see the comment in values.yaml describing usage." }}
+      {{- end }}
       {{- if .Values.securityConfig.config.data }}
-      - name: security-config
+      - name: security-config-complete
         secret:
           secretName: {{ include "opensearch.uname" . }}-securityconfig
+      {{- end }}
+      {{- with .Values.securityConfig.config.securityConfigSecret }}
+      - name: security-config-complete
+        secret:
+          secretName: {{ . | quote }}
       {{- end }}
       {{- if .Values.securityConfig.actionGroupsSecret }}
       - name: action-groups
@@ -371,7 +379,7 @@ spec:
         {{- end }}
         {{- if .Values.securityConfig.config.data  }}
         - mountPath: {{ .Values.securityConfig.path }}
-          name: security-config
+          name: security-config-complete
         {{- end }}
         {{- end }}
         {{- range .Values.secretMounts }}
