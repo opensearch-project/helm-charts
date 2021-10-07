@@ -14,6 +14,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Security
 
 ---
+## [1.0.5]
+### Added
+- In opensearch chart config to set the docker registry for images is added.
+### Changed
+### Deprecated
+### Removed
+### Fixed
+### Security
+
+---
 ## [1.0.4]
 ### Added
 ### Changed

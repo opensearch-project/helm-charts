@@ -215,7 +215,7 @@ spec:
       initContainers:
 {{- if .Values.persistence.enabled }}
       - name: fsgroup-volume
-        image: busybox
+        image: "{{ template "opensearch.dockerRegistry" . }}busybox:latest"
         command: ['sh', '-c']
         args:
           - 'chown -R 1000:1000 /usr/share/opensearch/data'
@@ -227,7 +227,7 @@ spec:
 {{- end }}      
 {{ if .Values.keystore }}
       - name: keystore
-        image: "{{ .Values.image }}:{{ .Values.imageTag | default .Chart.AppVersion }}"
+        image: "{{ template "opensearch.dockerRegistry" . }}{{ .Values.image }}:{{ .Values.imageTag | default .Chart.AppVersion }}"
         imagePullPolicy: "{{ .Values.imagePullPolicy }}"
         command:
         - sh
@@ -277,7 +277,7 @@ spec:
       - name: "{{ template "opensearch.name" . }}"
         securityContext:
 {{ toYaml .Values.securityContext | indent 10 }}
-        image: "{{ .Values.image }}:{{ .Values.imageTag | default .Chart.AppVersion }}"
+        image: "{{ template "opensearch.dockerRegistry" . }}{{ .Values.image }}:{{ .Values.imageTag | default .Chart.AppVersion }}"
         imagePullPolicy: "{{ .Values.imagePullPolicy }}"
         ports:
         - name: http
@@ -396,7 +396,7 @@ spec:
       {{- if eq .Values.roles.master "true" }}
       # This sidecar will prevent slow master re-election
       - name: opensearch-master-graceful-termination-handler
-        image: "{{ .Values.image }}:{{ .Values.imageTag | default .Chart.AppVersion }}"
+        image: "{{ template "opensearch.dockerRegistry" . }}{{ .Values.image }}:{{ .Values.imageTag | default .Chart.AppVersion }}"
         imagePullPolicy: "{{ .Values.imagePullPolicy }}"
         command:
         - "sh"
