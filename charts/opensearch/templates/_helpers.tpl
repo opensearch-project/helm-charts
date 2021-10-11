@@ -59,3 +59,11 @@ We truncate at 63 chars because some Kubernetes name fields are limited to this 
   {{- $version.Major }}
 {{- end }}
 {{- end }}
+
+{{- define "opensearch.dockerRegistry" -}}
+{{- if eq .Values.global.dockerRegistry "" -}}
+  {{- .Values.global.dockerRegistry -}}
+{{- else -}}
+  {{- .Values.global.dockerRegistry | trimSuffix "/" | printf "%s/" -}}
+{{- end -}}
+{{- end -}}
