@@ -19,7 +19,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Added the ability to define plugins on node startup via plugins.enabled option.
 
 ### Changed
-- Incremented the version to `1.0.5`.
+- Incremented the version to `1.0.6`.
 
 
 ---
