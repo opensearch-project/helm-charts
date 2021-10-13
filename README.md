@@ -27,6 +27,7 @@ helm repo update
 ```
 
 You can then run `helm search repo opensearch` to see the charts.
+You can now deploy charts with `helm install my-deployment opensearch/<chart name>`.
 
 ## Change Logs
 
