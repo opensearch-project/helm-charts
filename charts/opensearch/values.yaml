@@ -285,7 +285,7 @@ securityConfig:
       # roles.yml: |-
       # roles_mapping.yml: |-
       # action_groups.yml: |-
-    # tenants.yml: |-
+      # tenants.yml: |-
 
 # How long to wait for opensearch to stop gracefully
 terminationGracePeriod: 120
