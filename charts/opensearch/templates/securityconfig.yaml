@@ -5,9 +5,7 @@ metadata:
   name: {{ include "opensearch.uname" . }}-securityconfig
   namespace: {{ .Release.Namespace }}
   labels:
-    app: {{ .Chart.Name }}
-    release: {{ .Release.Name }}
-    heritage: {{ .Release.Service }}
+    {{- include "opensearch.labels" . | nindent 4 }}
 type: Opaque
 stringData:
 {{- range $key, $val := .Values.securityConfig.config.data }}
