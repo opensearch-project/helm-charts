@@ -3,8 +3,8 @@
 This Helm chart installs [OpenSearch](https://github.com/opensearch-project/OpenSearch) with configurable TLS, RBAC and much more configurations. This chart caters a number of different use cases and setups.
 
 - [Requirements](#requirements)
-- [Installing the chart](#installing)
-- [Uninstalling the chart](#uninstalling)
+- [Installing](#installing)
+- [Uninstalling](#uninstalling)
 - [Configuration](#configuration)
 
 ## Requirements
@@ -15,21 +15,21 @@ This Helm chart installs [OpenSearch](https://github.com/opensearch-project/Open
 
 ## Installing
 
-To install the chart with the release name `my-release`:
-- Switch to opensearch directly after cloning the repo
-  `❯ cd charts/opensearch`
-- Run `❯ helm package .`
-- Install using Helm 3:
-`❯ helm install my-release opensearch-1.0.0.tgz`
--  Install using Helm 2
-`❯ helm install --name my-release opensearch-1.0.0.tgz`
+Once you've added this Helm repository as per the repository-level [README](../../README.md#installing) then you can install the chart as follows:
+
+ ```shell
+ helm install my-release opensearch/opensearch
+ ```
 
 The command deploys OpenSearch with its associated components (data statefulsets, masters, clients) on the Kubernetes cluster in the default configuration.
 
+**NOTE:** If using Helm 2 then you'll need to add the [`--name`](https://v2.helm.sh/docs/helm/#options-21) command line argument. If unspecified, Helm 2 will autogenerate a name for you.
+
 ## Uninstalling
 To delete/uninstall the chart with the release name `my-release`:
-```
-❯ helm uninstall my-release
+
+```shell
+helm uninstall my-release
 ```
 
 ## Configuration
@@ -81,6 +81,7 @@ To delete/uninstall the chart with the release name `my-release`:
 | `roles`                            | A hash map with the specific [roles][] for the `nodeGroup`                                                                                                                                                                                                | see [values.yaml][]                             |
 | `schedulerName`                    | Name of the [alternate scheduler][]                                                                                                                                                                                                                       | `""`                                            |
 | `secretMounts`                     | Allows you easily mount a secret as a file inside the StatefulSet. Useful for mounting certificates and other secrets. See [values.yaml][] for an example                                                                                                 | `[]`                                            |
+| `securityConfig`                   | Configure the opensearch security plugin. There are multiple ways to inject configuration into the chart, see [values.yaml](https://github.com/opensearch-project/helm-charts/blob/main/charts/opensearch/values.yaml) details.                           | By default an insecure demonstration configuration is set. This **must** be changed before going to production. |
 | `securityContext`                  | Allows you to set the [securityContext][] for the container                                                                                                                                                                                               | see [values.yaml][]                             |
 | `service.annotations`              | [LoadBalancer annotations][] that Kubernetes will use for the service. This will configure load balancer if `service.type` is `LoadBalancer`                                                                                                              | `{}`                                            |
 | `service.externalTrafficPolicy`    | Some cloud providers allow you to specify the [LoadBalancer externalTrafficPolicy][]. Kubernetes will use this to preserve the client source IP. This will configure load balancer if `service.type` is `LoadBalancer`                                    | `""`                                            |
