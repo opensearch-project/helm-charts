@@ -34,6 +34,12 @@ Once the charts repository reference is added, you can run the following command
 helm search repo opensearch
 ```
 
+You can now deploy charts with this command.
+
+```shell
+helm install my-deployment opensearch/<chart name>
+```
+
 Please see the `README.md` in the [OpenSearch](charts/opensearch) and [OpenSearch Dashboards](charts/opensearch-dashboards) directories for installation instructions.
 
 ## Change Logs
