@@ -172,7 +172,7 @@ podSecurityPolicy:
 persistence:
   enabled: true
   # Set to false to disable the `fsgroup-volume` initContainer that will update permissions on the persistent disk. 
-  enableInitChown: false
+  enableInitChown: true
   labels:
     # Add default labels for the volumeClaimTemplate of the StatefulSet
     enabled: false
