@@ -5,7 +5,7 @@ kind: Role
 metadata:
   name: {{ $fullName | quote }}
   labels:
-  {{- include "opensearch.labels" . | nindent 4 }}
+    {{- include "opensearch.labels" . | nindent 4 }}
 rules:
   - apiGroups:
       - extensions
