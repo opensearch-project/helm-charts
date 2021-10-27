@@ -14,7 +14,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Security
 
 ---
-## [1.2.1]
+## [1.2.2]
 ### Added
 - Support to disable the initContainer `fsgroup-volume` for chown updates.
 
