@@ -211,7 +211,7 @@ spec:
       {{- end }}
       {{- if or (.Values.extraInitContainers) (.Values.keystore) (.Values.persistence.enabled) }}
       initContainers:
-{{- if .Values.persistence.enabled }}
+{{- if and .Values.persistence.enabled .Values.persistence.enableInitChown }}
       - name: fsgroup-volume
         image: "{{ template "opensearch.dockerRegistry" . }}busybox:latest"
         command: ['sh', '-c']
