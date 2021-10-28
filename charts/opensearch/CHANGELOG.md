@@ -14,6 +14,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Security
 
 ---
+## [1.2.3]
+### Added
+- Support to disable the initContainer `fsgroup-volume` for chown updates.
+
+---
 ## [1.2.2]
 ### Added
 ### Changed
@@ -21,6 +26,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Removed
 ### Fixed
 - [Issue #105](https://github.com/opensearch-project/helm-charts/issues/105) OpenSearch chart fails when RBAC is enabled.
+### Security
+
+---
+## [1.2.1]
+### Added
+### Changed
+### Deprecated
+### Removed
+### Fixed
 - Missing `labels` key is added into role.yaml.
 ### Security
 
