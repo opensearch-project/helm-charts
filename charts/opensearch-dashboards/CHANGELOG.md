@@ -14,6 +14,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Security
 
 ---
+## [1.0.6]
+### Added
+### Changed
+- Change `appVersion` to `1.1.0`.
+### Deprecated
+### Removed
+### Fixed
+### Security
+
+------
 ## [1.0.5]
 ### Added
 ### Changed
