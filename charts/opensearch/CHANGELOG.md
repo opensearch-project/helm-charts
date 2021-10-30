@@ -14,6 +14,51 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Security
 
 ---
+## [1.2.3]
+### Added
+- Support to disable the initContainer `fsgroup-volume` for chown updates.
+
+---
+## [1.2.2]
+### Added
+### Changed
+### Deprecated
+### Removed
+### Fixed
+- [Issue #105](https://github.com/opensearch-project/helm-charts/issues/105) OpenSearch chart fails when RBAC is enabled.
+### Security
+
+---
+## [1.2.1]
+### Added
+### Changed
+### Deprecated
+### Removed
+### Fixed
+- Missing `labels` key is added into role.yaml.
+### Security
+
+---
+## [1.2.0]
+### Added
+### Changed
+- Change labels of opensearch cart to match standard recommendations.
+### Deprecated
+### Removed
+### Fixed
+### Security
+
+---
+## [1.1.0]
+### Added
+- Enable using externally created secret for securityConfig.
+### Changed
+### Deprecated
+### Removed
+### Fixed
+### Security
+
+---
 ## [1.0.8]
 ### Added
 ### Changed
@@ -79,7 +124,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 ### Security
 
-[Unreleased]: https://github.com/opensearch-project/helm-charts/compare/opensearch-1.0.8...HEAD
+[Unreleased]: https://github.com/opensearch-project/helm-charts/compare/opensearch-1.2.2...HEAD
+[1.2.2]: https://github.com/opensearch-project/helm-charts/compare/opensearch-1.2.1...opensearch-1.2.2
+[1.2.1]: https://github.com/opensearch-project/helm-charts/compare/opensearch-1.2.0...opensearch-1.2.1
+[1.2.0]: https://github.com/opensearch-project/helm-charts/compare/opensearch-1.1.0...opensearch-1.2.0
+[1.1.0]: https://github.com/opensearch-project/helm-charts/compare/opensearch-1.0.8...opensearch-1.1.0
 [1.0.8]: https://github.com/opensearch-project/helm-charts/compare/opensearch-1.0.7...opensearch-1.0.8
 [1.0.7]: https://github.com/opensearch-project/helm-charts/compare/opensearch-1.0.6...opensearch-1.0.7
 [1.0.6]: https://github.com/opensearch-project/helm-charts/compare/opensearch-1.0.5...opensearch-1.0.6
