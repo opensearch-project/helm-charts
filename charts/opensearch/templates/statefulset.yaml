@@ -211,7 +211,7 @@ spec:
       {{- end }}
       {{- if or (.Values.extraInitContainers) (.Values.keystore) (.Values.persistence.enabled) }}
       initContainers:
-{{- if .Values.persistence.enabled }}
+{{- if and .Values.persistence.enabled .Values.persistence.enableInitChown }}
       - name: fsgroup-volume
         image: "{{ template "opensearch.dockerRegistry" . }}busybox:latest"
         command: ['sh', '-c']
@@ -249,8 +249,8 @@ spec:
           fi
 
           cp -a {{ .Values.opensearchHome }}/config/opensearch.keystore /tmp/keystore/
-        env: {{ toYaml .Values.extraEnvs | nindent 8 }}
-        envFrom: {{ toYaml .Values.envFrom | nindent 8 }}
+        env: {{ toYaml .Values.extraEnvs | nindent 10 }}
+        envFrom: {{ toYaml .Values.envFrom | nindent 10 }}
         resources: {{ toYaml .Values.initResources | nindent 10 }}
         volumeMounts:
         - name: keystore
