@@ -93,6 +93,15 @@ hostAliases: []
 #   - "bar.local"
 
 serverHost: "0.0.0.0"
+protocol: "http"
+healthCheckPath: "/app/home"
+
+readinessProbe:
+  failureThreshold: 3
+  initialDelaySeconds: 10
+  periodSeconds: 10
+  successThreshold: 3
+  timeoutSeconds: 5
 
 service:
   type: ClusterIP
