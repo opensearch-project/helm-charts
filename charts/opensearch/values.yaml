@@ -9,10 +9,10 @@ masterService: "opensearch-cluster-master"
 # OpenSearch roles that will be applied to this nodeGroup
 # These will be set as environment variables. E.g. node.master=true
 roles:
-  master: "true"
-  ingest: "true"
-  data: "true"
-  remote_cluster_client: "true"
+  - master
+  - ingest
+  - data
+  - remote_cluster_client
 
 replicas: 3
 minimumMasterNodes: 1
@@ -114,7 +114,8 @@ image: "opensearchproject/opensearch"
 imageTag: ""
 imagePullPolicy: "IfNotPresent"
 
-podAnnotations: {}
+podAnnotations:
+  {}
   # iam.amazonaws.com/role: es-cluster
 
 # additionals labels
@@ -127,7 +128,8 @@ resources:
     cpu: "1000m"
     memory: "100Mi"
 
-initResources: {}
+initResources:
+  {}
   # limits:
   #   cpu: "25m"
   #   # memory: "128Mi"
@@ -135,7 +137,8 @@ initResources: {}
   #   cpu: "25m"
   #   memory: "128Mi"
 
-sidecarResources: {}
+sidecarResources:
+  {}
   # limits:
   #   cpu: "25m"
   #   # memory: "128Mi"
@@ -189,21 +192,25 @@ persistence:
   size: 8Gi
   annotations: {}
 
-extraVolumes: []
+extraVolumes:
+  []
   # - name: extras
   #   emptyDir: {}
 
-extraVolumeMounts: []
+extraVolumeMounts:
+  []
   # - name: extras
   #   mountPath: /usr/share/extras
   #   readOnly: true
 
-extraContainers: []
+extraContainers:
+  []
   # - name: do-something
   #   image: busybox
   #   command: ['do', 'something']
 
-extraInitContainers: []
+extraInitContainers:
+  []
   # - name: do-somethings
   #   image: busybox
   #   command: ['do', 'something']
@@ -290,7 +297,8 @@ securityConfig:
     #   created externally and mount it.
     # * It is an error to define both data and securityConfigSecret.
     securityConfigSecret: ""
-    data: {}
+    data:
+      {}
       # config.yml: |-
       # internal_users.yml: |-
       # roles.yml: |-
@@ -323,7 +331,8 @@ tolerations: []
 # Only enable this if you have security enabled on your cluster
 ingress:
   enabled: false
-  annotations: {}
+  annotations:
+    {}
     # kubernetes.io/ingress.class: nginx
     # kubernetes.io/tls-acme: "true"
   path: /
@@ -339,7 +348,8 @@ fullnameOverride: ""
 
 masterTerminationFix: false
 
-lifecycle: {}
+lifecycle:
+  {}
   # preStop:
   #   exec:
   #     command: ["/bin/sh", "-c", "echo Hello from the postStart handler > /usr/share/message"]
