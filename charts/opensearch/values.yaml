@@ -28,6 +28,9 @@ global:
 opensearchHome: /usr/share/opensearch
 # such as opensearch.yml and log4j2.properties
 config:
+  log4j2.properties: |
+   abc = 1234
+   iCanEvenTemplateNow = {{ .Values.opensearchHome }}
   opensearch.yml: |
     cluster.name: opensearch-cluster
 
