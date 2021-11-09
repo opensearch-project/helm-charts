@@ -1,3 +1,4 @@
+{{- $root := . }}
 {{- if .Values.config }}
 apiVersion: v1
 kind: ConfigMap
@@ -7,12 +8,7 @@ metadata:
     {{- include "opensearch.labels" . | nindent 4 }}
 data:
 {{- range $configName, $configYaml := .Values.config }}
-  {{- if eq $configName "log4j2.properties" }}
   {{ $configName }}: |
-    {{- $configYaml | nindent 4 }}
-  {{- else }}
-  {{ $configName }}: |
-    {{- toYaml $configYaml | nindent 4 }}
-  {{- end -}}
+    {{- tpl $configYaml $root | nindent 4 }}
 {{- end -}}
 {{- end -}}

@@ -28,7 +28,13 @@ global:
 opensearchHome: /usr/share/opensearch
 # such as opensearch.yml and log4j2.properties
 config:
-  opensearch.yml:
+  log4j2.properties: |
+    appender.rolling.type = RollingFile 
+    appender.rolling.name = rolling
+    appender.rolling.fileName = ${sys:es.logs.base_path}${sys:file.separator}${sys:es.logs.cluster_name}_server.json 
+    appender.rolling.layout.type = ECSJsonLayout 
+    appender.rolling.layout.dataset = elasticsearch.server
+  opensearch.yml: |
     cluster.name: opensearch-cluster
 
     # Bind to all interfaces because we don't know what IP address Docker will assign to us.

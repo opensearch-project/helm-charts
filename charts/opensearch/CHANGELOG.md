@@ -13,6 +13,27 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 ### Security
 ---
+## [1.2.5]
+### Changed
+- Changed support for any kind of configuration type. Including `log4j2.properties` file. Added example. 
+### BREAKING CHANGE
+- `.Values.config` items must now be interpreted as a string. Existing items must now be updated from YAML to string:
+
+E.G:
+```yaml
+config:
+  opensearch.yml:
+    cluster.name: elasticsearch
+```
+
+Becomes:
+```yaml 
+config:
+  opensearch.yaml: |
+    cluster.name: elasticsearch
+```
+
+---
 ## [1.2.4]
 ### Added
 ### Changed
