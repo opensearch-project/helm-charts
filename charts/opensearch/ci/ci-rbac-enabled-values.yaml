@@ -146,7 +146,7 @@ sidecarResources: {}
 networkHost: "0.0.0.0"
 
 rbac:
-  create: false
+  create: true
   serviceAccountAnnotations: {}
   serviceAccountName: ""
 

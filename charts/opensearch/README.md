@@ -3,8 +3,8 @@
 This Helm chart installs [OpenSearch](https://github.com/opensearch-project/OpenSearch) with configurable TLS, RBAC and much more configurations. This chart caters a number of different use cases and setups.
 
 - [Requirements](#requirements)
-- [Installing the chart](#installing)
-- [Uninstalling the chart](#uninstalling)
+- [Installing](#installing)
+- [Uninstalling](#uninstalling)
 - [Configuration](#configuration)
 
 ## Requirements
@@ -15,21 +15,21 @@ This Helm chart installs [OpenSearch](https://github.com/opensearch-project/Open
 
 ## Installing
 
-To install the chart with the release name `my-release`:
-- Switch to opensearch directly after cloning the repo
-  `❯ cd charts/opensearch`
-- Run `❯ helm package .`
-- Install using Helm 3:
-`❯ helm install my-release opensearch-1.0.0.tgz`
--  Install using Helm 2
-`❯ helm install --name my-release opensearch-1.0.0.tgz`
+Once you've added this Helm repository as per the repository-level [README](../../README.md#installing) then you can install the chart as follows:
+
+ ```shell
+ helm install my-release opensearch/opensearch
+ ```
 
 The command deploys OpenSearch with its associated components (data statefulsets, masters, clients) on the Kubernetes cluster in the default configuration.
 
+**NOTE:** If using Helm 2 then you'll need to add the [`--name`](https://v2.helm.sh/docs/helm/#options-21) command line argument. If unspecified, Helm 2 will autogenerate a name for you.
+
 ## Uninstalling
 To delete/uninstall the chart with the release name `my-release`:
-```
-❯ helm uninstall my-release
+
+```shell
+helm uninstall my-release
 ```
 
 ## Configuration
@@ -44,6 +44,7 @@ To delete/uninstall the chart with the release name `my-release`:
 | `config`                         | Allows you to add any config files in `/usr/share/opensearch/config/` such as `opensearch.yml` and `log4j2.properties`. See [values.yaml][] for an example of the formatting                                                                        | `{}`                                            |
 | `opensearcjhJavaOpts`                       | Java options for OpenSearch. This is where you should configure the jvm heap size                                                                                                                                                             | `-Xmx1g -Xms1g`                                 |
 | `majorVersion`                   | Used to set major version specific configuration. If you are using a custom image and not running the default OpenSearch version you will need to set this to the version you are running (e.g. `majorVersion: 1`)                                   | `""`                                            |
+| `global.dockerRegistry`                  | Set if you want to change the default docker registry, e.g. a private one.                                                                                                                                           | `""`                                            |
 | `extraContainers`                  | Array of extra containers                                                                                                                                           | `""`                                            |
 | `extraEnvs`                        | Extra environments variables to be passed to OpenSearch services                                                                                                                           | `[]`                                            |
 | `extraInitContainers`              | Array of extra init containers                                                                                                                                          | `[]`                                            |
@@ -69,6 +70,7 @@ To delete/uninstall the chart with the release name `my-release`:
 | `nodeGroup`                        | This is the name that will be used for each group of nodes in the cluster. The name will be `clusterName-nodeGroup-X` , `nameOverride-nodeGroup-X` if a `nameOverride` is specified, and `fullnameOverride-X` if a `fullnameOverride` is specified        | `master`                                        |
 | `nodeSelector`                     | Configurable [nodeSelector][] so that you can target specific nodes for your OpenSearch cluster                                                                                                                                                        | `{}`                                            |
 | `persistence`                      | Enables a persistent volume for OpenSearch data.                                                                                      | see [values.yaml][]                             |
+| `persistence.enableInitChown`      | Disable the `fsgroup-volume` initContainer that will update permissions on the persistent disk.                                                                                      | `true`                             |
 | `podAnnotations`                   | Configurable [annotations][] applied to all OpenSearch pods                                                                                                                                                                                            | `{}`                                            |
 | `podManagementPolicy`              | By default Kubernetes [deploys StatefulSets serially][]. This deploys them in parallel so that they can discover each other                                                                                                                               | `Parallel`                                      |
 | `podSecurityContext`               | Allows you to set the [securityContext][] for the pod                                                                                                                                                                                                     | see [values.yaml][]                             |
@@ -77,9 +79,10 @@ To delete/uninstall the chart with the release name `my-release`:
 | `rbac`                             | Configuration for creating a role, role binding and ServiceAccount as part of this Helm chart with `create: true`. Also can be used to reference an external ServiceAccount with `serviceAccountName: "externalServiceAccountName"`                       | see [values.yaml][]                             |
 | `replicas`                         | Kubernetes replica count for the StatefulSet (i.e. how many pods)                                                                                                                                                                                         | `3`                                             |
 | `resources`                        | Allows you to set the [resources][] for the StatefulSet                                                                                                                                                                                                   | see [values.yaml][]                             |
-| `roles`                            | A hash map with the specific [roles][] for the `nodeGroup`                                                                                                                                                                                                | see [values.yaml][]                             |
+| `roles`                            | A list of the specific node [roles][] for the `nodeGroup`                                                                                                                                                                                                | see [values.yaml][]                             |
 | `schedulerName`                    | Name of the [alternate scheduler][]                                                                                                                                                                                                                       | `""`                                            |
 | `secretMounts`                     | Allows you easily mount a secret as a file inside the StatefulSet. Useful for mounting certificates and other secrets. See [values.yaml][] for an example                                                                                                 | `[]`                                            |
+| `securityConfig`                   | Configure the opensearch security plugin. There are multiple ways to inject configuration into the chart, see [values.yaml](https://github.com/opensearch-project/helm-charts/blob/main/charts/opensearch/values.yaml) details.                           | By default an insecure demonstration configuration is set. This **must** be changed before going to production. |
 | `securityContext`                  | Allows you to set the [securityContext][] for the container                                                                                                                                                                                               | see [values.yaml][]                             |
 | `service.annotations`              | [LoadBalancer annotations][] that Kubernetes will use for the service. This will configure load balancer if `service.type` is `LoadBalancer`                                                                                                              | `{}`                                            |
 | `service.externalTrafficPolicy`    | Some cloud providers allow you to specify the [LoadBalancer externalTrafficPolicy][]. Kubernetes will use this to preserve the client source IP. This will configure load balancer if `service.type` is `LoadBalancer`                                    | `""`                                            |

@@ -2,14 +2,18 @@
 {{- $fullName := include "opensearch.uname" . -}}
 {{- $servicePort := .Values.httpPort -}}
 {{- $ingressPath := .Values.ingress.path -}}
+{{- if semverCompare ">=1.19-0" .Capabilities.KubeVersion.GitVersion -}}
+apiVersion: networking.k8s.io/v1
+{{- else if semverCompare ">=1.14-0" .Capabilities.KubeVersion.GitVersion -}}
 apiVersion: networking.k8s.io/v1beta1
+{{- else -}}
+apiVersion: extensions/v1beta1
+{{- end }}
 kind: Ingress
 metadata:
   name: {{ $fullName }}
   labels:
-    app: {{ .Chart.Name }}
-    release: {{ .Release.Name }}
-    heritage: {{ .Release.Service }}
+    {{- include "opensearch.labels" . | nindent 4 }}
 {{- with .Values.ingress.annotations }}
   annotations:
 {{ toYaml . | indent 4 }}
@@ -26,13 +30,28 @@ spec:
   {{- end }}
 {{- end }}
   rules:
-  {{- range .Values.ingress.hosts }}
-    - host: {{ . }}
+    {{- if semverCompare ">=1.19-0" .Capabilities.KubeVersion.GitVersion -}}
+    {{- range .Values.ingress.hosts }}
+    - host: {{ . | quote }}
+      http:
+        paths:
+          - path: {{ $ingressPath }}
+            pathType: Prefix
+            backend:
+              service:
+                name: {{ $fullName }}
+                port:
+                  number: {{ $servicePort }}
+    {{- end }}
+    {{- else -}}
+    {{- range .Values.ingress.hosts }}
+    - host: {{ . | quote }}
       http:
         paths:
           - path: {{ $ingressPath }}
             backend:
               serviceName: {{ $fullName }}
               servicePort: {{ $servicePort }}
-  {{- end }}
+    {{- end }}
+    {{- end }}
 {{- end }}
