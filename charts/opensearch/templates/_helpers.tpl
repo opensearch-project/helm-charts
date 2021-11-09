@@ -102,3 +102,9 @@ app.kubernetes.io/instance: {{ .Release.Name }}
   {{- .Values.global.dockerRegistry | trimSuffix "/" | printf "%s/" -}}
 {{- end -}}
 {{- end -}}
+
+{{- define "opensearch.roles" -}}
+{{- range $.Values.roles -}}
+{{ . }},
+{{- end -}}
+{{- end -}}

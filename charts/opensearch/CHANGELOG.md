@@ -13,6 +13,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 ### Security
 ---
+## [1.3.0]
+### Added
+### Changed
+- Rework deprecated node roles definition. Now in `values.yaml` roles are described as a list and there are no any deprecation warnings in logs.
+### Deprecated
+### Removed
+### Fixed
+### Security
+---
 ## [1.2.4]
 ### Added
 ### Changed
