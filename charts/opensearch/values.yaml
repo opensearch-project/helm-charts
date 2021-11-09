@@ -30,7 +30,7 @@ opensearchHome: /usr/share/opensearch
 config:
   # Values must be YAML literal style scalar / YAML multiline string.
   # <filename>: |
-  #   <formatted-value(s)
+  #   <formatted-value(s)>
   # log4j2.properties: |
   #   status = error
   #
