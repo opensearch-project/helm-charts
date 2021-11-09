@@ -1,0 +1,24 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: "{{ template "opensearch.uname" . }}-cluster-health"
+  labels:
+    {{- include "opensearch.labels" . | nindent 4 }}
+  annotations:
+    "helm.sh/hook": test-success
+spec:
+  containers:
+  - name: cluster-health
+    image: alpine:3.14
+    imagePullPolicy: IfNotPresent
+    command:
+    - sh
+    args:
+    - "-c"
+    - |
+      set -euo pipefail
+      apk --no-cache add curl jq
+      while ! curl -sSLku admin:admin https://{{ template "opensearch.uname" . }}:9200/_cluster/health | jq -e '.status == "green"'; do
+        sleep 2
+      done
+  restartPolicy: Never
