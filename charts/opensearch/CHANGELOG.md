@@ -19,18 +19,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### BREAKING CHANGE
 - `.Values.config` items must now be interpreted as a string. Existing items must now be updated from YAML to string:
 
-E.G:
+Change from YAML:
 ```yaml
 config:
   opensearch.yml:
-    cluster.name: elasticsearch
+    cluster.name: opensearch-cluster
 ```
 
-Becomes:
+Change to YAML multiline string:
 ```yaml
 config:
-  opensearch.yaml: |
-    cluster.name: elasticsearch
+  opensearch.yml: |
+    cluster.name: opensearch-cluster
 ```
 ---
 ## [1.3.0]
