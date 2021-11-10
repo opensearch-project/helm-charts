@@ -28,7 +28,7 @@ global:
 opensearchHome: /usr/share/opensearch
 # such as opensearch.yml and log4j2.properties
 config:
-  opensearch.yml:
+  opensearch.yml: |
     cluster.name: opensearch-cluster
 
     # Bind to all interfaces because we don't know what IP address Docker will assign to us.
