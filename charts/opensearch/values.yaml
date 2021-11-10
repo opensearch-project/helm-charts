@@ -28,7 +28,20 @@ global:
 opensearchHome: /usr/share/opensearch
 # such as opensearch.yml and log4j2.properties
 config:
-  opensearch.yml:
+  # Values must be YAML literal style scalar / YAML multiline string.
+  # <filename>: |
+  #   <formatted-value(s)>
+  # log4j2.properties: |
+  #   status = error
+  #
+  #   appender.console.type = Console
+  #   appender.console.name = console
+  #   appender.console.layout.type = PatternLayout
+  #   appender.console.layout.pattern = [%d{ISO8601}][%-5p][%-25c{1.}] [%node_name]%marker %m%n
+  #
+  #   rootLogger.level = info
+  #   rootLogger.appenderRef.console.ref = console
+  opensearch.yml: |
     cluster.name: opensearch-cluster
 
     # Bind to all interfaces because we don't know what IP address Docker will assign to us.
