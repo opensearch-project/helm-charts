@@ -13,7 +13,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 ### Security
 ---
-## [1.3.1]
+## [1.4.0]
 ### Changed
 - Changed support for any kind of configuration type. Including `log4j2.properties` file. Added example.
 ### BREAKING CHANGE
