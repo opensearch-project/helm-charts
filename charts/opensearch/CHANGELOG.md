@@ -13,6 +13,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 ### Security
 ---
+## [1.3.1]
+### Added
+- Added image definition for `fsgroup-volume` initContainer to `values.yaml`.
+### Changed
+### Deprecated
+### Removed
+### Fixed
+### Security
+---
 ## [1.3.0]
 ### Added
 ### Changed
