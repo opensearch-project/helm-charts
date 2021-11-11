@@ -44,6 +44,15 @@ extraEnvs: []
 
 envFrom: []
 
+extraVolumes: []
+  # - name: extras
+  #   emptyDir: {}
+
+extraVolumeMounts: []
+  # - name: extras
+  #   mountPath: /usr/share/extras
+  #   readOnly: true
+
 extraInitContainers: ""
 
 extraContainers: ""
