@@ -213,7 +213,7 @@ spec:
       initContainers:
 {{- if and .Values.persistence.enabled .Values.persistence.enableInitChown }}
       - name: fsgroup-volume
-        image: "{{ template "opensearch.dockerRegistry" . }}busybox:latest"
+        image: "{{ template "opensearch.dockerRegistry" . }}{{ .Values.persistence.image | default "busybox" }}:{{ .Values.persistence.imageTag | default "latest" }}"
         command: ['sh', '-c']
         args:
           - 'chown -R 1000:1000 /usr/share/opensearch/data'
@@ -303,7 +303,7 @@ spec:
           valueFrom:
             fieldRef:
               fieldPath: metadata.name
-        {{- if eq .Values.roles.master "true" }}
+        {{- if has "master" .Values.roles }}
         - name: cluster.initial_master_nodes
           value: "{{ template "opensearch.endpoints" . }}"
         {{- end }}

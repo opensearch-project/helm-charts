@@ -13,6 +13,44 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 ### Security
 ---
+## [1.4.0]
+### Changed
+- Changed support for any kind of configuration type. Including `log4j2.properties` file. Added example.
+### BREAKING CHANGE
+- `.Values.config` items must now be interpreted as a string. Existing items must now be updated from YAML to string:
+
+Change from YAML:
+```yaml
+config:
+  opensearch.yml:
+    cluster.name: opensearch-cluster
+```
+
+Change to YAML multiline string:
+```yaml
+config:
+  opensearch.yml: |
+    cluster.name: opensearch-cluster
+```
+---
+## [1.3.1]
+### Added
+- Added image definition for `fsgroup-volume` initContainer to `values.yaml`.
+### Changed
+### Deprecated
+### Removed
+### Fixed
+### Security
+---
+## [1.3.0]
+### Added
+### Changed
+- Rework deprecated node roles definition. Now in `values.yaml` roles are described as a list and there are no any deprecation warnings in logs.
+### Deprecated
+### Removed
+### Fixed
+### Security
+---
 ## [1.2.4]
 ### Added
 ### Changed

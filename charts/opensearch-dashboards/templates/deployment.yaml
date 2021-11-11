@@ -48,6 +48,16 @@ spec:
           configMap:
             name: {{ template "opensearch-dashboards.fullname" . }}-config
         {{- end }}
+        {{- if .Values.extraVolumes }}
+        # Currently some extra blocks accept strings
+        # to continue with backwards compatibility this is being kept
+        # whilst also allowing for yaml to be specified too.
+        {{- if eq "string" (printf "%T" .Values.extraVolumes) }}
+{{ tpl .Values.extraVolumes . | indent 8 }}
+        {{- else }}
+{{ toYaml .Values.extraVolumes | indent 8 }}
+        {{- end }}
+        {{- end }}
     {{- with .Values.nodeSelector }}
       nodeSelector:
 {{ toYaml . | indent 8 }}
@@ -170,6 +180,16 @@ spec:
           - name: config
             mountPath: /usr/share/opensearch-dashboards/config/{{ $path }}
             subPath: {{ $path }}
+          {{- end }}
+          {{- if .Values.extraVolumeMounts }}
+          # Currently some extra blocks accept strings
+          # to continue with backwards compatibility this is being kept
+          # whilst also allowing for yaml to be specified too.
+          {{- if eq "string" (printf "%T" .Values.extraVolumeMounts) }}
+{{ tpl .Values.extraVolumeMounts . | indent 10 }}
+         {{- else }}
+{{ toYaml .Values.extraVolumeMounts | indent 10 }}
+          {{- end }}
           {{- end }}
       {{- if .Values.extraContainers }}
       # Currently some extra blocks accept strings
