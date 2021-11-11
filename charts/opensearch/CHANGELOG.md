@@ -11,6 +11,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Deprecated
 ### Removed
 ### Fixed
+### Security
+---
+## [1.4.1]
+### Added
+### Changed
+### Deprecated
+### Removed
+### Fixed
 - Remove whitespace from `admin_dn` in base `values.yaml`.
 ### Security
 ---
