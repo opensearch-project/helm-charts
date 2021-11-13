@@ -24,6 +24,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Security
 
 ---
+## [1.0.8]
+### Added
+### Changed
+- Updating the copyright header to reflect the apache-2.0 license.
+### Deprecated
+### Removed
+### Fixed
+### Security
+---
 ## [1.0.7]
 ### Added
 - Add `extraVolumes` and `extraVolumeMounts`.
