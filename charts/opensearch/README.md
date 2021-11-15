@@ -109,7 +109,7 @@ helm uninstall my-release
 
 [environment from variables]: https://kubernetes.io/docs/tasks/configure-pod-container/configure-pod-configmap/#configure-all-key-value-pairs-in-a-configmap-as-container-environment-variables
 
-[values.yaml]:https://github.com/opensearch-project/helm-charts/blob/main/charts/opensearch/values.yaml]
+[values.yaml]:https://github.com/opensearch-project/helm-charts/blob/main/charts/opensearch/values.yaml
 
 [hostAliases]: https://kubernetes.io/docs/concepts/services-networking/add-entries-to-pod-etc-hosts-with-host-aliases/
 
