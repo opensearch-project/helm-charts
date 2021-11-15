@@ -315,10 +315,8 @@ spec:
           value: "{{ .Values.networkHost }}"
         - name: OPENSEARCH_JAVA_OPTS
           value: "{{ .Values.opensearchJavaOpts }}"
-        {{- range $role, $enabled := .Values.roles }}
-        - name: node.{{ $role }}
-          value: "{{ $enabled }}"
-        {{- end }}
+        - name: node.roles
+          value: "{{ template "opensearch.roles" . }}"
 {{- if .Values.extraEnvs }}
 {{ toYaml .Values.extraEnvs | indent 8 }}
 {{- end }}
