@@ -155,3 +155,16 @@ nodeSelector: {}
 tolerations: []
 
 affinity: {}
+
+lifecycle: {}
+  # preStop:
+    # exec:
+  #     command: ["/bin/sh", "-c", "echo Hello from the postStart handler > /usr/share/message"]
+  # postStart:
+  #   exec:
+  #     command:
+  #       - bash
+  #       - -c
+  #       - |
+  #         #!/bin/bash
+  #       curl -X POST "localhost:5601/api/saved_objects/_import?createNewCopies=true -H "kbn-xsrf: true" --form file=@file.ndjson" -H 'kbn-xsrf: true'
