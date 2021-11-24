@@ -306,7 +306,7 @@ securityConfig:
     # * If you define securityConfigSecret, the chart will assume this secret is
     #   created externally and mount it.
     # * It is an error to define both data and securityConfigSecret.
-    securityConfigSecret: ""
+    securityConfigSecret: "security-configs-secret"
     data: {}
       # config.yml: |-
       # internal_users.yml: |-
