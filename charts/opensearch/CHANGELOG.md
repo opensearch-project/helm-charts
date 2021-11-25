@@ -13,6 +13,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 ### Security
 ---
+## [1.4.4]
+### Added
+### Changed
+### Deprecated
+### Removed
+### Fixed
+- Added a default value to securityConfigSecret to fix issue [#146](https://github.com/opensearch-project/helm-charts/issues/146).
+### Security
+---
 ## [1.4.3]
 ### Added
 ### Changed
