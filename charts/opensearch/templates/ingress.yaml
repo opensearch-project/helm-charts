@@ -2,6 +2,8 @@
 {{- $fullName := include "opensearch.uname" . -}}
 {{- $servicePort := .Values.httpPort -}}
 {{- $ingressPath := .Values.ingress.path -}}
+{{- $ingressApiIsStable := eq (include "opensearch.ingress.isStable" .) "true" -}}
+{{- $ingressSupportsIngressClassName := eq (include "opensearch.ingress.supportsIngressClassName" .) "true" -}}
 {{- if semverCompare ">=1.19-0" .Capabilities.KubeVersion.GitVersion -}}
 apiVersion: networking.k8s.io/v1
 {{- else if semverCompare ">=1.14-0" .Capabilities.KubeVersion.GitVersion -}}
@@ -19,6 +21,9 @@ metadata:
 {{ toYaml . | indent 4 }}
 {{- end }}
 spec:
+  {{- if and $ingressSupportsIngressClassName .Values.ingress.ingressClassName }}
+  ingressClassName: {{ .Values.ingress.ingressClassName }}
+  {{- end -}}
 {{- if .Values.ingress.tls }}
   tls:
   {{- range .Values.ingress.tls }}
