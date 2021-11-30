@@ -16,22 +16,36 @@ A community repository for Helm Charts of OpenSearch Project.
 
 ## Status
 
-![Testing](https://github.com/opensearch-project/helm-charts/workflows/Lint%20and%20Test%20Charts/badge.svg)
-![Release](https://github.com/opensearch-project/helm-charts/workflows/Release%20Charts/badge.svg)
+[![Lint and Test Charts](https://github.com/opensearch-project/helm-charts/actions/workflows/lint-test.yaml/badge.svg)](https://github.com/opensearch-project/helm-charts/actions/workflows/lint-test.yaml)
+ [![Release Charts](https://github.com/opensearch-project/helm-charts/actions/workflows/release.yaml/badge.svg)](https://github.com/opensearch-project/helm-charts/actions/workflows/release.yaml)
 
 ## Installation
+
+To install the OpenSearch Helm charts, execute the following commands:
 
 ```shell
 helm repo add opensearch https://opensearch-project.github.io/helm-charts/
 helm repo update
 ```
 
-You can then run `helm search repo opensearch` to see the charts.
+Once the charts repository reference is added, you can run the following command to see the charts.
+
+```shell
+helm search repo opensearch
+```
+
+You can now deploy charts with this command.
+
+```shell
+helm install my-deployment opensearch/<chart name>
+```
+
+Please see the `README.md` in the [OpenSearch](charts/opensearch) and [OpenSearch Dashboards](charts/opensearch-dashboards) directories for installation instructions.
 
 ## Change Logs
 
 Please review the [OpenSearch](charts/opensearch/CHANGELOG.md) and the
-[OpenSearch Dashboards](charts/opensearch/CHANGELOG.md) change logs for the latest 
+[OpenSearch Dashboards](charts/opensearch-dashboards/CHANGELOG.md) change logs for the latest 
 release details.
 
 ## Contributing

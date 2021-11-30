@@ -1,10 +1,14 @@
+# See https://github.com/helm/chart-testing-action
 name: Lint and Test Charts
 
 on: [pull_request, workflow_dispatch]
-  
+
 jobs:
   lint-test:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        k8s: ["1.14.10", "1.18.19", "1.19.11", "1.21.2", "1.22.2"]
     steps:
       - name: Checkout
         uses: actions/checkout@v2
@@ -36,6 +40,8 @@ jobs:
 
       - name: Create kind cluster
         uses: helm/kind-action@v1.2.0
+        with:
+          node_image: kindest/node:v${{ matrix.k8s }}
         if: steps.list-changed.outputs.changed == 'true'
 
       # See https://github.com/helm/chart-testing/blob/main/doc/ct_install.md

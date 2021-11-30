@@ -4,22 +4,14 @@ kind: StatefulSet
 metadata:
   name: {{ template "opensearch.uname" . }}
   labels:
-    heritage: {{ .Release.Service | quote }}
-    release: {{ .Release.Name | quote }}
-    chart: "{{ .Chart.Name }}"
-    app: "{{ template "opensearch.uname" . }}"
-    {{- range $key, $value := .Values.labels }}
-    {{ $key }}: {{ $value | quote }}
-    {{- end }}
+    {{- include "opensearch.labels" . | nindent 4 }}
   annotations:
     majorVersion: "{{ include "opensearch.majorVersion" . }}"
 spec:
   serviceName: {{ template "opensearch.serviceName" . }}-headless
   selector:
     matchLabels:
-      release: {{ .Release.Name | quote }}
-      chart: "{{ .Chart.Name }}"
-      app: "{{ template "opensearch.uname" . }}"
+      {{- include "opensearch.selectorLabels" . | nindent 6 }}
   replicas: {{ .Values.replicas }}
   podManagementPolicy: {{ .Values.podManagementPolicy }}
   updateStrategy:
@@ -30,12 +22,7 @@ spec:
       name: {{ template "opensearch.uname" . }}
     {{- if .Values.persistence.labels.enabled }}
       labels:
-        release: {{ .Release.Name | quote }}
-        chart: "{{ .Chart.Name }}"
-        app: "{{ template "opensearch.uname" . }}"
-        {{- range $key, $value := .Values.labels }}
-        {{ $key }}: {{ $value | quote }}
-        {{- end }}
+        {{- include "opensearch.labels" . | nindent 8 }}
     {{- end }}
     {{- with .Values.persistence.annotations  }}
       annotations:
@@ -61,12 +48,7 @@ spec:
     metadata:
       name: "{{ template "opensearch.uname" . }}"
       labels:
-        release: {{ .Release.Name | quote }}
-        chart: "{{ .Chart.Name }}"
-        app: "{{ template "opensearch.uname" . }}"
-        {{- range $key, $value := .Values.labels }}
-        {{ $key }}: {{ $value | quote }}
-        {{- end }}
+        {{- include "opensearch.labels" . | nindent 8 }}
       annotations:
         {{- range $key, $value := .Values.podAnnotations }}
         {{ $key }}: {{ $value | quote }}
@@ -113,10 +95,14 @@ spec:
           requiredDuringSchedulingIgnoredDuringExecution:
           - labelSelector:
               matchExpressions:
-              - key: app
+              - key: app.kubernetes.io/instance
                 operator: In
                 values:
-                - "{{ template "opensearch.uname" .}}"
+                - {{ .Release.Name }}
+              - key: app.kubernetes.io/name
+                operator: In
+                values:
+                - {{ include "opensearch.name" . }}
             topologyKey: {{ .Values.antiAffinityTopologyKey }}
       {{- else if eq .Values.antiAffinity "soft" }}
         podAntiAffinity:
@@ -126,10 +112,14 @@ spec:
               topologyKey: {{ .Values.antiAffinityTopologyKey }}
               labelSelector:
                 matchExpressions:
-                - key: app
+                - key: app.kubernetes.io/instance
                   operator: In
                   values:
-                  - "{{ template "opensearch.uname" . }}"
+                  - {{ .Release.Name }}
+                - key: app.kubernetes.io/name
+                  operator: In
+                  values:
+                  - {{ include "opensearch.name" . }}
       {{- end }}
       {{- with .Values.nodeAffinity }}
         nodeAffinity:
@@ -150,10 +140,18 @@ spec:
         configMap:
           name: {{ template "opensearch.uname" . }}-config
       {{- end }}
-      {{- if and .Values.securityConfig.config.securityConfigSecret .Values.securityConfig.config.data }}
-      - name: security-config
+      {{- if and .Values.securityConfig.config.data .Values.securityConfig.config.securityConfigSecret }}
+      {{ fail "Only one of .Values.securityConfig.config.data and .Values.securityConfig.config.securityConfigSecret may be defined. Please see the comment in values.yaml describing usage." }}
+      {{- end }}
+      {{- if .Values.securityConfig.config.data }}
+      - name: security-config-complete
         secret:
-         secretName: {{ .Values.securityConfig.config.securityConfigSecret }}
+          secretName: {{ include "opensearch.uname" . }}-securityconfig
+      {{- end }}
+      {{- with .Values.securityConfig.config.securityConfigSecret }}
+      - name: security-config-complete
+        secret:
+          secretName: {{ . | quote }}
       {{- end }}
       {{- if .Values.securityConfig.actionGroupsSecret }}
       - name: action-groups
@@ -213,9 +211,9 @@ spec:
       {{- end }}
       {{- if or (.Values.extraInitContainers) (.Values.keystore) (.Values.persistence.enabled) }}
       initContainers:
-{{- if .Values.persistence.enabled }}
+{{- if and .Values.persistence.enabled .Values.persistence.enableInitChown }}
       - name: fsgroup-volume
-        image: "{{ template "opensearch.dockerRegistry" . }}busybox:latest"
+        image: "{{ template "opensearch.dockerRegistry" . }}{{ .Values.persistence.image | default "busybox" }}:{{ .Values.persistence.imageTag | default "latest" }}"
         command: ['sh', '-c']
         args:
           - 'chown -R 1000:1000 /usr/share/opensearch/data'
@@ -251,8 +249,8 @@ spec:
           fi
 
           cp -a {{ .Values.opensearchHome }}/config/opensearch.keystore /tmp/keystore/
-        env: {{ toYaml .Values.extraEnvs | nindent 8 }}
-        envFrom: {{ toYaml .Values.envFrom | nindent 8 }}
+        env: {{ toYaml .Values.extraEnvs | nindent 10 }}
+        envFrom: {{ toYaml .Values.envFrom | nindent 10 }}
         resources: {{ toYaml .Values.initResources | nindent 10 }}
         volumeMounts:
         - name: keystore
@@ -305,7 +303,7 @@ spec:
           valueFrom:
             fieldRef:
               fieldPath: metadata.name
-        {{- if eq .Values.roles.master "true" }}
+        {{- if has "master" .Values.roles }}
         - name: cluster.initial_master_nodes
           value: "{{ template "opensearch.endpoints" . }}"
         {{- end }}
@@ -317,10 +315,8 @@ spec:
           value: "{{ .Values.networkHost }}"
         - name: OPENSEARCH_JAVA_OPTS
           value: "{{ .Values.opensearchJavaOpts }}"
-        {{- range $role, $enabled := .Values.roles }}
-        - name: node.{{ $role }}
-          value: "{{ $enabled }}"
-        {{- end }}
+        - name: node.roles
+          value: "{{ template "opensearch.roles" . }}"
 {{- if .Values.extraEnvs }}
 {{ toYaml .Values.extraEnvs | indent 8 }}
 {{- end }}
@@ -369,9 +365,9 @@ spec:
           name: tenants
           subPath: tenants.yml
         {{- end }}
-        {{- if and .Values.securityConfig.config.securityConfigSecret .Values.securityConfig.config.data  }}
+        {{- if .Values.securityConfig.config.data  }}
         - mountPath: {{ .Values.securityConfig.path }}
-          name: security-config
+          name: security-config-complete
         {{- end }}
         {{- end }}
         {{- range .Values.secretMounts }}

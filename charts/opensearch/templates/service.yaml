@@ -4,10 +4,7 @@ apiVersion: v1
 metadata:
   name: {{ template "opensearch.serviceName" . }}
   labels:
-    heritage: {{ .Release.Service | quote }}
-    release: {{ .Release.Name | quote }}
-    chart: "{{ .Chart.Name }}"
-    app: "{{ template "opensearch.uname" . }}"
+    {{- include "opensearch.labels" . | nindent 4 }}
 {{- if .Values.service.labels }}
 {{ toYaml .Values.service.labels | indent 4}}
 {{- end }}
@@ -16,9 +13,7 @@ metadata:
 spec:
   type: {{ .Values.service.type }}
   selector:
-    release: {{ .Release.Name | quote }}
-    chart: "{{ .Chart.Name }}"
-    app: "{{ template "opensearch.uname" . }}"
+    {{- include "opensearch.selectorLabels" . | nindent 4 }}
   ports:
   - name: {{ .Values.service.httpPortName | default "http" }}
     protocol: TCP
@@ -45,10 +40,7 @@ apiVersion: v1
 metadata:
   name: {{ template "opensearch.serviceName" . }}-headless
   labels:
-    heritage: {{ .Release.Service | quote }}
-    release: {{ .Release.Name | quote }}
-    chart: "{{ .Chart.Name }}"
-    app: "{{ template "opensearch.uname" . }}"
+    {{- include "opensearch.labels" . | nindent 4 }}
 {{- if .Values.service.labelsHeadless }}
 {{ toYaml .Values.service.labelsHeadless | indent 4 }}
 {{- end }}
@@ -59,7 +51,7 @@ spec:
   # Create endpoints also if the related pod isn't ready
   publishNotReadyAddresses: true
   selector:
-    app: "{{ template "opensearch.uname" . }}"
+    {{- include "opensearch.selectorLabels" . | nindent 4 }}
   ports:
   - name: {{ .Values.service.httpPortName | default "http" }}
     port: {{ .Values.httpPort }}

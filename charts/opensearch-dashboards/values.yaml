@@ -1,5 +1,5 @@
-# Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
-# SPDX-License-Identifier: Apache-2.0s
+# Copyright OpenSearch Contributors
+# SPDX-License-Identifier: Apache-2.0
 
 # Default values for opensearch-dashboards.
 # This is a YAML-formatted file.
@@ -43,6 +43,15 @@ extraEnvs: []
 #    value: "--max-old-space-size=1800"
 
 envFrom: []
+
+extraVolumes: []
+  # - name: extras
+  #   emptyDir: {}
+
+extraVolumeMounts: []
+  # - name: extras
+  #   mountPath: /usr/share/extras
+  #   readOnly: true
 
 extraInitContainers: ""
 
