@@ -156,9 +156,11 @@ tolerations: []
 
 affinity: {}
 
+# pod lifecycle policies as outlined here:
+# https://kubernetes.io/docs/concepts/containers/container-lifecycle-hooks/#container-hooks
 lifecycle: {}
   # preStop:
-    # exec:
+  #   exec:
   #     command: ["/bin/sh", "-c", "echo Hello from the postStart handler > /usr/share/message"]
   # postStart:
   #   exec:
@@ -167,4 +169,4 @@ lifecycle: {}
   #       - -c
   #       - |
   #         #!/bin/bash
-  #       curl -X POST "localhost:5601/api/saved_objects/_import?createNewCopies=true -H "kbn-xsrf: true" --form file=@file.ndjson" -H 'kbn-xsrf: true'
+  #         curl -I "http://admin:admin@127.0.0.1:5601/status -H "kbn-xsrf: true" -H 'kbn-xsrf: true' -H "Content-Type: application/json"

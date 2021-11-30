@@ -13,8 +13,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 ### Security
 ---
+## [1.0.9]
+### Added
+### Changed
+### Deprecated
+### Removed
+### Fixed
+### Security
+---
 ## [1.0.8]
 ### Added
+- Add `lifecycle`
 ### Changed
 - Updating the copyright header to reflect the apache-2.0 license.
 ### Deprecated
