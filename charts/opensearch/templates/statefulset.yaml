@@ -365,7 +365,7 @@ spec:
           name: tenants
           subPath: tenants.yml
         {{- end }}
-        {{- if .Values.securityConfig.config.data  }}
+        {{- if or .Values.securityConfig.config.data .Values.securityConfig.config.securityConfigSecret }}
         - mountPath: {{ .Values.securityConfig.path }}
           name: security-config-complete
         {{- end }}
