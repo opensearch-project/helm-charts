@@ -1,5 +1,7 @@
 {{- if .Values.ingress.enabled -}}
 {{- $fullName := include "opensearch-dashboards.fullname" . -}}
+{{- $ingressApiIsStable := eq (include "opensearch-dashboards.ingress.isStable" .) "true" -}}
+{{- $ingressSupportsIngressClassName := eq (include "opensearch-dashboards.ingress.supportsIngressClassName" .) "true" -}}
 {{- $svcPort := .Values.service.port -}}
 {{- if semverCompare ">=1.19-0" .Capabilities.KubeVersion.GitVersion -}}
 apiVersion: networking.k8s.io/v1
@@ -18,6 +20,9 @@ metadata:
     {{- toYaml . | nindent 4 }}
   {{- end }}
 spec:
+  {{- if and $ingressSupportsIngressClassName .Values.ingress.ingressClassName }}
+  ingressClassName: {{ .Values.ingress.ingressClassName }}
+  {{- end -}}
   {{- if .Values.ingress.tls }}
   tls:
     {{- range .Values.ingress.tls }}
