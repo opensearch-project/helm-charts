@@ -7,7 +7,7 @@ nodeGroup: "master"
 masterService: "opensearch-cluster-master"
 
 # OpenSearch roles that will be applied to this nodeGroup
-# These will be set as environment variables. E.g. node.master=true
+# These will be set as environment variable "node.roles". E.g. node.roles=master,ingest,data,remote_cluster_client
 roles:
   - master
   - ingest
@@ -28,6 +28,19 @@ global:
 opensearchHome: /usr/share/opensearch
 # such as opensearch.yml and log4j2.properties
 config:
+  # Values must be YAML literal style scalar / YAML multiline string.
+  # <filename>: |
+  #   <formatted-value(s)>
+  # log4j2.properties: |
+  #   status = error
+  #
+  #   appender.console.type = Console
+  #   appender.console.name = console
+  #   appender.console.layout.type = PatternLayout
+  #   appender.console.layout.pattern = [%d{ISO8601}][%-5p][%-25c{1.}] [%node_name]%marker %m%n
+  #
+  #   rootLogger.level = info
+  #   rootLogger.appenderRef.console.ref = console
   opensearch.yml: |
     cluster.name: opensearch-cluster
 
@@ -60,7 +73,7 @@ config:
         allow_default_init_securityindex: true
         authcz:
           admin_dn:
-            - CN=kirk,OU=client,O=client,L=test, C=de
+            - CN=kirk,OU=client,O=client,L=test,C=de
         audit.type: internal_opensearch
         enable_snapshot_restore_privilege: true
         check_snapshot_restore_write_privileges: true
@@ -171,6 +184,12 @@ podSecurityPolicy:
 
 persistence:
   enabled: true
+  # Set to false to disable the `fsgroup-volume` initContainer that will update permissions on the persistent disk.
+  enableInitChown: true
+  # override image, which is busybox by default
+  # image: busybox
+  # override image tag, which is latest by default
+  # imageTag:
   labels:
     # Add default labels for the volumeClaimTemplate of the StatefulSet
     enabled: false
@@ -321,6 +340,11 @@ tolerations: []
 # Only enable this if you have security enabled on your cluster
 ingress:
   enabled: false
+
+  # For Kubernetes >= 1.18 you should specify the ingress-controller via the field ingressClassName
+  # See https://kubernetes.io/blog/2020/04/02/improvements-to-the-ingress-api-in-kubernetes-1.18/#specifying-the-class-of-an-ingress
+  ingressClassName: nginx
+
   annotations: {}
     # kubernetes.io/ingress.class: nginx
     # kubernetes.io/tls-acme: "true"
