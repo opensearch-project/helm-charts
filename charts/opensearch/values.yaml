@@ -1,10 +1,10 @@
 ---
-clusterName: "opensearch-cluster"
-nodeGroup: "master"
+clusterName: 'opensearch-cluster'
+nodeGroup: 'master'
 
 # The service that non master groups will try to connect to when joining the cluster
 # This should be set to clusterName + "-" + nodeGroup for your master group
-masterService: "opensearch-cluster-master"
+masterService: 'opensearch-cluster-master'
 
 # OpenSearch roles that will be applied to this nodeGroup
 # These will be set as environment variable "node.roles". E.g. node.roles=master,ingest,data,remote_cluster_client
@@ -18,11 +18,11 @@ replicas: 3
 minimumMasterNodes: 1
 
 # if not set, falls back to parsing .Values.imageTag, then .Chart.appVersion.
-majorVersion: ""
+majorVersion: ''
 
 global:
   # Set if you want to change the default docker registry, e.g. a private one.
-  dockerRegistry: ""
+  dockerRegistry: ''
 
 # Allows you to add any config files in {{ .Values.opensearchHome }}/config
 opensearchHome: /usr/share/opensearch
@@ -122,25 +122,27 @@ hostAliases: []
 #   - "foo.local"
 #   - "bar.local"
 
-image: "opensearchproject/opensearch"
+image: 'opensearchproject/opensearch'
 # override image tag, which is .Chart.AppVersion by default
-imageTag: ""
-imagePullPolicy: "IfNotPresent"
+imageTag: ''
+imagePullPolicy: 'IfNotPresent'
 
-podAnnotations: {}
+podAnnotations:
+  {}
   # iam.amazonaws.com/role: es-cluster
 
 # additionals labels
 labels: {}
 
-opensearchJavaOpts: "-Xmx512M -Xms512M"
+opensearchJavaOpts: '-Xmx512M -Xms512M'
 
 resources:
   requests:
-    cpu: "1000m"
-    memory: "100Mi"
+    cpu: '1000m'
+    memory: '100Mi'
 
-initResources: {}
+initResources:
+  {}
   # limits:
   #   cpu: "25m"
   #   # memory: "128Mi"
@@ -148,7 +150,8 @@ initResources: {}
   #   cpu: "25m"
   #   memory: "128Mi"
 
-sidecarResources: {}
+sidecarResources:
+  {}
   # limits:
   #   cpu: "25m"
   #   # memory: "128Mi"
@@ -156,16 +159,16 @@ sidecarResources: {}
   #   cpu: "25m"
   #   memory: "128Mi"
 
-networkHost: "0.0.0.0"
+networkHost: '0.0.0.0'
 
 rbac:
   create: false
   serviceAccountAnnotations: {}
-  serviceAccountName: ""
+  serviceAccountName: ''
 
 podSecurityPolicy:
   create: false
-  name: ""
+  name: ''
   spec:
     privileged: true
     fsGroup:
@@ -206,36 +209,40 @@ persistence:
   size: 8Gi
   annotations: {}
 
-extraVolumes: []
+extraVolumes:
+  []
   # - name: extras
   #   emptyDir: {}
 
-extraVolumeMounts: []
+extraVolumeMounts:
+  []
   # - name: extras
   #   mountPath: /usr/share/extras
   #   readOnly: true
 
-extraContainers: []
+extraContainers:
+  []
   # - name: do-something
   #   image: busybox
   #   command: ['do', 'something']
 
-extraInitContainers: []
+extraInitContainers:
+  []
   # - name: do-somethings
   #   image: busybox
   #   command: ['do', 'something']
 
 # This is the PriorityClass settings as defined in
 # https://kubernetes.io/docs/concepts/configuration/pod-priority-preemption/#priorityclass
-priorityClassName: ""
+priorityClassName: ''
 
 # By default this will make sure two pods don't end up on the same node
 # Changing this to a region would allow you to spread pods across regions
-antiAffinityTopologyKey: "kubernetes.io/hostname"
+antiAffinityTopologyKey: 'kubernetes.io/hostname'
 
 # Hard means that by default pods will only be scheduled if there are enough nodes for them
 # and that they will never end up on the same node. Setting this to soft will do this "best effort"
-antiAffinity: "soft"
+antiAffinity: 'soft'
 
 # This is the node affinity settings as defined in
 # https://kubernetes.io/docs/concepts/configuration/assign-pod-node/#node-affinity-beta-feature
@@ -243,7 +250,7 @@ nodeAffinity: {}
 
 # The default is to deploy all pods serially. By setting this to parallel all pods are started at
 # the same time when bootstrapping the cluster
-podManagementPolicy: "Parallel"
+podManagementPolicy: 'Parallel'
 
 # The environment variables injected by service links are not used, but can lead to slow OpenSearch boot times when
 # there are many services in the current namespace.
@@ -258,13 +265,13 @@ service:
   labels: {}
   labelsHeadless: {}
   type: ClusterIP
-  nodePort: ""
+  nodePort: ''
   annotations: {}
   httpPortName: http
   transportPortName: transport
-  loadBalancerIP: ""
+  loadBalancerIP: ''
   loadBalancerSourceRanges: []
-  externalTrafficPolicy: ""
+  externalTrafficPolicy: ''
 
 updateStrategy: RollingUpdate
 
@@ -287,7 +294,7 @@ securityContext:
 
 securityConfig:
   enabled: true
-  path: "/usr/share/opensearch/plugins/opensearch-security/securityconfig"
+  path: '/usr/share/opensearch/plugins/opensearch-security/securityconfig'
   actionGroupsSecret:
   configSecret:
   internalUsersSecret:
@@ -306,8 +313,9 @@ securityConfig:
     # * If you define securityConfigSecret, the chart will assume this secret is
     #   created externally and mount it.
     # * It is an error to define both data and securityConfigSecret.
-    securityConfigSecret: ""
-    data: {}
+    securityConfigSecret: ''
+    data:
+      {}
       # config.yml: |-
       # internal_users.yml: |-
       # roles.yml: |-
@@ -330,7 +338,7 @@ readinessProbe:
 ## Use an alternate scheduler.
 ## ref: https://kubernetes.io/docs/tasks/administer-cluster/configure-multiple-schedulers/
 ##
-schedulerName: ""
+schedulerName: ''
 
 imagePullSecrets: []
 nodeSelector: {}
@@ -344,7 +352,8 @@ ingress:
   # See https://kubernetes.io/blog/2020/04/02/improvements-to-the-ingress-api-in-kubernetes-1.18/#specifying-the-class-of-an-ingress
   # ingressClassName: nginx
 
-  annotations: {}
+  annotations:
+    {}
     # kubernetes.io/ingress.class: nginx
     # kubernetes.io/tls-acme: "true"
   path: /
@@ -355,12 +364,13 @@ ingress:
   #    hosts:
   #      - chart-example.local
 
-nameOverride: ""
-fullnameOverride: ""
+nameOverride: ''
+fullnameOverride: ''
 
 masterTerminationFix: false
 
-lifecycle: {}
+lifecycle:
+  {}
   # preStop:
   #   exec:
   #     command: ["/bin/sh", "-c", "echo Hello from the postStart handler > /usr/share/message"]
@@ -383,6 +393,7 @@ lifecycle: {}
 keystore: []
 
 networkPolicy:
+  create: false
   ## Enable creation of NetworkPolicy resources. Only Ingress traffic is filtered for now.
   ## In order for a Pod to access OpenSearch, it needs to have the following label:
   ## {{ template "uname" . }}-client: "true"
@@ -396,7 +407,7 @@ networkPolicy:
 
 # Deprecated
 # please use the above podSecurityContext.fsGroup instead
-fsGroup: ""
+fsGroup: ''
 
 ## Set optimal sysctl's. This requires privilege. Can be disabled if
 ## the system has already been preconfigured. (Ex: https://www.elastic.co/guide/en/elasticsearch/reference/current/vm-max-map-count.html)
