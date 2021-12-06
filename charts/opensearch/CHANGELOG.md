@@ -19,6 +19,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Deprecated
 ### Removed
 ### Fixed
+- Fixed typo for `opensearcjhJavaOpts` in README file of opensearch charts
+### Security
+---
+## [1.4.3]
+### Added
+### Changed
+### Deprecated
+### Removed
+### Fixed
 - Fixed links to values.yaml in README.md.
 ### Security
 ---
