@@ -209,25 +209,21 @@ persistence:
   size: 8Gi
   annotations: {}
 
-extraVolumes:
-  []
+extraVolumes: []
   # - name: extras
   #   emptyDir: {}
 
-extraVolumeMounts:
-  []
+extraVolumeMounts: []
   # - name: extras
   #   mountPath: /usr/share/extras
   #   readOnly: true
 
-extraContainers:
-  []
+extraContainers: []
   # - name: do-something
   #   image: busybox
   #   command: ['do', 'something']
 
-extraInitContainers:
-  []
+extraInitContainers: []
   # - name: do-somethings
   #   image: busybox
   #   command: ['do', 'something']
