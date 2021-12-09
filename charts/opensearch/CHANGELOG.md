@@ -220,6 +220,7 @@ config:
 ### Security
 
 [Unreleased]: https://github.com/opensearch-project/helm-charts/compare/opensearch-1.5.0...HEAD
+[1.5.1]: https://github.com/opensearch-project/helm-charts/compare/opensearch-1.5.0...opensearch-1.5.1
 [1.5.0]: https://github.com/opensearch-project/helm-charts/compare/opensearch-1.4.3...opensearch-1.5.0
 [1.4.3]: https://github.com/opensearch-project/helm-charts/compare/opensearch-1.4.2...opensearch-1.4.3
 [1.4.2]: https://github.com/opensearch-project/helm-charts/compare/opensearch-1.4.1...opensearch-1.4.2
