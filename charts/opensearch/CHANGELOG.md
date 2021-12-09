@@ -13,6 +13,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 ### Security
 ---
+## [1.5.3]
+### Added
+### Changed
+### Deprecated
+### Removed
+### Fixed
+- Fixed behavior for `PodSecurityPolicy` in the opensearch chart [Issue #157](https://github.com/opensearch-project/helm-charts/issues/157)
+### Security
+---
 ## [1.5.2]
 ### Added
 ### Changed
