@@ -14,6 +14,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Security
 
 ---
+## [1.1.1]
+### Added
+### Changed
+- Updated appVersion to 1.2.0
+### Deprecated
+### Removed
+### Fixed
+### Security
+
+---
 ## [1.1.0]
 ### Added
 - Added support for the `ingressClassName` field in the `Ingress` resource. This field is used to specify the Ingress class that should be used for the Ingress. Supported in Kubernetes 1.18 and greater as per [this](https://kubernetes.io/docs/concepts/services-networking/ingress/#deprecated-annotation) notice.
