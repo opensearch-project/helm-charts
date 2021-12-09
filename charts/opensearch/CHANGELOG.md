@@ -13,6 +13,24 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 ### Security
 ---
+## [1.5.1]
+### Added
+### Changed
+### Deprecated
+### Removed
+### Fixed
+- Fixed typo for `opensearcjhJavaOpts` in README file of opensearch charts
+### Security
+---
+## [1.5.0]
+### Added
+- Added support for the `ingressClassName` field in the `Ingress` resource. This field is used to specify the Ingress class that should be used for the Ingress. Supported in Kubernetes 1.18 and greater as per [this](https://kubernetes.io/docs/concepts/services-networking/ingress/#deprecated-annotation) notice.
+### Changed
+### Deprecated
+### Removed
+### Fixed
+### Security
+---
 ## [1.4.3]
 ### Added
 ### Changed
@@ -197,7 +215,17 @@ config:
 ### Fixed
 ### Security
 
-[Unreleased]: https://github.com/opensearch-project/helm-charts/compare/opensearch-1.2.2...HEAD
+[Unreleased]: https://github.com/opensearch-project/helm-charts/compare/opensearch-1.5.1...HEAD
+[1.5.1]: https://github.com/opensearch-project/helm-charts/compare/opensearch-1.5.0...opensearch-1.5.1
+[1.5.0]: https://github.com/opensearch-project/helm-charts/compare/opensearch-1.4.3...opensearch-1.5.0
+[1.4.3]: https://github.com/opensearch-project/helm-charts/compare/opensearch-1.4.2...opensearch-1.4.3
+[1.4.2]: https://github.com/opensearch-project/helm-charts/compare/opensearch-1.4.1...opensearch-1.4.2
+[1.4.1]: https://github.com/opensearch-project/helm-charts/compare/opensearch-1.4.0...opensearch-1.4.1
+[1.4.0]: https://github.com/opensearch-project/helm-charts/compare/opensearch-1.3.1...opensearch-1.4.0
+[1.3.1]: https://github.com/opensearch-project/helm-charts/compare/opensearch-1.3.0...opensearch-1.3.1
+[1.3.0]: https://github.com/opensearch-project/helm-charts/compare/opensearch-1.2.4...opensearch-1.3.0
+[1.2.4]: https://github.com/opensearch-project/helm-charts/compare/opensearch-1.2.3...opensearch-1.2.4
+[1.2.3]: https://github.com/opensearch-project/helm-charts/compare/opensearch-1.2.2...opensearch-1.2.3
 [1.2.2]: https://github.com/opensearch-project/helm-charts/compare/opensearch-1.2.1...opensearch-1.2.2
 [1.2.1]: https://github.com/opensearch-project/helm-charts/compare/opensearch-1.2.0...opensearch-1.2.1
 [1.2.0]: https://github.com/opensearch-project/helm-charts/compare/opensearch-1.1.0...opensearch-1.2.0
@@ -208,3 +236,4 @@ config:
 [1.0.5]: https://github.com/opensearch-project/helm-charts/compare/opensearch-1.0.4...opensearch-1.0.5
 [1.0.4]: https://github.com/opensearch-project/helm-charts/compare/opensearch-1.0.2...opensearch-1.0.4
 [1.0.2]: https://github.com/opensearch-project/helm-charts/compare/opensearch-1.0.1...opensearch-1.0.2
+
