@@ -14,7 +14,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Security
 ---
 
-## [1.5.2]
+## [1.5.3]
 ### Added
 **BREAKING CHANGE**
 This version introduces a change in the service name definitions that will break Helm upgrades due to changes in the `StatefulSet`. 
@@ -23,12 +23,17 @@ To resolve: Simply delete the existing statefulset in the cluster and ensure the
 
 After deleting the statefulset and upgrading the helm chart again, the new replacement statefulset will be created and should consume the same PVC as before. 
 
+---
+## [1.5.2]
+### Added
 ### Changed
 ### Deprecated
 ### Removed
 ### Fixed
-### Security
+- Fixed helm chart NOTES as the pod label key has changed to 'app.kubernetes.io/component'
 
+---
+### Security
 ## [1.5.1]
 ### Added
 ### Changed
@@ -37,6 +42,7 @@ After deleting the statefulset and upgrading the helm chart again, the new repla
 ### Fixed
 - Fixed typo for `opensearcjhJavaOpts` in README file of opensearch charts
 ### Security
+
 ---
 ## [1.5.0]
 ### Added
