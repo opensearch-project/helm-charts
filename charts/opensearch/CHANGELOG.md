@@ -13,6 +13,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 ### Security
 ---
+## [1.5.2]
+### Added
+### Changed
+### Deprecated
+### Removed
+### Fixed
+- Fixed helm chart NOTES as the pod label key has changed to 'app.kubernetes.io/component'
+### Security
+---
 ## [1.5.1]
 ### Added
 ### Changed
