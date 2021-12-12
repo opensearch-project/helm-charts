@@ -24,6 +24,33 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Security
 
 ---
+## [1.5.3]
+### Added
+### Changed
+### Deprecated
+### Removed
+### Fixed
+- Fixed behavior for `PodSecurityPolicy` in the opensearch chart [Issue #157](https://github.com/opensearch-project/helm-charts/issues/157)
+### Security
+---
+## [1.5.2]
+### Added
+### Changed
+### Deprecated
+### Removed
+### Fixed
+- Fixed helm chart NOTES as the pod label key has changed to 'app.kubernetes.io/component'
+### Security
+---
+## [1.5.1]
+### Added
+### Changed
+### Deprecated
+### Removed
+### Fixed
+- Fixed typo for `opensearcjhJavaOpts` in README file of opensearch charts
+### Security
+---
 ## [1.5.0]
 ### Added
 - Added support for the `ingressClassName` field in the `Ingress` resource. This field is used to specify the Ingress class that should be used for the Ingress. Supported in Kubernetes 1.18 and greater as per [this](https://kubernetes.io/docs/concepts/services-networking/ingress/#deprecated-annotation) notice.
@@ -240,3 +267,4 @@ config:
 [1.0.5]: https://github.com/opensearch-project/helm-charts/compare/opensearch-1.0.4...opensearch-1.0.5
 [1.0.4]: https://github.com/opensearch-project/helm-charts/compare/opensearch-1.0.2...opensearch-1.0.4
 [1.0.2]: https://github.com/opensearch-project/helm-charts/compare/opensearch-1.0.1...opensearch-1.0.2
+
