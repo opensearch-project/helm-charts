@@ -14,6 +14,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Security
 
 ---
+## [1.5.5]
+### Added
+### Changed
+- Add readiness probe to OpenSearch chart
+### Deprecated
+### Removed
+### Fixed
+### Security
+---
 ## [1.5.4]
 ### Added
 ### Changed
