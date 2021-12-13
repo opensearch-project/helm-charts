@@ -320,6 +320,8 @@ terminationGracePeriod: 120
 
 sysctlVmMaxMapCount: 262144
 
+clusterHealthCheckParams: "wait_for_status=green&timeout=600s"
+
 readinessProbe:
   failureThreshold: 3
   initialDelaySeconds: 10
@@ -390,6 +392,7 @@ networkPolicy:
   ## opensearch-master-http-client: "true"
   ## Example for default configuration to access transport port:
   ## opensearch-master-transport-client: "true"
+
 
   http:
     enabled: false
