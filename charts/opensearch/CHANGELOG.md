@@ -14,21 +14,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Security
 ---
 ## [1.5.5]
-
 ### Added
-
 - Added `create` flag into the `networkPolicy` resource to enable the creation of a network policy as request, for the cases where an user can't create network policies but want to use this chart.
-
 ### Changed
-
 ### Deprecated
-
 ### Removed
-
 ### Fixed
-
 ### Security
-
 ---
 ## [1.5.4]
 ### Added
@@ -38,7 +30,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Removed
 ### Fixed
 ### Security
-
 ---
 ## [1.5.3]
 ### Added

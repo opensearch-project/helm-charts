@@ -2,10 +2,10 @@
 
 This Helm chart installs [OpenSearch](https://github.com/opensearch-project/OpenSearch) with configurable TLS, RBAC and much more configurations. This chart caters a number of different use cases and setups.
 
-  - [Requirements](#requirements)
-  - [Installing](#installing)
-  - [Uninstalling](#uninstalling)
-  - [Configuration](#configuration)
+- [Requirements](#requirements)
+- [Installing](#installing)
+- [Uninstalling](#uninstalling)
+- [Configuration](#configuration)
 
 ## Requirements
 
@@ -66,7 +66,7 @@ helm uninstall my-release
 | `minimumMasterNodes`               | The value for `discovery.zen.minimum_master_nodes`                                                                                 | `2`                                             |
 | `nameOverride`                     | Overrides the `clusterName` when used in the naming of resources                                                                                                                                                                                          | `""`                                            |
 | `networkHost`                      | Value for the `network.host OpenSearch setting`                                                                                                                                                                                                      | `0.0.0.0`                                       |
-| `networkPolicy.create`                      | Enable network policy creation for OpenSearch | `false`
+| `networkPolicy.create`             | Enable network policy creation for OpenSearch                              | `false`
 | `nodeAffinity`                     | Value for the [node affinity settings][]                                                                                                                                                                                                                  | `{}`                                            |
 | `nodeGroup`                        | This is the name that will be used for each group of nodes in the cluster. The name will be `clusterName-nodeGroup-X` , `nameOverride-nodeGroup-X` if a `nameOverride` is specified, and `fullnameOverride-X` if a `fullnameOverride` is specified        | `master`                                        |
 | `nodeSelector`                     | Configurable [nodeSelector][] so that you can target specific nodes for your OpenSearch cluster                                                                                                                                                        | `{}`                                            |
