@@ -12,6 +12,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Removed
 ### Fixed
 ### Security
+
+---
+## [1.7.2]
+### Added
+- Add annotations on headless service
+### Changed
+### Deprecated
+### Removed
+### Fixed
+### Security
 ---
 ## [1.7.1]
 ### Added
@@ -39,7 +49,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Removed
 ### Fixed
 ### Security
-
 ---
 ## [1.5.8]
 ### Added
