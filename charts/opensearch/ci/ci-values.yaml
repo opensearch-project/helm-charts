@@ -122,10 +122,13 @@ hostAliases: []
 #   - "foo.local"
 #   - "bar.local"
 
-image: "opensearchproject/opensearch"
-# override image tag, which is .Chart.AppVersion by default
-imageTag: ""
-imagePullPolicy: "IfNotPresent"
+
+image:
+  repository: "opensearchproject/opensearch"
+  # override image tag, which is .Chart.AppVersion by default
+  tag: ""
+  pullPolicy: "IfNotPresent"
+
 
 podAnnotations: {}
   # iam.amazonaws.com/role: es-cluster
