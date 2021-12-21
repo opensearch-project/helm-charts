@@ -50,6 +50,8 @@ After deleting the statefulset and upgrading the helm chart again, the new repla
 ### Fixed
 - Fixed behavior for `PodSecurityPolicy` in the opensearch chart [Issue #157](https://github.com/opensearch-project/helm-charts/issues/157)
 ### Security
+
+---
 ## [1.5.2]
 ### Added
 ### Changed
