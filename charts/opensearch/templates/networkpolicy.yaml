@@ -1,3 +1,4 @@
+{{- if .Values.networkPolicy.create -}}
 apiVersion: networking.k8s.io/v1
 kind: NetworkPolicy
 metadata:
@@ -13,3 +14,4 @@ spec:
   podSelector:
     matchLabels:
       {{ template "opensearch.uname" . }}-transport-client: "true"
+{{- end }}
