@@ -22,7 +22,20 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Removed
 ### Fixed
 ### Security
+---
+## [1.5.6]
+### Added
+**BREAKING CHANGE**
+This version introduces a change in the service name definitions that will break Helm upgrades due to changes in the `StatefulSet`. 
 
+To resolve: Simply delete the existing statefulset in the cluster and ensure the PVC is retained (by default, this should be the case). `kubectl delete sts opensearch-cluster-master`
+After deleting the statefulset and upgrading the helm chart again, the new replacement statefulset will be created and should consume the same PVC as before. 
+
+### Changed
+### Deprecated
+### Removed
+### Fixed
+### Security
 ---
 ## [1.5.5]
 ### Added
