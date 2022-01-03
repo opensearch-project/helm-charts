@@ -2,11 +2,7 @@
 kind: Service
 apiVersion: v1
 metadata:
-{{- if eq .Values.nodeGroup "master" }}
-  name: {{ template "opensearch.masterService" . }}
-{{- else }}
-  name: {{ template "opensearch.uname" . }}
-{{- end }}
+  name: {{ template "opensearch.serviceName" . }}
   labels:
     {{- include "opensearch.labels" . | nindent 4 }}
 {{- if .Values.service.labels }}
@@ -42,11 +38,7 @@ spec:
 kind: Service
 apiVersion: v1
 metadata:
-{{- if eq .Values.nodeGroup "master" }}
-  name: {{ template "opensearch.masterService" . }}-headless
-{{- else }}
-  name: {{ template "opensearch.uname" . }}-headless
-{{- end }}
+  name: {{ template "opensearch.serviceName" . }}-headless
   labels:
     {{- include "opensearch.labels" . | nindent 4 }}
 {{- if .Values.service.labelsHeadless }}
