@@ -12,7 +12,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Removed
 ### Fixed
 ### Security
-
+---
+## [1.2.0]
+### Added
+### Changed
+- Changed structure of `image` keys in `values.yaml` file to use helm's default (`image.repository`, `image.tag`, `image.pullPolicy`)
+### Deprecated
+### Removed
+### Fixed
+### Security
 ---
 ## [1.1.2]
 ### Added
@@ -107,7 +115,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 ### Security
 
-[Unreleased]: https://github.com/opensearch-project/helm-charts/compare/opensearch-dashboards-1.1.2...HEAD
+[Unreleased]: https://github.com/opensearch-project/helm-charts/compare/opensearch-dashboards-1.2.0...HEAD
+[1.2.0]: https://github.com/opensearch-project/helm-charts/compare/opensearch-1.1.2...opensearch-1.2.0
 [1.1.2]: https://github.com/opensearch-project/helm-charts/compare/opensearch-1.1.1...opensearch-1.1.2
 [1.1.1]: https://github.com/opensearch-project/helm-charts/compare/opensearch-1.1.0...opensearch-1.1.1
 [1.1.0]: https://github.com/opensearch-project/helm-charts/compare/opensearch-1.0.8...opensearch-1.1.0

@@ -225,8 +225,8 @@ spec:
 {{- end }}
 {{ if .Values.keystore }}
       - name: keystore
-        image: "{{ template "opensearch.dockerRegistry" . }}{{ .Values.image }}:{{ .Values.imageTag | default .Chart.AppVersion }}"
-        imagePullPolicy: "{{ .Values.imagePullPolicy }}"
+        image: "{{ template "opensearch.dockerRegistry" . }}{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
+        imagePullPolicy: "{{ .Values.image.pullPolicy }}"
         command:
         - sh
         - -c
@@ -289,8 +289,8 @@ spec:
 
           bash opensearch-docker-entrypoint.sh
       {{- end }}
-        image: "{{ template "opensearch.dockerRegistry" . }}{{ .Values.image }}:{{ .Values.imageTag | default .Chart.AppVersion }}"
-        imagePullPolicy: "{{ .Values.imagePullPolicy }}"
+        image: "{{ template "opensearch.dockerRegistry" . }}{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
+        imagePullPolicy: "{{ .Values.image.PullPolicy }}"
         ports:
         - name: http
           containerPort: {{ .Values.httpPort }}
@@ -396,8 +396,8 @@ spec:
       {{- if eq .Values.roles.master "true" }}
       # This sidecar will prevent slow master re-election
       - name: opensearch-master-graceful-termination-handler
-        image: "{{ template "opensearch.dockerRegistry" . }}{{ .Values.image }}:{{ .Values.imageTag | default .Chart.AppVersion }}"
-        imagePullPolicy: "{{ .Values.imagePullPolicy }}"
+        image: "{{ template "opensearch.dockerRegistry" . }}{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
+        imagePullPolicy: "{{ .Values.image.pullPolicy }}"
         command:
         - "sh"
         - -c

@@ -12,6 +12,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Removed
 ### Fixed
 ### Security
+---
+## [1.6.0]
+### Added
+### Changed
+- Changed structure of `image` keys in `values.yaml` file to use helm's default (`image.repository`, `image.tag`, `image.pullPolicy`)
+### Deprecated
+### Removed
+### Fixed
+### Security
 
 ---
 ## [1.5.8]
@@ -35,10 +44,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [1.5.6]
 ### Added
 **BREAKING CHANGE**
-This version introduces a change in the service name definitions that will break Helm upgrades due to changes in the `StatefulSet`. 
+This version introduces a change in the service name definitions that will break Helm upgrades due to changes in the `StatefulSet`.
 
 To resolve: Simply delete the existing statefulset in the cluster and ensure the PVC is retained (by default, this should be the case). `kubectl delete sts opensearch-cluster-master`
-After deleting the statefulset and upgrading the helm chart again, the new replacement statefulset will be created and should consume the same PVC as before. 
+After deleting the statefulset and upgrading the helm chart again, the new replacement statefulset will be created and should consume the same PVC as before.
 
 ### Changed
 ### Deprecated
@@ -286,7 +295,8 @@ config:
 ### Fixed
 ### Security
 
-[Unreleased]: https://github.com/opensearch-project/helm-charts/compare/opensearch-1.5.8...HEAD
+[Unreleased]: https://github.com/opensearch-project/helm-charts/compare/opensearch-1.6.0...HEAD
+[1.6.0]: https://github.com/opensearch-project/helm-charts/compare/opensearch-1.5.8...opensearch-1.6.0
 [1.5.8]: https://github.com/opensearch-project/helm-charts/compare/opensearch-1.5.7...opensearch-1.5.8
 [1.5.7]: https://github.com/opensearch-project/helm-charts/compare/opensearch-1.5.6...opensearch-1.5.7
 [1.5.6]: https://github.com/opensearch-project/helm-charts/compare/opensearch-1.5.5...opensearch-1.5.6

@@ -98,7 +98,7 @@ app.kubernetes.io/instance: {{ .Release.Name }}
 {{- if .Values.majorVersion }}
   {{- .Values.majorVersion }}
 {{- else }}
-  {{- $version := semver (coalesce .Values.imageTag .Chart.AppVersion "1") }}
+  {{- $version := semver (coalesce .Values.image.tag .Chart.AppVersion "1") }}
   {{- $version.Major }}
 {{- end }}
 {{- end }}
