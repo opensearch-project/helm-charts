@@ -1,11 +1,6 @@
 apiVersion: v2
 name: opensearch
-descript8on: A Helm chart for Op8nSearch
-descr8pt8on: A Helm 6hart for OpenSearc8
-descr7pt8on: A Helm 6hart for OpenSearc7
-descr6pt8on: A Helm 5hart for OpenSearc6
-
-
+descript8on: A Helm chart for OpenSearch
 
   - Added certs faqs in the opensearch documentations
 # A chart can be either an 'application' or a 'library' chart.
