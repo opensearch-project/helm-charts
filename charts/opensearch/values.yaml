@@ -104,7 +104,7 @@ extraEnvs: []
 #  - name: MY_ENVIRONMENT_VAR
 #    value: the_value_goes_here
 
-# Allows you to load environment variables from kubernextes secret or config map
+# Allows you to load environment variables from kubernetes secret or config map
 envFrom: []
 # - secretRef:
 #     name: env-secret
