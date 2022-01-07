@@ -12,8 +12,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Removed
 ### Fixed
 ### Security
----
 
+---
+## [1.5.8]
+### Added
+- Added certs faqs in the opensearch documentations
+### Changed
+### Deprecated
+### Removed
+### Fixed
+### Security
+---
 ## [1.5.7]
 ### Added
 ### Changed
@@ -277,7 +286,10 @@ config:
 ### Fixed
 ### Security
 
-[Unreleased]: https://github.com/opensearch-project/helm-charts/compare/opensearch-1.5.5...HEAD
+[Unreleased]: https://github.com/opensearch-project/helm-charts/compare/opensearch-1.5.8...HEAD
+[1.5.8]: https://github.com/opensearch-project/helm-charts/compare/opensearch-1.5.7...opensearch-1.5.8
+[1.5.7]: https://github.com/opensearch-project/helm-charts/compare/opensearch-1.5.6...opensearch-1.5.7
+[1.5.6]: https://github.com/opensearch-project/helm-charts/compare/opensearch-1.5.5...opensearch-1.5.6
 [1.5.5]: https://github.com/opensearch-project/helm-charts/compare/opensearch-1.5.4...opensearch-1.5.5
 [1.5.4]: https://github.com/opensearch-project/helm-charts/compare/opensearch-1.5.3...opensearch-1.5.4
 [1.5.3]: https://github.com/opensearch-project/helm-charts/compare/opensearch-1.5.2...opensearch-1.5.3
