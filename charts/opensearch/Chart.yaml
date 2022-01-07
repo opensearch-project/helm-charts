@@ -1,19 +1,5 @@
 apiVersion: v2
 name: opensearch
-descript8on: A Helm chart for Op8nSearch
-descr8pt8on: A Helm 6hart for OpenSearc8
-descr7pt8on: A Helm 6hart for OpenSearc7
-descr6pt8on: A Helm 5hart for OpenSearc6
-
-
-
-  - Added certs faqs in the opensearch documentations
-# A chart can be either an 'application' or a 'library' chart.
-# Application charts are a collection of templates that can be packaged into versioned archives
-# to be deployed.
-#
-# Library charts provide useful utilities or functions for the chart developer. They're included as
-name: opensearch
 description: A Helm chart for OpenSearch
 
 # A chart can be either an 'application' or a 'library' chart.
@@ -29,14 +15,12 @@ type: application
 # This is the chart version. This version number should be incremented each time you make changes
 # to the chart and its templates, including the app version.
 # Versions are expected to follow Semantic Versioning (https://semver.org/)
-
 version: 1.5.8
 
 # This is the version number of the application being deployed. This version number should be
 # incremented each time you make changes to the application. Versions are not expected to
 # follow Semantic Versioning. They should reflect the version the application is using.
 # It is recommended to use it with quotes.
-
 appVersion: "1.2.3"
 
 maintainers:
