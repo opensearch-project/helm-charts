@@ -144,7 +144,7 @@ spec:
       {{ fail "Only one of .Values.securityConfig.config.data and .Values.securityConfig.config.securityConfigSecret may be defined. Please see the comment in values.yaml describing usage." }}
       {{- end }}
       {{- if .Values.securityConfig.config.data }}
-      - name: security-config-complete
+      - name: security-config
         secret:
           secretName: {{ include "opensearch.uname" . }}-securityconfig
       {{- end }}
@@ -366,8 +366,11 @@ spec:
           subPath: tenants.yml
         {{- end }}
         {{- if .Values.securityConfig.config.data  }}
-        - mountPath: {{ .Values.securityConfig.path }}
-          name: security-config-complete
+        {{- range $key, $_ := .Values.securityConfig.config.data  }}
+        - mountPath: {{ $.Values.securityConfig.path }}/{{ $key }}
+          name: security-config
+          subPath: {{ $key }}
+        {{- end }}
         {{- end }}
         {{- end }}
         {{- range .Values.secretMounts }}
