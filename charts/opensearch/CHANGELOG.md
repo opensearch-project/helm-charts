@@ -13,6 +13,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 ### Security
 ---
+## [1.7.1]
+### Added
+### Changed
+- Accurate securityConfig files mount: mount of separate files will not hide other files from securityConfig folder.
+- Pods will be recreated on securityConfig files change
+### Deprecated
+### Removed
+### Fixed
+### Security
+---
 ## [1.7.0]
 ### Added
 ### Changed
