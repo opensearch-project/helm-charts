@@ -13,6 +13,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 ### Security
 ---
+## [1.7.2]
+### Added
+### Changed
+### Deprecated
+### Removed
+### Fixed
+Use correct serviceAccountName in statefulset template
+### Security
+---
 ## [1.7.1]
 ### Added
 ### Changed
