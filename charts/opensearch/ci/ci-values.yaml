@@ -253,7 +253,7 @@ podManagementPolicy: "Parallel"
 # If you experience slow pod startups you probably want to set this to `false`.
 enableServiceLinks: true
 
-protocol: http
+protocol: https
 httpPort: 9200
 transportPort: 9300
 
@@ -413,3 +413,12 @@ plugins:
   enabled: false
   installList: []
   # - example-fake-plugin
+
+clusterHealthCheckParams: "wait_for_status=green&timeout=600s"
+
+readinessProbe:
+  failureThreshold: 3
+  initialDelaySeconds: 10
+  periodSeconds: 10
+  successThreshold: 3
+  timeoutSeconds: 2000

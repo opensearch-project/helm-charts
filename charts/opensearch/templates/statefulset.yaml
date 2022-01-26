@@ -303,17 +303,20 @@ spec:
                 # Once it has started only check that the node itself is responding
                 START_FILE=/tmp/.es_start_file
                 # Disable nss cache to avoid filling dentry cache when calling curl
-                export NSS_SDB_USE_CACHE=no
+                #export NSS_SDB_USE_CACHE=no
                 http () {
                   local path="${1}"
                   local args="${2}"
                   set -- -XGET -s
+
                   if [ "$args" != "" ]; then
                     set -- "$@" $args
                   fi
+
                   if [ -n "${USERNAME:-admin}" ] && [ -n "${PASSWORD:-admin}" ]; then
-                    set -- "$@" -u "${USERNAME}:${PASSWORD}"
+                    set -- "$@" -u "admin:admin"
                   fi
+
                   curl --output /dev/null -k "$@" "{{ .Values.protocol }}://127.0.0.1:{{ .Values.httpPort }}${path}"
                 }
                 if [ -f "${START_FILE}" ]; then
@@ -458,12 +461,12 @@ spec:
 
           http () {
               local path="${1}"
-              if [ -n "${USERNAME}" ] && [ -n "${PASSWORD}" ]; then
+              if [ -n "${USERNAME:-admin}" ] && [ -n "${PASSWORD:-admin}" ]; then
                 BASIC_AUTH="-u ${USERNAME}:${PASSWORD}"
-              elses
+              else
                 BASIC_AUTH=''
               fi
-              curl -XGET -s -k --fail ${BASIC_AUTH} {{ .Values.protocol }}://{{ template "opensearch.masterService" . }}:{{ .Values.httpPort }}${path}
+              curl -XGET -s -k --fail admin:admin {{ .Values.protocol }}://{{ template "opensearch.masterService" . }}:{{ .Values.httpPort }}${path}
           }
 
           cleanup () {
