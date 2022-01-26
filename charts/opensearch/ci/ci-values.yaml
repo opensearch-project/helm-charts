@@ -415,10 +415,3 @@ plugins:
   # - example-fake-plugin
 
 clusterHealthCheckParams: "wait_for_status=green&timeout=600s"
-
-readinessProbe:
-  failureThreshold: 3
-  initialDelaySeconds: 10
-  periodSeconds: 10
-  successThreshold: 3
-  timeoutSeconds: 2000
