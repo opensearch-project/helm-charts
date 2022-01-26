@@ -104,7 +104,7 @@ extraEnvs: []
 #  - name: MY_ENVIRONMENT_VAR
 #    value: the_value_goes_here
 
-# Allows you to load environment variables from kubernextes secret or config map
+# Allows you to load environment variables from kubernetes secret or config map
 envFrom: []
 # - secretRef:
 #     name: env-secret
@@ -122,10 +122,11 @@ hostAliases: []
 #   - "foo.local"
 #   - "bar.local"
 
-image: "opensearchproject/opensearch"
-# override image tag, which is .Chart.AppVersion by default
-imageTag: ""
-imagePullPolicy: "IfNotPresent"
+image:
+  repository: "opensearchproject/opensearch"
+  # override image tag, which is .Chart.AppVersion by default
+  tag: ""
+  pullPolicy: "IfNotPresent"
 
 podAnnotations: {}
   # iam.amazonaws.com/role: es-cluster
@@ -385,6 +386,7 @@ lifecycle: {}
 keystore: []
 
 networkPolicy:
+  create: false
   ## Enable creation of NetworkPolicy resources. Only Ingress traffic is filtered for now.
   ## In order for a Pod to access OpenSearch, it needs to have the following label:
   ## {{ template "uname" . }}-client: "true"
