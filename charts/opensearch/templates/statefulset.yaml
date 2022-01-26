@@ -311,7 +311,7 @@ spec:
                   if [ "$args" != "" ]; then
                     set -- "$@" $args
                   fi
-                  if [ -n "${USERNAME}" ] && [ -n "${PASSWORD}" ]; then
+                  if [ -n "${USERNAME:-admin}" ] && [ -n "${PASSWORD:-admin}" ]; then
                     set -- "$@" -u "${USERNAME}:${PASSWORD}"
                   fi
                   curl --output /dev/null -k "$@" "{{ .Values.protocol }}://127.0.0.1:{{ .Values.httpPort }}${path}"
