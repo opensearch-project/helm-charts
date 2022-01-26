@@ -290,8 +290,8 @@ spec:
           bash opensearch-docker-entrypoint.sh
       {{- end }}
   
-        image: "{{ template "opensearch.dockerRegistry" . }}{{ .Values.image }}:{{ .Values.imageTag | default .Chart.AppVersion }}"
-        imagePullPolicy: "{{ .Values.imagePullPolicy }}"
+        image: "{{ template "opensearch.dockerRegistry" . }}{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
+        imagePullPolicy: "{{ .Values.image.pullPolicy }}"
         readinessProbe:
           exec:
             command:
