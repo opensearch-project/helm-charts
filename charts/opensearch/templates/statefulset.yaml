@@ -74,9 +74,9 @@ spec:
         {{- if .Values.fsGroup }}
         fsGroup: {{ .Values.fsGroup }} # Deprecated value, please use .Values.podSecurityContext.fsGroup
         {{- end }}
-      {{- if .Values.rbac.create }}
+      {{- if and .Values.rbac.create (eq .Values.rbac.serviceAccountName "") }}
       serviceAccountName: "{{ template "opensearch.uname" . }}"
-      {{- else if not (eq .Values.rbac.serviceAccountName "") }}
+      {{- else }}
       serviceAccountName: {{ .Values.rbac.serviceAccountName | quote }}
       {{- end }}
       {{- with .Values.tolerations }}
@@ -147,7 +147,7 @@ spec:
       {{ fail "Only one of .Values.securityConfig.config.data and .Values.securityConfig.config.securityConfigSecret may be defined. Please see the comment in values.yaml describing usage." }}
       {{- end }}
       {{- if .Values.securityConfig.config.data }}
-      - name: security-config
+      - name: security-config-data
         secret:
           secretName: {{ include "opensearch.uname" . }}-securityconfig
       {{- end }}
@@ -371,9 +371,12 @@ spec:
         {{- if .Values.securityConfig.config.data  }}
         {{- range $key, $_ := .Values.securityConfig.config.data  }}
         - mountPath: {{ $.Values.securityConfig.path }}/{{ $key }}
-          name: security-config
+          name: security-config-data
           subPath: {{ $key }}
         {{- end }}
+        {{- else if .Values.securityConfig.config.securityConfigSecret }}
+        - mountPath: {{ .Values.securityConfig.path }}
+          name: security-config-complete
         {{- end }}
         {{- end }}
         {{- range .Values.secretMounts }}
