@@ -6,7 +6,7 @@ metadata:
   labels:
     {{- include "opensearch.labels" . | nindent 4 }}
 {{- if .Values.service.labels }}
-{{ toYaml .Values.service.labels | indent 4}}
+{{ toYaml .Values.service.labels | indent 4 }}
 {{- end }}
   annotations:
 {{ toYaml .Values.service.annotations | indent 4 }}
@@ -46,6 +46,9 @@ metadata:
 {{- end }}
   annotations:
     service.alpha.kubernetes.io/tolerate-unready-endpoints: "true"
+{{- if .Values.service.headless.annotations }}
+{{ toYaml .Values.service.headless.annotations | indent 4 }}
+{{- end }}
 spec:
   clusterIP: None # This is needed for statefulset hostnames like opensearch-0 to resolve
   # Create endpoints also if the related pod isn't ready

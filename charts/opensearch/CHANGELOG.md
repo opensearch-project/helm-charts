@@ -12,6 +12,25 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Removed
 ### Fixed
 ### Security
+
+---
+## [1.7.4]
+### Added
+### Changed
+### Deprecated
+### Removed
+### Fixed
+- Fixed `securityConfig` mount. The `security-config-complete` was not mounting when an external secret was passed using `securityConfig.config.securityConfigSecret`
+### Security
+---
+## [1.7.3]
+### Added
+- Add annotations on headless service
+### Changed
+### Deprecated
+### Removed
+### Fixed
+### Security
 ---
 ## [1.7.2]
 ### Added
@@ -19,7 +38,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Deprecated
 ### Removed
 ### Fixed
-- Fixed `securityConfig` mount. The `security-config-complete` was not mounting when an external secret was passed using `securityConfig.config.securityConfigSecret`
+- Use correct serviceAccountName in statefulset template
 ### Security
 ---
 ## [1.7.1]
@@ -48,7 +67,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Removed
 ### Fixed
 ### Security
-
 ---
 ## [1.5.8]
 ### Added
@@ -322,8 +340,10 @@ config:
 ### Fixed
 ### Security
 
-[Unreleased]: https://github.com/opensearch-project/helm-charts/compare/opensearch-1.7.2...HEAD
-[1.7.1]: https://github.com/opensearch-project/helm-charts/compare/opensearch-1.7.0...opensearch-1.7.2
+[Unreleased]: https://github.com/opensearch-project/helm-charts/compare/opensearch-1.7.4...HEAD
+[1.7.4]: https://github.com/opensearch-project/helm-charts/compare/opensearch-1.7.3...opensearch-1.7.4
+[1.7.3]: https://github.com/opensearch-project/helm-charts/compare/opensearch-1.7.2...opensearch-1.7.3
+[1.7.2]: https://github.com/opensearch-project/helm-charts/compare/opensearch-1.7.1...opensearch-1.7.2
 [1.7.1]: https://github.com/opensearch-project/helm-charts/compare/opensearch-1.7.0...opensearch-1.7.1
 [1.7.0]: https://github.com/opensearch-project/helm-charts/compare/opensearch-1.6.0...opensearch-1.7.0
 [1.6.0]: https://github.com/opensearch-project/helm-charts/compare/opensearch-1.5.8...opensearch-1.6.0
@@ -354,3 +374,4 @@ config:
 [1.0.5]: https://github.com/opensearch-project/helm-charts/compare/opensearch-1.0.4...opensearch-1.0.5
 [1.0.4]: https://github.com/opensearch-project/helm-charts/compare/opensearch-1.0.2...opensearch-1.0.4
 [1.0.2]: https://github.com/opensearch-project/helm-charts/compare/opensearch-1.0.1...opensearch-1.0.2
+
