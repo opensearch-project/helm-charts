@@ -13,6 +13,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 ### Security
 ---
+## [1.2.1]
+### Added
+### Changed
+### Deprecated
+### Removed
+### Fixed
+- Fixed rendering of `opensearch-dashboard.yml` in `configmap.yaml`.
+### Security
+
+---
 ## [1.2.0]
 ### Added
 ### Changed
@@ -21,6 +31,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Removed
 ### Fixed
 ### Security
+
 ---
 ## [1.1.2]
 ### Added
