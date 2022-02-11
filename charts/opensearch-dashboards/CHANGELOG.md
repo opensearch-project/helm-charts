@@ -13,6 +13,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 ### Security
 ---
+## [1.2.2]
+### Added
+- Add support for extra K8s manifests
+- Added Configuration parameters in readme
+### Changed
+### Deprecated
+### Removed
+### Fixed
+### Security
+---
 ## [1.2.1]
 ### Added
 ### Changed
