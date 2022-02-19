@@ -71,9 +71,9 @@ spec:
         {{- if .Values.fsGroup }}
         fsGroup: {{ .Values.fsGroup }} # Deprecated value, please use .Values.podSecurityContext.fsGroup
         {{- end }}
-      {{- if and .Values.rbac.create (eq .Values.rbac.serviceAccountName "") }}
+      {{- if .Values.rbac.create }}
       serviceAccountName: "{{ template "opensearch.uname" . }}"
-      {{- else }}
+      {{- else if not (eq .Values.rbac.serviceAccountName "") }}
       serviceAccountName: {{ .Values.rbac.serviceAccountName | quote }}
       {{- end }}
       {{- with .Values.tolerations }}
@@ -426,7 +426,7 @@ spec:
           name: tenants
           subPath: tenants.yml
         {{- end }}
-        {{- if or .Values.securityConfig.config.data .Values.securityConfig.config.securityConfigSecret }}
+        {{- if .Values.securityConfig.config.data  }}
         - mountPath: {{ .Values.securityConfig.path }}
           name: security-config-complete
         {{- end }}
