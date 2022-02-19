@@ -258,6 +258,8 @@ transportPort: 9300
 service:
   labels: {}
   labelsHeadless: {}
+  headless:
+    annotations: {}
   type: ClusterIP
   nodePort: ""
   annotations: {}
