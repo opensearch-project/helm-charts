@@ -368,12 +368,17 @@ spec:
           name: tenants
           subPath: tenants.yml
         {{- end }}
-        {{- if .Values.securityConfig.config.data  }}
-        {{- range $key, $_ := .Values.securityConfig.config.data  }}
+        {{- if .Values.securityConfig.config.data }}
+        {{-   if .Values.securityConfig.config.dataComplete }}
+        - mountPath: {{ .Values.securityConfig.path }}
+          name: security-config-data
+        {{-   else }}
+        {{-     range $key, $_ := .Values.securityConfig.config.data  }}
         - mountPath: {{ $.Values.securityConfig.path }}/{{ $key }}
           name: security-config-data
           subPath: {{ $key }}
-        {{- end }}
+        {{-     end }}
+        {{-   end }}
         {{- else if .Values.securityConfig.config.securityConfigSecret }}
         - mountPath: {{ .Values.securityConfig.path }}
           name: security-config-complete
