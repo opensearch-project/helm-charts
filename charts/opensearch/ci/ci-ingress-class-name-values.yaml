@@ -325,10 +325,10 @@ sysctlVmMaxMapCount: 262144
 
 readinessProbe:
   failureThreshold: 3
-  initialDelaySeconds: 10
+  initialDelaySeconds: 200
   periodSeconds: 10
   successThreshold: 3
-  timeoutSeconds: 2000
+  timeoutSeconds: 1
 
 ## Use an alternate scheduler.
 ## ref: https://kubernetes.io/docs/tasks/administer-cluster/configure-multiple-schedulers/
