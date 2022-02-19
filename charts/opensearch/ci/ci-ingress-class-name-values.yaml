@@ -415,5 +415,4 @@ plugins:
   enabled: false
   installList: []
   # - example-fake-plugin
-  
 clusterHealthCheckParams: "wait_for_status=green&timeout=1s"
