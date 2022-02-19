@@ -100,9 +100,11 @@ config:
 # Extra environment variables to append to this nodeGroup
 # This will be appended to the current 'env:' key. You can use any of the kubernetes env
 # syntax here
-extraEnvs: []
-#  - name: MY_ENVIRONMENT_VAR
-#    value: the_value_goes_here
+extraEnvs:
+  - name: PASSWORD
+    value: admin
+  - name: USERNAME
+    value: admin
 
 # Allows you to load environment variables from kubernetes secret or config map
 envFrom: []
@@ -323,14 +325,14 @@ terminationGracePeriod: 120
 
 sysctlVmMaxMapCount: 262144
 
-clusterHealthCheckParams: "wait_for_status=green&timeout=600s"
+clusterHealthCheckParams: "wait_for_status=green&timeout=1s"
 
 readinessProbe:
   failureThreshold: 3
-  initialDelaySeconds: 10
+  initialDelaySeconds: 200
   periodSeconds: 10
   successThreshold: 3
-  timeoutSeconds: 2000
+  timeoutSeconds: 5
 
 ## Use an alternate scheduler.
 ## ref: https://kubernetes.io/docs/tasks/administer-cluster/configure-multiple-schedulers/

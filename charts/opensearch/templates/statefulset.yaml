@@ -295,15 +295,22 @@ spec:
         readinessProbe:
           exec:
             command:
-              - sh
+              - bash
               - -c
               - |
-                #!/usr/bin/env bash -e
+                set -e
+
+                # Exit if PASSWORD in unset
+                if [ -z "${PASSWORD}" ]; then
+                  echo "PASSWORD variable is missing, exiting"
+                  exit 1
+                fi
+
                 # If the node is starting up wait for the cluster to be ready (request params: "{{ .Values.clusterHealthCheckParams }}" )
                 # Once it has started only check that the node itself is responding
-                START_FILE=/tmp/.es_start_file
-                # Disable nss cache to avoid filling dentry cache when calling curl
-                #export NSS_SDB_USE_CACHE=no
+                START_FILE=/tmp/.opensearch_start_file
+
+
                 http () {
                   local path="${1}"
                   local args="${2}"
@@ -313,12 +320,11 @@ spec:
                     set -- "$@" $args
                   fi
 
-                  if [ -n "${USERNAME:-admin}" ] && [ -n "${PASSWORD:-admin}" ]; then
-                    set -- "$@" -u "admin:admin"
-                  fi
+                  set -- "$@" -u "admin:${PASSWORD}"
 
                   curl --output /dev/null -k "$@" "{{ .Values.protocol }}://127.0.0.1:{{ .Values.httpPort }}${path}"
                 }
+
                 if [ -f "${START_FILE}" ]; then
                   echo 'OpenSearch is already running, lets check the node is healthy'
                   HTTP_CODE=$(http "/" "-w %{http_code}")
@@ -334,6 +340,7 @@ spec:
                     echo "curl --output /dev/null -k -XGET -s -w '%{http_code}' \${BASIC_AUTH} {{ .Values.protocol }}://127.0.0.1:{{ .Values.httpPort }}/ failed with HTTP code ${HTTP_CODE}"
                     exit 1
                   fi
+
                 else
                   echo 'Waiting for opensearch cluster to become ready (request params: "{{ .Values.clusterHealthCheckParams }}" )'
                   if http "/_cluster/health?{{ .Values.clusterHealthCheckParams }}" "--fail" ; then
