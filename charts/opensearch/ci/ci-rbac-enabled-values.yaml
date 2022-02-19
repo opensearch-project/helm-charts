@@ -100,11 +100,7 @@ config:
 # Extra environment variables to append to this nodeGroup
 # This will be appended to the current 'env:' key. You can use any of the kubernetes env
 # syntax here
-extraEnvs:
-  - name: PASSWORD
-    value: admin
-  - name: USERNAME
-    value: admin
+extraEnvs: []
 
 # Allows you to load environment variables from kubernextes secret or config map
 envFrom: []
