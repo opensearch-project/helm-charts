@@ -14,7 +14,7 @@ roles:
   - data
   - remote_cluster_client
 
-replicas: 3
+replicas: 1
 minimumMasterNodes: 1
 
 # if not set, falls back to parsing .Values.imageTag, then .Chart.appVersion.
@@ -410,7 +410,7 @@ fsGroup: ""
 ## the system has already been preconfigured. (Ex: https://www.elastic.co/guide/en/elasticsearch/reference/current/vm-max-map-count.html)
 ## Also see: https://kubernetes.io/docs/tasks/administer-cluster/sysctl-cluster/
 sysctl:
-  enabled: true
+  enabled: false
 ## Enable to add 3rd Party / Custom plugins not offered in the default OpenSearch image.
 plugins:
   enabled: false
