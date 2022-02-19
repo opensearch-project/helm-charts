@@ -325,12 +325,14 @@ terminationGracePeriod: 120
 
 sysctlVmMaxMapCount: 262144
 
+clusterHealthCheckParams: "wait_for_status=green&timeout=1s"
+
 readinessProbe:
   failureThreshold: 3
   initialDelaySeconds: 600
   periodSeconds: 10
   successThreshold: 3
-  timeoutSeconds: 1
+  timeoutSeconds: 2
 
 ## Use an alternate scheduler.
 ## ref: https://kubernetes.io/docs/tasks/administer-cluster/configure-multiple-schedulers/
@@ -415,5 +417,3 @@ plugins:
   enabled: false
   installList: []
   # - example-fake-plugin
-
-clusterHealthCheckParams: "wait_for_status=green&timeout=1s"
