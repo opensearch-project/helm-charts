@@ -310,6 +310,7 @@ securityConfig:
     #   created externally and mount it.
     # * It is an error to define both data and securityConfigSecret.
     securityConfigSecret: ""
+    dataComplete: true
     data: {}
       # config.yml: |-
       # internal_users.yml: |-
