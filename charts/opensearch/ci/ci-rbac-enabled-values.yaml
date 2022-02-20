@@ -46,8 +46,6 @@ config:
 
     # Bind to all interfaces because we don't know what IP address Docker will assign to us.
     network.host: 0.0.0.0
-    transport.host: localhost
-    transport.tcp.port: 9300
 
     # # minimum_master_nodes need to be explicitly set when bound on a public IP
     # # set to 1 to allow single node clusters
