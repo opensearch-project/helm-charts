@@ -14,6 +14,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Security
 
 ---
+## [1.8.0]
+### Added
+### Changed
+- Accurate securityConfig files mount: mount of separate files will not hide other files from securityConfig folder.
+- Pods will be recreated on securityConfig files change
+### Deprecated
+### Removed
+### Fixed
+### Security
+---
 ## [1.7.4]
 ### Added
 ### Changed
@@ -340,7 +350,8 @@ config:
 ### Fixed
 ### Security
 
-[Unreleased]: https://github.com/opensearch-project/helm-charts/compare/opensearch-1.7.4...HEAD
+[Unreleased]: https://github.com/opensearch-project/helm-charts/compare/opensearch-1.8.0...HEAD
+[1.8.0]: https://github.com/opensearch-project/helm-charts/compare/opensearch-1.7.4...opensearch-1.8.0
 [1.7.4]: https://github.com/opensearch-project/helm-charts/compare/opensearch-1.7.3...opensearch-1.7.4
 [1.7.3]: https://github.com/opensearch-project/helm-charts/compare/opensearch-1.7.2...opensearch-1.7.3
 [1.7.2]: https://github.com/opensearch-project/helm-charts/compare/opensearch-1.7.1...opensearch-1.7.2
