@@ -12,7 +12,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Removed
 ### Fixed
 ### Security
-
+---
+## [1.8.1]
+### Added
+- Add support for pod topology spread constraints
+### Changed
+### Deprecated
+### Removed
+### Fixed
+### Security
 ---
 ## [1.8.0]
 ### Added
