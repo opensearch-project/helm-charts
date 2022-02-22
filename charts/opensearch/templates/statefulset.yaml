@@ -407,7 +407,7 @@ spec:
         {{- end }}
         {{- end }}
       {{- if .Values.masterTerminationFix }}
-      {{- if eq .Values.roles.master "true" }}
+      {{- if has "master" .Values.roles }}
       # This sidecar will prevent slow master re-election
       - name: opensearch-master-graceful-termination-handler
         image: "{{ template "opensearch.dockerRegistry" . }}{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
