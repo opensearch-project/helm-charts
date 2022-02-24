@@ -14,6 +14,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Security
 
 ---
+## [1.8.1]
+### Added
+### Changed
+### Deprecated
+### Removed
+### Fixed
+- Fixed small syntax bug in `StatefulSet` when `masterTerminationFix` is set.
+### Security
+---
 ## [1.8.0]
 ### Added
 ### Changed
