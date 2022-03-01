@@ -57,6 +57,9 @@ spec:
         {{- if .Values.config }}
         configchecksum: {{ include (print .Template.BasePath "/configmap.yaml") . | sha256sum | trunc 63 }}
         {{- end }}
+        {{- if .Values.securityConfig.config.data }}
+        securityconfigchecksum: {{ include (print .Template.BasePath "/securityconfig.yaml") . | sha256sum | trunc 63 }}
+        {{- end }}
     spec:
       {{- if .Values.schedulerName }}
       schedulerName: "{{ .Values.schedulerName }}"
@@ -144,7 +147,7 @@ spec:
       {{ fail "Only one of .Values.securityConfig.config.data and .Values.securityConfig.config.securityConfigSecret may be defined. Please see the comment in values.yaml describing usage." }}
       {{- end }}
       {{- if .Values.securityConfig.config.data }}
-      - name: security-config-complete
+      - name: security-config-data
         secret:
           secretName: {{ include "opensearch.uname" . }}-securityconfig
       {{- end }}
@@ -365,7 +368,18 @@ spec:
           name: tenants
           subPath: tenants.yml
         {{- end }}
-        {{- if or .Values.securityConfig.config.data .Values.securityConfig.config.securityConfigSecret }}
+        {{- if .Values.securityConfig.config.data }}
+        {{-   if .Values.securityConfig.config.dataComplete }}
+        - mountPath: {{ .Values.securityConfig.path }}
+          name: security-config-data
+        {{-   else }}
+        {{-     range $key, $_ := .Values.securityConfig.config.data  }}
+        - mountPath: {{ $.Values.securityConfig.path }}/{{ $key }}
+          name: security-config-data
+          subPath: {{ $key }}
+        {{-     end }}
+        {{-   end }}
+        {{- else if .Values.securityConfig.config.securityConfigSecret }}
         - mountPath: {{ .Values.securityConfig.path }}
           name: security-config-complete
         {{- end }}
