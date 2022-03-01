@@ -16,7 +16,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ---
 ## [1.8.2]
 ### Added
-- Opensearch and Dashboard Helm Charts support extra k8s Manifests
+- Add support for extra K8s manifests
 ### Changed
 ### Deprecated
 ### Removed
