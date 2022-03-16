@@ -10,6 +10,6 @@ spec:
   scaleTargetRef:
     apiVersion: apps/v1
     kind: Deployment
-    name: {{ template "opensearch-dashboards.fullname" . }}-hpa
+    name: {{ template "opensearch-dashboards.fullname" . }}
   targetCPUUtilizationPercentage: {{ .Values.autoscaling.targetCPUUtilizationPercentage }}
 {{- end }}
