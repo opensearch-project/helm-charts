@@ -13,6 +13,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 ### Security
 ---
+## [1.2.3]
+### Added
+- Add pod autoscaling capability.
+- Added autoscaling configuration parameters in readme
+### Changed
+### Deprecated
+### Removed
+### Fixed
+### Security
+---
 ## [1.2.2]
 ### Added
 - Add support for extra K8s manifests
