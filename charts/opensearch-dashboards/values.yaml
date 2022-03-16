@@ -146,11 +146,12 @@ resources:
     memory: "512M"
 
 autoscaling:
-  enabled: false
+  # This requires metrics server to be installed, to install use kubectl apply -f https://github.com/kubernetes-sigs/metrics-server/releases/latest/download/components.yaml
+  # See https://github.com/kubernetes-sigs/metrics-server
+  enabled: true
   minReplicas: 1
-  maxReplicas: 100
+  maxReplicas: 10
   targetCPUUtilizationPercentage: 80
-  # targetMemoryUtilizationPercentage: 80
 
 updateStrategy:
   type: "Recreate"
