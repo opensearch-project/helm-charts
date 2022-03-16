@@ -138,7 +138,7 @@ opensearchJavaOpts: "-Xmx512M -Xms512M"
 
 resources:
   requests:
-    cpu: "512m"
+    cpu: "1000m"
     memory: "100Mi"
 
 initResources: {}
