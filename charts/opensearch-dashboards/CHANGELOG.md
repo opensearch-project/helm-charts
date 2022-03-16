@@ -16,8 +16,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [1.2.3]
 ### Added
 - Add pod autoscaling capability.
-- Added autoscaling configuration parameters in readme
+- Added autoscaling configuration parameters in readme.
+- Added autoscaling.yaml under templates.
 ### Changed
+- Updated the chart version to 1.2.3
+- Changed values.yaml to reflect autoscaling changes.
 ### Deprecated
 ### Removed
 ### Fixed
