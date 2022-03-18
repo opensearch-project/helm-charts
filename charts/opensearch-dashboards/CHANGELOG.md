@@ -13,6 +13,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 ### Security
 ---
+## [1.3.0]
+### Added
+- Change app version to use OpenSearch-Dashboards 1.3.0
+### Changed
+### Deprecated
+### Removed
+### Fixed
+### Security
+---
 ## [1.2.2]
 ### Added
 - Add support for extra K8s manifests
@@ -136,7 +145,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 ### Security
 
-[Unreleased]: https://github.com/opensearch-project/helm-charts/compare/opensearch-dashboards-1.2.2...HEAD
+[Unreleased]: https://github.com/opensearch-project/helm-charts/compare/opensearch-dashboards-1.3.0...HEAD
+[1.3.0]: https://github.com/opensearch-project/helm-charts/compare/opensearch-1.2.2...opensearch-1.3.0
 [1.2.2]: https://github.com/opensearch-project/helm-charts/compare/opensearch-1.2.1...opensearch-1.2.2
 [1.2.1]: https://github.com/opensearch-project/helm-charts/compare/opensearch-1.2.0...opensearch-1.2.1
 [1.2.0]: https://github.com/opensearch-project/helm-charts/compare/opensearch-1.1.2...opensearch-1.2.0

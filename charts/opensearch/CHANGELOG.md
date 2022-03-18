@@ -13,6 +13,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 ### Security
 ---
+## [1.9.0]
+### Added
+### Changed
+- Update app version to OpenSearch 1.3.0
+### Deprecated
+### Removed
+### Fixed
+### Security
+---
 ## [1.8.3]
 ### Added
 - Add support for pod topology spread constraints
@@ -376,7 +385,8 @@ config:
 ### Fixed
 ### Security
 
-[Unreleased]: https://github.com/opensearch-project/helm-charts/compare/opensearch-1.8.3...HEAD
+[Unreleased]: https://github.com/opensearch-project/helm-charts/compare/opensearch-1.9.0...HEAD
+[1.9.0]: https://github.com/opensearch-project/helm-charts/compare/opensearch-1.8.3...opensearch-1.9.0
 [1.8.3]: https://github.com/opensearch-project/helm-charts/compare/opensearch-1.8.2...opensearch-1.8.3
 [1.8.2]: https://github.com/opensearch-project/helm-charts/compare/opensearch-1.8.1...opensearch-1.8.2
 [1.8.1]: https://github.com/opensearch-project/helm-charts/compare/opensearch-1.8.0...opensearch-1.8.1
