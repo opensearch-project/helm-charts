@@ -151,7 +151,8 @@ autoscaling:
   enabled: false
   minReplicas: 1
   maxReplicas: 10
-  targetCPUUtilizationPercentage: 80
+  targetCPUUtilizationPercentage: 90
+  targetMemoryUtilizationPercentage: 80
 
 updateStrategy:
   type: "Recreate"
