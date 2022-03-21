@@ -11,6 +11,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Deprecated
 ### Removed
 ### Fixed
+- Fixed Ingress empty annotations of the opensearch-dashboards
 ### Security
 ---
 ## [1.3.0]
