@@ -13,17 +13,26 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 ### Security
 ---
-## [1.3.1]
+## [1.3.2]
 ### Added
 - Added pod autoscaling capability.
 - Added autoscaling configuration parameters in readme.
 - Added autoscaling.yaml under templates.
 ### Changed
-- Updated the chart version to 1.3.1
+- Updated the chart version to 1.3.2
 - Changed values.yaml to reflect autoscaling changes.
 ### Deprecated
 ### Removed
 ### Fixed
+### Security
+---
+## [1.3.1]
+### Added
+### Changed
+### Deprecated
+### Removed
+### Fixed
+- Fixed Ingress empty annotations of the opensearch-dashboards
 ### Security
 ---
 ## [1.3.0]
@@ -158,7 +167,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 ### Security
 
-[Unreleased]: https://github.com/opensearch-project/helm-charts/compare/opensearch-dashboards-1.3.1...HEAD
+[Unreleased]: https://github.com/opensearch-project/helm-charts/compare/opensearch-dashboards-1.3.2...HEAD
+[1.3.2]: https://github.com/opensearch-project/helm-charts/compare/opensearch-1.3.0...opensearch-1.3.2
 [1.3.1]: https://github.com/opensearch-project/helm-charts/compare/opensearch-1.3.0...opensearch-1.3.1
 [1.3.0]: https://github.com/opensearch-project/helm-charts/compare/opensearch-1.2.2...opensearch-1.3.0
 [1.2.2]: https://github.com/opensearch-project/helm-charts/compare/opensearch-1.2.1...opensearch-1.2.2
