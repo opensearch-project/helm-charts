@@ -43,6 +43,9 @@ spec:
       storageClassName: "{{ .Values.persistence.storageClass }}"
     {{- end }}
     {{- end }}
+    {{- if .Values.persistence.selector }}
+    selector: "{{ .Values.persistence.selector }}"
+    {{- end }}
   {{- end }}
   template:
     metadata:

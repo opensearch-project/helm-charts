@@ -202,6 +202,8 @@ persistence:
   #   GKE, AWS & OpenStack)
   #
   # storageClass: "-"
+  # Selector is used to pin the created pvc to a specific statically provisioned pv
+  # selector:
   accessModes:
     - ReadWriteOnce
   size: 8Gi
