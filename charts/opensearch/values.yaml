@@ -202,8 +202,8 @@ persistence:
   #   GKE, AWS & OpenStack)
   #
   # storageClass: "-"
-  # Selector is used to pin the created pvc to a specific statically provisioned pv
-  # selector:
+  # matchLabels is used to pin the created pvc to a specific statically provisioned pv
+  # matchLabels:
   accessModes:
     - ReadWriteOnce
   size: 8Gi

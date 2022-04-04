@@ -43,8 +43,10 @@ spec:
       storageClassName: "{{ .Values.persistence.storageClass }}"
     {{- end }}
     {{- end }}
-    {{- if .Values.persistence.selector }}
-    selector: "{{ .Values.persistence.selector }}"
+    {{- if .Values.persistence.matchLabels }}
+    selector:
+      matchLabels:
+    {{- toYaml .Values.persistence.matchLabels | indent 12 }}
     {{- end }}
   {{- end }}
   template:
