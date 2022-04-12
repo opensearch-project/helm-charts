@@ -13,6 +13,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 ### Security
 ---
+## [1.4.1]
+### Added
+- Update `values.yaml` example to use the correct format for configs
+### Changed
+### Deprecated
+### Removed
+### Fixed
+### Security
+---
 ## [1.4.0]
 ### Added
 - Change app version to use OpenSearch-Dashboards 1.3.1
@@ -185,7 +194,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 ### Security
 
-[Unreleased]: https://github.com/opensearch-project/helm-charts/compare/opensearch-dashboards-1.4.0...HEAD
+[Unreleased]: https://github.com/opensearch-project/helm-charts/compare/opensearch-dashboards-1.4.1...HEAD
+[1.4.1]: https://github.com/opensearch-project/helm-charts/compare/opensearch-1.4.0...opensearch-1.4.1
 [1.4.0]: https://github.com/opensearch-project/helm-charts/compare/opensearch-1.3.3...opensearch-1.4.0
 [1.3.3]: https://github.com/opensearch-project/helm-charts/compare/opensearch-1.3.2...opensearch-1.3.3
 [1.3.2]: https://github.com/opensearch-project/helm-charts/compare/opensearch-1.3.1...opensearch-1.3.2
