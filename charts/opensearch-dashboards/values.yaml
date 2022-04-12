@@ -71,7 +71,7 @@ securityContext:
 
 config: {}
   # Default OpenSearch Dashboards configuration from docker image of Dashboards
-  #  opensearch_dashboards.yml:
+  #  opensearch_dashboards.yml: | 
   #   server:
   #     name: dashboards
   #     host: 0.0.0.0
