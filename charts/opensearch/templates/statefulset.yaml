@@ -44,8 +44,8 @@ spec:
     {{- end }}
     {{- end }}
     {{- if .Values.persistence.matchLabels }}
-    selector:
-      matchLabels:
+      selector:
+        matchLabels:
     {{- toYaml .Values.persistence.matchLabels | indent 12 }}
     {{- end }}
   {{- end }}
