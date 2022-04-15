@@ -46,7 +46,7 @@ spec:
     {{- if .Values.persistence.matchLabels }}
       selector:
         matchLabels:
-    {{- toYaml .Values.persistence.matchLabels | indent 12 }}
+    {{- toYaml .Values.persistence.matchLabels | nindent 10 }}
     {{- end }}
   {{- end }}
   template:
