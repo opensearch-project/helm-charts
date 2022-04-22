@@ -142,20 +142,20 @@ resources:
     memory: "100Mi"
 
 initResources: {}
-  # limits:
-  #   cpu: "25m"
-  #   # memory: "128Mi"
-  # requests:
-  #   cpu: "25m"
-  #   memory: "128Mi"
+#  limits:
+#     cpu: "25m"
+#     memory: "128Mi"
+#  requests:
+#     cpu: "25m"
+#     memory: "128Mi"
 
 sidecarResources: {}
-  # limits:
-  #   cpu: "25m"
-  #   # memory: "128Mi"
-  # requests:
-  #   cpu: "25m"
-  #   memory: "128Mi"
+#   limits:
+#     cpu: "25m"
+#     memory: "128Mi"
+#   requests:
+#     cpu: "25m"
+#     memory: "128Mi"
 
 networkHost: "0.0.0.0"
 
@@ -389,6 +389,8 @@ lifecycle: {}
   #         curl -XPUT "$ES_URL/_template/$TEMPLATE_NAME" -H 'Content-Type: application/json' -d'{"index_patterns":['\""$INDEX_PATTERN"\"'],"settings":{"number_of_shards":'$SHARD_COUNT',"number_of_replicas":'$REPLICA_COUNT'}}'
 
 keystore: []
+#To add secrets to the keystore:
+#  - secretName: opensearch-encryption-key
 
 networkPolicy:
   create: false
