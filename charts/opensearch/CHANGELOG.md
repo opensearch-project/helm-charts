@@ -68,17 +68,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Fixed small syntax bug in `StatefulSet` when `masterTerminationFix` is set.
 ### Security
 ---
-
-## [1.9.0]
-### Added
-### Changed
-- Add readiness probe to OpenSearch helm chart which checks the cluster health
-### Deprecated
-### Removed
-### Fixed
-### Security
-
----
 ## [1.8.0]
 ### Added
 ### Changed
