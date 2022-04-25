@@ -101,6 +101,7 @@ config:
 # This will be appended to the current 'env:' key. You can use any of the kubernetes env
 # syntax here
 extraEnvs:
+# It is recommended to change the password to the desired password. This is used by the readiness probe.
   - name: PASSWORD
     value: admin
   - name: USERNAME
