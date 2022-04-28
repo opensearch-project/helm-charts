@@ -13,6 +13,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 ### Security
 ---
+## [1.10.1]
+### Added
+### Changed
+- Fixed initResources field mapping
+### Deprecated
+### Removed
+### Fixed
+### Security
+---
 ## [1.10.0]
 ### Added
 ### Changed
@@ -394,7 +403,8 @@ config:
 ### Fixed
 ### Security
 
-[Unreleased]: https://github.com/opensearch-project/helm-charts/compare/opensearch-1.10.0...HEAD
+[Unreleased]: https://github.com/opensearch-project/helm-charts/compare/opensearch-1.10.1...HEAD
+[1.10.1]: https://github.com/opensearch-project/helm-charts/compare/opensearch-1.10.0...opensearch-1.10.1
 [1.10.0]: https://github.com/opensearch-project/helm-charts/compare/opensearch-1.9.0...opensearch-1.10.0
 [1.9.0]: https://github.com/opensearch-project/helm-charts/compare/opensearch-1.8.3...opensearch-1.9.0
 [1.8.3]: https://github.com/opensearch-project/helm-charts/compare/opensearch-1.8.2...opensearch-1.8.3
@@ -434,4 +444,3 @@ config:
 [1.0.5]: https://github.com/opensearch-project/helm-charts/compare/opensearch-1.0.4...opensearch-1.0.5
 [1.0.4]: https://github.com/opensearch-project/helm-charts/compare/opensearch-1.0.2...opensearch-1.0.4
 [1.0.2]: https://github.com/opensearch-project/helm-charts/compare/opensearch-1.0.1...opensearch-1.0.2
-
