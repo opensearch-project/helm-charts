@@ -26,6 +26,7 @@ As of now, this helm-charts repository maintains 3 branches:
 * _1.x_ (Version is 1.x.x for both `version` and `appVersion` in `Chart.yaml`)
 * _gh-pages_ (Reserved branch for publishing helm-charts through github pages)
 <br>
+
 Contributors should choose the corresponding branch(es) when commiting their change(s):
 * If you have a change for a specific version, only open PR to specific branch
 * If you have a change for all available versions, first open a PR on `main`, then open a backport PR with `[backport 1.x]` in the title, with label `backport 1.x`, etc.
