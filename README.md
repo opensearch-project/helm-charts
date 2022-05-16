@@ -2,6 +2,7 @@
 
 - [OpenSearch Project Helm-Charts](#helm-charts)
 - [Status](#status)
+- [Version and Branching](#version-and-branching)
 - [Installation](#installation)
 - [Change Logs](#change-logs)
 - [Contributing](#contributing)
@@ -18,6 +19,18 @@ A community repository for Helm Charts of OpenSearch Project.
 
 [![Lint and Test Charts](https://github.com/opensearch-project/helm-charts/actions/workflows/lint-test.yaml/badge.svg)](https://github.com/opensearch-project/helm-charts/actions/workflows/lint-test.yaml)
  [![Release Charts](https://github.com/opensearch-project/helm-charts/actions/workflows/release.yaml/badge.svg)](https://github.com/opensearch-project/helm-charts/actions/workflows/release.yaml)
+
+## Version and Branching
+As of now, this helm-charts repository maintains 3 branches:
+* _main_ (Version is 2.x.x for both `version` and `appVersion` in `Chart.yaml`)
+* _1.x_ (Version is 1.x.x for both `version` and `appVersion` in `Chart.yaml`)
+* _gh-pages_ (Reserved branch for publishing helm-charts through github pages)
+<br>
+
+Contributors should choose the corresponding branch(es) when commiting their change(s):
+* If you have a change for a specific version, only open PR to specific branch
+* If you have a change for all available versions, first open a PR on `main`, then open a backport PR with `[backport 1.x]` in the title, with label `backport 1.x`, etc.
+* No changes should be commited to `gh-pages` by any contributor, as this branch should be only changed by github actions `chart-releaser`
 
 ## Installation
 
