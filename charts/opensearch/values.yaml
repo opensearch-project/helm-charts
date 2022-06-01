@@ -15,7 +15,6 @@ roles:
   - remote_cluster_client
 
 replicas: 3
-minimumMasterNodes: 1
 
 # if not set, falls back to parsing .Values.imageTag, then .Chart.appVersion.
 majorVersion: ""
@@ -46,10 +45,6 @@ config:
 
     # Bind to all interfaces because we don't know what IP address Docker will assign to us.
     network.host: 0.0.0.0
-
-    # # minimum_master_nodes need to be explicitly set when bound on a public IP
-    # # set to 1 to allow single node clusters
-    # discovery.zen.minimum_master_nodes: 1
 
     # Setting network.host to a non-loopback address enables the annoying bootstrap checks. "Single-node" mode disables them again.
     # discovery.type: single-node
@@ -145,20 +140,20 @@ resources:
     memory: "100Mi"
 
 initResources: {}
-  # limits:
-  #   cpu: "25m"
-  #   # memory: "128Mi"
-  # requests:
-  #   cpu: "25m"
-  #   memory: "128Mi"
+#  limits:
+#     cpu: "25m"
+#     memory: "128Mi"
+#  requests:
+#     cpu: "25m"
+#     memory: "128Mi"
 
 sidecarResources: {}
-  # limits:
-  #   cpu: "25m"
-  #   # memory: "128Mi"
-  # requests:
-  #   cpu: "25m"
-  #   memory: "128Mi"
+#   limits:
+#     cpu: "25m"
+#     memory: "128Mi"
+#   requests:
+#     cpu: "25m"
+#     memory: "128Mi"
 
 networkHost: "0.0.0.0"
 
@@ -401,6 +396,8 @@ lifecycle: {}
   #         curl -XPUT "$ES_URL/_template/$TEMPLATE_NAME" -H 'Content-Type: application/json' -d'{"index_patterns":['\""$INDEX_PATTERN"\"'],"settings":{"number_of_shards":'$SHARD_COUNT',"number_of_replicas":'$REPLICA_COUNT'}}'
 
 keystore: []
+# To add secrets to the keystore:
+#  - secretName: opensearch-encryption-key
 
 networkPolicy:
   create: false
