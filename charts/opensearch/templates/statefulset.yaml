@@ -304,6 +304,8 @@ spec:
         imagePullPolicy: "{{ .Values.image.pullPolicy }}"
         readinessProbe:
 {{ toYaml .Values.readinessProbe | indent 10 }}
+        startupProbe:
+{{ toYaml .Values.startupProbe | indent 10 }}
         ports:
         - name: http
           containerPort: {{ .Values.httpPort }}
@@ -431,12 +433,12 @@ spec:
 
           http () {
               local path="${1}"
-              if [ -n "${USERNAME:-admin}" ] && [ -n "${PASSWORD:-admin}" ]; then
+              if [ -n "${USERNAME}" ] && [ -n "${PASSWORD}" ]; then
                 BASIC_AUTH="-u ${USERNAME}:${PASSWORD}"
               else
                 BASIC_AUTH=''
               fi
-              curl -XGET -s -k --fail admin:admin {{ .Values.protocol }}://{{ template "opensearch.masterService" . }}:{{ .Values.httpPort }}${path}
+              curl -XGET -s -k --fail ${BASIC_AUTH} {{ .Values.protocol }}://{{ template "opensearch.masterService" . }}:{{ .Values.httpPort }}${path}
           }
 
           cleanup () {
