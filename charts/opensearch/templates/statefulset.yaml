@@ -309,8 +309,6 @@ spec:
           containerPort: {{ .Values.httpPort }}
         - name: transport
           containerPort: {{ .Values.transportPort }}
-        startupProbe:
-{{ toYaml .Values.startupProbe | indent 10 }}
         resources:
 {{ toYaml .Values.resources | indent 10 }}
         env:
