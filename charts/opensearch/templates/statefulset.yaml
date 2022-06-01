@@ -302,8 +302,6 @@ spec:
   
         image: "{{ template "opensearch.dockerRegistry" . }}{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
         imagePullPolicy: "{{ .Values.image.pullPolicy }}"
-        startupProbe:
-{{ toYaml .Values.startupProbe | indent 10 }}
         readinessProbe:
 {{ toYaml .Values.readinessProbe | indent 10 }}
         ports:
@@ -311,6 +309,8 @@ spec:
           containerPort: {{ .Values.httpPort }}
         - name: transport
           containerPort: {{ .Values.transportPort }}
+        startupProbe:
+{{ toYaml .Values.startupProbe | indent 10 }}
         resources:
 {{ toYaml .Values.resources | indent 10 }}
         env:
