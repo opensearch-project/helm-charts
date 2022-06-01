@@ -299,64 +299,9 @@ spec:
   
         image: "{{ template "opensearch.dockerRegistry" . }}{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
         imagePullPolicy: "{{ .Values.image.pullPolicy }}"
+        startupProbe:
+{{ toYaml .Values.startupProbe | indent 10 }}
         readinessProbe:
-          exec:
-            command:
-              - bash
-              - -c
-              - |
-                set -e
-
-                # Exit if PASSWORD in unset
-                if [ -z "${PASSWORD}" ]; then
-                  echo "PASSWORD variable is missing, exiting"
-                  exit 1
-                fi
-
-                # If the node is starting up wait for the cluster to be ready (request params: "{{ .Values.clusterHealthCheckParams }}" )
-                # Once it has started only check that the node itself is responding
-                START_FILE=/tmp/.opensearch_start_file
-
-
-                http () {
-                  local path="${1}"
-                  local args="${2}"
-                  set -- -XGET -s
-
-                  if [ "$args" != "" ]; then
-                    set -- "$@" $args
-                  fi
-
-                  set -- "$@" -u "admin:${PASSWORD}"
-
-                  curl --output /dev/null -k "$@" "{{ .Values.protocol }}://127.0.0.1:{{ .Values.httpPort }}${path}"
-                }
-
-                if [ -f "${START_FILE}" ]; then
-                  echo 'OpenSearch is already running, lets check the node is healthy'
-                  HTTP_CODE=$(http "/" "-w %{http_code}")
-                  RC=$?
-                  if [[ ${RC} -ne 0 ]]; then
-                    echo "curl --output /dev/null -k -XGET -s -w '%{http_code}' \${BASIC_AUTH} {{ .Values.protocol }}://127.0.0.1:{{ .Values.httpPort }}/ failed with RC ${RC}"
-                    exit ${RC}
-                  fi
-                  if [[ ${HTTP_CODE} == "200" ]]; then
-                    exit 0
-                  else
-                    echo "curl --output /dev/null -k -XGET -s -w '%{http_code}' \${BASIC_AUTH} {{ .Values.protocol }}://127.0.0.1:{{ .Values.httpPort }}/ failed with HTTP code ${HTTP_CODE}"
-                    exit 1
-                  fi
-
-                else
-                  echo 'Waiting for opensearch cluster to become ready (request params: "{{ .Values.clusterHealthCheckParams }}" )'
-                  if http "/_cluster/health?{{ .Values.clusterHealthCheckParams }}" "--fail" ; then
-                    touch ${START_FILE}
-                    exit 0
-                  else
-                    echo 'Cluster is not yet ready (request params: "{{ .Values.clusterHealthCheckParams }}" )'
-                    exit 1
-                  fi
-                fi
 {{ toYaml .Values.readinessProbe | indent 10 }}
         ports:
         - name: http

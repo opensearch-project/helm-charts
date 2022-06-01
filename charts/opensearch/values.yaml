@@ -333,12 +333,19 @@ sysctlVmMaxMapCount: 262144
 
 clusterHealthCheckParams: "wait_for_status=green&timeout=1s"
 
-readinessProbe:
-  failureThreshold: 3
-  initialDelaySeconds: 200
+startupProbe:
+  tcpSocket:
+    port: 9200
+  initialDelaySeconds: 5
   periodSeconds: 10
-  successThreshold: 3
-  timeoutSeconds: 5
+  timeoutSeconds: 3
+  failureThreshold: 30
+readinessProbe:
+  tcpSocket:
+    port: 9200
+  periodSeconds: 5
+  timeoutSeconds: 3
+  failureThreshold: 3
 
 ## Use an alternate scheduler.
 ## ref: https://kubernetes.io/docs/tasks/administer-cluster/configure-multiple-schedulers/
