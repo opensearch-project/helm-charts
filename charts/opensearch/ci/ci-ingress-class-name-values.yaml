@@ -322,16 +322,6 @@ terminationGracePeriod: 120
 
 sysctlVmMaxMapCount: 262144
 
-clusterHealthCheckParams: "wait_for_status=green&timeout=1s"
-
-startupProbe:
-  tcpSocket:
-    port: 9200
-  initialDelaySeconds: 5
-  periodSeconds: 10
-  timeoutSeconds: 3
-  failureThreshold: 30
-
 startupProbe:
   tcpSocket:
     port: 9200
