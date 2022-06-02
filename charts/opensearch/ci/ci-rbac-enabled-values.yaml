@@ -321,6 +321,7 @@ terminationGracePeriod: 120
 sysctlVmMaxMapCount: 262144
 
 startupProbe:
+  enabled: false
   tcpSocket:
     port: 9200
   initialDelaySeconds: 5

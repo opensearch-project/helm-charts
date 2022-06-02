@@ -326,6 +326,7 @@ sysctlVmMaxMapCount: 262144
 clusterHealthCheckParams: "wait_for_status=green&timeout=1s"
 
 startupProbe:
+  enabled: false
   tcpSocket:
     port: 9200
   initialDelaySeconds: 5
