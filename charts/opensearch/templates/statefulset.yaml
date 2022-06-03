@@ -190,6 +190,16 @@ spec:
         secret:
           secretName: {{ .Values.securityConfig.tenantsSecret }}
       {{- end }}
+      {{- if .Values.securityConfig.nodesDnSecret }}
+      - name: nodes-dn
+        secret:
+          secretName: {{ .Values.securityConfig.nodesDnSecret }}
+      {{- end }}
+      {{- if .Values.securityConfig.whitelistSecret }}
+      - name: whitelist
+        secret:
+          secretName: {{ .Values.securityConfig.whitelistSecret }}
+      {{- end }}
 {{- if .Values.keystore }}
       - name: keystore
         emptyDir: {}
@@ -226,7 +236,7 @@ spec:
           - 'chown -R 1000:1000 /usr/share/opensearch/data'
         securityContext:
           runAsUser: 0
-        resources: 
+        resources:
            {{ toYaml .Values.initResources | nindent 10 }}
         volumeMounts:
           - name: "{{ template "opensearch.uname" . }}"
@@ -260,7 +270,7 @@ spec:
           cp -a {{ .Values.opensearchHome }}/config/opensearch.keystore /tmp/keystore/
         env: {{ toYaml .Values.extraEnvs | nindent 10 }}
         envFrom: {{ toYaml .Values.envFrom | nindent 10 }}
-        resources: 
+        resources:
            {{ toYaml .Values.initResources | nindent 10 }}
         volumeMounts:
         - name: keystore
@@ -374,6 +384,16 @@ spec:
         - mountPath: {{ .Values.securityConfig.path }}/tenants.yml
           name: tenants
           subPath: tenants.yml
+        {{- end }}
+        {{- if .Values.securityConfig.whitelistSecret }}
+        - mountPath: {{ .Values.securityConfig.path }}/whitelist.yml
+          name: whitelist
+          subPath: whitelist.yml
+        {{- end }}
+        {{- if .Values.securityConfig.nodesDnSecret }}
+        - mountPath: {{ .Values.securityConfig.path }}/nodes_dn.yml
+          name: nodes-dn
+          subPath: nodes_dn.yml
         {{- end }}
         {{- if .Values.securityConfig.config.data }}
         {{-   if .Values.securityConfig.config.dataComplete }}

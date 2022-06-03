@@ -296,6 +296,8 @@ securityConfig:
   rolesSecret:
   rolesMappingSecret:
   tenantsSecret:
+  nodesDnSecret:
+  whitelistSecret:
   # The following option simplifies securityConfig by using a single secret and
   # specifying the config files as keys in the secret instead of creating
   # different secrets for for each config file.
