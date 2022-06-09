@@ -440,12 +440,8 @@ config:
 ### Fixed
 ### Security
 
-<<<<<<< HEAD
 [Unreleased]: https://github.com/opensearch-project/helm-charts/compare/opensearch-1.12.1...HEAD
 [1.12.1]: https://github.com/opensearch-project/helm-charts/compare/opensearch-1.12.0...opensearch-1.12.1
-=======
-[Unreleased]: https://github.com/opensearch-project/helm-charts/compare/opensearch-1.12.0...HEAD
->>>>>>> upstream/1.x
 [1.12.0]: https://github.com/opensearch-project/helm-charts/compare/opensearch-1.11.1...opensearch-1.12.0
 [1.11.1]: https://github.com/opensearch-project/helm-charts/compare/opensearch-1.10.2...opensearch-1.11.1
 [1.10.2]: https://github.com/opensearch-project/helm-charts/compare/opensearch-1.10.1...opensearch-1.10.2
