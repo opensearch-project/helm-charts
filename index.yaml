@@ -2,6 +2,23 @@ apiVersion: v1
 entries:
   opensearch:
   - apiVersion: v2
+    appVersion: 2.0.1
+    created: "2022-06-16T19:55:31.227319419Z"
+    description: A Helm chart for OpenSearch
+    digest: 8e29fe37244e50eb6253be095d3ff72d6011d259ebefc3b1f5819ea8ea547049
+    maintainers:
+    - name: DandyDeveloper
+    - name: bbarani
+    - name: gaiksaya
+    - name: peterzhuamazon
+    - name: prudhvigodithi
+    - name: TheAlgo
+    name: opensearch
+    type: application
+    urls:
+    - https://github.com/opensearch-project/helm-charts/releases/download/opensearch-2.1.0/opensearch-2.1.0.tgz
+    version: 2.1.0
+  - apiVersion: v2
     appVersion: 2.0.0
     created: "2022-05-26T18:37:23.205885104Z"
     description: A Helm chart for OpenSearch
@@ -744,6 +761,23 @@ entries:
     version: 1.0.3
   opensearch-dashboards:
   - apiVersion: v2
+    appVersion: 2.0.1
+    created: "2022-06-16T19:55:31.388780889Z"
+    description: A Helm chart for OpenSearch Dashboards
+    digest: 5d10aa4bfed2f62e11ab467e20e8fbe8bb529590bb4a6d6f2cd9719fc630424a
+    maintainers:
+    - name: DandyDeveloper
+    - name: bbarani
+    - name: gaiksaya
+    - name: peterzhuamazon
+    - name: prudhvigodithi
+    - name: TheAlgo
+    name: opensearch-dashboards
+    type: application
+    urls:
+    - https://github.com/opensearch-project/helm-charts/releases/download/opensearch-dashboards-2.1.0/opensearch-dashboards-2.1.0.tgz
+    version: 2.1.0
+  - apiVersion: v2
     appVersion: 2.0.0
     created: "2022-05-26T18:37:23.375284892Z"
     description: A Helm chart for OpenSearch Dashboards
@@ -1101,4 +1135,4 @@ entries:
     urls:
     - https://github.com/opensearch-project/helm-charts/releases/download/opensearch-dashboards-1.0.3/opensearch-dashboards-1.0.3.tgz
     version: 1.0.3
-generated: "2022-06-09T19:33:05.249699351Z"
+generated: "2022-06-16T19:55:31.389259786Z"
