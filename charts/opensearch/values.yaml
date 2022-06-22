@@ -323,19 +323,19 @@ terminationGracePeriod: 120
 
 sysctlVmMaxMapCount: 262144
 
-startupProbe:
-  tcpSocket:
-    port: 9200
-  initialDelaySeconds: 5
-  periodSeconds: 10
-  timeoutSeconds: 3
-  failureThreshold: 30
-readinessProbe:
-  tcpSocket:
-    port: 9200
-  periodSeconds: 5
-  timeoutSeconds: 3
-  failureThreshold: 3
+# startupProbe:
+#   tcpSocket:
+#     port: 9200
+#   initialDelaySeconds: 5
+#   periodSeconds: 10`
+#   timeoutSeconds: 3
+#   failureThreshold: 30
+# readinessProbe:
+#   tcpSocket:
+#     port: 9200
+#   periodSeconds: 5
+#   timeoutSeconds: 3
+#   failureThreshold: 3
 
 ## Use an alternate scheduler.
 ## ref: https://kubernetes.io/docs/tasks/administer-cluster/configure-multiple-schedulers/
@@ -403,7 +403,6 @@ networkPolicy:
   ## opensearch-master-http-client: "true"
   ## Example for default configuration to access transport port:
   ## opensearch-master-transport-client: "true"
-
 
   http:
     enabled: false
