@@ -299,8 +299,15 @@ spec:
 
           bash opensearch-docker-entrypoint.sh
       {{- end }}
+  
         image: "{{ template "opensearch.dockerRegistry" . }}{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
         imagePullPolicy: "{{ .Values.image.pullPolicy }}"
+        readinessProbe:
+{{ toYaml .Values.readinessProbe | indent 10 }}
+      {{- if semverCompare ">=1.16-0" .Capabilities.KubeVersion.Version }}
+        startupProbe:
+{{ toYaml .Values.startupProbe | indent 10 }}
+      {{- end }}
         ports:
         - name: http
           containerPort: {{ .Values.httpPort }}
@@ -430,7 +437,7 @@ spec:
               local path="${1}"
               if [ -n "${USERNAME}" ] && [ -n "${PASSWORD}" ]; then
                 BASIC_AUTH="-u ${USERNAME}:${PASSWORD}"
-              elses
+              else
                 BASIC_AUTH=''
               fi
               curl -XGET -s -k --fail ${BASIC_AUTH} {{ .Values.protocol }}://{{ template "opensearch.masterService" . }}:{{ .Values.httpPort }}${path}
