@@ -45,6 +45,8 @@ config:
 
     # Bind to all interfaces because we don't know what IP address Docker will assign to us.
     network.host: 0.0.0.0
+    transport.host: localhost
+    transport.tcp.port: 9300
 
     # Setting network.host to a non-loopback address enables the annoying bootstrap checks. "Single-node" mode disables them again.
     # discovery.type: single-node
@@ -246,7 +248,7 @@ podManagementPolicy: "Parallel"
 # If you experience slow pod startups you probably want to set this to `false`.
 enableServiceLinks: true
 
-protocol: http
+protocol: https
 httpPort: 9200
 transportPort: 9300
 
@@ -318,12 +320,20 @@ terminationGracePeriod: 120
 
 sysctlVmMaxMapCount: 262144
 
+startupProbe:
+  tcpSocket:
+    port: 9200
+  initialDelaySeconds: 5
+  periodSeconds: 10
+  timeoutSeconds: 3
+  failureThreshold: 30
+
 readinessProbe:
   failureThreshold: 3
-  initialDelaySeconds: 10
+  initialDelaySeconds: 900
   periodSeconds: 10
   successThreshold: 3
-  timeoutSeconds: 2000
+  timeoutSeconds: 2
 
 ## Use an alternate scheduler.
 ## ref: https://kubernetes.io/docs/tasks/administer-cluster/configure-multiple-schedulers/

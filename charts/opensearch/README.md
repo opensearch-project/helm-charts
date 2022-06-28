@@ -104,7 +104,10 @@ helm uninstall my-release
 | `transportPort`                    | The transport port that Kubernetes will use for the service. If you change this you will also need to set transport port configuration in `extraEnvs`                                                                                                 | `9300`                                          |
 | `updateStrategy`                   | The [updateStrategy][] for the StatefulSet. By default Kubernetes will wait for the cluster to be green after upgrading each pod. Setting this to `OnDelete` will allow you to manually delete each pod during upgrades                                   | `RollingUpdate`                                 |
 | `volumeClaimTemplate`              | Configuration for the [volumeClaimTemplate for StatefulSets][]. You will want to adjust the storage (default `30Gi` ) and the `storageClassName` if you are using a different storage class                                                               | see [values.yaml][]                             |
-| `extraObjects`                     | Array of extra K8s manifests to deploy                                                                                                                                                                                                                    | list `[]`                                       |
+| `extraObjects`                     | Array of extra K8s manifests to deploy                                                                                                                                                                                                                    | list `[]`                                       |                                   |
+| `readinessProbe`                     | Configuration fields for the readiness [probe][]                                                                                                                                                                               | see [example][] in `values.yaml`
+| `startupProbe`                     | Configuration fields for the [probe][]                                                                                                                                                                               | see [sample][] in `values.yaml`                                     |
+
 
 
 
@@ -161,3 +164,9 @@ helm uninstall my-release
 [service types]: https://kubernetes.io/docs/concepts/services-networking/service/#publishing-services-service-types
 
 [topologySpreadConstraints]: https://kubernetes.io/docs/concepts/workloads/pods/pod-topology-spread-constraints
+
+[probe]: https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-startup-probes/#define-readiness-probes
+
+[example]: https://github.com/opensearch-project/helm-charts/blob/main/charts/opensearch/values.yaml#L336
+
+[sample]: https://github.com/opensearch-project/helm-charts/blob/main/charts/opensearch/values.yaml#L328
