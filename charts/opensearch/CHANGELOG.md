@@ -262,7 +262,6 @@ After deleting the statefulset and upgrading the helm chart again, the new repla
 ### Fixed
 ### Security
 
-<<<<<<< HEAD
 ---
 ## [1.4.3]
 ### Added
