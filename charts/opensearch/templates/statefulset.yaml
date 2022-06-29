@@ -320,7 +320,7 @@ spec:
           valueFrom:
             fieldRef:
               fieldPath: metadata.name
-        {{- if has "master" .Values.roles }}
+        {{- if (and (has "master" .Values.roles) (not .Values.singleNode)) }}
         - name: cluster.initial_master_nodes
           value: "{{ template "opensearch.endpoints" . }}"
         {{- end }}
