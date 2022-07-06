@@ -4,6 +4,7 @@ nodeGroup: "master"
 
 # If discovery.type in the opensearch configuration is set to "single-node",
 # this should be set to "true"
+# If "true", replicas will be forced to 1
 singleNode: false
 
 # The service that non master groups will try to connect to when joining the cluster

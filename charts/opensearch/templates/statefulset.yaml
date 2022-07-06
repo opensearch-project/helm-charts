@@ -12,7 +12,11 @@ spec:
   selector:
     matchLabels:
       {{- include "opensearch.selectorLabels" . | nindent 6 }}
+  {{- if .Values.singleNode }}
+  replicas: 1
+  {{- else }}
   replicas: {{ .Values.replicas }}
+  {{- end }}
   podManagementPolicy: {{ .Values.podManagementPolicy }}
   updateStrategy:
     type: {{ .Values.updateStrategy }}
