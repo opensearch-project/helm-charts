@@ -15,7 +15,6 @@ roles:
   - remote_cluster_client
 
 replicas: 3
-minimumMasterNodes: 1
 
 # if not set, falls back to parsing .Values.imageTag, then .Chart.appVersion.
 majorVersion: ""
@@ -46,10 +45,6 @@ config:
 
     # Bind to all interfaces because we don't know what IP address Docker will assign to us.
     network.host: 0.0.0.0
-
-    # # minimum_master_nodes need to be explicitly set when bound on a public IP
-    # # set to 1 to allow single node clusters
-    # discovery.zen.minimum_master_nodes: 1
 
     # Setting network.host to a non-loopback address enables the annoying bootstrap checks. "Single-node" mode disables them again.
     # discovery.type: single-node
@@ -104,7 +99,7 @@ extraEnvs: []
 #  - name: MY_ENVIRONMENT_VAR
 #    value: the_value_goes_here
 
-# Allows you to load environment variables from kubernextes secret or config map
+# Allows you to load environment variables from kubernetes secret or config map
 envFrom: []
 # - secretRef:
 #     name: env-secret
@@ -122,10 +117,11 @@ hostAliases: []
 #   - "foo.local"
 #   - "bar.local"
 
-image: "opensearchproject/opensearch"
-# override image tag, which is .Chart.AppVersion by default
-imageTag: ""
-imagePullPolicy: "IfNotPresent"
+image:
+  repository: "opensearchproject/opensearch"
+  # override image tag, which is .Chart.AppVersion by default
+  tag: ""
+  pullPolicy: "IfNotPresent"
 
 podAnnotations: {}
   # iam.amazonaws.com/role: es-cluster
@@ -141,20 +137,20 @@ resources:
     memory: "100Mi"
 
 initResources: {}
-  # limits:
-  #   cpu: "25m"
-  #   # memory: "128Mi"
-  # requests:
-  #   cpu: "25m"
-  #   memory: "128Mi"
+#  limits:
+#     cpu: "25m"
+#     memory: "128Mi"
+#  requests:
+#     cpu: "25m"
+#     memory: "128Mi"
 
 sidecarResources: {}
-  # limits:
-  #   cpu: "25m"
-  #   # memory: "128Mi"
-  # requests:
-  #   cpu: "25m"
-  #   memory: "128Mi"
+#   limits:
+#     cpu: "25m"
+#     memory: "128Mi"
+#   requests:
+#     cpu: "25m"
+#     memory: "128Mi"
 
 networkHost: "0.0.0.0"
 
@@ -241,6 +237,10 @@ antiAffinity: "soft"
 # https://kubernetes.io/docs/concepts/configuration/assign-pod-node/#node-affinity-beta-feature
 nodeAffinity: {}
 
+# This is the pod topology spread constraints
+# https://kubernetes.io/docs/concepts/workloads/pods/pod-topology-spread-constraints/
+topologySpreadConstraints: []
+
 # The default is to deploy all pods serially. By setting this to parallel all pods are started at
 # the same time when bootstrapping the cluster
 podManagementPolicy: "Parallel"
@@ -250,13 +250,15 @@ podManagementPolicy: "Parallel"
 # If you experience slow pod startups you probably want to set this to `false`.
 enableServiceLinks: true
 
-protocol: http
+protocol: https
 httpPort: 9200
 transportPort: 9300
 
 service:
   labels: {}
   labelsHeadless: {}
+  headless:
+    annotations: {}
   type: ClusterIP
   nodePort: ""
   annotations: {}
@@ -307,6 +309,7 @@ securityConfig:
     #   created externally and mount it.
     # * It is an error to define both data and securityConfigSecret.
     securityConfigSecret: ""
+    dataComplete: true
     data: {}
       # config.yml: |-
       # internal_users.yml: |-
@@ -320,12 +323,19 @@ terminationGracePeriod: 120
 
 sysctlVmMaxMapCount: 262144
 
-readinessProbe:
-  failureThreshold: 3
-  initialDelaySeconds: 10
+startupProbe:
+  tcpSocket:
+    port: 9200
+  initialDelaySeconds: 5
   periodSeconds: 10
-  successThreshold: 3
-  timeoutSeconds: 2000
+  timeoutSeconds: 3
+  failureThreshold: 30
+readinessProbe:
+  tcpSocket:
+    port: 9200
+  periodSeconds: 5
+  timeoutSeconds: 3
+  failureThreshold: 3
 
 ## Use an alternate scheduler.
 ## ref: https://kubernetes.io/docs/tasks/administer-cluster/configure-multiple-schedulers/
@@ -381,8 +391,11 @@ lifecycle: {}
   #         curl -XPUT "$ES_URL/_template/$TEMPLATE_NAME" -H 'Content-Type: application/json' -d'{"index_patterns":['\""$INDEX_PATTERN"\"'],"settings":{"number_of_shards":'$SHARD_COUNT',"number_of_replicas":'$REPLICA_COUNT'}}'
 
 keystore: []
+# To add secrets to the keystore:
+#  - secretName: opensearch-encryption-key
 
 networkPolicy:
+  create: false
   ## Enable creation of NetworkPolicy resources. Only Ingress traffic is filtered for now.
   ## In order for a Pod to access OpenSearch, it needs to have the following label:
   ## {{ template "uname" . }}-client: "true"
@@ -409,3 +422,31 @@ plugins:
   enabled: false
   installList: []
   # - example-fake-plugin
+
+# -- Array of extra K8s manifests to deploy
+extraObjects: []
+  # - apiVersion: secrets-store.csi.x-k8s.io/v1
+  #   kind: SecretProviderClass
+  #   metadata:
+  #     name: argocd-secrets-store
+  #   spec:
+  #     provider: aws
+  #     parameters:
+  #       objects: |
+  #         - objectName: "argocd"
+  #           objectType: "secretsmanager"
+  #           jmesPath:
+  #               - path: "client_id"
+  #                 objectAlias: "client_id"
+  #               - path: "client_secret"
+  #                 objectAlias: "client_secret"
+  #     secretObjects:
+  #     - data:
+  #       - key: client_id
+  #         objectName: client_id
+  #       - key: client_secret
+  #         objectName: client_secret
+  #       secretName: argocd-secrets-store
+  #       type: Opaque
+  #       labels:
+  #         app.kubernetes.io/part-of: argocd

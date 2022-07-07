@@ -78,6 +78,14 @@ app.kubernetes.io/instance: {{ .Release.Name }}
 {{- end -}}
 {{- end -}}
 
+{{- define "opensearch.serviceName" -}}
+{{- if eq .Values.nodeGroup "master" }}
+{{- include "opensearch.masterService" . }}
+{{- else }}
+{{- include "opensearch.uname" . }}
+{{- end }}
+{{- end -}}
+
 {{- define "opensearch.endpoints" -}}
 {{- $replicas := int (toString (.Values.replicas)) }}
 {{- $uname := (include "opensearch.uname" .) }}
@@ -90,7 +98,7 @@ app.kubernetes.io/instance: {{ .Release.Name }}
 {{- if .Values.majorVersion }}
   {{- .Values.majorVersion }}
 {{- else }}
-  {{- $version := semver (coalesce .Values.imageTag .Chart.AppVersion "1") }}
+  {{- $version := semver (coalesce .Values.image.tag .Chart.AppVersion "1") }}
   {{- $version.Major }}
 {{- end }}
 {{- end }}

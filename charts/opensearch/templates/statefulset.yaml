@@ -8,7 +8,7 @@ metadata:
   annotations:
     majorVersion: "{{ include "opensearch.majorVersion" . }}"
 spec:
-  serviceName: {{ template "opensearch.uname" . }}-headless
+  serviceName: {{ template "opensearch.serviceName" . }}-headless
   selector:
     matchLabels:
       {{- include "opensearch.selectorLabels" . | nindent 6 }}
@@ -57,6 +57,9 @@ spec:
         {{- if .Values.config }}
         configchecksum: {{ include (print .Template.BasePath "/configmap.yaml") . | sha256sum | trunc 63 }}
         {{- end }}
+        {{- if .Values.securityConfig.config.data }}
+        securityconfigchecksum: {{ include (print .Template.BasePath "/securityconfig.yaml") . | sha256sum | trunc 63 }}
+        {{- end }}
     spec:
       {{- if .Values.schedulerName }}
       schedulerName: "{{ .Values.schedulerName }}"
@@ -71,9 +74,9 @@ spec:
         {{- if .Values.fsGroup }}
         fsGroup: {{ .Values.fsGroup }} # Deprecated value, please use .Values.podSecurityContext.fsGroup
         {{- end }}
-      {{- if .Values.rbac.create }}
+      {{- if and .Values.rbac.create (eq .Values.rbac.serviceAccountName "") }}
       serviceAccountName: "{{ template "opensearch.uname" . }}"
-      {{- else if not (eq .Values.rbac.serviceAccountName "") }}
+      {{- else }}
       serviceAccountName: {{ .Values.rbac.serviceAccountName | quote }}
       {{- end }}
       {{- with .Values.tolerations }}
@@ -125,6 +128,10 @@ spec:
         nodeAffinity:
 {{ toYaml . | indent 10 }}
       {{- end }}
+      {{- if .Values.topologySpreadConstraints }}
+      topologySpreadConstraints:
+        {{- toYaml .Values.topologySpreadConstraints | nindent 8 }}
+      {{- end }}
       terminationGracePeriodSeconds: {{ .Values.terminationGracePeriod }}
       volumes:
       {{- range .Values.secretMounts }}
@@ -144,7 +151,7 @@ spec:
       {{ fail "Only one of .Values.securityConfig.config.data and .Values.securityConfig.config.securityConfigSecret may be defined. Please see the comment in values.yaml describing usage." }}
       {{- end }}
       {{- if .Values.securityConfig.config.data }}
-      - name: security-config-complete
+      - name: security-config-data
         secret:
           secretName: {{ include "opensearch.uname" . }}-securityconfig
       {{- end }}
@@ -219,14 +226,16 @@ spec:
           - 'chown -R 1000:1000 /usr/share/opensearch/data'
         securityContext:
           runAsUser: 0
+        resources: 
+           {{ toYaml .Values.initResources | nindent 10 }}
         volumeMounts:
           - name: "{{ template "opensearch.uname" . }}"
             mountPath: {{ .Values.opensearchHome }}/data
 {{- end }}
 {{ if .Values.keystore }}
       - name: keystore
-        image: "{{ template "opensearch.dockerRegistry" . }}{{ .Values.image }}:{{ .Values.imageTag | default .Chart.AppVersion }}"
-        imagePullPolicy: "{{ .Values.imagePullPolicy }}"
+        image: "{{ template "opensearch.dockerRegistry" . }}{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
+        imagePullPolicy: "{{ .Values.image.pullPolicy }}"
         command:
         - sh
         - -c
@@ -251,7 +260,8 @@ spec:
           cp -a {{ .Values.opensearchHome }}/config/opensearch.keystore /tmp/keystore/
         env: {{ toYaml .Values.extraEnvs | nindent 10 }}
         envFrom: {{ toYaml .Values.envFrom | nindent 10 }}
-        resources: {{ toYaml .Values.initResources | nindent 10 }}
+        resources: 
+           {{ toYaml .Values.initResources | nindent 10 }}
         volumeMounts:
         - name: keystore
           mountPath: /tmp/keystore
@@ -289,8 +299,15 @@ spec:
 
           bash opensearch-docker-entrypoint.sh
       {{- end }}
-        image: "{{ template "opensearch.dockerRegistry" . }}{{ .Values.image }}:{{ .Values.imageTag | default .Chart.AppVersion }}"
-        imagePullPolicy: "{{ .Values.imagePullPolicy }}"
+  
+        image: "{{ template "opensearch.dockerRegistry" . }}{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
+        imagePullPolicy: "{{ .Values.image.pullPolicy }}"
+        readinessProbe:
+{{ toYaml .Values.readinessProbe | indent 10 }}
+      {{- if semverCompare ">=1.16-0" .Capabilities.KubeVersion.Version }}
+        startupProbe:
+{{ toYaml .Values.startupProbe | indent 10 }}
+      {{- end }}
         ports:
         - name: http
           containerPort: {{ .Values.httpPort }}
@@ -365,7 +382,18 @@ spec:
           name: tenants
           subPath: tenants.yml
         {{- end }}
-        {{- if .Values.securityConfig.config.data  }}
+        {{- if .Values.securityConfig.config.data }}
+        {{-   if .Values.securityConfig.config.dataComplete }}
+        - mountPath: {{ .Values.securityConfig.path }}
+          name: security-config-data
+        {{-   else }}
+        {{-     range $key, $_ := .Values.securityConfig.config.data  }}
+        - mountPath: {{ $.Values.securityConfig.path }}/{{ $key }}
+          name: security-config-data
+          subPath: {{ $key }}
+        {{-     end }}
+        {{-   end }}
+        {{- else if .Values.securityConfig.config.securityConfigSecret }}
         - mountPath: {{ .Values.securityConfig.path }}
           name: security-config-complete
         {{- end }}
@@ -393,11 +421,11 @@ spec:
         {{- end }}
         {{- end }}
       {{- if .Values.masterTerminationFix }}
-      {{- if eq .Values.roles.master "true" }}
+      {{- if has "master" .Values.roles }}
       # This sidecar will prevent slow master re-election
       - name: opensearch-master-graceful-termination-handler
-        image: "{{ template "opensearch.dockerRegistry" . }}{{ .Values.image }}:{{ .Values.imageTag | default .Chart.AppVersion }}"
-        imagePullPolicy: "{{ .Values.imagePullPolicy }}"
+        image: "{{ template "opensearch.dockerRegistry" . }}{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
+        imagePullPolicy: "{{ .Values.image.pullPolicy }}"
         command:
         - "sh"
         - -c
@@ -409,7 +437,7 @@ spec:
               local path="${1}"
               if [ -n "${USERNAME}" ] && [ -n "${PASSWORD}" ]; then
                 BASIC_AUTH="-u ${USERNAME}:${PASSWORD}"
-              elses
+              else
                 BASIC_AUTH=''
               fi
               curl -XGET -s -k --fail ${BASIC_AUTH} {{ .Values.protocol }}://{{ template "opensearch.masterService" . }}:{{ .Values.httpPort }}${path}

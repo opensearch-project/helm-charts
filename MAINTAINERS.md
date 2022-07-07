@@ -4,8 +4,8 @@
 | --------------- | --------- | ----------- |
 | Barani Bikshandi | [bbarani](https://github.com/bbarani) | Amazon |
 | Peter Zhu | [peterzhuamazon](https://github.com/peterzhuamazon) | Amazon |
-| Peter Nied | [peternied](https://github.com/peternied) | Amazon |
 | Sayali Gaikawad | [gaiksaya](https://github.com/gaiksaya) | Amazon |
+| Prudhvi Godithi | [prudhvigodithi](https://github.com/prudhvigodithi) | Amazon |
 | Dhiraj Kumar Jain | [TheAlgo](https://github.com/TheAlgo) | Amazon |
 | Aaron Layfield | [DandyDeveloper](https://github.com/DandyDeveloper) | Community |
 
