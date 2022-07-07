@@ -13,15 +13,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 ### Security
 ---
-## [2.3.0]
-### Added
-- Add lifecycle hooks to opensearch dashboard helm chart
-### Changed
-### Deprecated
-### Removed
-### Fixed
-### Security
----
 ## [2.2.0]
 ### Added
 - Add feature for readinessProbe and startupProbe
@@ -59,7 +50,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Security
 
 [Unreleased]: https://github.com/opensearch-project/helm-charts/compare/opensearch-2.3.0...HEAD
-[2.3.0]: https://github.com/opensearch-project/helm-charts/compare/opensearch-2.2.0...opensearch-2.3.0
 [2.2.0]: https://github.com/opensearch-project/helm-charts/compare/opensearch-2.1.0...opensearch-2.2.0
 [2.1.0]: https://github.com/opensearch-project/helm-charts/compare/opensearch-2.0.1...opensearch-2.1.0
 [2.0.1]: https://github.com/opensearch-project/helm-charts/compare/opensearch-2.0.0...opensearch-2.0.1
