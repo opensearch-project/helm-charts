@@ -203,4 +203,3 @@ lifecycle: {}
   #       - |
   #         #!/bin/bash
   #         curl -I "http://admin:admin@127.0.0.1:5601/status -H "kbn-xsrf: true" -H 'kbn-xsrf: true' -H "Content-Type: application/json"
-
