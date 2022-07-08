@@ -13,10 +13,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 ### Security
 ---
+## [2.2.1]
+### Added
+### Changed
+- Add lifecycle hooks, update  version to 2.2.1
+### Deprecated
+### Removed
+### Fixed
+### Security
+---
 ## [2.2.0]
 ### Added
-- Add lifecycle hooks to opensearch dashboard helm chart
 ### Changed
+- Updated version to 2.2.0 and appVersion to "2.1.0".
 ### Deprecated
 ### Removed
 ### Fixed
@@ -49,7 +58,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 ### Security
 
-[Unreleased]: https://github.com/opensearch-project/helm-charts/compare/opensearch-dashboards-2.2.0...HEAD
+[Unreleased]: https://github.com/opensearch-project/helm-charts/compare/opensearch-dashboards-2.2.1...HEAD
+[2.2.1]: https://github.com/opensearch-project/helm-charts/compare/opensearch-dashboards-2.2.0...opensearch-dashboards-2.2.1
 [2.2.0]: https://github.com/opensearch-project/helm-charts/compare/opensearch-dashboards-2.1.0...opensearch-dashboards-2.2.0
 [2.1.0]: https://github.com/opensearch-project/helm-charts/compare/opensearch-dashboards-2.0.1...opensearch-dashboards-2.1.0
 [2.0.1]: https://github.com/opensearch-project/helm-charts/compare/opensearch-dashboards-2.0.0...opensearch-dashboards-2.0.1
