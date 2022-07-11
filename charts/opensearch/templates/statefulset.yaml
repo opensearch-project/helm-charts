@@ -64,6 +64,7 @@ spec:
       {{- if .Values.schedulerName }}
       schedulerName: "{{ .Values.schedulerName }}"
       {{- end }}
+      {{- if not .Values.disableSecurityContexts }}
       securityContext:
 {{ toYaml .Values.podSecurityContext | indent 8 }}
         {{- if .Values.sysctl.enabled }}
@@ -74,6 +75,7 @@ spec:
         {{- if .Values.fsGroup }}
         fsGroup: {{ .Values.fsGroup }} # Deprecated value, please use .Values.podSecurityContext.fsGroup
         {{- end }}
+      {{- end }}
       {{- if and .Values.rbac.create (eq .Values.rbac.serviceAccountName "") }}
       serviceAccountName: "{{ template "opensearch.uname" . }}"
       {{- else }}
@@ -224,8 +226,10 @@ spec:
         command: ['sh', '-c']
         args:
           - 'chown -R 1000:1000 /usr/share/opensearch/data'
+        {{- if not .Values.disableSecurityContexts }}
         securityContext:
           runAsUser: 0
+        {{- end }}
         resources: 
            {{ toYaml .Values.initResources | nindent 10 }}
         volumeMounts:
@@ -283,8 +287,10 @@ spec:
       {{- end }}
       containers:
       - name: "{{ template "opensearch.name" . }}"
+      {{- if not .Values.disableSecurityContexts }}
         securityContext:
 {{ toYaml .Values.securityContext | indent 10 }}
+      {{- end }}
       {{- if .Values.plugins.enabled }}
         command:
         - sh
