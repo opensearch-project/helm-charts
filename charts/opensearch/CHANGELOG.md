@@ -13,11 +13,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Security
 
 ---
+## [1.13.1]
+### Added
+- Update OpenSearch appVersion to 1.3.4.
+### Changed
+### Deprecated
+### Removed
+### Fixed
+### Security
+---
 ## [1.13.0]
 ### Added
+- Add feature for readinessProbe and startupProbe
 ### Changed
-- Update OpenSearch appVersion to 1.3.4.
-
 ### Deprecated
 ### Removed
 ### Fixed
@@ -27,7 +35,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 ### Changed
 - Update OpenSearch appVersion to 1.3.3.
-
 ### Deprecated
 ### Removed
 ### Fixed
@@ -450,7 +457,8 @@ config:
 ### Fixed
 ### Security
 
-[Unreleased]: https://github.com/opensearch-project/helm-charts/compare/opensearch-1.13.0...HEAD
+[Unreleased]: https://github.com/opensearch-project/helm-charts/compare/opensearch-1.13.1...HEAD
+[1.13.1]: https://github.com/opensearch-project/helm-charts/compare/opensearch-1.13.0...opensearch-1.13.1
 [1.13.0]: https://github.com/opensearch-project/helm-charts/compare/opensearch-1.12.1...opensearch-1.13.0
 [1.12.1]: https://github.com/opensearch-project/helm-charts/compare/opensearch-1.12.0...opensearch-1.12.1
 [1.12.0]: https://github.com/opensearch-project/helm-charts/compare/opensearch-1.11.1...opensearch-1.12.0
