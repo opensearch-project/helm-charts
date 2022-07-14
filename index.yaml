@@ -87,6 +87,23 @@ entries:
     - https://github.com/opensearch-project/helm-charts/releases/download/opensearch-2.0.0/opensearch-2.0.0.tgz
     version: 2.0.0
   - apiVersion: v2
+    appVersion: 1.3.4
+    created: "2022-07-14T21:02:45.136993579Z"
+    description: A Helm chart for OpenSearch
+    digest: c2e62696201ed9626dd39ef6f7200585b86e1855833abfa8e5c72c3f81de4d7e
+    maintainers:
+    - name: DandyDeveloper
+    - name: bbarani
+    - name: gaiksaya
+    - name: peterzhuamazon
+    - name: prudhvigodithi
+    - name: TheAlgo
+    name: opensearch
+    type: application
+    urls:
+    - https://github.com/opensearch-project/helm-charts/releases/download/opensearch-1.13.1/opensearch-1.13.1.tgz
+    version: 1.13.1
+  - apiVersion: v2
     appVersion: 1.3.3
     created: "2022-06-30T01:24:42.229481865Z"
     description: A Helm chart for OpenSearch
@@ -880,6 +897,23 @@ entries:
     - https://github.com/opensearch-project/helm-charts/releases/download/opensearch-dashboards-2.0.0/opensearch-dashboards-2.0.0.tgz
     version: 2.0.0
   - apiVersion: v2
+    appVersion: 1.3.4
+    created: "2022-07-14T21:02:45.303299401Z"
+    description: A Helm chart for OpenSearch Dashboards
+    digest: 526ecc1e33fa571e4f4641cc45ff382751d76214e17c6e71ab8aea8cf0bd5bc1
+    maintainers:
+    - name: DandyDeveloper
+    - name: bbarani
+    - name: gaiksaya
+    - name: peterzhuamazon
+    - name: prudhvigodithi
+    - name: TheAlgo
+    name: opensearch-dashboards
+    type: application
+    urls:
+    - https://github.com/opensearch-project/helm-charts/releases/download/opensearch-dashboards-1.7.0/opensearch-dashboards-1.7.0.tgz
+    version: 1.7.0
+  - apiVersion: v2
     appVersion: 1.3.3
     created: "2022-06-09T19:33:05.248995853Z"
     description: A Helm chart for OpenSearch Dashboards
@@ -1203,4 +1237,4 @@ entries:
     urls:
     - https://github.com/opensearch-project/helm-charts/releases/download/opensearch-dashboards-1.0.3/opensearch-dashboards-1.0.3.tgz
     version: 1.0.3
-generated: "2022-07-08T00:06:51.32857673Z"
+generated: "2022-07-14T21:02:45.30433612Z"
