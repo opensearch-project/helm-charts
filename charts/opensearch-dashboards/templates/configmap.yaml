@@ -5,7 +5,13 @@ metadata:
   name: {{ template "opensearch-dashboards.fullname" . }}-config
   labels: {{ include "opensearch-dashboards.labels" . | nindent 4 }}
 data:
-{{- range $configName, $configYaml := .Values.config }}
-  {{ $configName }}: {{- toYaml $configYaml | nindent 4 }}
+{{- range $configName, $configContent := .Values.config }}
+  {{- if eq (kindOf $configContent) "map" }}
+  {{ $configName }}: |
+    {{- toYaml $configContent | nindent 4 }}
+  {{- else }}
+  {{ $configName }}:
+    {{- $configContent | nindent 4 }}
+  {{- end }}
 {{- end }}
 {{- end -}}
