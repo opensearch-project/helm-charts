@@ -13,6 +13,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 ### Security
 ---
+## [2.2.1]
+### Added
+### Changed
+### Deprecated
+### Removed
+### Fixed
+- Opensearch dashboard config map format is restored with backward support of string format
+### Security
+---
 ## [2.2.0]
 ### Added
 ### Changed
