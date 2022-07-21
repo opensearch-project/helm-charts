@@ -6,11 +6,10 @@ metadata:
   labels: {{ include "opensearch-dashboards.labels" . | nindent 4 }}
 data:
 {{- range $configName, $configContent := .Values.config }}
-  {{- if eq (kindOf $configContent) "map" }}
   {{ $configName }}: |
+  {{- if eq (kindOf $configContent) "map" }}
     {{- toYaml $configContent | nindent 4 }}
   {{- else }}
-  {{ $configName }}:
     {{- $configContent | nindent 4 }}
   {{- end }}
 {{- end }}
