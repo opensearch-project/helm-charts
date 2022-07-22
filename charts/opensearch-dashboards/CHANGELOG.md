@@ -19,8 +19,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Deprecated
 ### Removed
 ### Fixed
-- Opensearch dashboard fix issue #295
-- Opensearch dashboard config map support both string and map format
+- Opensearch dashboard fix issue #295.
+- Opensearch dashboard config map support both string and map format.
 ### Security
 ---
 ## [1.7.1]
