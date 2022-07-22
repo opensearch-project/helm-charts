@@ -13,6 +13,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 ### Security
 ---
+## [2.2.3]
+### Added
+### Changed
+### Deprecated
+### Removed
+### Fixed
+- Opensearch dashboards ingress template to use values from provided config
+### Security
+---
 ## [2.2.2]
 ### Added
 ### Changed
