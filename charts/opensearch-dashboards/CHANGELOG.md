@@ -13,6 +13,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 ### Security
 ---
+## [2.2.2]
+### Added
+### Changed
+### Deprecated
+### Removed
+### Fixed
+- Opensearch dashboard fix issue #295.
+- Opensearch dashboard config map support both string and map format.
+### Security
+---
 ## [2.2.1]
 ### Added
 ### Changed
@@ -58,7 +68,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 ### Security
 
-[Unreleased]: https://github.com/opensearch-project/helm-charts/compare/opensearch-dashboards-2.2.1...HEAD
+[Unreleased]: https://github.com/opensearch-project/helm-charts/compare/opensearch-dashboards-2.2.2...HEAD
+[2.2.2]: https://github.com/opensearch-project/helm-charts/compare/opensearch-dashboards-2.2.1...opensearch-dashboards-2.2.2
 [2.2.1]: https://github.com/opensearch-project/helm-charts/compare/opensearch-dashboards-2.2.0...opensearch-dashboards-2.2.1
 [2.2.0]: https://github.com/opensearch-project/helm-charts/compare/opensearch-dashboards-2.1.0...opensearch-dashboards-2.2.0
 [2.1.0]: https://github.com/opensearch-project/helm-charts/compare/opensearch-dashboards-2.0.1...opensearch-dashboards-2.1.0
