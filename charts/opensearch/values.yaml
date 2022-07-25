@@ -275,6 +275,10 @@ updateStrategy: RollingUpdate
 # of your pods to be unavailable during maintenance
 maxUnavailable: 1
 
+# Disables the podSecurityContext and securityContext to allow running
+# on openshift with automated security context
+disableSecurityContexts: false
+
 podSecurityContext:
   fsGroup: 1000
   runAsUser: 1000
