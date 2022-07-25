@@ -338,10 +338,8 @@ spec:
           value: "{{ .Values.opensearchJavaOpts }}"
         - name: node.roles
           value: "{{ template "opensearch.roles" . }}"
-        {{- if .Values.singleNode }}
         - name: discovery.type
-          value: "single-node"
-        {{- end }}
+          value: {{ if .Values.singleNode }}single-node{{ else }}multi-node{{ end }}
 {{- if .Values.extraEnvs }}
 {{ toYaml .Values.extraEnvs | indent 8 }}
 {{- end }}
