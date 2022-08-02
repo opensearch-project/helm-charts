@@ -13,6 +13,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 ### Security
 ---
+## [1.7.3]
+### Added
+### Changed
+### Deprecated
+### Removed
+### Fixed
+- Opensearch dashboards ingress template to use values from provided config
+### Security
+---
 ## [1.7.2]
 ### Added
 ### Changed
@@ -252,7 +261,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 ### Security
 
-[Unreleased]: https://github.com/opensearch-project/helm-charts/compare/opensearch-dashboards-1.7.2...HEAD
+[Unreleased]: https://github.com/opensearch-project/helm-charts/compare/opensearch-dashboards-1.7.3...HEAD
+[1.7.3]: https://github.com/opensearch-project/helm-charts/compare/opensearch-1.7.2...opensearch-1.7.3
 [1.7.2]: https://github.com/opensearch-project/helm-charts/compare/opensearch-1.7.1...opensearch-1.7.2
 [1.7.1]: https://github.com/opensearch-project/helm-charts/compare/opensearch-1.7.0...opensearch-1.7.1
 [1.7.0]: https://github.com/opensearch-project/helm-charts/compare/opensearch-1.6.1...opensearch-1.7.0
