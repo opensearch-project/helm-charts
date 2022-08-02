@@ -13,10 +13,47 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 ### Security
 ---
+## [2.2.4]
+### Added
+- Add lifecycle hooks for opensearch-dashboards charts
+### Changed
+### Deprecated
+### Removed
+### Fixed
+### Security
+---
+## [2.2.3]
+### Added
+### Changed
+### Deprecated
+### Removed
+### Fixed
+- Opensearch dashboards ingress template to use values from provided config
+### Security
+---
+## [2.2.2]
+### Added
+### Changed
+### Deprecated
+### Removed
+### Fixed
+- Opensearch dashboard fix issue #295.
+- Opensearch dashboard config map support both string and map format.
+### Security
+---
+## [2.2.1]
+### Added
+### Changed
+### Deprecated
+### Removed
+### Fixed
+- Opensearch dashboard config map format is restored with backward support of string format
+### Security
+---
 ## [2.2.0]
 ### Added
-- Add lifecycle hooks to opensearch dashboard helm chart
 ### Changed
+- Updated version to 2.2.0 and appVersion to "2.1.0".
 ### Deprecated
 ### Removed
 ### Fixed
@@ -49,7 +86,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 ### Security
 
-[Unreleased]: https://github.com/opensearch-project/helm-charts/compare/opensearch-dashboards-2.2.0...HEAD
+[Unreleased]: https://github.com/opensearch-project/helm-charts/compare/opensearch-dashboards-2.2.4...HEAD
+[2.2.4]: https://github.com/opensearch-project/helm-charts/compare/opensearch-dashboards-2.2.3...opensearch-dashboards-2.2.4
+[2.2.3]: https://github.com/opensearch-project/helm-charts/compare/opensearch-dashboards-2.2.2...opensearch-dashboards-2.2.3
+[2.2.2]: https://github.com/opensearch-project/helm-charts/compare/opensearch-dashboards-2.2.1...opensearch-dashboards-2.2.2
+[2.2.1]: https://github.com/opensearch-project/helm-charts/compare/opensearch-dashboards-2.2.0...opensearch-dashboards-2.2.1
 [2.2.0]: https://github.com/opensearch-project/helm-charts/compare/opensearch-dashboards-2.1.0...opensearch-dashboards-2.2.0
 [2.1.0]: https://github.com/opensearch-project/helm-charts/compare/opensearch-dashboards-2.0.1...opensearch-dashboards-2.1.0
 [2.0.1]: https://github.com/opensearch-project/helm-charts/compare/opensearch-dashboards-2.0.0...opensearch-dashboards-2.0.1
