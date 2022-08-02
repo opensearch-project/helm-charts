@@ -188,3 +188,18 @@ extraObjects: []
   #       type: Opaque
   #       labels:
   #         app.kubernetes.io/part-of: argocd
+
+# pod lifecycle policies as outlined here:
+# https://kubernetes.io/docs/concepts/containers/container-lifecycle-hooks/#container-hooks
+lifecycle: {}
+  # preStop:
+  #   exec:
+  #     command: ["/bin/sh", "-c", "echo Hello from the postStart handler > /usr/share/message"]
+  # postStart:
+  #   exec:
+  #     command:
+  #       - bash
+  #       - -c
+  #       - |
+  #         #!/bin/bash
+  #         curl -I "http://admin:admin@127.0.0.1:5601/status -H "kbn-xsrf: true" -H 'kbn-xsrf: true' -H "Content-Type: application/json"
