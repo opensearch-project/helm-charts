@@ -44,9 +44,9 @@ spec:
             pathType: Prefix
             backend:
               service:
-                name: {{ $fullName }}
+                name: {{ .backend.serviceName | default $fullName }}
                 port:
-                  number: {{ $svcPort }}
+                  number: {{ .backend.servicePort | default $svcPort }}
           {{- end }}
     {{- end }}
   {{- else -}}
@@ -57,8 +57,8 @@ spec:
           {{- range .paths }}
           - path: {{ .path }}
             backend:
-              serviceName: {{ $fullName }}
-              servicePort: {{ $svcPort }}
+              serviceName: {{ .backend.serviceName | default $fullName }}
+              servicePort: {{ .backend.servicePort | default $svcPort }}
           {{- end }}
     {{- end }}
   {{- end }}
