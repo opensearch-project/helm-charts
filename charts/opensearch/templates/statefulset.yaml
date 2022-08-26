@@ -12,7 +12,11 @@ spec:
   selector:
     matchLabels:
       {{- include "opensearch.selectorLabels" . | nindent 6 }}
+  {{- if .Values.singleNode }}
+  replicas: 1
+  {{- else }}
   replicas: {{ .Values.replicas }}
+  {{- end }}
   podManagementPolicy: {{ .Values.podManagementPolicy }}
   updateStrategy:
     type: {{ .Values.updateStrategy }}
@@ -320,7 +324,7 @@ spec:
           valueFrom:
             fieldRef:
               fieldPath: metadata.name
-        {{- if has "master" .Values.roles }}
+        {{- if (and (has "master" .Values.roles) (not .Values.singleNode)) }}
         - name: cluster.initial_master_nodes
           value: "{{ template "opensearch.endpoints" . }}"
         {{- end }}
@@ -334,6 +338,10 @@ spec:
           value: "{{ .Values.opensearchJavaOpts }}"
         - name: node.roles
           value: "{{ template "opensearch.roles" . }}"
+        {{- if .Values.singleNode }}
+        - name: discovery.type
+          value: "single-node"
+        {{- end }}
 {{- if .Values.extraEnvs }}
 {{ toYaml .Values.extraEnvs | indent 8 }}
 {{- end }}
