@@ -13,6 +13,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Security
 
 ---
+## [1.13.2]
+### Added
+- Add "singleNode" feature to disable the "cluster.initial_master_nodes" env var.
+### Changed
+### Deprecated
+### Removed
+### Fixed
+### Security
+---
 ## [1.13.1]
 ### Added
 - Update OpenSearch appVersion to 1.3.4.
@@ -457,7 +466,8 @@ config:
 ### Fixed
 ### Security
 
-[Unreleased]: https://github.com/opensearch-project/helm-charts/compare/opensearch-1.13.1...HEAD
+[Unreleased]: https://github.com/opensearch-project/helm-charts/compare/opensearch-1.13.2...HEAD
+[1.13.1]: https://github.com/opensearch-project/helm-charts/compare/opensearch-1.13.1...opensearch-1.13.2
 [1.13.1]: https://github.com/opensearch-project/helm-charts/compare/opensearch-1.13.0...opensearch-1.13.1
 [1.13.0]: https://github.com/opensearch-project/helm-charts/compare/opensearch-1.12.1...opensearch-1.13.0
 [1.12.1]: https://github.com/opensearch-project/helm-charts/compare/opensearch-1.12.0...opensearch-1.12.1
