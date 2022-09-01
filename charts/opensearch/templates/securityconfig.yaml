@@ -10,6 +10,10 @@ type: Opaque
 stringData:
 {{- range $key, $val := .Values.securityConfig.config.data }}
   {{ $key }}: |
-    {{- $val | nindent 4 }}
+    {{- if (eq (kindOf $val) "map")}}
+    {{- tpl (toYaml $val) $ | nindent 4 }}
+    {{- else }}
+    {{- tpl $val $ | nindent 4 }}
+    {{- end }}
 {{- end }}
 {{- end }}

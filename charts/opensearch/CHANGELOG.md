@@ -13,6 +13,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 ### Security
 ---
+## [2.4.2]
+### Added
+- Template configmap content by tpl function
+### Changed
+### Deprecated
+### Removed
+### Fixed
+### Security
+---
 ## [2.4.1]
 ### Added
 - Add "singleNode" feature to disable the "cluster.initial_master_nodes" env var
@@ -77,7 +86,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Security
 
 
-[Unreleased]: https://github.com/opensearch-project/helm-charts/compare/opensearch-2.4.1...HEAD
+[Unreleased]: https://github.com/opensearch-project/helm-charts/compare/opensearch-2.4.2...HEAD
+[2.4.2]: https://github.com/opensearch-project/helm-charts/compare/opensearch-2.4.1...opensearch-2.4.2
 [2.4.1]: https://github.com/opensearch-project/helm-charts/compare/opensearch-2.4.0...opensearch-2.4.1
 [2.4.0]: https://github.com/opensearch-project/helm-charts/compare/opensearch-2.3.0...opensearch-2.4.0
 [2.3.0]: https://github.com/opensearch-project/helm-charts/compare/opensearch-2.2.0...opensearch-2.3.0
