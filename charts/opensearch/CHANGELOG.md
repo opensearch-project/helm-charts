@@ -13,14 +13,24 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 ### Security
 ---
-## [2.5.0]
+## [2.5.1]
 ### Added
-- Updated version to 2.4.2 and appVersion to "2.2.1".
+- Helm chart-releaser parallel release issue, updated version to 2.5.1.
 ### Changed
 ### Deprecated
 ### Removed
 ### Fixed
-### Se
+### Security
+---
+## [2.5.0]
+### Added
+- Updated version to 2.5.0 and appVersion to "2.2.1".
+### Changed
+### Deprecated
+### Removed
+### Fixed
+### Security
+---
 ## [2.4.1]
 ### Added
 - Add "singleNode" feature to disable the "cluster.initial_master_nodes" env var
@@ -85,7 +95,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Security
 
 
-[Unreleased]: https://github.com/opensearch-project/helm-charts/compare/opensearch-2.5.0...HEAD
+[Unreleased]: https://github.com/opensearch-project/helm-charts/compare/opensearch-2.5.1...HEAD
+[2.5.1]: https://github.com/opensearch-project/helm-charts/compare/opensearch-2.5.0...opensearch-2.5.1
 [2.5.0]: https://github.com/opensearch-project/helm-charts/compare/opensearch-2.4.1...opensearch-2.5.0
 [2.4.1]: https://github.com/opensearch-project/helm-charts/compare/opensearch-2.4.0...opensearch-2.4.1
 [2.4.0]: https://github.com/opensearch-project/helm-charts/compare/opensearch-2.3.0...opensearch-2.4.0
