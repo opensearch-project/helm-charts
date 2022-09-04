@@ -13,9 +13,27 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 ### Security
 ---
-## [2.3.1]
+## [2.4.2]
 ### Added
 - Template configmap content by tpl function
+### Changed
+### Deprecated
+### Removed
+### Fixed
+### Security
+---
+## [2.4.1]
+### Added
+- Helm chart-releaser parallel release issue, updated version to 2.4.1.
+### Changed
+### Deprecated
+### Removed
+### Fixed
+### Security
+---
+## [2.4.0]
+### Added
+- Updated version to 2.4.0 and appVersion to "2.2.1".
 ### Changed
 ### Deprecated
 ### Removed
@@ -104,8 +122,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 ### Security
 
-[Unreleased]: https://github.com/opensearch-project/helm-charts/compare/opensearch-dashboards-2.3.1...HEAD
-[2.3.1]: https://github.com/opensearch-project/helm-charts/compare/opensearch-dashboards-2.3.0...opensearch-dashboards-2.3.1
+[Unreleased]: https://github.com/opensearch-project/helm-charts/compare/opensearch-dashboards-2.4.2...HEAD
+[2.4.2]: https://github.com/opensearch-project/helm-charts/compare/opensearch-dashboards-2.4.1...opensearch-dashboards-2.4.2
+[2.4.1]: https://github.com/opensearch-project/helm-charts/compare/opensearch-dashboards-2.4.0...opensearch-dashboards-2.4.1
+[2.4.0]: https://github.com/opensearch-project/helm-charts/compare/opensearch-dashboards-2.3.0...opensearch-dashboards-2.4.0
 [2.3.0]: https://github.com/opensearch-project/helm-charts/compare/opensearch-dashboards-2.2.4...opensearch-dashboards-2.3.0
 [2.2.4]: https://github.com/opensearch-project/helm-charts/compare/opensearch-dashboards-2.2.3...opensearch-dashboards-2.2.4
 [2.2.3]: https://github.com/opensearch-project/helm-charts/compare/opensearch-dashboards-2.2.2...opensearch-dashboards-2.2.3
