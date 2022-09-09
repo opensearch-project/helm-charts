@@ -13,6 +13,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 ### Security
 ---
+## [2.4.2]
+### Added
+### Changed
+### Deprecated
+### Removed
+### Fixed
+- OpenSearch Dashboards fixed failure when ingress service port is a string (named port)
+### Security
+---
 ## [2.4.1]
 ### Added
 - Helm chart-releaser parallel release issue, updated version to 2.4.1.
