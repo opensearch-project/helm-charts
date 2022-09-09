@@ -13,6 +13,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 ### Security
 ---
+## [1.8.1]
+### Added
+### Changed
+### Deprecated
+### Removed
+### Fixed
+- OpenSearch Dashboards fixed failure when ingress service port is a string (named port)
+### Security
+---
 ## [1.8.0]
 ### Added
 - Updated OpenSearch Dashboard appVersion to 1.3.5.
@@ -279,7 +288,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 ### Security
 
-[Unreleased]: https://github.com/opensearch-project/helm-charts/compare/opensearch-dashboards-1.8.0...HEAD
+[Unreleased]: https://github.com/opensearch-project/helm-charts/compare/opensearch-dashboards-1.8.1...HEAD
+[1.8.1]: https://github.com/opensearch-project/helm-charts/compare/opensearch-1.8.0...opensearch-1.8.1
 [1.8.0]: https://github.com/opensearch-project/helm-charts/compare/opensearch-1.7.4...opensearch-1.8.0
 [1.7.4]: https://github.com/opensearch-project/helm-charts/compare/opensearch-1.7.3...opensearch-1.7.4
 [1.7.3]: https://github.com/opensearch-project/helm-charts/compare/opensearch-1.7.2...opensearch-1.7.3

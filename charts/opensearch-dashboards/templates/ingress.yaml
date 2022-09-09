@@ -46,7 +46,11 @@ spec:
               service:
                 name: {{ .backend.serviceName | default $fullName }}
                 port:
+                  {{- if and .backend.servicePort (kindIs "string" .backend.servicePort) }}
+                  name: {{ .backend.servicePort }}
+                  {{- else -}}
                   number: {{ .backend.servicePort | default $svcPort }}
+                  {{- end }}
           {{- end }}
     {{- end }}
   {{- else -}}
