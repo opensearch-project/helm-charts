@@ -13,6 +13,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 ### Security
 ---
+## [2.6.0]
+### Added
+### Changed
+- Updated version to 2.6.0 and appVersion to "2.3.0".
+### Deprecated
+### Removed
+### Fixed
+### Security
+---
 ## [2.5.1]
 ### Added
 - Helm chart-releaser parallel release issue, updated version to 2.5.1.
@@ -95,7 +104,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Security
 
 
-[Unreleased]: https://github.com/opensearch-project/helm-charts/compare/opensearch-2.5.1...HEAD
+[Unreleased]: https://github.com/opensearch-project/helm-charts/compare/opensearch-2.6.0...HEAD
+[2.6.0]: https://github.com/opensearch-project/helm-charts/compare/opensearch-2.5.0...opensearch-2.6.0
 [2.5.1]: https://github.com/opensearch-project/helm-charts/compare/opensearch-2.5.0...opensearch-2.5.1
 [2.5.0]: https://github.com/opensearch-project/helm-charts/compare/opensearch-2.4.1...opensearch-2.5.0
 [2.4.1]: https://github.com/opensearch-project/helm-charts/compare/opensearch-2.4.0...opensearch-2.4.1
