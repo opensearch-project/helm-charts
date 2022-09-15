@@ -13,6 +13,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 ### Security
 ---
+## [2.5.1]
+### Added
+### Changed
+### Deprecated
+### Removed
+### Fixed
+- ingress helm validation error fix by removing additional hyphen
+### Security
+---
 ## [2.5.0]
 ### Added
 ### Changed
