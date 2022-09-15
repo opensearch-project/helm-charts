@@ -20,6 +20,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Deprecated
 ### Removed
 ### Fixed
+- ingress helm validation error
+### Security
+---
+## [2.5.0]
+### Added
+### Changed
+- Updated version to 2.5.0 and appVersion to "2.3.0".
+### Deprecated
+### Removed
+### Fixed
 ### Security
 ---
 ## [2.4.2]
