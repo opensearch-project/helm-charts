@@ -13,6 +13,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 ### Security
 ---
+## [2.6.2]
+### Added
+- Liveness probe for statefulset
+### Changed
+### Deprecated
+### Removed
+### Fixed
+### Security
+---
 ## [2.6.1]
 ### Added
 - Template configmap content by tpl function

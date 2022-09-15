@@ -13,6 +13,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 ### Security
 ---
+## [2.5.3]
+### Added
+- Startup, readiness and liveness probes for deployment
+### Changed
+### Deprecated
+### Removed
+### Fixed
+### Security
+---
 ## [2.5.2]
 ### Added
 - Template configmap content by tpl function
