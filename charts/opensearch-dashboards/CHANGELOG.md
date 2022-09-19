@@ -13,6 +13,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 ### Security
 ---
+## [2.5.2]
+### Added
+- Template configmap content by tpl function
+### Changed
+### Deprecated
+### Removed
+### Fixed
+### Security
+---
 ## [2.5.1]
 ### Added
 ### Changed
@@ -140,7 +149,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 ### Security
 
-[Unreleased]: https://github.com/opensearch-project/helm-charts/compare/opensearch-dashboards-2.5.1...HEAD
+[Unreleased]: https://github.com/opensearch-project/helm-charts/compare/opensearch-dashboards-2.5.2...HEAD
+[2.5.2]: https://github.com/opensearch-project/helm-charts/compare/opensearch-dashboards-2.5.1...opensearch-dashboards-2.5.2
 [2.5.1]: https://github.com/opensearch-project/helm-charts/compare/opensearch-dashboards-2.5.0...opensearch-dashboards-2.5.1
 [2.5.0]: https://github.com/opensearch-project/helm-charts/compare/opensearch-dashboards-2.4.1...opensearch-dashboards-2.5.0
 [2.4.1]: https://github.com/opensearch-project/helm-charts/compare/opensearch-dashboards-2.4.0...opensearch-dashboards-2.4.1
