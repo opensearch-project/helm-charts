@@ -23,7 +23,7 @@ startupProbe:
   httpGet:
     path: "/api/reporting/stats"
     port: 5601
-    
+
 livenessProbe:
   periodSeconds: 20
   timeoutSeconds: 5

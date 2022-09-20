@@ -337,14 +337,14 @@ startupProbe:
   timeoutSeconds: 3
   failureThreshold: 30
 
-livenessProbe:
-  periodSeconds: 20
-  timeoutSeconds: 5
-  failureThreshold: 10
-  successThreshold: 1
-  initialDelaySeconds: 10
-  tcpSocket:
-    port: 9200
+livenessProbe: {}
+  # periodSeconds: 20
+  # timeoutSeconds: 5
+  # failureThreshold: 10
+  # successThreshold: 1
+  # initialDelaySeconds: 10
+  # tcpSocket:
+  #   port: 9200
 
 readinessProbe:
   tcpSocket:
