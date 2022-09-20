@@ -13,6 +13,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Security
 
 ---
+## [1.14.1]
+### Added
+- Template configmap content by tpl function.
+### Changed
+### Deprecated
+### Removed
+### Fixed
+### Security
+---
 
 ## [1.14.0]
 ### Added
@@ -476,7 +485,8 @@ config:
 ### Fixed
 ### Security
 
-[Unreleased]: https://github.com/opensearch-project/helm-charts/compare/opensearch-1.14.0...HEAD
+[Unreleased]: https://github.com/opensearch-project/helm-charts/compare/opensearch-1.14.1...HEAD
+[1.14.1]: https://github.com/opensearch-project/helm-charts/compare/opensearch-1.14.0...opensearch-1.14.1
 [1.14.0]: https://github.com/opensearch-project/helm-charts/compare/opensearch-1.13.2...opensearch-1.14.0
 [1.13.2]: https://github.com/opensearch-project/helm-charts/compare/opensearch-1.13.1...opensearch-1.13.2
 [1.13.1]: https://github.com/opensearch-project/helm-charts/compare/opensearch-1.13.0...opensearch-1.13.1

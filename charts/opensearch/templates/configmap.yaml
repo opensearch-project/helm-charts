@@ -9,6 +9,10 @@ metadata:
 data:
 {{- range $configName, $configYaml := .Values.config }}
   {{ $configName }}: |
-    {{- tpl $configYaml $root | nindent 4 }}
+    {{- if (eq (kindOf $configYaml) "map")}}
+    {{-   tpl (toYaml $configYaml) $root | nindent 4 }}
+    {{- else -}}
+    {{-   tpl $configYaml $root | nindent 4 }}
+    {{- end -}}
 {{- end -}}
 {{- end -}}

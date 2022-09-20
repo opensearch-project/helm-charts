@@ -71,10 +71,17 @@ securityContext:
 
 config: {}
   # Default OpenSearch Dashboards configuration from docker image of Dashboards
+
   #  opensearch_dashboards.yml: |
   #   server:
   #     name: dashboards
-  #     host: 0.0.0.0
+  #     host: "{{ .Values.serverHost }}"
+
+  #  opensearch_dashboards.yml:
+  #   server:
+  #     name: dashboards
+  #     host: "{{ .Values.serverHost }}"
+
 
   # Dashboards TLS Config (Ensure the cert files are present before enabling SSL
       # ssl:
