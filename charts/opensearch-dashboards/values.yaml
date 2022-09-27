@@ -15,34 +15,31 @@ image:
   pullPolicy: "IfNotPresent"
 
 startupProbe:
+  tcpSocket:
+    port: 5601
   periodSeconds: 10
   timeoutSeconds: 5
   failureThreshold: 20
   successThreshold: 1
   initialDelaySeconds: 10
-  httpGet:
-    path: "/api/reporting/stats"
+
+livenessProbe:
+  tcpSocket:
     port: 5601
-
-livenessProbe: {}
-  # periodSeconds: 20
-  # timeoutSeconds: 5
-  # failureThreshold: 10
-  # successThreshold: 1
-  # initialDelaySeconds: 10
-  # httpGet:
-  #   path: "/api/reporting/stats"
-  #   port: 5601
-
-readinessProbe:
   periodSeconds: 20
   timeoutSeconds: 5
   failureThreshold: 10
   successThreshold: 1
   initialDelaySeconds: 10
-  httpGet:
-    path: "/api/reporting/stats"
+
+readinessProbe:
+  tcpSocket:
     port: 5601
+  periodSeconds: 20
+  timeoutSeconds: 5
+  failureThreshold: 10
+  successThreshold: 1
+  initialDelaySeconds: 10
 
 imagePullSecrets: []
 nameOverride: ""
