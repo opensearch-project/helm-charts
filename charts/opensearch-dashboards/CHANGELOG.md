@@ -306,6 +306,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 ### Security
 
+<<<<<<< HEAD
 [Unreleased]: https://github.com/opensearch-project/helm-charts/compare/opensearch-dashboards-1.8.3...HEAD
 [1.8.3]: https://github.com/opensearch-project/helm-charts/compare/opensearch-1.8.2...opensearch-1.8.3
 [1.8.2]: https://github.com/opensearch-project/helm-charts/compare/opensearch-1.8.1...opensearch-1.8.2
@@ -337,3 +338,20 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 [1.0.5]: https://github.com/opensearch-project/helm-charts/compare/opensearch-1.0.4...opensearch-1.0.5
 [1.0.4]: https://github.com/opensearch-project/helm-charts/compare/opensearch-1.0.2...opensearch-1.0.4
 [1.0.2]: https://github.com/opensearch-project/helm-charts/compare/opensearch-dashboards-1.0.1...opensearch-dashboards-1.0.2
+=======
+[Unreleased]: https://github.com/opensearch-project/helm-charts/compare/opensearch-dashboards-2.5.3...HEAD
+[2.5.3]: https://github.com/opensearch-project/helm-charts/compare/opensearch-dashboards-2.5.2...opensearch-dashboards-2.5.3
+[2.5.2]: https://github.com/opensearch-project/helm-charts/compare/opensearch-dashboards-2.5.1...opensearch-dashboards-2.5.2
+[2.5.1]: https://github.com/opensearch-project/helm-charts/compare/opensearch-dashboards-2.5.0...opensearch-dashboards-2.5.1
+[2.5.0]: https://github.com/opensearch-project/helm-charts/compare/opensearch-dashboards-2.4.1...opensearch-dashboards-2.5.0
+[2.4.1]: https://github.com/opensearch-project/helm-charts/compare/opensearch-dashboards-2.4.0...opensearch-dashboards-2.4.1
+[2.4.0]: https://github.com/opensearch-project/helm-charts/compare/opensearch-dashboards-2.3.0...opensearch-dashboards-2.4.0
+[2.3.0]: https://github.com/opensearch-project/helm-charts/compare/opensearch-dashboards-2.2.4...opensearch-dashboards-2.3.0
+[2.2.4]: https://github.com/opensearch-project/helm-charts/compare/opensearch-dashboards-2.2.3...opensearch-dashboards-2.2.4
+[2.2.3]: https://github.com/opensearch-project/helm-charts/compare/opensearch-dashboards-2.2.2...opensearch-dashboards-2.2.3
+[2.2.2]: https://github.com/opensearch-project/helm-charts/compare/opensearch-dashboards-2.2.1...opensearch-dashboards-2.2.2
+[2.2.1]: https://github.com/opensearch-project/helm-charts/compare/opensearch-dashboards-2.2.0...opensearch-dashboards-2.2.1
+[2.2.0]: https://github.com/opensearch-project/helm-charts/compare/opensearch-dashboards-2.1.0...opensearch-dashboards-2.2.0
+[2.1.0]: https://github.com/opensearch-project/helm-charts/compare/opensearch-dashboards-2.0.1...opensearch-dashboards-2.1.0
+[2.0.1]: https://github.com/opensearch-project/helm-charts/compare/opensearch-dashboards-2.0.0...opensearch-dashboards-2.0.1
+>>>>>>> aca0199 (Add healthcheck probes to charts (#329))
