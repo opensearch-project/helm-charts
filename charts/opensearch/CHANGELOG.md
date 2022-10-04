@@ -13,6 +13,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Security
 
 ---
+## [1.14.2]
+### Added
+- Healthchecks
+### Changed
+### Deprecated
+### Removed
+### Fixed
+### Security
+---
 ## [1.14.1]
 ### Added
 - Template configmap content by tpl function.
@@ -485,8 +494,8 @@ config:
 ### Fixed
 ### Security
 
-<<<<<<< HEAD
-[Unreleased]: https://github.com/opensearch-project/helm-charts/compare/opensearch-1.14.1...HEAD
+[Unreleased]: https://github.com/opensearch-project/helm-charts/compare/opensearch-1.14.2...HEAD
+[1.14.2]: https://github.com/opensearch-project/helm-charts/compare/opensearch-1.14.1...opensearch-1.14.2
 [1.14.1]: https://github.com/opensearch-project/helm-charts/compare/opensearch-1.14.0...opensearch-1.14.1
 [1.14.0]: https://github.com/opensearch-project/helm-charts/compare/opensearch-1.13.2...opensearch-1.14.0
 [1.13.2]: https://github.com/opensearch-project/helm-charts/compare/opensearch-1.13.1...opensearch-1.13.2
@@ -536,17 +545,3 @@ config:
 [1.0.5]: https://github.com/opensearch-project/helm-charts/compare/opensearch-1.0.4...opensearch-1.0.5
 [1.0.4]: https://github.com/opensearch-project/helm-charts/compare/opensearch-1.0.2...opensearch-1.0.4
 [1.0.2]: https://github.com/opensearch-project/helm-charts/compare/opensearch-1.0.1...opensearch-1.0.2
-=======
-[Unreleased]: https://github.com/opensearch-project/helm-charts/compare/opensearch-2.6.2...HEAD
-[2.6.2]: https://github.com/opensearch-project/helm-charts/compare/opensearch-2.6.1...opensearch-2.6.2
-[2.6.1]: https://github.com/opensearch-project/helm-charts/compare/opensearch-2.6.0...opensearch-2.6.1
-[2.6.0]: https://github.com/opensearch-project/helm-charts/compare/opensearch-2.5.0...opensearch-2.6.0
-[2.5.1]: https://github.com/opensearch-project/helm-charts/compare/opensearch-2.5.0...opensearch-2.5.1
-[2.5.0]: https://github.com/opensearch-project/helm-charts/compare/opensearch-2.4.1...opensearch-2.5.0
-[2.4.1]: https://github.com/opensearch-project/helm-charts/compare/opensearch-2.4.0...opensearch-2.4.1
-[2.4.0]: https://github.com/opensearch-project/helm-charts/compare/opensearch-2.3.0...opensearch-2.4.0
-[2.3.0]: https://github.com/opensearch-project/helm-charts/compare/opensearch-2.2.0...opensearch-2.3.0
-[2.2.0]: https://github.com/opensearch-project/helm-charts/compare/opensearch-2.1.0...opensearch-2.2.0
-[2.1.0]: https://github.com/opensearch-project/helm-charts/compare/opensearch-2.0.1...opensearch-2.1.0
-[2.0.1]: https://github.com/opensearch-project/helm-charts/compare/opensearch-2.0.0...opensearch-2.0.1
->>>>>>> aca0199 (Add healthcheck probes to charts (#329))
