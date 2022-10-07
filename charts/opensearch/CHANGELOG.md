@@ -13,6 +13,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Security
 
 ---
+## [1.15.0]
+### Added
+### Changed
+- Updated OpenSearch appVersion to 1.3.6
+### Deprecated
+### Removed
+### Fixed
+### Security
+---
 ## [1.14.2]
 ### Added
 - Healthchecks
@@ -494,7 +503,8 @@ config:
 ### Fixed
 ### Security
 
-[Unreleased]: https://github.com/opensearch-project/helm-charts/compare/opensearch-1.14.2...HEAD
+[Unreleased]: https://github.com/opensearch-project/helm-charts/compare/opensearch-1.15.0...HEAD
+[1.15.0]: https://github.com/opensearch-project/helm-charts/compare/opensearch-1.14.2...opensearch-1.15.0
 [1.14.2]: https://github.com/opensearch-project/helm-charts/compare/opensearch-1.14.1...opensearch-1.14.2
 [1.14.1]: https://github.com/opensearch-project/helm-charts/compare/opensearch-1.14.0...opensearch-1.14.1
 [1.14.0]: https://github.com/opensearch-project/helm-charts/compare/opensearch-1.13.2...opensearch-1.14.0
