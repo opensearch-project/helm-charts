@@ -207,6 +207,9 @@ persistence:
     - ReadWriteOnce
   size: 8Gi
   annotations: {}
+  # Override the volumeClaim Template name
+  # ie. use 'data' to get shorter PVC names
+  volumeClaimTemplateNameOverride:
 
 extraVolumes: []
   # - name: extras

@@ -23,7 +23,7 @@ spec:
   {{- if .Values.persistence.enabled }}
   volumeClaimTemplates:
   - metadata:
-      name: {{ template "opensearch.uname" . }}
+      name: {{ template "opensearch.volumeclaimtemplate.name" . }}
     {{- if .Values.persistence.labels.enabled }}
       labels:
         {{- include "opensearch.labels" . | nindent 8 }}
@@ -233,7 +233,7 @@ spec:
         resources: 
            {{ toYaml .Values.initResources | nindent 10 }}
         volumeMounts:
-          - name: "{{ template "opensearch.uname" . }}"
+          - name: "{{ template "opensearch.volumeclaimtemplate.name" . }}"
             mountPath: {{ .Values.opensearchHome }}/data
 {{- end }}
 {{ if .Values.keystore }}
@@ -355,7 +355,7 @@ spec:
 {{- end }}
         volumeMounts:
         {{- if .Values.persistence.enabled }}
-        - name: "{{ template "opensearch.uname" . }}"
+        - name: "{{ template "opensearch.volumeclaimtemplate.name" . }}"
           mountPath: {{ .Values.opensearchHome }}/data
         {{- end }}
         {{- if .Values.keystore }}

@@ -142,3 +142,11 @@ Return if ingress supports ingressClassName.
 {{- define "opensearch.ingress.supportsIngressClassName" -}}
   {{- or (eq (include "opensearch.ingress.isStable" .) "true") (and (eq (include "opensearch.ingress.apiVersion" .) "networking.k8s.io/v1beta1") (semverCompare ">= 1.18-0" .Capabilities.KubeVersion.Version)) -}}
 {{- end -}}
+
+{{- define "opensearch.volumeclaimtemplate.name" -}}
+{{- if empty .Values.persistence.volumeClaimTemplateNameOverride -}}
+{{- include "opensearch.uname" . }}
+{{- else -}}
+{{ .Values.persistence.volumeClaimTemplateNameOverride }}
+{{- end -}}
+{{- end -}}

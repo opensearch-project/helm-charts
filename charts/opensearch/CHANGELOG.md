@@ -7,6 +7,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ---
 ## [Unreleased]
 ### Added
+- New value `persistence.volumeClaimTemplateNameOverride` which allows to change the name of the volumeclaim template  
 ### Changed
 ### Deprecated
 ### Removed
