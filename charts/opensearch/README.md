@@ -109,7 +109,8 @@ helm uninstall my-release
 | `livenessProbe`                     | Configuration fields for the liveness [probe][]                                                                                                                                                                               | see [exampleLiveness][] in `values.yaml`
 | `readinessProbe`                     | Configuration fields for the readiness [probe][]                                                                                                                                                                               | see [exampleReadiness][] in `values.yaml`
 | `startupProbe`                     | Configuration fields for the startup [probe][]                                                                                                                                                                               | see [exampleStartup][] in `values.yaml`                                     |
-
+| `plugins.enabled`                     | Allow/disallow to add 3rd Party / Custom plugins not offered in the default OpenSearchDashboards image                    | false  |
+| `plugins.installList`                 | Array containing the Opensearch Dashboards plugins to be installed in container	                                        |   []   |
 
 
 

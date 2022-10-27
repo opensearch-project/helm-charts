@@ -122,6 +122,10 @@ config: {}
     #     certificateAuthorities: /usr/share/opensearch-dashboards/certs/dashboards-root-ca.pem
     #     if utilizing custom CA certs for connection to opensearch, provide the CA here
 
+opensearchDashboardsYml:
+  defaultMode:
+  # value should be 0-0777
+
 priorityClassName: ""
 
 opensearchAccount:
@@ -237,3 +241,9 @@ lifecycle: {}
   #       - |
   #         #!/bin/bash
   #         curl -I "http://admin:admin@127.0.0.1:5601/status -H "kbn-xsrf: true" -H 'kbn-xsrf: true' -H "Content-Type: application/json"
+
+## Enable to add 3rd Party / Custom plugins not offered in the default OpenSearchDashboards image.
+plugins:
+  enabled: false
+  installList: []
+  # - example-fake-plugin-downloadable-url
