@@ -321,6 +321,8 @@ spec:
           containerPort: {{ .Values.httpPort }}
         - name: transport
           containerPort: {{ .Values.transportPort }}
+        - name: metrics
+          containerPort: {{ .Values.metricsPort }}
         resources:
 {{ toYaml .Values.resources | indent 10 }}
         env:

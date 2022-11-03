@@ -13,6 +13,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 ### Security
 ---
+## [2.6.3]
+### Added
+- Service ports for performance analyzer
+### Changed
+### Deprecated
+### Removed
+### Fixed
+### Security
+---
 ## [2.6.2]
 ### Added
 - Liveness probe for statefulset
