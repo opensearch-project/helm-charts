@@ -13,6 +13,33 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 ### Security
 ---
+## [2.5.3]
+### Added
+- Startup, readiness and liveness probes for deployment
+### Changed
+### Deprecated
+### Removed
+### Fixed
+### Security
+---
+## [2.5.2]
+### Added
+- Template configmap content by tpl function
+### Changed
+### Deprecated
+### Removed
+### Fixed
+### Security
+---
+## [2.5.1]
+### Added
+### Changed
+### Deprecated
+### Removed
+### Fixed
+- ingress helm validation error fix by removing additional hyphen
+### Security
+---
 ## [2.5.0]
 ### Added
 ### Changed
@@ -131,7 +158,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 ### Security
 
-[Unreleased]: https://github.com/opensearch-project/helm-charts/compare/opensearch-dashboards-2.5.0...HEAD
+[Unreleased]: https://github.com/opensearch-project/helm-charts/compare/opensearch-dashboards-2.5.3...HEAD
+[2.5.3]: https://github.com/opensearch-project/helm-charts/compare/opensearch-dashboards-2.5.2...opensearch-dashboards-2.5.3
+[2.5.2]: https://github.com/opensearch-project/helm-charts/compare/opensearch-dashboards-2.5.1...opensearch-dashboards-2.5.2
+[2.5.1]: https://github.com/opensearch-project/helm-charts/compare/opensearch-dashboards-2.5.0...opensearch-dashboards-2.5.1
 [2.5.0]: https://github.com/opensearch-project/helm-charts/compare/opensearch-dashboards-2.4.1...opensearch-dashboards-2.5.0
 [2.4.1]: https://github.com/opensearch-project/helm-charts/compare/opensearch-dashboards-2.4.0...opensearch-dashboards-2.4.1
 [2.4.0]: https://github.com/opensearch-project/helm-charts/compare/opensearch-dashboards-2.3.0...opensearch-dashboards-2.4.0
