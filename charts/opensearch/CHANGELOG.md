@@ -19,7 +19,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Deprecated
 ### Removed
 ### Fixed
-- Fix path in securityConfig section, it was changed in ver.2
+- Fix path in securityConfig section, it was changed in ver.2. See: [Issue #127](https://github.com/opensearch-project/opensearch-plugins/issues/127)
 ### Security
 
 ## [2.7.0]
