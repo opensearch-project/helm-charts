@@ -427,11 +427,19 @@ networkPolicy:
 # please use the above podSecurityContext.fsGroup instead
 fsGroup: ""
 
-## Set optimal sysctl's. This requires privilege. Can be disabled if
+## Set optimal sysctl's through securityContext. This requires privilege. Can be disabled if
 ## the system has already been preconfigured. (Ex: https://www.elastic.co/guide/en/elasticsearch/reference/current/vm-max-map-count.html)
 ## Also see: https://kubernetes.io/docs/tasks/administer-cluster/sysctl-cluster/
 sysctl:
   enabled: false
+
+## Set optimal sysctl's through privileged initContainer.
+sysctlInit:
+  enabled: false
+  # override image, which is busybox by default
+  # image: busybox
+  # override image tag, which is latest by default
+  # imageTag:
 
 ## Enable to add 3rd Party / Custom plugins not offered in the default OpenSearch image.
 plugins:
