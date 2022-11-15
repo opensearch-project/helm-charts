@@ -11,7 +11,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Removed
 ### Fixed
 ### Security
-
+---
+## [1.16.0]
+### Added
+- Add option to enable the use of `sysctlInit` to set sysctl vm.max_map_count through privileged `initContainer`. See: [Issue #87](https://github.com/opensearch-project/helm-charts/issues/87)
+### Changed
+### Deprecated
+### Removed
+### Fixed
+### Security
 ---
 ## [1.15.0]
 ### Added
@@ -503,7 +511,8 @@ config:
 ### Fixed
 ### Security
 
-[Unreleased]: https://github.com/opensearch-project/helm-charts/compare/opensearch-1.15.0...HEAD
+[Unreleased]: https://github.com/opensearch-project/helm-charts/compare/opensearch-1.16.0...HEAD
+[1.16.0]: https://github.com/opensearch-project/helm-charts/compare/opensearch-1.15.0...opensearch-1.16.0
 [1.15.0]: https://github.com/opensearch-project/helm-charts/compare/opensearch-1.14.2...opensearch-1.15.0
 [1.14.2]: https://github.com/opensearch-project/helm-charts/compare/opensearch-1.14.1...opensearch-1.14.2
 [1.14.1]: https://github.com/opensearch-project/helm-charts/compare/opensearch-1.14.0...opensearch-1.14.1
