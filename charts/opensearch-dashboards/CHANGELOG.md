@@ -19,7 +19,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Added the ability to define defaultMode for the opensearch_dashboards.yml file which is mounted as configMap
 - Added documentation for new configurations
 ### Changed
-- Bumped version to 2.6.1
+- Updated version to 2.6.1
 ---
 ## [2.6.0]
 ### Added
