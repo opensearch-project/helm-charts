@@ -13,7 +13,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 ### Security
 ---
-## [2.7.1]
+## [2.8.1]
 ### Added
 ### Changed
 ### Deprecated
@@ -21,7 +21,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 - Fix path in securityConfig section, it was changed in ver.2. See: [Issue #127](https://github.com/opensearch-project/opensearch-plugins/issues/127)
 ### Security
-
+---
+## [2.8.0]
+### Added
+### Changed
+- Updated OpenSearch appVersion to 2.4.0
+### Deprecated
+### Removed
+### Fixed
+### Security
+---
 ## [2.7.0]
 ### Added
 - Add option to enable the use of `sysctlInit` to set sysctl vm.max_map_count through privileged `initContainer`. See: [Issue #87](https://github.com/opensearch-project/helm-charts/issues/87)
@@ -140,8 +149,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Security
 
 
-[Unreleased]: https://github.com/opensearch-project/helm-charts/compare/opensearch-2.7.0...HEAD
-[2.7.1]: https://github.com/opensearch-project/helm-charts/compare/opensearch-2.7.0...opensearch-2.7.1
+
+[Unreleased]: https://github.com/opensearch-project/helm-charts/compare/opensearch-2.8.0...HEAD
+[2.8.1]: https://github.com/opensearch-project/helm-charts/compare/opensearch-2.8.0...opensearch-2.8.1
+[2.8.0]: https://github.com/opensearch-project/helm-charts/compare/opensearch-2.7.0...opensearch-2.8.0
 [2.7.0]: https://github.com/opensearch-project/helm-charts/compare/opensearch-2.6.1...opensearch-2.7.0
 [2.6.2]: https://github.com/opensearch-project/helm-charts/compare/opensearch-2.6.1...opensearch-2.6.2
 [2.6.1]: https://github.com/opensearch-project/helm-charts/compare/opensearch-2.6.0...opensearch-2.6.1
