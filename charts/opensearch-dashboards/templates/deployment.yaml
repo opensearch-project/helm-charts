@@ -47,6 +47,9 @@ spec:
         - name: config
           configMap:
             name: {{ template "opensearch-dashboards.fullname" . }}-config
+            {{- if .Values.opensearchDashboardsYml.defaultMode }}
+            defaultMode: {{ .Values.opensearchDashboardsYml.defaultMode }}
+            {{- end }}
         {{- end }}
         {{- if .Values.extraVolumes }}
         # Currently some extra blocks accept strings
@@ -151,6 +154,18 @@ spec:
         - containerPort: {{ .Values.service.port }}
           name: {{ .Values.service.httpPortName | default "http" }}
           protocol: TCP
+{{- if .Values.plugins.enabled }}
+        command:
+          - sh
+          - -c
+          - |
+            #!/usr/bin/bash
+            set -e
+            {{- range $plugin := .Values.plugins.installList }}
+            ./bin/opensearch-dashboards-plugin install {{ $plugin }}
+            {{- end }}
+            bash opensearch-dashboards-docker-entrypoint.sh opensearch-dashboards
+{{- end }}
 {{- if .Values.lifecycle }}
         lifecycle:
 {{ toYaml .Values.lifecycle | indent 10 }}
