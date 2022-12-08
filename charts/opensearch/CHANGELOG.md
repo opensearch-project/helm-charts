@@ -13,6 +13,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 ### Security
 ---
+## [2.8.1]
+### Added
+- added "plugins.enabled" and "plugins.installList" to the readme
+### Changed
+- Bumped version to 2.8.1
+---
 ## [2.8.0]
 ### Added
 ### Changed
@@ -140,7 +146,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Security
 
 
-[Unreleased]: https://github.com/opensearch-project/helm-charts/compare/opensearch-2.8.0...HEAD
+[Unreleased]: https://github.com/opensearch-project/helm-charts/compare/opensearch-2.8.1...HEAD
+[2.8.1]: https://github.com/opensearch-project/helm-charts/compare/opensearch-2.8.0...opensearch-2.8.1
 [2.8.0]: https://github.com/opensearch-project/helm-charts/compare/opensearch-2.7.0...opensearch-2.8.0
 [2.7.0]: https://github.com/opensearch-project/helm-charts/compare/opensearch-2.6.1...opensearch-2.7.0
 [2.6.2]: https://github.com/opensearch-project/helm-charts/compare/opensearch-2.6.1...opensearch-2.6.2

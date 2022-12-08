@@ -13,6 +13,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 ### Security
 ---
+## [2.6.1]
+### Added
+- Added the ability to define plugins on node startup via plugins.enabled option for opensearch-dashboards chart.
+- Added the ability to define defaultMode for the opensearch_dashboards.yml file which is mounted as configMap
+- Added documentation for new configurations
+### Changed
+- Updated version to 2.6.1
+---
 ## [2.6.0]
 ### Added
 ### Changed
@@ -167,7 +175,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 ### Security
 
-[Unreleased]: https://github.com/opensearch-project/helm-charts/compare/opensearch-dashboards-2.6.0...HEAD
+[Unreleased]: https://github.com/opensearch-project/helm-charts/compare/opensearch-dashboards-2.6.1...HEAD
+[2.6.1]: https://github.com/opensearch-project/helm-charts/compare/opensearch-dashboards-2.6.0...opensearch-dashboards-2.6.1
 [2.6.0]: https://github.com/opensearch-project/helm-charts/compare/opensearch-dashboards-2.5.3...opensearch-dashboards-2.6.0
 [2.5.3]: https://github.com/opensearch-project/helm-charts/compare/opensearch-dashboards-2.5.2...opensearch-dashboards-2.5.3
 [2.5.2]: https://github.com/opensearch-project/helm-charts/compare/opensearch-dashboards-2.5.1...opensearch-dashboards-2.5.2
