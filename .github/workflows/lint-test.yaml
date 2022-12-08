@@ -8,7 +8,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        k8s: ["1.14.10", "1.18.20", "1.19.16", "1.21.14", "1.22.9", "1.23.12", "1.24.7", "1.25.2"]
+        k8s: ["1.19.16", "1.21.14", "1.22.9", "1.23.12", "1.24.7", "1.25.2"]
     steps:
       - name: Checkout
         uses: actions/checkout@v2
@@ -44,6 +44,7 @@ jobs:
         uses: helm/kind-action@v1.4.0
         with:
           node_image: kindest/node:v${{ matrix.k8s }}
+          kubectl_version: v${{ matrix.k8s }}
         if: ${{ env.CHART_CHANGED == 'true' }}
 
       # See https://github.com/helm/chart-testing/blob/main/doc/ct_install.md
