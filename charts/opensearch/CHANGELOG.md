@@ -16,7 +16,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 - added "plugins.enabled" and "plugins.installList" to the readme
 ### Changed
-- Bumped version to 2.8.1
+- Bumped version to 1.16.1
 ---
 ## [1.16.0]
 ### Added
@@ -341,7 +341,6 @@ After deleting the statefulset and upgrading the helm chart again, the new repla
 - Fixed links to values.yaml in README.md.
 ### Security
 
-<<<<<<< HEAD
 ---
 ## [1.4.2]
 ### Added
