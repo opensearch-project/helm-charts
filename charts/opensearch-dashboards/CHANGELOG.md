@@ -13,6 +13,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 ### Security
 ---
+## [2.7.0]
+### Added
+### Changed
+- Updated penSearch Dashboards appVersion to 2.4.1
+---
 ## [2.6.1]
 ### Added
 - Added the ability to define plugins on node startup via plugins.enabled option for opensearch-dashboards chart.
@@ -175,7 +180,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 ### Security
 
-[Unreleased]: https://github.com/opensearch-project/helm-charts/compare/opensearch-dashboards-2.6.1...HEAD
+[Unreleased]: https://github.com/opensearch-project/helm-charts/compare/opensearch-dashboards-2.7.0...HEAD
+[2.7.0]: https://github.com/opensearch-project/helm-charts/compare/opensearch-dashboards-2.6.1...opensearch-dashboards-2.7.0
 [2.6.1]: https://github.com/opensearch-project/helm-charts/compare/opensearch-dashboards-2.6.0...opensearch-dashboards-2.6.1
 [2.6.0]: https://github.com/opensearch-project/helm-charts/compare/opensearch-dashboards-2.5.3...opensearch-dashboards-2.6.0
 [2.5.3]: https://github.com/opensearch-project/helm-charts/compare/opensearch-dashboards-2.5.2...opensearch-dashboards-2.5.3
