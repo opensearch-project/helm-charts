@@ -13,6 +13,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 ### Security
 ---
+## [2.8.3]
+### Added
+### Changed
+- Updated OpenSearch appVersion to 2.4.1
+### Deprecated
+### Removed
+### Fixed
+### Security
+---
 ## [2.8.2]
 ### Added
 ### Changed

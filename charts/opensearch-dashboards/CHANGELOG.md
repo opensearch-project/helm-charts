@@ -13,6 +13,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 ### Security
 ---
+## [2.6.2]
+### Added
+### Changed
+- Updated penSearch Dashboards appVersion to 2.4.1
+---
 ## [2.6.1]
 ### Added
 - Added the ability to define plugins on node startup via plugins.enabled option for opensearch-dashboards chart.
