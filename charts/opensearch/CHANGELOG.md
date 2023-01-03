@@ -15,6 +15,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [1.18.2]
 ### Added
 - Service ports for performance analyzer
+- Support for http- and transport-hostPort
 ### Changed
 ### Deprecated
 ### Removed

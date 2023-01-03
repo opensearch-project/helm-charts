@@ -339,6 +339,9 @@ spec:
         ports:
         - name: http
           containerPort: {{ .Values.httpPort }}
+          {{- if .Values.httpHostPort }}
+          hostPort: {{ .Values.httpHostPort }}
+          {{- end }}
         - name: transport
           containerPort: {{ .Values.transportPort }}
           {{- if .Values.transportHostPort }}

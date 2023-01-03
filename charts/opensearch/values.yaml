@@ -263,7 +263,6 @@ metricsPort: 9600
 httpHostPort: ""
 transportHostPort: ""
 
-
 service:
   labels: {}
   labelsHeadless: {}
