@@ -13,6 +13,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 ### Security
 ---
+## [2.9.1]
+### Added
+- Support for http- and transport-hostPort
+### Changed
+### Deprecated
+### Removed
+### Fixed
+### Security
+---
 ## [2.9.0]
 ### Added
 ### Changed
@@ -168,7 +177,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Security
 
 
-[Unreleased]: https://github.com/opensearch-project/helm-charts/compare/opensearch-2.9.0...HEAD
+[Unreleased]: https://github.com/opensearch-project/helm-charts/compare/opensearch-2.9.1...HEAD
+[2.9.1]: https://github.com/opensearch-project/helm-charts/compare/opensearch-2.9.0...opensearch-2.9.1
 [2.9.0]: https://github.com/opensearch-project/helm-charts/compare/opensearch-2.8.2...opensearch-2.9.0
 [2.8.2]: https://github.com/opensearch-project/helm-charts/compare/opensearch-2.8.1...opensearch-2.8.2
 [2.8.1]: https://github.com/opensearch-project/helm-charts/compare/opensearch-2.8.0...opensearch-2.8.1
