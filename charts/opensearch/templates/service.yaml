@@ -12,6 +12,9 @@ metadata:
 {{ toYaml .Values.service.annotations | indent 4 }}
 spec:
   type: {{ .Values.service.type }}
+  {{- if (semverCompare ">= 1.23-0" .Capabilities.KubeVersion.Version) }}
+  ipFamilyPolicy: {{ .Values.service.ipFamilyPolicy }}
+  {{- end }}
   selector:
     {{- include "opensearch.selectorLabels" . | nindent 4 }}
   ports:

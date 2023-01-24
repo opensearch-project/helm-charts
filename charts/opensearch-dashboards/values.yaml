@@ -145,6 +145,7 @@ serverHost: "0.0.0.0"
 
 service:
   type: ClusterIP
+  ipFamilyPolicy: SingleStack
   port: 5601
   loadBalancerIP: ""
   nodePort: ""

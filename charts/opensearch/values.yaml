@@ -270,6 +270,7 @@ service:
   headless:
     annotations: {}
   type: ClusterIP
+  ipFamilyPolicy: SingleStack
   nodePort: ""
   annotations: {}
   httpPortName: http
