@@ -388,6 +388,8 @@ fullnameOverride: ""
 
 masterTerminationFix: false
 
+opensearchLifecycle: {}
+
 lifecycle: {}
   # preStop:
   #   exec:
