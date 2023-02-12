@@ -354,7 +354,7 @@ spec:
           valueFrom:
             fieldRef:
               fieldPath: metadata.name
-        {{- if (and (has "master" .Values.roles) (not .Values.singleNode)) }}
+        {{- if (and (or (has "master" .Values.roles) (has "cluster_manager" .Values.roles)) (not .Values.singleNode)) }}
         - name: cluster.initial_master_nodes
           value: "{{ template "opensearch.endpoints" . }}"
         {{- end }}
@@ -459,7 +459,7 @@ spec:
         {{- end }}
         {{- end }}
       {{- if .Values.masterTerminationFix }}
-      {{- if has "master" .Values.roles }}
+      {{- if or (has "master" .Values.roles) (has "cluster_manager" .Values.roles) }}
       # This sidecar will prevent slow master re-election
       - name: opensearch-master-graceful-termination-handler
         image: "{{ template "opensearch.dockerRegistry" . }}{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
