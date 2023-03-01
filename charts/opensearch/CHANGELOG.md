@@ -13,6 +13,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 ### Security
 ---
+## [2.11.1]
+### Added
+### Changed
+### Deprecated
+### Removed
+### Fixed
+- masterTerminationFix option when cluster_manager is specified
+- singleNode condition cluster_manager is specified 
+### Security
+---
 ## [2.11.0]
 ### Added
 ### Changed
