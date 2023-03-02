@@ -13,10 +13,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 ### Security
 ---
-## [2.10.1]
+## [2.11.1]
 ### Added
 - Support for lifecycle in the opensearch container in the StatefulSet
 ### Changed
+### Deprecated
+### Removed
+### Fixed
+### Security
+---
+## [2.11.0]
+### Added
+### Changed
+- Updated OpenSearch appVersion to 2.6.0
 ### Deprecated
 ### Removed
 ### Fixed
@@ -195,7 +204,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Security
 
 
-[Unreleased]: https://github.com/opensearch-project/helm-charts/compare/opensearch-2.10.0...HEAD
+[Unreleased]: https://github.com/opensearch-project/helm-charts/compare/opensearch-2.11.0...HEAD
+[2.11.0]: https://github.com/opensearch-project/helm-charts/compare/opensearch-2.10.0...opensearch-2.11.0
 [2.10.0]: https://github.com/opensearch-project/helm-charts/compare/opensearch-2.9.1...opensearch-2.10.0
 [2.9.1]: https://github.com/opensearch-project/helm-charts/compare/opensearch-2.9.0...opensearch-2.9.1
 [2.9.0]: https://github.com/opensearch-project/helm-charts/compare/opensearch-2.8.2...opensearch-2.9.0
