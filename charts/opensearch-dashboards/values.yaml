@@ -145,7 +145,13 @@ serverHost: "0.0.0.0"
 
 service:
   type: ClusterIP
-  ipFamilyPolicy: SingleStack
+  # The IP family and IP families options are to set the behaviour in a dual-stack environment
+  # Omitting these values will let the service fall back to whatever the CNI dictates the defaults
+  # should be
+  #
+  # ipFamilyPolicy: SingleStack
+  # ipFamilies:
+  # - IPv4
   port: 5601
   loadBalancerIP: ""
   nodePort: ""
