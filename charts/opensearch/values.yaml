@@ -259,6 +259,8 @@ enableServiceLinks: true
 protocol: https
 httpPort: 9200
 transportPort: 9300
+httpHostPort: ""
+transportHostPort: ""
 
 service:
   labels: {}
