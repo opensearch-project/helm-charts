@@ -379,6 +379,10 @@ spec:
         envFrom:
 {{ toYaml .Values.envFrom | indent 8 }}
 {{- end }}
+{{- if .Values.opensearchLifecycle }}
+        lifecycle:
+{{ toYaml .Values.opensearchLifecycle | indent 10 }}
+{{- end }}
         volumeMounts:
         {{- if .Values.persistence.enabled }}
         - name: "{{ template "opensearch.uname" . }}"
