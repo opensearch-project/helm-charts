@@ -12,6 +12,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 ### Security
 ---
+## [1.18.1]
+### Added
+- Support for lifecycle in the opensearch container in the StatefulSet
+### Changed
+### Deprecated
+### Removed
+### Fixed
+### Security
+---
 ## [1.18.0]
 ### Added
 ### Changed
