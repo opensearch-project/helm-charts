@@ -388,6 +388,14 @@ fullnameOverride: ""
 
 masterTerminationFix: false
 
+opensearchLifecycle: {}
+  # preStop:
+  #   exec:
+  #     command: ["/bin/sh", "-c", "echo Hello from the preStart handler > /usr/share/message"]
+  # postStart:
+  #   exec:
+  #     command: ["/bin/sh", "-c", "echo Hello from the postStart handler > /usr/share/message"]
+
 lifecycle: {}
   # preStop:
   #   exec:
