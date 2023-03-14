@@ -2,10 +2,11 @@
 
 This Helm chart installs [OpenSearch](https://github.com/opensearch-project/OpenSearch) with configurable TLS, RBAC and much more configurations. This chart caters a number of different use cases and setups.
 
-- [Requirements](#requirements)
-- [Installing](#installing)
-- [Uninstalling](#uninstalling)
-- [Configuration](#configuration)
+- [OpenSearch Helm Chart](#opensearch-helm-chart)
+  - [Requirements](#requirements)
+  - [Installing](#installing)
+  - [Uninstalling](#uninstalling)
+  - [Configuration](#configuration)
 
 ## Requirements
 
@@ -111,7 +112,7 @@ helm uninstall my-release
 | `startupProbe`                     | Configuration fields for the startup [probe][]                                                                                                                                                                               | see [exampleStartup][] in `values.yaml`                                     |
 | `plugins.enabled`                     | Allow/disallow to add 3rd Party / Custom plugins not offered in the default OpenSearchDashboards image                    | false  |
 | `plugins.installList`                 | Array containing the Opensearch Dashboards plugins to be installed in container	                                        |   []   |
-
+| `opensearchLifecycle`              | Allows you to configure lifecycle hooks for the OpenSearch container in the StatefulSet                                                                                                                                                                   | {}                                              |
 
 
 [anti-affinity]: https://kubernetes.io/docs/concepts/configuration/assign-pod-node/#affinity-and-anti-affinity
