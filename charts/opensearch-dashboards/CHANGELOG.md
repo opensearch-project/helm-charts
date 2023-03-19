@@ -13,6 +13,55 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 ### Security
 ---
+## [2.9.1]
+### Added
+### Changed
+- Allow user-defined labels on ingress resource
+### Deprecated
+### Removed
+### Fixed
+### Security
+---
+## [2.9.0]
+### Added
+### Changed
+- Updated OpenSearch Dashboards appVersion to 2.6.0
+### Deprecated
+### Removed
+### Fixed
+### Security
+---
+## [2.8.0]
+### Added
+### Changed
+- Updated OpenSearch Dashboards appVersion to 2.5.0
+### Deprecated
+### Removed
+### Fixed
+### Security
+---
+## [2.7.0]
+### Added
+### Changed
+- Updated OpenSearch Dashboards appVersion to 2.4.1
+---
+## [2.6.1]
+### Added
+- Added the ability to define plugins on node startup via plugins.enabled option for opensearch-dashboards chart.
+- Added the ability to define defaultMode for the opensearch_dashboards.yml file which is mounted as configMap
+- Added documentation for new configurations
+### Changed
+- Updated version to 2.6.1
+---
+## [2.6.0]
+### Added
+### Changed
+- Updated OpenSearch Dashboards appVersion to 2.4.0
+### Deprecated
+### Removed
+### Fixed
+### Security
+---
 ## [2.5.3]
 ### Added
 - Startup, readiness and liveness probes for deployment
@@ -158,7 +207,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 ### Security
 
-[Unreleased]: https://github.com/opensearch-project/helm-charts/compare/opensearch-dashboards-2.5.3...HEAD
+[Unreleased]: https://github.com/opensearch-project/helm-charts/compare/opensearch-dashboards-2.9.0...HEAD
+[2.9.0]: https://github.com/opensearch-project/helm-charts/compare/opensearch-dashboards-2.8.0...opensearch-dashboards-2.9.0
+[2.8.0]: https://github.com/opensearch-project/helm-charts/compare/opensearch-dashboards-2.7.0...opensearch-dashboards-2.8.0
+[2.7.0]: https://github.com/opensearch-project/helm-charts/compare/opensearch-dashboards-2.6.1...opensearch-dashboards-2.7.0
+[2.6.1]: https://github.com/opensearch-project/helm-charts/compare/opensearch-dashboards-2.6.0...opensearch-dashboards-2.6.1
+[2.6.0]: https://github.com/opensearch-project/helm-charts/compare/opensearch-dashboards-2.5.3...opensearch-dashboards-2.6.0
 [2.5.3]: https://github.com/opensearch-project/helm-charts/compare/opensearch-dashboards-2.5.2...opensearch-dashboards-2.5.3
 [2.5.2]: https://github.com/opensearch-project/helm-charts/compare/opensearch-dashboards-2.5.1...opensearch-dashboards-2.5.2
 [2.5.1]: https://github.com/opensearch-project/helm-charts/compare/opensearch-dashboards-2.5.0...opensearch-dashboards-2.5.1

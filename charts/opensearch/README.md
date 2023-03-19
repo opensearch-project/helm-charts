@@ -2,10 +2,11 @@
 
 This Helm chart installs [OpenSearch](https://github.com/opensearch-project/OpenSearch) with configurable TLS, RBAC and much more configurations. This chart caters a number of different use cases and setups.
 
-- [Requirements](#requirements)
-- [Installing](#installing)
-- [Uninstalling](#uninstalling)
-- [Configuration](#configuration)
+- [OpenSearch Helm Chart](#opensearch-helm-chart)
+  - [Requirements](#requirements)
+  - [Installing](#installing)
+  - [Uninstalling](#uninstalling)
+  - [Configuration](#configuration)
 
 ## Requirements
 
@@ -52,6 +53,7 @@ helm uninstall my-release
 | `extraVolumes`                     | Array of extra volumes to be added                                                                                                                                                | `[]`                                            |
 | `fullnameOverride`                 | Overrides the `clusterName` and `nodeGroup` when used in the naming of resources. This should only be used when using a single `nodeGroup`, otherwise you will have name conflicts                                                                        | `""`                                            |
 | `hostAliases`                      | Configurable [hostAliases][]                                                                                                                                                                                                                              | `[]`                                            |
+| `httpHostPort`                         | Expose another http-port as hostPort. Refer to documentation for more information and requirements about using hostPorts. | `""`                                          |
 | `httpPort`                         | The http port that Kubernetes will use for the healthchecks and the service. If you change this you will also need to set `http.port` in `extraEnvs`                                                                                                    | `9200`                                          |
 | `image.pullPolicy`                 | The Kubernetes [imagePullPolicy][] value                                                                                                                                                                                                                  | `IfNotPresent`                                  |
 | `imagePullSecrets`                 | Configuration for [imagePullSecrets][] so that you can use a private registry for your image                                                                                                                                                              | `[]`                                            |
@@ -99,11 +101,12 @@ helm uninstall my-release
 | `service.transportPortName`        | The name of the transport port within the service                                                                                                                                                                                                         | `transport`                                     |
 | `service.type`                     | OpenSearch [Service Types][]                                                                                                                                                                                                                           | `ClusterIP`                                     |
 | `sidecarResources`                 | Allows you to set the [resources][] for the sidecar containers in the StatefulSet                                                                                                                                                                         | {}                                              |
-| `sysctlInitContainer`              | Allows you to disable the `sysctlInitContainer` if you are setting sysctl vm.max_map_count` with another method                                                                                                                                        | `enabled: true`                                 |
+| `sysctlInit`              | Allows you to enable the `sysctlInit` to set sysctl vm.max_map_count through privileged `initContainer`.                                                                                                                                        | `enabled: false`                                 |
 | `sysctlVmMaxMapCount`              | Sets the [vm.max_map_count][] needed for OpenSearch                                                                                                                                                                                            | `262144`                                        |
 | `terminationGracePeriod`           | The [terminationGracePeriod][] in seconds used when trying to stop the pod                                                                                                                                                                                | `120`                                           |
 | `tolerations`                      | Configurable [tolerations][]                                                                                                                                                                                                                              | `[]`                                            |
 | `topologySpreadConstraints`        | Configuration for pod [topologySpreadConstraints][]                                                                                                                                                                                                       | `[]`                                            |
+| `transportHostPort`                         | Expose another transport port as hostPort. Refer to documentation for more information and requirements about using hostPorts. | `""`                                          |
 | `transportPort`                    | The transport port that Kubernetes will use for the service. If you change this you will also need to set transport port configuration in `extraEnvs`                                                                                                 | `9300`                                          |
 | `updateStrategy`                   | The [updateStrategy][] for the StatefulSet. By default Kubernetes will wait for the cluster to be green after upgrading each pod. Setting this to `OnDelete` will allow you to manually delete each pod during upgrades                                   | `RollingUpdate`                                 |
 | `volumeClaimTemplate`              | Configuration for the [volumeClaimTemplate for StatefulSets][]. You will want to adjust the storage (default `30Gi` ) and the `storageClassName` if you are using a different storage class                                                               | see [values.yaml][]                             |
@@ -111,8 +114,9 @@ helm uninstall my-release
 | `livenessProbe`                     | Configuration fields for the liveness [probe][]                                                                                                                                                                               | see [exampleLiveness][] in `values.yaml`
 | `readinessProbe`                     | Configuration fields for the readiness [probe][]                                                                                                                                                                               | see [exampleReadiness][] in `values.yaml`
 | `startupProbe`                     | Configuration fields for the startup [probe][]                                                                                                                                                                               | see [exampleStartup][] in `values.yaml`                                     |
-
-
+| `plugins.enabled`                     | Allow/disallow to add 3rd Party / Custom plugins not offered in the default OpenSearchDashboards image                    | false  |
+| `plugins.installList`                 | Array containing the Opensearch Dashboards plugins to be installed in container	                                        |   []   |
+| `opensearchLifecycle`              | Allows you to configure lifecycle hooks for the OpenSearch container in the StatefulSet                                                                                                                                                                   | {}                                              |
 
 
 [anti-affinity]: https://kubernetes.io/docs/concepts/configuration/assign-pod-node/#affinity-and-anti-affinity

@@ -220,7 +220,7 @@ spec:
       {{- if .Values.hostAliases }}
       hostAliases: {{ toYaml .Values.hostAliases | nindent 8 }}
       {{- end }}
-      {{- if or (.Values.extraInitContainers) (.Values.keystore) (.Values.persistence.enabled) }}
+      {{- if or (.Values.extraInitContainers) (.Values.keystore) (.Values.persistence.enabled) (.Values.sysctlInit.enabled)  }}
       initContainers:
 {{- if and .Values.persistence.enabled .Values.persistence.enableInitChown }}
       - name: fsgroup-volume
@@ -235,6 +235,26 @@ spec:
         volumeMounts:
           - name: "{{ template "opensearch.uname" . }}"
             mountPath: {{ .Values.opensearchHome }}/data
+{{- end }}
+{{- if .Values.sysctlInit.enabled }}
+      - name: sysctl
+        image: "{{ template "opensearch.dockerRegistry" . }}{{ .Values.sysctlInit.image | default "busybox" }}:{{ .Values.sysctlInit.imageTag | default "latest" }}"
+        imagePullPolicy: "{{ .Values.image.pullPolicy }}"
+        command:
+        - sh
+        - -c
+        - |
+          set -xe
+          DESIRED="{{ .Values.sysctlVmMaxMapCount }}"
+          CURRENT=$(sysctl -n vm.max_map_count)
+          if [ "$DESIRED" -gt "$CURRENT" ]; then
+            sysctl -w vm.max_map_count=$DESIRED
+          fi
+        securityContext:
+          runAsUser: 0
+          privileged: true
+        resources:
+           {{ toYaml .Values.initResources | nindent 10 }}
 {{- end }}
 {{ if .Values.keystore }}
       - name: keystore
@@ -319,8 +339,14 @@ spec:
         ports:
         - name: http
           containerPort: {{ .Values.httpPort }}
+          {{- if .Values.httpHostPort }}
+          hostPort: {{ .Values.httpHostPort }}
+          {{- end }}
         - name: transport
           containerPort: {{ .Values.transportPort }}
+          {{- if .Values.transportHostPort }}
+          hostPort: {{ .Values.transportHostPort }}
+          {{- end }}
         - name: metrics
           containerPort: {{ .Values.metricsPort }}
         resources:
@@ -354,6 +380,10 @@ spec:
 {{- if .Values.envFrom }}
         envFrom:
 {{ toYaml .Values.envFrom | indent 8 }}
+{{- end }}
+{{- if .Values.opensearchLifecycle }}
+        lifecycle:
+{{ toYaml .Values.opensearchLifecycle | indent 10 }}
 {{- end }}
         volumeMounts:
         {{- if .Values.persistence.enabled }}
