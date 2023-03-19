@@ -13,6 +13,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 ### Security
 ---
+## [2.9.1]
+### Added
+### Changed
+- Allow user-defined labels on ingress resource
+### Deprecated
+### Removed
+### Fixed
+### Security
+---
 ## [2.9.0]
 ### Added
 ### Changed
@@ -21,7 +30,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Removed
 ### Fixed
 ### Security
----
 ---
 ## [2.8.0]
 ### Added
