@@ -12,6 +12,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 ### Security
 ---
+##[1.18.2]
+### Added
+- Added option for `httpHostPort` and `transportHostPort`. Backport, see [Issue #335](https://github.com/opensearch-project/helm-charts/issues/335)
+### Changed
+### Deprecated
+### Removed
+### Fixed
+### Security
+---
 ## [1.18.1]
 ### Added
 - Support for lifecycle in the opensearch container in the StatefulSet
