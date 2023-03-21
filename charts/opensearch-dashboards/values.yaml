@@ -67,6 +67,9 @@ secretMounts: []
 
 podAnnotations: {}
 
+# Deployment annotations
+annotations: {}
+
 extraEnvs: []
 #  - name: "NODE_OPTIONS"
 #    value: "--max-old-space-size=1800"
