@@ -12,6 +12,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 ### Security
 ---
+## [1.11.1]
+### Added
+### Changed
+- Allow user-defined labels on ingress resource
+### Deprecated
+### Removed
+### Fixed
+### Security
+---
 ## [1.11.0]
 ### Added
 ### Changed
@@ -349,7 +358,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 ### Security
 
-[Unreleased]: https://github.com/opensearch-project/helm-charts/compare/opensearch-dashboards-1.11.0...HEAD
+[Unreleased]: https://github.com/opensearch-project/helm-charts/compare/opensearch-dashboards-1.11.1...HEAD
+[1.11.1]: https://github.com/opensearch-project/helm-charts/compare/opensearch-1.11.0...opensearch-1.11.1
 [1.11.0]: https://github.com/opensearch-project/helm-charts/compare/opensearch-1.10.0...opensearch-1.11.0
 [1.10.0]: https://github.com/opensearch-project/helm-charts/compare/opensearch-1.9.1...opensearch-1.10.0
 [1.9.1]: https://github.com/opensearch-project/helm-charts/compare/opensearch-1.9.0...opensearch-1.9.1
