@@ -350,6 +350,8 @@ spec:
           {{- if .Values.transportHostPort }}
           hostPort: {{ .Values.transportHostPort }}
           {{- end }}
+        - name: metrics
+          containerPort: {{ .Values.metricsPort }}
         resources:
 {{ toYaml .Values.resources | indent 10 }}
         env:
