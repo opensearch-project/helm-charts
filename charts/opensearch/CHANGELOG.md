@@ -213,8 +213,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Security
 
 
-
-[Unreleased]: https://github.com/opensearch-project/helm-charts/compare/opensearch-2.11.0...HEAD
+[Unreleased]: https://github.com/opensearch-project/helm-charts/compare/opensearch-2.11.1...HEAD
 [2.11.1]: https://github.com/opensearch-project/helm-charts/compare/opensearch-2.11.0...opensearch-2.11.1
 [2.11.0]: https://github.com/opensearch-project/helm-charts/compare/opensearch-2.10.0...opensearch-2.11.0
 [2.10.0]: https://github.com/opensearch-project/helm-charts/compare/opensearch-2.9.1...opensearch-2.10.0
