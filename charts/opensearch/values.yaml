@@ -259,6 +259,9 @@ enableServiceLinks: true
 protocol: https
 httpPort: 9200
 transportPort: 9300
+metricsPort: 9600
+httpHostPort: ""
+transportHostPort: ""
 
 service:
   labels: {}
@@ -270,6 +273,7 @@ service:
   annotations: {}
   httpPortName: http
   transportPortName: transport
+  metricsPortName: metrics
   loadBalancerIP: ""
   loadBalancerSourceRanges: []
   externalTrafficPolicy: ""
