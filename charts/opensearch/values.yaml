@@ -135,9 +135,6 @@ podAnnotations: {}
 # OpenSearch Statefulset annotations
 openSearchAnnotations: {}
 
-# OpenSearch Statefulset annotations
-openSearchAnnotations: {}
-
 # additionals labels
 labels: {}
 
