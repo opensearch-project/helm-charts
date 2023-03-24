@@ -131,9 +131,9 @@ image:
 
 podAnnotations: {}
   # iam.amazonaws.com/role: es-cluster
-  
-# Deployment annotations
-annotations: {}
+
+# OpenSearch Statefulset annotations
+openSearchAnnotations: {}
 
 # OpenSearch Statefulset annotations
 openSearchAnnotations: {}
