@@ -68,7 +68,7 @@ secretMounts: []
 podAnnotations: {}
 
 # Deployment annotations
-annotations: {}
+dashboardAnnotations: {}
 
 extraEnvs: []
 #  - name: "NODE_OPTIONS"
