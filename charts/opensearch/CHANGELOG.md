@@ -13,6 +13,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 ### Security
 ---
+## [2.11.3]
+### Added
+- Support setting ipFamilyPolicy on Service
+- Support setting ipFamilies on Service
+---
 ## [2.11.2]
 ### Added
 - Service ports for performance analyzer
