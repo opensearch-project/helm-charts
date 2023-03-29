@@ -12,6 +12,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 ### Security
 ---
+## [1.19.1]
+### Added
+- Support setting ipFamilyPolicy on Service
+- Support setting ipFamilies on Service
+---
 ## [1.19.0]
 ### Added
 ### Changed
@@ -563,7 +568,8 @@ config:
 ### Fixed
 ### Security
 
-[Unreleased]: https://github.com/opensearch-project/helm-charts/compare/opensearch-1.19.0...HEAD
+[Unreleased]: https://github.com/opensearch-project/helm-charts/compare/opensearch-1.19.1...HEAD
+[1.19.1]: https://github.com/opensearch-project/helm-charts/compare/opensearch-1.19.0...opensearch-1.19.1
 [1.19.0]: https://github.com/opensearch-project/helm-charts/compare/opensearch-1.18.2...opensearch-1.19.0
 [1.18.2]: https://github.com/opensearch-project/helm-charts/compare/opensearch-1.18.1...opensearch-1.18.2
 [1.18.1]: https://github.com/opensearch-project/helm-charts/compare/opensearch-1.18.0...opensearch-1.18.1
