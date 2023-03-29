@@ -13,7 +13,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 ### Security
 ---
-## [2.9.2]
+## [2.9.3]
 ### Added
 - Added custom opensearch and dashboard annotations through values.yaml
 ### Changed
@@ -21,6 +21,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Removed
 ### Fixed
 ### Security
+---
+## [2.9.2]
+### Added
+- Support setting ipFamilyPolicy on Service
+- Support setting ipFamilies on Service
 ---
 ## [2.9.1]
 ### Added
