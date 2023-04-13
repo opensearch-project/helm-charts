@@ -32,7 +32,7 @@ Contributors should choose the corresponding branch(es) when commiting their cha
 * If you have a change for all available versions, first open a PR on `main`, then open a backport PR with `[backport 1.x]` in the title, with label `backport 1.x`, etc.
 * No changes should be commited to `gh-pages` by any contributor, as this branch should be only changed by github actions `chart-releaser`
 
-## Kuvernetes Version Support
+## Kubernetes Version Support
 * This helm-chart repository is tested with kubernetes version 1.19 and above
 
 ## Installation
