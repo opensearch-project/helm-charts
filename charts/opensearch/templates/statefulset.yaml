@@ -225,12 +225,13 @@ spec:
 {{- if and .Values.persistence.enabled .Values.persistence.enableInitChown }}
       - name: fsgroup-volume
         image: "{{ template "opensearch.dockerRegistry" . }}{{ .Values.persistence.image | default "busybox" }}:{{ .Values.persistence.imageTag | default "latest" }}"
+        imagePullPolicy: "{{ .Values.image.pullPolicy }}"
         command: ['sh', '-c']
         args:
           - 'chown -R 1000:1000 /usr/share/opensearch/data'
         securityContext:
           runAsUser: 0
-        resources: 
+        resources:
            {{ toYaml .Values.initResources | nindent 10 }}
         volumeMounts:
           - name: "{{ template "opensearch.uname" . }}"
@@ -284,7 +285,7 @@ spec:
           cp -a {{ .Values.opensearchHome }}/config/opensearch.keystore /tmp/keystore/
         env: {{ toYaml .Values.extraEnvs | nindent 10 }}
         envFrom: {{ toYaml .Values.envFrom | nindent 10 }}
-        resources: 
+        resources:
            {{ toYaml .Values.initResources | nindent 10 }}
         volumeMounts:
         - name: keystore
@@ -323,7 +324,7 @@ spec:
 
           bash opensearch-docker-entrypoint.sh
       {{- end }}
-  
+
         image: "{{ template "opensearch.dockerRegistry" . }}{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
         imagePullPolicy: "{{ .Values.image.pullPolicy }}"
         readinessProbe:

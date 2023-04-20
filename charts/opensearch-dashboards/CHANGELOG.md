@@ -13,6 +13,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 ### Security
 ---
+## [2.9.3]
+### Added
+### Changed
+### Deprecated
+### Removed
+### Fixed
+- Add imagePullPolicy to fsgroup-volume init container
+### Security
+---
 ## [2.9.2]
 ### Added
 - Support setting ipFamilyPolicy on Service
