@@ -132,6 +132,9 @@ image:
 podAnnotations: {}
   # iam.amazonaws.com/role: es-cluster
 
+# OpenSearch Statefulset annotations
+openSearchAnnotations: {}
+
 # additionals labels
 labels: {}
 

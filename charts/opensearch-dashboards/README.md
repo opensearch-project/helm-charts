@@ -84,6 +84,7 @@
 | `plugins.enabled`                     | Allow/disallow to add 3rd Party / Custom plugins not offered in the default OpenSearchDashboards image                    | false  |
 | `plugins.installList`                 | Array containing the Opensearch Dashboards plugins to be installed in container	                                        |   []   |
 | `opensearchDashboardsYml.defaultMode` | Allow you to set the defaultMode for the opensearch_dashboards.yml mounted as configMap                                   |        |
+| `dashboardAnnotations`               | Allows you to configure custom annotation in the deployement of the OpenSearchDashboards container   | {} |
 
 [probe]: https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-startup-probes/#define-readiness-probes
 
