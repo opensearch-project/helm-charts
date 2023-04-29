@@ -7,6 +7,9 @@ metadata:
     {{- include "opensearch.labels" . | nindent 4 }}
   annotations:
     majorVersion: "{{ include "opensearch.majorVersion" . }}"
+    {{- with .Values.openSearchAnnotations }}
+    {{- toYaml . | nindent 4 }}
+    {{- end }}
 spec:
   serviceName: {{ template "opensearch.serviceName" . }}-headless
   selector:
