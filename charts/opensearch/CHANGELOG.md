@@ -12,6 +12,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 ### Security
 ---
+## [1.19.2]
+### Added
+- Added custom opensearch deployment annotation through values.yaml
+---
 ## [1.19.1]
 ### Added
 - Support setting ipFamilyPolicy on Service
