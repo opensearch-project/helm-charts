@@ -237,6 +237,18 @@ extraObjects: []
   #       type: Opaque
   #       labels:
   #         app.kubernetes.io/part-of: argocd
+  # - |
+  #    apiVersion: policy/v1
+  #    kind: PodDisruptionBudget
+  #    metadata:
+  #      name: {{ template "opensearch-dashboards.fullname" . }}
+  #      labels:
+  #        {{- include "opensearch-dashboards.labels" . | nindent 4 }}
+  #    spec:
+  #      minAvailable: 1
+  #      selector:
+  #        matchLabels:
+#          {{- include "opensearch-dashboards.selectorLabels" . | nindent 6 }}
 
 # pod lifecycle policies as outlined here:
 # https://kubernetes.io/docs/concepts/containers/container-lifecycle-hooks/#container-hooks
