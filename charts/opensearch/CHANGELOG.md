@@ -13,6 +13,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 ### Security
 ---
+## [2.12.1]
+### Added
+### Changed
+### Deprecated
+### Removed
+### Fixed
+- Add imagePullPolicy to fsgroup-volume init container
+### Security
+---
 ## [2.12.0]
 ### Added
 - Updated OpenSearch appVersion to 2.7.0
@@ -33,7 +42,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ---
 ## [2.11.4]
 ### Added
-- Added custom opensearch deployment annotation through values.yaml 
+- Added custom opensearch deployment annotation through values.yaml
 ### Changed
 ### Deprecated
 ### Removed
