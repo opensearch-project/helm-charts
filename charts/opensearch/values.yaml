@@ -325,9 +325,11 @@ securityConfig:
   config:
     # There are multiple ways to define the configuration here:
     # * If you define anything under data, the chart will automatically create
-    #   a secret and mount it.
+    #   a secret and mount it. This is best option to choose if you want to override all the
+    #   existing yml files at once.
     # * If you define securityConfigSecret, the chart will assume this secret is
-    #   created externally and mount it.
+    #   created externally and mount it. This is best option to choose if your intention is to
+    #   only update a single yml file.
     # * It is an error to define both data and securityConfigSecret.
     securityConfigSecret: ""
     dataComplete: true
