@@ -444,6 +444,23 @@ entries:
     - https://github.com/opensearch-project/helm-charts/releases/download/opensearch-2.0.0/opensearch-2.0.0.tgz
     version: 2.0.0
   - apiVersion: v2
+    appVersion: 1.3.10
+    created: "2023-05-18T20:23:15.633488567Z"
+    description: A Helm chart for OpenSearch
+    digest: 8e16f0ec088ac1c30ace9777f2a3702e7347b04ce7b32a0236c63ba9dbdcc2b1
+    maintainers:
+    - name: DandyDeveloper
+    - name: bbarani
+    - name: gaiksaya
+    - name: peterzhuamazon
+    - name: prudhvigodithi
+    - name: TheAlgo
+    name: opensearch
+    type: application
+    urls:
+    - https://github.com/opensearch-project/helm-charts/releases/download/opensearch-1.20.0/opensearch-1.20.0.tgz
+    version: 1.20.0
+  - apiVersion: v2
     appVersion: 1.3.9
     created: "2023-05-01T21:42:22.001154287Z"
     description: A Helm chart for OpenSearch
@@ -1849,6 +1866,23 @@ entries:
     - https://github.com/opensearch-project/helm-charts/releases/download/opensearch-dashboards-2.0.0/opensearch-dashboards-2.0.0.tgz
     version: 2.0.0
   - apiVersion: v2
+    appVersion: 1.3.10
+    created: "2023-05-18T20:23:15.793911633Z"
+    description: A Helm chart for OpenSearch Dashboards
+    digest: 5c6c714009ac87346ec0ec2b4acad0434799300f3f5ebf993a0caeabb17ef9e1
+    maintainers:
+    - name: DandyDeveloper
+    - name: bbarani
+    - name: gaiksaya
+    - name: peterzhuamazon
+    - name: prudhvigodithi
+    - name: TheAlgo
+    name: opensearch-dashboards
+    type: application
+    urls:
+    - https://github.com/opensearch-project/helm-charts/releases/download/opensearch-dashboards-1.13.0/opensearch-dashboards-1.13.0.tgz
+    version: 1.13.0
+  - apiVersion: v2
     appVersion: 1.3.9
     created: "2023-05-01T21:42:22.16073785Z"
     description: A Helm chart for OpenSearch Dashboards
@@ -2478,4 +2512,4 @@ entries:
     urls:
     - https://github.com/opensearch-project/helm-charts/releases/download/opensearch-dashboards-1.0.3/opensearch-dashboards-1.0.3.tgz
     version: 1.0.3
-generated: "2023-05-02T22:27:58.702931164Z"
+generated: "2023-05-18T20:23:15.795284152Z"
