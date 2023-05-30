@@ -242,6 +242,7 @@ spec:
           runAsUser: 0
         resources: 
           {{- toYaml .Values.initResources | nindent 10 }}
+
         volumeMounts:
           - name: "{{ template "opensearch.uname" . }}"
             mountPath: {{ .Values.opensearchHome }}/data

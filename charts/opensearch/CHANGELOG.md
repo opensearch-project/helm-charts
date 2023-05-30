@@ -40,6 +40,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Deprecated
 ### Removed
 ### Fixed
+- Add imagePullPolicy to fsgroup-volume init container
+### Security
+---
+## [2.11.5]
+### Added
+- Update the Readme and comments section.
+### Changed
+### Deprecated
+### Removed
+### Fixed
 ### Security
 ---
 ## [2.11.4]
