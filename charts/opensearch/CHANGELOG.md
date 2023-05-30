@@ -12,6 +12,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 ### Security
 ---
+## [1.20.1]
+### Added
+- Option for automountServiceAccountToken
+### Changed
+- if/else logic for serviceAccountName to be more intelligent
+### Deprecated
+### Removed
+### Fixed
+### Security
+---
 ## [1.20.0]
 ### Added
 ### Changed
