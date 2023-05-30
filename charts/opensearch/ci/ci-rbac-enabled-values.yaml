@@ -160,6 +160,7 @@ rbac:
   create: true
   serviceAccountAnnotations: {}
   serviceAccountName: ""
+  automountServiceAccountToken: true
 
 podSecurityPolicy:
   create: false

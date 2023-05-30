@@ -167,6 +167,8 @@ rbac:
   create: false
   serviceAccountAnnotations: {}
   serviceAccountName: ""
+  # Controls whether or not the Service Account token is automatically mounted to /var/run/secrets/kubernetes.io/serviceaccount
+  automountServiceAccountToken: false
 
 podSecurityPolicy:
   create: false

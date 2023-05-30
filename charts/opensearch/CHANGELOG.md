@@ -13,6 +13,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 ### Security
 ---
+## [2.12.2]
+### Added
+- Support for toggling automountServiceAccountToken to comply with strict Kubernetes Policies
+### Changed
+- if/else logic for serviceAccountName to be more intelligent
+### Deprecated
+### Removed
+### Fixed
+- Whitespace under Resources blocks that was causing linting errors
+### Security
+---
 ## [2.12.1]
 ### Added
 ### Changed
@@ -29,6 +40,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Deprecated
 ### Removed
 ### Fixed
+- Add imagePullPolicy to fsgroup-volume init container
 ### Security
 ---
 ## [2.11.5]
