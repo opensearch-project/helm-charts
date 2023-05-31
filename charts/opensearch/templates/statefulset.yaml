@@ -83,8 +83,12 @@ spec:
         {{- end }}
       {{- if and .Values.rbac.create (eq .Values.rbac.serviceAccountName "") }}
       serviceAccountName: "{{ template "opensearch.uname" . }}"
-      {{- else }}
+      automountServiceAccountToken: {{ ne .Values.rbac.automountServiceAccountToken false }}
+      {{- else if and .Values.rbac.create (ne .Values.rbac.serviceAccountName "") }}
       serviceAccountName: {{ .Values.rbac.serviceAccountName | quote }}
+      automountServiceAccountToken: {{ ne .Values.rbac.automountServiceAccountToken false }}
+      {{- else }}
+      automountServiceAccountToken: {{ ne .Values.rbac.automountServiceAccountToken false }}
       {{- end }}
       {{- with .Values.tolerations }}
       tolerations:
