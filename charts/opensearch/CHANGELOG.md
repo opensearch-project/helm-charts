@@ -13,6 +13,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 ### Security
 ---
+## [2.13.0]
+### Added
+- Updated OpenSearch appVersion to 2.8.0
+### Changed
+### Deprecated
+### Removed
+### Fixed
+### Security
+---
 ## [2.12.2]
 ### Added
 - Support for toggling automountServiceAccountToken to comply with strict Kubernetes Policies
@@ -266,7 +275,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Security
 
 
-[Unreleased]: https://github.com/opensearch-project/helm-charts/compare/opensearch-2.12.0...HEAD
+[Unreleased]: https://github.com/opensearch-project/helm-charts/compare/opensearch-2.13.0...HEAD
+[2.13.0]: https://github.com/opensearch-project/helm-charts/compare/opensearch-2.12.0...opensearch-2.13.0
 [2.12.0]: https://github.com/opensearch-project/helm-charts/compare/opensearch-2.11.5...opensearch-2.12.0
 [2.11.5]: https://github.com/opensearch-project/helm-charts/compare/opensearch-2.11.4...opensearch-2.11.5
 [2.11.4]: https://github.com/opensearch-project/helm-charts/compare/opensearch-2.11.3...opensearch-2.11.4
