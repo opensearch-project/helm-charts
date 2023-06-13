@@ -501,3 +501,15 @@ extraObjects: []
   #       type: Opaque
   #       labels:
   #         app.kubernetes.io/part-of: argocd
+  # - |
+  #    apiVersion: policy/v1
+  #    kind: PodDisruptionBudget
+  #    metadata:
+  #      name: {{ template "opensearch.uname" . }}
+  #      labels:
+  #        {{- include "opensearch.labels" . | nindent 4 }}
+  #    spec:
+  #      minAvailable: 1
+  #      selector:
+  #        matchLabels:
+  #          {{- include "opensearch.selectorLabels" . | nindent 6 }}
