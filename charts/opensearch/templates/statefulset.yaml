@@ -240,9 +240,8 @@ spec:
           - 'chown -R 1000:1000 /usr/share/opensearch/data'
         securityContext:
           runAsUser: 0
-        resources: 
+        resources:
           {{- toYaml .Values.initResources | nindent 10 }}
-
         volumeMounts:
           - name: "{{ template "opensearch.uname" . }}"
             mountPath: {{ .Values.opensearchHome }}/data
@@ -267,7 +266,7 @@ spec:
         resources:
           {{- toYaml .Values.initResources | nindent 10 }}
 {{- end }}
-{{ if .Values.keystore }}
+{{- if .Values.keystore }}
       - name: keystore
         image: "{{ template "opensearch.dockerRegistry" . }}{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
         imagePullPolicy: "{{ .Values.image.pullPolicy }}"
@@ -281,6 +280,7 @@ spec:
           {{ .Values.opensearchHome }}/bin/opensearch-keystore create
 
           for i in /tmp/keystoreSecrets/*/*; do
+            [ -f "$file" ] || continue
             key=$(basename $i)
             echo "Adding file $i to keystore key $key"
             {{ .Values.opensearchHome }}/bin/opensearch-keystore add-file "$key" "$i"
@@ -296,7 +296,7 @@ spec:
         env: {{ toYaml .Values.extraEnvs | nindent 10 }}
         envFrom: {{ toYaml .Values.envFrom | nindent 10 }}
         resources:
-           {{ toYaml .Values.initResources | nindent 10 }}
+          {{- toYaml .Values.initResources | nindent 10 }}
         volumeMounts:
         - name: keystore
           mountPath: /tmp/keystore
@@ -304,7 +304,7 @@ spec:
         - name: keystore-{{ .secretName }}
           mountPath: /tmp/keystoreSecrets/{{ .secretName }}
         {{- end }}
-{{ end }}
+{{- end }}
       {{- if .Values.extraInitContainers }}
       # Currently some extra blocks accept strings
       # to continue with backwards compatibility this is being kept
@@ -361,7 +361,7 @@ spec:
         - name: metrics
           containerPort: {{ .Values.metricsPort }}
         resources:
-{{ toYaml .Values.resources | indent 10 }}
+          {{- toYaml .Values.resources | nindent 10 }}
         env:
         - name: node.name
           valueFrom:
@@ -517,7 +517,7 @@ spec:
           sleep infinity &
           wait $!
         resources:
-{{ toYaml .Values.sidecarResources | indent 10 }}
+          {{- toYaml .Values.sidecarResources | nindent 10 }}
         env:
         - name: NODE_NAME
           valueFrom:
