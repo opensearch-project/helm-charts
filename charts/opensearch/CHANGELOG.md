@@ -12,6 +12,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 ### Security
 ---
+## [1.20.3]
+### Added
+- Avoid CrashLoop when keystore secret has no data
+### Changed
+### Deprecated
+### Removed
+### Fixed
+### Security
+---
 ## [1.20.2]
 ### Added
 - Support string type for extraObjects
@@ -307,7 +316,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Deprecated
 ### Removed
 ### Fixed
-- Fixed `image.pullPolicy` Helm value not setting the `imagePullPolicy` for the "opensearch" container 
+- Fixed `image.pullPolicy` Helm value not setting the `imagePullPolicy` for the "opensearch" container
 ### Security
 ---
 ## [1.7.0]
@@ -600,7 +609,8 @@ config:
 ### Fixed
 ### Security
 
-[Unreleased]: https://github.com/opensearch-project/helm-charts/compare/opensearch-1.20.2...HEAD
+[Unreleased]: https://github.com/opensearch-project/helm-charts/compare/opensearch-1.20.3...HEAD
+[1.20.3]: https://github.com/opensearch-project/helm-charts/compare/opensearch-1.20.2...opensearch-1.20.3
 [1.20.2]: https://github.com/opensearch-project/helm-charts/compare/opensearch-1.20.1...opensearch-1.20.2
 [1.20.1]: https://github.com/opensearch-project/helm-charts/compare/opensearch-1.20.0...opensearch-1.20.1
 [1.20.0]: https://github.com/opensearch-project/helm-charts/compare/opensearch-1.19.2...opensearch-1.20.0
