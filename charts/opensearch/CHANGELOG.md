@@ -13,6 +13,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 ### Security
 ---
+## [2.13.3]
+### Added
+### Changed
+### Deprecated
+### Removed
+### Fixed
+- Fix the keystore init script by using the loop variable
+### Security
+---
 ## [2.13.2]
 ### Added
 ### Changed
