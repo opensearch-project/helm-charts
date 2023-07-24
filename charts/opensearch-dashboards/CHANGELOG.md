@@ -13,6 +13,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 ### Security
 ---
+## [2.12.0]
+### Added
+- Updated OpenSearch Dashboards appVersion to 2.9.0
+### Changed
+### Deprecated
+### Removed
+### Fixed
+### Security
+
+---
 ## [2.11.1]
 ### Added
 - Support string type for extraObjects
@@ -248,7 +258,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 ### Security
 
-[Unreleased]: https://github.com/opensearch-project/helm-charts/compare/opensearch-dashboards-2.11.1...HEAD
+[Unreleased]: https://github.com/opensearch-project/helm-charts/compare/opensearch-dashboards-2.12.0...HEAD
+[2.12.0]: https://github.com/opensearch-project/helm-charts/compare/opensearch-dashboards-2.11.1...opensearch-dashboards-2.12.0
 [2.11.1]: https://github.com/opensearch-project/helm-charts/compare/opensearch-dashboards-2.11.0...opensearch-dashboards-2.11.1
 [2.11.0]: https://github.com/opensearch-project/helm-charts/compare/opensearch-dashboards-2.10.0...opensearch-dashboards-2.11.0
 [2.10.0]: https://github.com/opensearch-project/helm-charts/compare/opensearch-dashboards-2.9.0...opensearch-dashboards-2.10.0
