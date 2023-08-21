@@ -13,6 +13,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 ### Security
 ---
+## [2.14.2]
+### Added
+### Changed
+### Deprecated
+### Removed
+### Fixed
+- Allow Extra Objects to be created via structured data, preventing unstructured errors
+### Security
+---
 ## [2.14.1]
 ### Added
 - Add homepage and source urls to chart

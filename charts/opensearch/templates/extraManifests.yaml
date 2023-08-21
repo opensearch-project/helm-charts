@@ -1,8 +1,24 @@
-{{ range .Values.extraObjects }}
+{{- /* Define a recursive function to handle values */ -}}
+{{- define "handleValue" -}}
+  {{- if typeIs "string" . -}}
+    {{- . | quote -}}
+  {{- else if typeIs "map[string]interface {}" . -}}
+    {{- toYaml . | nindent 4 -}}
+  {{- else if typeIs "array" . -}}
+    {{- toYaml . | nindent 4 -}}
+  {{- else -}}
+    {{- . | quote -}}
+  {{- end -}}
+{{- end -}}
+
+{{- range .Values.extraObjects }}
 ---
-{{- if typeIs "string" . }}
-{{- tpl . $ }}
+{{- if typeIs "string" . -}}
+{{ tpl . $ }}
 {{- else }}
-{{- tpl (toYaml .) $ }}
+{{- range $key, $value := . }}
+{{ $key }}: 
+  {{- include "handleValue" $value | nindent 2 -}}
 {{- end }}
-{{ end }}
+{{- end }}
+{{- end }}
