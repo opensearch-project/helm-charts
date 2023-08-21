@@ -101,6 +101,24 @@ extraEnvs: []
 #  - name: MY_ENVIRONMENT_VAR
 #    value: the_value_goes_here
 
+# Extra objects to be created via manifests
+# Supports structured multiline and non-multiline strings
+extraObjects: {}
+  # opensearchSecurityConfigCustom:
+  #   apiVersion: v1
+  #   kind: Secret
+  #   metadata:
+  #     name: opensearch-security-config-custom
+  #   stringData:
+  #     config.yml:
+  #       _meta:
+  #         type: "config"
+  #         config_version: "2"
+  #       config:
+  #         dynamic:
+  #           http:
+  #             anonymous_auth_enabled: false
+
 # Allows you to load environment variables from kubernextes secret or config map
 envFrom: []
 # - secretRef:
