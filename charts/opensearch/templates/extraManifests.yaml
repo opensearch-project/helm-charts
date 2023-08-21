@@ -3,6 +3,15 @@
   {{- printf "%v" (toYaml . | trimSuffix "\n") -}}
 {{- end -}}
 
+{{- /* Define a function to check if a string has multiple lines */ -}}
+{{- define "isMultiline" -}}
+  {{- if gt (sub (len .) (len (replace . "\n" ""))) 0 -}}
+  true
+  {{- else -}}
+  false
+  {{- end -}}
+{{- end -}}
+
 {{- range $objKey, $objValue := .Values.extraObjects }}
 ---
 {{- if and (eq $objValue.kind "Secret") (hasKey $objValue "stringData") }}
@@ -12,7 +21,12 @@ kind: Secret
 {{- if eq $key "stringData" }}
 stringData:
 {{- range $sdKey, $sdValue := $value }}
-  {{ $sdKey }}: {{ include "structuredToPlainString" $sdValue }}
+  {{ $sdKey }}:
+  {{- if eq (include "isMultiline" (include "structuredToPlainString" $sdValue)) "true" }}
+    |{{ include "structuredToPlainString" $sdValue | nindent 6 }}
+  {{- else }}
+    {{ include "structuredToPlainString" $sdValue }}
+  {{- end }}
 {{- end }}
 {{- else }}
 {{ $key }}:
@@ -20,6 +34,6 @@ stringData:
 {{- end }}
 {{- end }}
 {{- else }}
-{{ toYaml $objValue }}
+{{ toYaml $objValue | nindent 0 }}
 {{- end }}
 {{- end }}
