@@ -20,6 +20,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Removed
 ### Fixed
 - Allow Extra Objects to be created via structured data, preventing unstructured errors
+- Adds logic to prevent Out-Of-Sync status for deployments in ArgoCD
 ### Security
 ---
 ## [2.14.1]
