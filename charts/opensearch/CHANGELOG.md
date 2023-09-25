@@ -13,6 +13,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 ### Security
 ---
+## [2.15.0]
+### Added
+- Updated OpenSearch appVersion to 2.10.0
+### Changed
+### Deprecated
+### Removed
+### Fixed
+### Security
+---
 ## [2.14.1]
 ### Added
 - Add homepage and source urls to chart
@@ -320,7 +329,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Security
 
 
-[Unreleased]: https://github.com/opensearch-project/helm-charts/compare/opensearch-2.14.1...HEAD
+[Unreleased]: https://github.com/opensearch-project/helm-charts/compare/opensearch-2.15.0...HEAD
+[2.15.0]: https://github.com/opensearch-project/helm-charts/compare/opensearch-2.14.1...opensearch-2.15.0
 [2.14.1]: https://github.com/opensearch-project/helm-charts/compare/opensearch-2.14.0...opensearch-2.14.1
 [2.14.0]: https://github.com/opensearch-project/helm-charts/compare/opensearch-2.13.3...opensearch-2.14.0
 [2.13.3]: https://github.com/opensearch-project/helm-charts/compare/opensearch-2.13.1...opensearch-2.13.3
