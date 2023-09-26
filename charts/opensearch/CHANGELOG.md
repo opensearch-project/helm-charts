@@ -13,6 +13,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 ### Security
 ---
+## [2.15.1]
+### Added
+- Add the description of the lifecycle configuration parameters in the README.md file
+### Changed
+### Deprecated
+### Removed
+### Fixed
+### Security
+---
 ## [2.15.0]
 ### Added
 - Updated OpenSearch appVersion to 2.10.0
