@@ -13,13 +13,22 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 ### Security
 ---
-## [2.15.1]
+## [2.16.1]
 ### Added
 ### Changed
 ### Deprecated
 ### Removed
 ### Fixed
 - Fixed missing lifecycle parameter in README for opensearch chart
+### Security
+---
+## [2.16.0]
+### Added
+- Updated OpenSearch appVersion to 2.11.0
+### Changed
+### Deprecated
+### Removed
+### Fixed
 ### Security
 ---
 ## [2.15.0]
@@ -338,7 +347,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Security
 
 
-[Unreleased]: https://github.com/opensearch-project/helm-charts/compare/opensearch-2.15.0...HEAD
+[Unreleased]: https://github.com/opensearch-project/helm-charts/compare/opensearch-2.16.0...HEAD
+[2.16.0]: https://github.com/opensearch-project/helm-charts/compare/opensearch-2.15.0...opensearch-2.16.0
 [2.15.0]: https://github.com/opensearch-project/helm-charts/compare/opensearch-2.14.1...opensearch-2.15.0
 [2.14.1]: https://github.com/opensearch-project/helm-charts/compare/opensearch-2.14.0...opensearch-2.14.1
 [2.14.0]: https://github.com/opensearch-project/helm-charts/compare/opensearch-2.13.3...opensearch-2.14.0
