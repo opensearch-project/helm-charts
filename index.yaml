@@ -2,6 +2,27 @@ apiVersion: v1
 entries:
   opensearch:
   - apiVersion: v2
+    appVersion: 2.11.0
+    created: "2023-10-16T20:25:49.044777101Z"
+    description: A Helm chart for OpenSearch
+    digest: 37d00e07c651f09767dceed9b399d6916c6feec641997b72333675e538933dd7
+    home: https://opensearch.org
+    maintainers:
+    - name: DandyDeveloper
+    - name: bbarani
+    - name: gaiksaya
+    - name: peterzhuamazon
+    - name: prudhvigodithi
+    - name: TheAlgo
+    name: opensearch
+    sources:
+    - https://github.com/opensearch-project/opensearch
+    - https://github.com/opensearch-project/helm-charts
+    type: application
+    urls:
+    - https://github.com/opensearch-project/helm-charts/releases/download/opensearch-2.16.0/opensearch-2.16.0.tgz
+    version: 2.16.0
+  - apiVersion: v2
     appVersion: 2.10.0
     created: "2023-09-25T20:21:06.12630642Z"
     description: A Helm chart for OpenSearch
@@ -1733,6 +1754,23 @@ entries:
     version: 1.0.3
   opensearch-dashboards:
   - apiVersion: v2
+    appVersion: 2.11.0
+    created: "2023-10-16T20:25:49.285482236Z"
+    description: A Helm chart for OpenSearch Dashboards
+    digest: 1c344decfe0e645696a01e292dbf70d4f811fa8106f3418d7ce8d61567ce6c0c
+    maintainers:
+    - name: DandyDeveloper
+    - name: bbarani
+    - name: gaiksaya
+    - name: peterzhuamazon
+    - name: prudhvigodithi
+    - name: TheAlgo
+    name: opensearch-dashboards
+    type: application
+    urls:
+    - https://github.com/opensearch-project/helm-charts/releases/download/opensearch-dashboards-2.14.0/opensearch-dashboards-2.14.0.tgz
+    version: 2.14.0
+  - apiVersion: v2
     appVersion: 2.10.0
     created: "2023-09-25T20:21:06.343589386Z"
     description: A Helm chart for OpenSearch Dashboards
@@ -2940,4 +2978,4 @@ entries:
     urls:
     - https://github.com/opensearch-project/helm-charts/releases/download/opensearch-dashboards-1.0.3/opensearch-dashboards-1.0.3.tgz
     version: 1.0.3
-generated: "2023-09-25T20:21:06.345914502Z"
+generated: "2023-10-16T20:25:49.287112233Z"
