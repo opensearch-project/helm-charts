@@ -11,6 +11,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Deprecated
 ### Removed
 ### Fixed
+- Use the selectorLabels instead of the static defined app and chart
 ### Security
 ---
 ## [2.14.0]
