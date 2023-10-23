@@ -12,17 +12,10 @@ spec:
   strategy:
 {{ toYaml .Values.updateStrategy | indent 4 }}
   selector:
-    matchLabels:
-      app: {{ .Chart.Name }}
-      release: {{ .Release.Name | quote }}
+    matchLabels: {{- include "opensearch-dashboards.selectorLabels" . | nindent 6 }}
   template:
     metadata:
-      labels:
-        app: {{ .Chart.Name }}
-        release: {{ .Release.Name | quote }}
-        {{- range $key, $value := .Values.labels }}
-        {{ $key }}: {{ $value | quote }}
-        {{- end }}
+      labels: {{- include "opensearch-dashboards.labels" . | nindent 8 }}
       annotations:
         {{- range $key, $value := .Values.podAnnotations }}
         {{ $key }}: {{ $value | quote }}
