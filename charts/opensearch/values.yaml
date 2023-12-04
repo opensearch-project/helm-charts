@@ -212,6 +212,11 @@ persistence:
     - ReadWriteOnce
   size: 8Gi
   annotations: {}
+  ## Configure Pods Security Context
+  ## ref: https://kubernetes.io/docs/tasks/configure-pod-container/security-context/#set-the-security-context-for-a-pod
+  ##
+  securityContext:
+    runAsUser: 0
 
 extraVolumes: []
   # - name: extras
@@ -462,11 +467,18 @@ sysctl:
 
 ## Set optimal sysctl's through privileged initContainer.
 sysctlInit:
-  enabled: false
+  enabled: true
+  #enabled: false
   # override image, which is busybox by default
   # image: busybox
   # override image tag, which is latest by default
   # imageTag:
+  ## Configure Pods Security Context
+  ## ref: https://kubernetes.io/docs/tasks/configure-pod-container/security-context/#set-the-security-context-for-a-pod
+  ##
+  securityContext:
+    runAsUser: 0
+    privileged: true
 
 ## Enable to add 3rd Party / Custom plugins not offered in the default OpenSearch image.
 plugins:
