@@ -467,8 +467,7 @@ sysctl:
 
 ## Set optimal sysctl's through privileged initContainer.
 sysctlInit:
-  enabled: true
-  #enabled: false
+  enabled: false
   # override image, which is busybox by default
   # image: busybox
   # override image tag, which is latest by default
