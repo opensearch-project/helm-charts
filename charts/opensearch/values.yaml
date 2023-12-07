@@ -104,6 +104,10 @@ config:
 extraEnvs: []
 #  - name: MY_ENVIRONMENT_VAR
 #    value: the_value_goes_here
+# 2.12 onwards a custom strong password needs to be provided in order to setup demo admin user.
+# Cluster will not spin-up without this unless demo config install is disabled.
+#  - name: initialAdminPassword
+#    value: <a-strong-password>
 
 # Allows you to load environment variables from kubernetes secret or config map
 envFrom: []
