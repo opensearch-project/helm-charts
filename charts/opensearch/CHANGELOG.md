@@ -13,6 +13,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 ### Security
 ---
+## [2.18.0]
+### Added
+- Added ability to specify custom pod anti-affinity and pod affinity
+### Changed
+### Deprecated
+### Removed
+### Fixed
+### Security
+---
 ## [2.17.0]
 ### Added
 - Updated OpenSearch appVersion to 2.11.1
