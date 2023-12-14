@@ -13,7 +13,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 ### Security
 ---
-## [2.18.0]
+## [2.17.1]
 ### Added
 - Added ability to specify custom pod anti-affinity and pod affinity
 ### Changed
@@ -365,7 +365,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Security
 
 
-[Unreleased]: https://github.com/opensearch-project/helm-charts/compare/opensearch-2.17.0...HEAD
+[Unreleased]: https://github.com/opensearch-project/helm-charts/compare/opensearch-2.17.1...HEAD
+[2.17.1]: https://github.com/opensearch-project/helm-charts/compare/opensearch-2.17.0...opensearch-2.17.1
 [2.17.0]: https://github.com/opensearch-project/helm-charts/compare/opensearch-2.16.1...opensearch-2.17.0
 [2.16.1]: https://github.com/opensearch-project/helm-charts/compare/opensearch-2.16.0...opensearch-2.16.1
 [2.16.0]: https://github.com/opensearch-project/helm-charts/compare/opensearch-2.15.0...opensearch-2.16.0
