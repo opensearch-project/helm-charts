@@ -1,0 +1,21 @@
+{{- if .Values.data.maxUnavailable }}
+{{- if semverCompare ">=1.21-0" .Capabilities.KubeVersion.GitVersion -}}
+apiVersion: policy/v1
+{{- else -}}
+apiVersion: policy/v1beta1
+{{- end }}
+kind: PodDisruptionBudget
+metadata:
+  name: "{{ .Values.data.name }}-pdb"
+  labels:
+  {{- with .Values.data.labels }}
+{{- toYaml . | nindent 4 }}
+    {{- end }}
+spec:
+  maxUnavailable: {{ .Values.data.maxUnavailable }}
+  selector:
+    matchLabels:
+    {{- with .Values.data.selectorLabels }}
+{{- toYaml . | nindent 6 }}
+    {{- end }}
+{{- end }}

@@ -1,0 +1,80 @@
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: {{ .Values.master.serviceName }}
+  labels:
+{{- with .Values.master.labels }}
+{{- toYaml . | nindent 4 }}
+{{- end }}
+{{- if .Values.master.service.labels }}
+{{ toYaml .Values.master.service.labels | indent 4 }}
+{{- end }}
+  annotations:
+{{ toYaml .Values.master.service.annotations | indent 4 }}
+spec:
+  type: {{ .Values.master.service.type }}
+  {{- if (semverCompare ">= 1.23-0" .Capabilities.KubeVersion.Version) }}
+  {{- if .Values.master.service.ipFamilyPolicy }}
+  ipFamilyPolicy: {{ .Values.master.service.ipFamilyPolicy }}
+  {{- end }}
+  {{- if .Values.master.service.ipFamilies }}
+  ipFamilies: {{ .Values.master.service.ipFamilies }}
+  {{- end }}
+  {{- end }}
+  selector:
+    {{- with .Values.master.selectorLabels }}
+{{- toYaml . | nindent 4 }}
+    {{- end }}
+  ports:
+  - name: {{ .Values.master.service.httpPortName | default "http" }}
+    protocol: TCP
+    port: {{ .Values.master.httpPort }}
+{{- if .Values.master.service.nodePort }}
+    nodePort: {{ .Values.master.service.nodePort }}
+{{- end }}
+  - name: {{ .Values.master.service.transportPortName | default "transport" }}
+    protocol: TCP
+    port: {{ .Values.master.transportPort }}
+{{- if .Values.master.service.loadBalancerIP }}
+  loadBalancerIP: {{ .Values.master.service.loadBalancerIP }}
+{{- end }}
+{{- with .Values.master.service.loadBalancerSourceRanges }}
+  loadBalancerSourceRanges:
+{{ toYaml . | indent 4 }}
+{{- end }}
+{{- if .Values.master.service.externalTrafficPolicy }}
+  externalTrafficPolicy: {{ .Values.master.service.externalTrafficPolicy }}
+{{- end }}
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: {{  .Values.master.serviceName  }}-headless
+  labels:
+{{- with .Values.master.labels }}
+{{- toYaml . | nindent 4 }}
+{{- end }}
+{{- if .Values.master.service.labelsHeadless }}
+{{ toYaml .Values.master.service.labelsHeadless | indent 4 }}
+{{- end }}
+  annotations:
+    service.alpha.kubernetes.io/tolerate-unready-endpoints: "true"
+{{- if .Values.master.service.headless.annotations }}
+{{ toYaml .Values.master.service.headless.annotations | indent 4 }}
+{{- end }}
+spec:
+  clusterIP: None # This is needed for statefulset hostnames like opensearch-0 to resolve
+  # Create endpoints also if the related pod isn't ready
+  publishNotReadyAddresses: true
+  selector:
+    {{- with .Values.master.selectorLabels }}
+{{- toYaml . | nindent 4 }}
+    {{- end }}
+  ports:
+  - name: {{ .Values.master.service.httpPortName | default "http" }}
+    port: {{ .Values.master.httpPort }}
+  - name: {{ .Values.master.service.transportPortName | default "transport" }}
+    port: {{ .Values.master.transportPort }}
+  - name: {{ .Values.master.service.metricsPortName | default "metrics" }}
+    port: {{ .Values.master.metricsPort }}

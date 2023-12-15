@@ -1,13 +1,15 @@
 {{- $root := . }}
-{{- if .Values.config }}
+{{- if .Values.data.config }}
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: {{ template "opensearch.uname" . }}-config
+  name: {{ .Values.data.name }}-config
   labels:
-    {{- include "opensearch.labels" . | nindent 4 }}
+    {{- with .Values.data.labels }}
+    {{- toYaml . | nindent 4 }}
+    {{- end }}
 data:
-{{- range $configName, $configYaml := .Values.config }}
+{{- range $configName, $configYaml := .Values.data.config }}
   {{ $configName }}: |
     {{- if (eq (kindOf $configYaml) "map")}}
     {{-   tpl (toYaml $configYaml) $root | nindent 4 }}

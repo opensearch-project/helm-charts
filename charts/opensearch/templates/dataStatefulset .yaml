@@ -1,0 +1,556 @@
+---
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: {{ .Values.data.name }}
+  labels:
+    {{- with .Values.data.labels }}
+    {{- toYaml . | nindent 4 }}
+    {{- end }}
+  annotations:
+    majorVersion: "{{ include "opensearch.majorVersion" . }}"
+    {{- with .Values.data.openSearchAnnotations }}
+{{- toYaml . | nindent 4 }}
+    {{- end }}
+spec:
+  serviceName: {{ .Values.data.serviceName }}-headless
+  selector:
+    matchLabels:
+    {{- with .Values.data.selectorLabels }}
+{{- toYaml . | nindent 6 }}
+    {{- end }}
+  {{- if .Values.data.singleNode }}
+  replicas: 1
+  {{- else }}
+  replicas: {{ .Values.data.replicas }}
+  {{- end }}
+  podManagementPolicy: {{ .Values.data.podManagementPolicy }}
+  updateStrategy:
+    type: {{ .Values.data.updateStrategy }}
+  {{- if .Values.data.persistence.enabled }}
+  volumeClaimTemplates:
+  - metadata:
+      name: {{ .Values.data.name }}
+    {{- if .Values.data.persistence.labels.enabled }}
+      labels:
+    {{- with .Values.data.labels }}
+{{- toYaml . | nindent 8 }}
+    {{- end }}
+    {{- end }}
+    {{- with .Values.data.persistence.annotations  }}
+      annotations:
+{{ toYaml . | indent 8 }}
+    {{- end }}
+    spec:
+      accessModes:
+      {{- range .Values.data.persistence.accessModes }}
+      - {{ . | quote }}
+      {{- end }}
+      resources:
+        requests:
+          storage: {{ .Values.data.persistence.size | quote }}
+    {{- if .Values.data.persistence.storageClass }}
+    {{- if (eq "-" .Values.data.persistence.storageClass) }}
+      storageClassName: ""
+    {{- else }}
+      storageClassName: "{{ .Values.data.persistence.storageClass }}"
+    {{- end }}
+    {{- end }}
+  {{- end }}
+  template:
+    metadata:
+      name: "{{ .Values.data.name }}"
+      labels:
+    {{- with .Values.data.labels }}
+{{- toYaml . | nindent 8 }}
+    {{- end }}
+      annotations:
+        {{- range $key, $value := .Values.data.podAnnotations }}
+        {{ $key }}: {{ $value | quote }}
+        {{- end }}
+        {{- /* This forces a restart if the configmap has changed */}}
+        {{- if .Values.data.config }}
+        configchecksum: {{ include (print .Template.BasePath "/dataConfigmap.yaml") . | sha256sum | trunc 63 }}
+        {{- end }}
+        {{- if .Values.data.securityConfig.config.data }}
+        securityconfigchecksum: {{ include (print .Template.BasePath "/securityconfig.yaml") . | sha256sum | trunc 63 }}
+        {{- end }}
+    spec:
+      {{- if .Values.data.schedulerName }}
+      schedulerName: "{{ .Values.data.schedulerName }}"
+      {{- end }}
+      securityContext:
+{{ toYaml .Values.data.podSecurityContext | indent 8 }}
+        {{- if .Values.data.sysctl.enabled }}
+        sysctls:
+        - name: vm.max_map_count
+          value: {{ .Values.data.sysctlVmMaxMapCount | quote }}
+        {{- end }}
+        {{- if .Values.data.fsGroup }}
+        fsGroup: {{ .Values.data.fsGroup }} # Deprecated value, please use .Values.podSecurityContext.fsGroup
+        {{- end }}
+      {{- if and .Values.rbac.create (eq .Values.rbac.serviceAccountName "") }}
+      serviceAccountName: "{{ template "opensearch.uname" . }}"
+      automountServiceAccountToken: {{ ne .Values.rbac.automountServiceAccountToken false }}
+      {{- else if and .Values.rbac.create (ne .Values.rbac.serviceAccountName "") }}
+      serviceAccountName: {{ .Values.rbac.serviceAccountName | quote }}
+      automountServiceAccountToken: {{ ne .Values.rbac.automountServiceAccountToken false }}
+      {{- else }}
+      automountServiceAccountToken: {{ ne .Values.rbac.automountServiceAccountToken false }}
+      {{- end }}
+      {{- if .Values.master.imagePullSecrets }}
+      {{- end }}
+      {{- with .Values.master.tolerations }}
+      tolerations:
+{{ toYaml . | indent 6 }}
+      {{- end }}
+      {{- with .Values.data.nodeSelector }}
+      nodeSelector:
+{{ toYaml . | indent 8 }}
+      {{- end }}
+      {{- if or (eq .Values.data.antiAffinity "hard") (eq .Values.data.antiAffinity "soft") .Values.master.nodeAffinity }}
+      {{- if .Values.data.priorityClassName }}
+      priorityClassName: {{ .Values.data.priorityClassName }}
+      {{- end }}
+      affinity:
+      {{- end }}
+      {{- if eq .Values.data.antiAffinity "hard" }}
+        podAntiAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+          - labelSelector:
+              matchExpressions:
+              - key: app.kubernetes.io/instance
+                operator: In
+                values:
+                - {{ .Release.Name }}
+              - key: app.kubernetes.io/name
+                operator: In
+                values:
+                - {{ include "opensearch.name" . }}
+            topologyKey: {{ .Values.data.antiAffinityTopologyKey }}
+      {{- else if eq .Values.data.antiAffinity "soft" }}
+        podAntiAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+          - weight: 1
+            podAffinityTerm:
+              topologyKey: {{ .Values.data.antiAffinityTopologyKey }}
+              labelSelector:
+                matchExpressions:
+                - key: app.kubernetes.io/instance
+                  operator: In
+                  values:
+                  - {{ .Release.Name }}
+                - key: app.kubernetes.io/name
+                  operator: In
+                  values:
+                  - {{ .Values.data.name }}
+      {{- end }}
+      {{- with .Values.data.nodeAffinity }}
+        nodeAffinity:
+{{ toYaml . | indent 10 }}
+      {{- end }}
+      {{- if .Values.data.topologySpreadConstraints }}
+      topologySpreadConstraints:
+        {{- toYaml .Values.data.topologySpreadConstraints | nindent 8 }}
+      {{- end }}
+      terminationGracePeriodSeconds: {{ .Values.data.terminationGracePeriod }}
+      volumes:
+      {{- range .Values.data.secretMounts }}
+      - name: {{ .name | required "secretMount .name is required" }}
+        secret:
+          secretName: {{ .secretName | required "secretMount .secretName is required" }}
+          {{- if .defaultMode }}
+          defaultMode: {{ .defaultMode }}
+          {{- end }}
+      {{- end }}
+      {{- if .Values.data.config }}
+      - name: config
+        configMap:
+          name: {{ .Values.data.name }}-config
+      {{- end }}
+      {{- if and .Values.data.securityConfig.config.data .Values.data.securityConfig.config.securityConfigSecret }}
+      {{ fail "Only one of .Values.securityConfig.config.data and .Values.securityConfig.config.securityConfigSecret may be defined. Please see the comment in values.yaml describing usage." }}
+      {{- end }}
+      {{- if .Values.data.securityConfig.config.data }}
+      - name: security-config-data
+        secret:
+          secretName: {{ .Values.data.name }}-securityconfig
+      {{- end }}
+      {{- with .Values.data.securityConfig.config.securityConfigSecret }}
+      - name: security-config-complete
+        secret:
+          secretName: {{ . | quote }}
+      {{- end }}
+      {{- if .Values.data.securityConfig.actionGroupsSecret }}
+      - name: action-groups
+        secret:
+          secretName: {{ .Values.data.securityConfig.actionGroupsSecret }}
+      {{- end }}
+      {{- if .Values.master.securityConfig.configSecret }}
+      - name: security-config
+        secret:
+          secretName: {{ .Values.data.securityConfig.configSecret }}
+      {{- end }}
+      {{- if .Values.data.securityConfig.internalUsersSecret }}
+      - name: internal-users-config
+        secret:
+          secretName: {{ .Values.data.securityConfig.internalUsersSecret }}
+      {{- end }}
+      {{- if .Values.data.securityConfig.rolesSecret }}
+      - name: roles
+        secret:
+          secretName: {{ .Values.data.securityConfig.rolesSecret }}
+      {{- end }}
+      {{- if .Values.data.securityConfig.rolesMappingSecret }}
+      - name: role-mapping
+        secret:
+          secretName: {{ .Values.data.securityConfig.rolesMappingSecret }}
+      {{- end -}}
+      {{- if .Values.data.securityConfig.tenantsSecret }}
+      - name: tenants
+        secret:
+          secretName: {{ .Values.data.securityConfig.tenantsSecret }}
+      {{- end }}
+{{- if .Values.data.keystore }}
+      - name: keystore
+        emptyDir: {}
+      {{- range .Values.data.keystore }}
+      - name: keystore-{{ .secretName }}
+        secret: {{ toYaml . | nindent 12 }}
+      {{- end }}
+{{ end }}
+      {{- if .Values.data.extraVolumes }}
+      # Currently some extra blocks accept strings
+      # to continue with backwards compatibility this is being kept
+      # whilst also allowing for yaml to be specified too.
+      {{- if eq "string" (printf "%T" .Values.data.extraVolumes) }}
+{{ tpl .Values.data.extraVolumes . | indent 6 }}
+      {{- else }}
+{{ toYaml .Values.data.extraVolumes | indent 6 }}
+      {{- end }}
+      {{- end }}
+      {{- if .Values.data.imagePullSecrets }}
+      imagePullSecrets:
+{{ toYaml .Values.data.imagePullSecrets | indent 8 }}
+      {{- end }}
+      enableServiceLinks: {{ .Values.data.enableServiceLinks }}
+      {{- if .Values.data.hostAliases }}
+      hostAliases: {{ toYaml .Values.data.hostAliases | nindent 8 }}
+      {{- end }}
+      {{- if or (.Values.data.extraInitContainers) (.Values.data.keystore) (.Values.data.persistence.enabled) (.Values.data.sysctlInit.enabled)  }}
+      initContainers:
+{{- if and .Values.data.persistence.enabled .Values.data.persistence.enableInitChown }}
+      - name: fsgroup-volume
+        image: "{{ template "opensearch.dockerRegistry" . }}{{ .Values.data.persistence.image | default "busybox" }}:{{ .Values.data.persistence.imageTag | default "latest" }}"
+        imagePullPolicy: "{{ .Values.data.image.pullPolicy }}"
+        command: ['sh', '-c']
+        args:
+          - 'chown -R 1000:1000 /usr/share/opensearch/data'
+        securityContext:
+          runAsUser: 0
+        resources:
+          {{- toYaml .Values.data.initResources | nindent 10 }}
+        volumeMounts:
+          - name: "{{ .Values.data.name }}"
+            mountPath: {{ .Values.data.opensearchHome }}/data
+{{- end }}
+{{- if .Values.data.sysctlInit.enabled }}
+      - name: sysctl
+        image: "{{ template "opensearch.dockerRegistry" . }}{{ .Values.data.sysctlInit.image | default "busybox" }}:{{ .Values.data.sysctlInit.imageTag | default "latest" }}"
+        imagePullPolicy: "{{ .Values.data.image.pullPolicy }}"
+        command:
+        - sh
+        - -c
+        - |
+          set -xe
+          DESIRED="{{ .Values.data.sysctlVmMaxMapCount }}"
+          CURRENT=$(sysctl -n vm.max_map_count)
+          if [ "$DESIRED" -gt "$CURRENT" ]; then
+            sysctl -w vm.max_map_count=$DESIRED
+          fi
+        securityContext:
+          runAsUser: 0
+          privileged: true
+        resources:
+          {{- toYaml .Values.data.initResources | nindent 10 }}
+{{- end }}
+{{- if .Values.data.keystore }}
+      - name: keystore
+        image: "{{ template "opensearch.dockerRegistry" . }}{{ .Values.data.image.repository }}:{{ .Values.data.image.tag | default .Chart.AppVersion }}"
+        imagePullPolicy: "{{ .Values.data.image.pullPolicy }}"
+        command:
+        - sh
+        - -c
+        - |
+          #!/usr/bin/env bash
+          set -euo pipefail
+
+          {{ .Values.data.opensearchHome }}/bin/opensearch-keystore create
+
+          for i in /tmp/keystoreSecrets/*/*; do
+            [ -f "$i" ] || continue
+            key=$(basename $i)
+            echo "Adding file $i to keystore key $key"
+            {{ .Values.data.opensearchHome }}/bin/opensearch-keystore add-file "$key" "$i"
+          done
+
+          # Add the bootstrap password since otherwise the opensearch entrypoint tries to do this on startup
+          if [ ! -z ${PASSWORD+x} ]; then
+            echo 'Adding env $PASSWORD to keystore as key bootstrap.password'
+            echo "$PASSWORD" | {{ .Values.data.opensearchHome }}/bin/opensearch-keystore add -x bootstrap.password
+          fi
+
+          cp -a {{ .Values.data.opensearchHome }}/config/opensearch.keystore /tmp/keystore/
+        env: {{ toYaml .Values.data.extraEnvs | nindent 10 }}
+        envFrom: {{ toYaml .Values.data.envFrom | nindent 10 }}
+        resources:
+          {{- toYaml .Values.data.initResources | nindent 10 }}
+        volumeMounts:
+        - name: keystore
+          mountPath: /tmp/keystore
+        {{- range .Values.data.keystore }}
+        - name: keystore-{{ .secretName }}
+          mountPath: /tmp/keystoreSecrets/{{ .secretName }}
+        {{- end }}
+{{- end }}
+      {{- if .Values.data.extraInitContainers }}
+      # Currently some extra blocks accept strings
+      # to continue with backwards compatibility this is being kept
+      # whilst also allowing for yaml to be specified too.
+      {{- if eq "string" (printf "%T" .Values.master.extraInitContainers) }}
+{{ tpl .Values.data.extraInitContainers . | indent 6 }}
+      {{- else }}
+{{ toYaml .Values.data.extraInitContainers | indent 6 }}
+      {{- end }}
+      {{- end }}
+      {{- end }}
+      containers:
+      - name: "{{ .Values.data.name }}"
+        securityContext:
+{{ toYaml .Values.data.securityContext | indent 10 }}
+      {{- if .Values.data.plugins.enabled }}
+        command:
+        - sh
+        - -c
+        - |
+          #!/usr/bin/env bash
+          set -euo pipefail
+
+          {{- range $plugin := .Values.data.plugins.installList }}
+          ./bin/opensearch-plugin install -b {{ $plugin }}
+          {{- end }}
+
+          bash opensearch-docker-entrypoint.sh
+      {{- end }}
+
+        image: "{{ template "opensearch.dockerRegistry" . }}{{ .Values.data.image.repository }}:{{ .Values.data.image.tag | default .Chart.AppVersion }}"
+        imagePullPolicy: "{{ .Values.data.image.pullPolicy }}"
+        readinessProbe:
+{{ toYaml .Values.data.readinessProbe | indent 10 }}
+        {{- if .Values.data.livenessProbe }}
+        livenessProbe:
+{{ toYaml .Values.data.livenessProbe | indent 10 }}
+        {{- end }}
+      {{- if semverCompare ">=1.16-0" .Capabilities.KubeVersion.Version }}
+        startupProbe:
+{{ toYaml .Values.data.startupProbe | indent 10 }}
+      {{- end }}
+        ports:
+        - name: http
+          containerPort: {{ .Values.data.httpPort }}
+          {{- if .Values.data.httpHostPort }}
+          hostPort: {{ .Values.data.httpHostPort }}
+          {{- end }}
+        - name: transport
+          containerPort: {{ .Values.data.transportPort }}
+          {{- if .Values.data.transportHostPort }}
+          hostPort: {{ .Values.data.transportHostPort }}
+          {{- end }}
+        - name: metrics
+          containerPort: {{ .Values.data.metricsPort }}
+        resources:
+          {{- toYaml .Values.data.resources | nindent 10 }}
+        env:
+        - name: node.name
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.name
+        {{- if (and (has "master" .Values.data.roles) (not .Values.data.singleNode)) }}
+        - name: cluster.initial_master_nodes
+          value: "{{ template "opensearch.endpoints" . }}"
+        {{- end }}
+        - name: discovery.seed_hosts
+          value: "{{ .Values.data.serviceName }}-headless"
+        - name: cluster.name
+          value: "{{ .Values.data.clusterName }}"
+        - name: network.host
+          value: "{{ .Values.data.networkHost }}"
+        - name: OPENSEARCH_JAVA_OPTS
+          value: "{{ .Values.data.opensearchJavaOpts }}"
+        - name: node.roles
+          value: "{{ template "opensearch.data.roles" . }}"
+        {{- if .Values.data.singleNode }}
+        - name: discovery.type
+          value: "single-node"
+        {{- end }}
+{{- if .Values.data.extraEnvs }}
+{{ toYaml .Values.data.extraEnvs | indent 8 }}
+{{- end }}
+{{- if .Values.data.envFrom }}
+        envFrom:
+{{ toYaml .Values.data.envFrom | indent 8 }}
+{{- end }}
+{{- if .Values.data.opensearchLifecycle }}
+        lifecycle:
+{{ toYaml .Values.data.opensearchLifecycle | indent 10 }}
+{{- end }}
+        volumeMounts:
+        {{- if .Values.data.persistence.enabled }}
+        - name: "{{ .Values.data.name }}"
+          mountPath: {{ .Values.data.opensearchHome }}/data
+        {{- end }}
+        {{- if .Values.data.keystore }}
+        - name: keystore
+          mountPath: {{ .Values.data.opensearchHome }}/config/opensearch.keystore
+          subPath: opensearch.keystore
+        {{- end }}
+        {{- if .Values.data.securityConfig.enabled }}
+        {{- if .Values.data.securityConfig.actionGroupsSecret }}
+        - mountPath: {{ .Values.data.securityConfig.path }}/action_groups.yml
+          name: action-groups
+          subPath: action_groups.yml
+        {{- end }}
+        {{- if .Values.data.securityConfig.configSecret }}
+        - mountPath: {{ .Values.data.securityConfig.path }}/config.yml
+          name: security-config
+          subPath: config.yml
+        {{- end }}
+        {{- if .Values.data.securityConfig.internalUsersSecret }}
+        - mountPath: {{ .Values.data.securityConfig.path }}/internal_users.yml
+          name: internal-users-config
+          subPath: internal_users.yml
+        {{- end }}
+        {{- if .Values.securityConfig.rolesSecret }}
+        - mountPath: {{ .Values.data.securityConfig.path }}/roles.yml
+          name: roles
+          subPath: roles.yml
+        {{- end }}
+        {{- if .Values.data.securityConfig.rolesMappingSecret }}
+        - mountPath: {{ .Values.data.securityConfig.path }}/roles_mapping.yml
+          name: role-mapping
+          subPath: roles_mapping.yml
+        {{- end }}
+        {{- if .Values.data.securityConfig.tenantsSecret }}
+        - mountPath: {{ .Values.data.securityConfig.path }}/tenants.yml
+          name: tenants
+          subPath: tenants.yml
+        {{- end }}
+        {{- if .Values.data.securityConfig.config.data }}
+        {{-   if .Values.data.securityConfig.config.dataComplete }}
+        - mountPath: {{ .Values.data.securityConfig.path }}
+          name: security-config-data
+        {{-   else }}
+        {{-     range $key, $_ := .Values.data.securityConfig.config.data  }}
+        - mountPath: {{ $.Values.data.securityConfig.path }}/{{ $key }}
+          name: security-config-data
+          subPath: {{ $key }}
+        {{-     end }}
+        {{-   end }}
+        {{- else if .Values.data.securityConfig.config.securityConfigSecret }}
+        - mountPath: {{ .Values.data.securityConfig.path }}
+          name: security-config-complete
+        {{- end }}
+        {{- end }}
+        {{- range .Values.data.secretMounts }}
+        - name: {{ .name | required "secretMount .name is required" }}
+          mountPath: {{ .path | required "secretMount .path is required" }}
+          {{- if .subPath }}
+          subPath: {{ .subPath }}
+          {{- end }}
+        {{- end }}
+        {{- range $path, $config := .Values.data.config }}
+        - name: config
+          mountPath: {{ $.Values.data.opensearchHome }}/config/{{ $path }}
+          subPath: {{ $path }}
+        {{- end -}}
+        {{- if .Values.data.extraVolumeMounts }}
+        # Currently some extra blocks accept strings
+        # to continue with backwards compatibility this is being kept
+        # whilst also allowing for yaml to be specified too.
+        {{- if eq "string" (printf "%T" .Values.data.extraVolumeMounts) }}
+{{ tpl .Values.data.extraVolumeMounts . | indent 8 }}
+        {{- else }}
+{{ toYaml .Values.data.extraVolumeMounts | indent 8 }}
+        {{- end }}
+        {{- end }}
+      {{- if .Values.data.masterTerminationFix }}
+      {{- if has "master" .Values.data.roles }}
+      # This sidecar will prevent slow master re-election
+      - name: opensearch-master-graceful-termination-handler
+        image: "{{ template "opensearch.dockerRegistry" . }}{{ .Values.data.image.repository }}:{{ .Values.data.image.tag | default .Chart.AppVersion }}"
+        imagePullPolicy: "{{ .Values.data.image.pullPolicy }}"
+        command:
+        - "sh"
+        - -c
+        - |
+          #!/usr/bin/env bash
+          set -eo pipefail
+
+          http () {
+              local path="${1}"
+              if [ -n "${USERNAME}" ] && [ -n "${PASSWORD}" ]; then
+                BASIC_AUTH="-u ${USERNAME}:${PASSWORD}"
+              else
+                BASIC_AUTH=''
+              fi
+              curl -XGET -s -k --fail ${BASIC_AUTH} {{ .Values.data.protocol }}://{{ template "opensearch.masterService" . }}:{{ .Values.data.httpPort }}${path}
+          }
+
+          cleanup () {
+            while true ; do
+              local master="$(http "/_cat/master?h=node" || echo "")"
+              if [[ $master == "{{ template "opensearch.masterService" . }}"* && $master != "${NODE_NAME}" ]]; then
+                echo "This node is not master."
+                break
+              fi
+              echo "This node is still master, waiting gracefully for it to step down"
+              sleep 1
+            done
+
+            exit 0
+          }
+
+          trap cleanup SIGTERM
+
+          sleep infinity &
+          wait $!
+        resources:
+          {{- toYaml .Values.data.sidecarResources | nindent 10 }}
+        env:
+        - name: NODE_NAME
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.name
+        {{- if .Values.data.extraEnvs }}
+{{ toYaml .Values.data.extraEnvs | indent 8 }}
+        {{- end }}
+        {{- if .Values.data.envFrom }}
+        envFrom:
+{{ toYaml .Values.data.envFrom | indent 8 }}
+        {{- end }}
+      {{- end }}
+      {{- end }}
+{{- if .Values.data.lifecycle }}
+        lifecycle:
+{{ toYaml .Values.data.lifecycle | indent 10 }}
+{{- end }}
+      {{- if .Values.data.extraContainers }}
+      # Currently some extra blocks accept strings
+      # to continue with backwards compatibility this is being kept
+      # whilst also allowing for yaml to be specified too.
+      {{- if eq "string" (printf "%T" .Values.data.extraContainers) }}
+{{ tpl .Values.data.extraContainers . | indent 6 }}
+      {{- else }}
+{{ toYaml .Values.data.extraContainers | indent 6 }}
+      {{- end }}
+      {{- end }}

@@ -87,8 +87,8 @@ app.kubernetes.io/instance: {{ .Release.Name }}
 {{- end -}}
 
 {{- define "opensearch.endpoints" -}}
-{{- $replicas := int (toString (.Values.replicas)) }}
-{{- $uname := (include "opensearch.uname" .) }}
+{{- $replicas := int (toString (.Values.master.replicas)) }}
+{{- $uname := .Values.master.name }}
   {{- range $i, $e := untilStep 0 $replicas 1 -}}
 {{ $uname }}-{{ $i }},
   {{- end -}}
@@ -98,7 +98,7 @@ app.kubernetes.io/instance: {{ .Release.Name }}
 {{- if .Values.majorVersion }}
   {{- .Values.majorVersion }}
 {{- else }}
-  {{- $version := semver (coalesce .Values.image.tag .Chart.AppVersion "1") }}
+  {{- $version := semver (coalesce .Values.master.image.tag .Chart.AppVersion "1") }}
   {{- $version.Major }}
 {{- end }}
 {{- end }}
@@ -111,8 +111,14 @@ app.kubernetes.io/instance: {{ .Release.Name }}
 {{- end -}}
 {{- end -}}
 
-{{- define "opensearch.roles" -}}
-{{- range $.Values.roles -}}
+{{- define "opensearch.master.roles" -}}
+{{- range $.Values.master.roles -}}
+{{ . }},
+{{- end -}}
+{{- end -}}
+
+{{- define "opensearch.data.roles" -}}
+{{- range $.Values.data.roles -}}
 {{ . }},
 {{- end -}}
 {{- end -}}
