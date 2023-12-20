@@ -402,6 +402,7 @@ ingress:
   annotations: {}
     # kubernetes.io/ingress.class: nginx
     # kubernetes.io/tls-acme: "true"
+  ingressLabels: {}
   path: /
   hosts:
     - chart-example.local
