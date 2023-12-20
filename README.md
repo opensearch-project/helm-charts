@@ -74,12 +74,12 @@ extraEnvs:
 ## Change Logs
 
 Please review the [OpenSearch](charts/opensearch/CHANGELOG.md) and the
-[OpenSearch Dashboards](charts/opensearch-dashboards/CHANGELOG.md) change logs for the latest 
+[OpenSearch Dashboards](charts/opensearch-dashboards/CHANGELOG.md) change logs for the latest
 release details.
 
 ## Contributing
 
-See [developer guide](DEVELOPER_GUIDE.md) and [how to contribute to this project](CONTRIBUTING.md). 
+See [developer guide](DEVELOPER_GUIDE.md) and [how to contribute to this project](CONTRIBUTING.md).
 
 ## Getting Help
 
