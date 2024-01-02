@@ -1,9 +1,11 @@
 <img src="https://opensearch.org/assets/brand/SVG/Logo/opensearch_logo_default.svg" height="64px"/>
 
-- [OpenSearch Project Helm-Charts](#helm-charts)
+- [Helm-Charts](#helm-charts)
 - [Status](#status)
 - [Version and Branching](#version-and-branching)
+- [Kubernetes Version Support](#kubernetes-version-support)
 - [Installation](#installation)
+  - [Notes About Default Installation](#notes-about-default-installation)
 - [Change Logs](#change-logs)
 - [Contributing](#contributing)
 - [Getting Help](#getting-help)
@@ -69,6 +71,15 @@ This can be solved by adding an environment variable in the `value.yml`:
 extraEnvs:
   - name: DISABLE_INSTALL_DEMO_CONFIG
     value: "true"
+```
+
+OpenSearch version 2.12 and above require a custom strong password to be provided in order to setup demo admin user. Without this password the cluster would not spin up, unless demo config install is disabled.
+
+The custom admin password can be supplied by adding the environment variable `OPENSEARCH_INITIAL_ADMIN_PASSWORD` in the `value.yml`:
+```
+extraEnvs:
+  - name: OPENSEARCH_INITIAL_ADMIN_PASSWORD
+    value: <strong-password>
 ```
 
 ## Change Logs
