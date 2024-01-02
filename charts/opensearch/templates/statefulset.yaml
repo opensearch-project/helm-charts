@@ -100,7 +100,7 @@ spec:
       nodeSelector:
 {{ toYaml . | indent 8 }}
       {{- end }}
-      {{- if or (eq .Values.antiAffinity "hard") (eq .Values.antiAffinity "soft") .Values.nodeAffinity }}
+      {{- if or (eq .Values.antiAffinity "hard") (eq .Values.antiAffinity "soft") (eq .Values.antiAffinity "custom") .Values.nodeAffinity .Values.podAffinity }}
       {{- if .Values.priorityClassName }}
       priorityClassName: {{ .Values.priorityClassName }}
       {{- end }}
@@ -136,6 +136,15 @@ spec:
                   operator: In
                   values:
                   - {{ include "opensearch.name" . }}
+      {{- else if eq .Values.antiAffinity "custom" }}
+        {{- with .Values.customAntiAffinity }}
+        podAntiAffinity:
+{{ toYaml . | indent 10 }}
+        {{- end }}
+      {{- end }}
+      {{- with .Values.podAffinity }}
+        podAffinity:
+{{ toYaml . | indent 10 }}
       {{- end }}
       {{- with .Values.nodeAffinity }}
         nodeAffinity:

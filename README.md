@@ -1,11 +1,9 @@
 <img src="https://opensearch.org/assets/brand/SVG/Logo/opensearch_logo_default.svg" height="64px"/>
 
-- [Helm-Charts](#helm-charts)
+- [OpenSearch Project Helm-Charts](#helm-charts)
 - [Status](#status)
 - [Version and Branching](#version-and-branching)
-- [Kubernetes Version Support](#kubernetes-version-support)
 - [Installation](#installation)
-  - [Notes About Default Installation](#notes-about-default-installation)
 - [Change Logs](#change-logs)
 - [Contributing](#contributing)
 - [Getting Help](#getting-help)
@@ -85,12 +83,12 @@ extraEnvs:
 ## Change Logs
 
 Please review the [OpenSearch](charts/opensearch/CHANGELOG.md) and the
-[OpenSearch Dashboards](charts/opensearch-dashboards/CHANGELOG.md) change logs for the latest 
+[OpenSearch Dashboards](charts/opensearch-dashboards/CHANGELOG.md) change logs for the latest
 release details.
 
 ## Contributing
 
-See [developer guide](DEVELOPER_GUIDE.md) and [how to contribute to this project](CONTRIBUTING.md). 
+See [developer guide](DEVELOPER_GUIDE.md) and [how to contribute to this project](CONTRIBUTING.md).
 
 ## Getting Help
 

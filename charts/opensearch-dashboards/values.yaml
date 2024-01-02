@@ -114,16 +114,16 @@ config: {}
 
 
   # Dashboards TLS Config (Ensure the cert files are present before enabling SSL
-      # ssl:
-      #   enabled: true
-      #   key: /usr/share/opensearch-dashboards/certs/dashboards-key.pem
-      #   certificate: /usr/share/opensearch-dashboards/certs/dashboards-crt.pem
+  # ssl:
+  #   enabled: true
+  #   key: /usr/share/opensearch-dashboards/certs/dashboards-key.pem
+  #   certificate: /usr/share/opensearch-dashboards/certs/dashboards-crt.pem
 
-    # determines how dashboards will verify certificates (needs to be none for default opensearch certificates to work)
-    # opensearch:
-    #   ssl:
-    #     certificateAuthorities: /usr/share/opensearch-dashboards/certs/dashboards-root-ca.pem
-    #     if utilizing custom CA certs for connection to opensearch, provide the CA here
+  # determines how dashboards will verify certificates (needs to be none for default opensearch certificates to work)
+  # opensearch:
+  #   ssl:
+  #     certificateAuthorities: /usr/share/opensearch-dashboards/certs/dashboards-root-ca.pem
+  #     if utilizing custom CA certs for connection to opensearch, provide the CA here
 
 opensearchDashboardsYml:
   defaultMode:
@@ -209,6 +209,10 @@ nodeSelector: {}
 tolerations: []
 
 affinity: {}
+
+# This is the pod topology spread constraints
+# https://kubernetes.io/docs/concepts/workloads/pods/pod-topology-spread-constraints/
+topologySpreadConstraints: []
 
 # -- Array of extra K8s manifests to deploy
 extraObjects: []
