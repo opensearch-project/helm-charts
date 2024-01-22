@@ -14,6 +14,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Security
 
 ---
+## [2.17.3]
+### Added
+### Changed
+### Deprecated
+### Removed
+- Removed hard coded opensearch.yml
+### Fixed
+### Security
+---
 ## [2.17.2]
 ### Added
 - - Allow user-defined labels on ingress resource
@@ -29,15 +38,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 ### Deprecated
 ### Removed
-### Fixed
-### Security
----
-## [2.17.1]
-### Added
-### Changed
-### Deprecated
-### Removed
-- Removed hard coded opensearch.yml
 ### Fixed
 ### Security
 ---
