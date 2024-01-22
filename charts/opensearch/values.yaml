@@ -241,12 +241,22 @@ priorityClassName: ""
 antiAffinityTopologyKey: "kubernetes.io/hostname"
 
 # Hard means that by default pods will only be scheduled if there are enough nodes for them
-# and that they will never end up on the same node. Setting this to soft will do this "best effort"
+# and that they will never end up on the same node. Setting this to soft will do this "best effort".
+# Setting this to custom will use what is passed into customAntiAffinity.
 antiAffinity: "soft"
+
+# Allows passing in custom anti-affinity settings as defined in
+# https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/#types-of-inter-pod-affinity-and-anti-affinity
+# Using this parameter requires setting antiAffinity to custom.
+customAntiAffinity: {}
 
 # This is the node affinity settings as defined in
 # https://kubernetes.io/docs/concepts/configuration/assign-pod-node/#node-affinity-beta-feature
 nodeAffinity: {}
+
+# This is the pod affinity settings as defined in
+# https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/#types-of-inter-pod-affinity-and-anti-affinity
+podAffinity: {}
 
 # This is the pod topology spread constraints
 # https://kubernetes.io/docs/concepts/workloads/pods/pod-topology-spread-constraints/
@@ -392,6 +402,7 @@ ingress:
   annotations: {}
     # kubernetes.io/ingress.class: nginx
     # kubernetes.io/tls-acme: "true"
+  ingressLabels: {}
   path: /
   hosts:
     - chart-example.local

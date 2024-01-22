@@ -12,6 +12,25 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Removed
 ### Fixed
 ### Security
+
+---
+## [2.17.2]
+### Added
+- - Allow user-defined labels on ingress resource
+### Changed
+### Deprecated
+### Removed
+### Fixed
+### Security
+---
+## [2.17.1]
+### Added
+- Added ability to specify custom pod anti-affinity and pod affinity
+### Changed
+### Deprecated
+### Removed
+### Fixed
+### Security
 ---
 ## [2.17.1]
 ### Added
@@ -365,7 +384,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Security
 
 
-[Unreleased]: https://github.com/opensearch-project/helm-charts/compare/opensearch-2.17.0...HEAD
+[Unreleased]: https://github.com/opensearch-project/helm-charts/compare/opensearch-2.17.2...HEAD
+[2.17.2]: https://github.com/opensearch-project/helm-charts/compare/opensearch-2.17.1...opensearch-2.17.2
+[2.17.1]: https://github.com/opensearch-project/helm-charts/compare/opensearch-2.17.0...opensearch-2.17.1
 [2.17.0]: https://github.com/opensearch-project/helm-charts/compare/opensearch-2.16.1...opensearch-2.17.0
 [2.16.1]: https://github.com/opensearch-project/helm-charts/compare/opensearch-2.16.0...opensearch-2.16.1
 [2.16.0]: https://github.com/opensearch-project/helm-charts/compare/opensearch-2.15.0...opensearch-2.16.0
@@ -401,3 +422,4 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 [2.2.0]: https://github.com/opensearch-project/helm-charts/compare/opensearch-2.1.0...opensearch-2.2.0
 [2.1.0]: https://github.com/opensearch-project/helm-charts/compare/opensearch-2.0.1...opensearch-2.1.0
 [2.0.1]: https://github.com/opensearch-project/helm-charts/compare/opensearch-2.0.0...opensearch-2.0.1
+
