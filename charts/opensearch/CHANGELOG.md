@@ -12,7 +12,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Removed
 ### Fixed
 ### Security
-
+---
+## [2.18.0]
+### Added
+### Breaking
+ - Requires an initial admin password to be setup. Refer this github issue: https://github.com/opensearch-project/security/issues/3622
+### Changed
+### Deprecated
+### Removed
+### Fixed
+### Security
 ---
 ## [2.17.2]
 ### Added
