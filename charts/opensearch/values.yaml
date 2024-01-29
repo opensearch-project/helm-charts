@@ -104,7 +104,7 @@ config:
 extraEnvs: []
 #  - name: MY_ENVIRONMENT_VAR
 #    value: the_value_goes_here
-# 2.12 onwards a custom strong password needs to be provided in order to setup demo admin user.
+# chartVersion 2.18.0 and OpenSearch 2.12 onwards a custom strong password needs to be provided in order to setup demo admin user.
 # Cluster will not spin-up without this unless demo config install is disabled.
 #  - name: OPENSEARCH_INITIAL_ADMIN_PASSWORD
 #    value: <strong-password>
