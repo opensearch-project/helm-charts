@@ -14,7 +14,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Security
 
 ---
-## [2.17.3]
+## [2.18.1]
 ### Added
 ### Changed
 ### Deprecated
