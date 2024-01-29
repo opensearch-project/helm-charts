@@ -5,7 +5,7 @@
 - [Version and Branching](#version-and-branching)
 - [Kubernetes Version Support](#kubernetes-version-support)
 - [Installation](#installation)
-    - [Breaking Change](#breaking-change)
+  - [Breaking Change](#breaking-change)
   - [Notes About Default Installation](#notes-about-default-installation)
 - [Change Logs](#change-logs)
 - [Contributing](#contributing)
@@ -62,7 +62,7 @@ helm install my-deployment opensearch/<chart name>
 
 Please see the `README.md` in the [OpenSearch](charts/opensearch) and [OpenSearch Dashboards](charts/opensearch-dashboards) directories for installation instructions.
 
-#### Breaking Change 
+### Breaking Change 
 Chart version 2.18.0 and App Version OpenSearch version 2.12.0 and above require a custom strong password to be provided in order to setup demo admin user. Without this password the cluster would not spin up, unless demo config install is disabled.
 
 The custom admin password can be supplied by adding the environment variable `OPENSEARCH_INITIAL_ADMIN_PASSWORD` in the `value.yml`:
