@@ -1,6 +1,6 @@
 <img src="https://opensearch.org/assets/brand/SVG/Logo/opensearch_logo_default.svg" height="64px"/>
 
-- [Helm-Charts](#helm-charts)
+- [OpenSearch Project Helm-Charts](#opensearch-project-helm-charts)
 - [Status](#status)
     - [Breaking Change](#breaking-change)
 - [Version and Branching](#version-and-branching)
@@ -14,7 +14,7 @@
 - [Security](#security)
 - [License](#license)
 
-## Helm-Charts
+## OpenSearch Project Helm-Charts
 
 A community repository for Helm Charts of OpenSearch Project.
 
