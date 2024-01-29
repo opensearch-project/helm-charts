@@ -2,10 +2,10 @@
 
 - [OpenSearch Project Helm-Charts](#opensearch-project-helm-charts)
 - [Status](#status)
-    - [Breaking Change](#breaking-change)
 - [Version and Branching](#version-and-branching)
 - [Kubernetes Version Support](#kubernetes-version-support)
 - [Installation](#installation)
+    - [Breaking Change](#breaking-change)
   - [Notes About Default Installation](#notes-about-default-installation)
 - [Change Logs](#change-logs)
 - [Contributing](#contributing)
@@ -23,16 +23,6 @@ A community repository for Helm Charts of OpenSearch Project.
 [![Lint and Test Charts](https://github.com/opensearch-project/helm-charts/actions/workflows/lint-test.yaml/badge.svg)](https://github.com/opensearch-project/helm-charts/actions/workflows/lint-test.yaml)
  [![Release Charts](https://github.com/opensearch-project/helm-charts/actions/workflows/release.yaml/badge.svg)](https://github.com/opensearch-project/helm-charts/actions/workflows/release.yaml)
 
-
-#### Breaking Change 
-Chart version 2.18.0 and App Version OpenSearch version 2.12.0 and above require a custom strong password to be provided in order to setup demo admin user. Without this password the cluster would not spin up, unless demo config install is disabled.
-
-The custom admin password can be supplied by adding the environment variable `OPENSEARCH_INITIAL_ADMIN_PASSWORD` in the `value.yml`:
-```
-extraEnvs:
-  - name: OPENSEARCH_INITIAL_ADMIN_PASSWORD
-    value: <strong-password>
-```
 
 ## Version and Branching
 As of now, this helm-charts repository maintains 3 branches:
@@ -71,6 +61,16 @@ helm install my-deployment opensearch/<chart name>
 ```
 
 Please see the `README.md` in the [OpenSearch](charts/opensearch) and [OpenSearch Dashboards](charts/opensearch-dashboards) directories for installation instructions.
+
+#### Breaking Change 
+Chart version 2.18.0 and App Version OpenSearch version 2.12.0 and above require a custom strong password to be provided in order to setup demo admin user. Without this password the cluster would not spin up, unless demo config install is disabled.
+
+The custom admin password can be supplied by adding the environment variable `OPENSEARCH_INITIAL_ADMIN_PASSWORD` in the `value.yml`:
+```
+extraEnvs:
+  - name: OPENSEARCH_INITIAL_ADMIN_PASSWORD
+    value: <strong-password>
+```
 
 ### Notes About Default Installation
 
