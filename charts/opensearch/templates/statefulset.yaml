@@ -156,6 +156,13 @@ spec:
       {{- end }}
       terminationGracePeriodSeconds: {{ .Values.terminationGracePeriod }}
       volumes:
+      {{- if .Values.config }}
+      - name: config
+        configMap:
+          name: {{ template "opensearch.uname" . }}-config
+      - emptyDir: {}
+        name: config-emptydir
+      {{- end }}
       {{- range .Values.secretMounts }}
       - name: {{ .name | required "secretMount .name is required" }}
         secret:
@@ -163,11 +170,6 @@ spec:
           {{- if .defaultMode }}
           defaultMode: {{ .defaultMode }}
           {{- end }}
-      {{- end }}
-      {{- if .Values.config }}
-      - name: config
-        configMap:
-          name: {{ template "opensearch.uname" . }}-config
       {{- end }}
       {{- if and .Values.securityConfig.config.data .Values.securityConfig.config.securityConfigSecret }}
       {{ fail "Only one of .Values.securityConfig.config.data and .Values.securityConfig.config.securityConfigSecret may be defined. Please see the comment in values.yaml describing usage." }}
@@ -238,7 +240,7 @@ spec:
       {{- if .Values.hostAliases }}
       hostAliases: {{ toYaml .Values.hostAliases | nindent 8 }}
       {{- end }}
-      {{- if or (.Values.extraInitContainers) (.Values.keystore) (.Values.persistence.enabled) (.Values.sysctlInit.enabled)  }}
+      {{- if or (.Values.extraInitContainers) (.Values.keystore) (.Values.persistence.enabled) (.Values.sysctlInit.enabled) (.Values.config)  }}
       initContainers:
 {{- if and .Values.persistence.enabled .Values.persistence.enableInitChown }}
       - name: fsgroup-volume
@@ -274,6 +276,27 @@ spec:
           privileged: true
         resources:
           {{- toYaml .Values.initResources | nindent 10 }}
+{{- end }}
+{{- if .Values.config }}
+      - name: configfile
+        image: "{{ template "opensearch.dockerRegistry" . }}{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
+        imagePullPolicy: "{{ .Values.image.pullPolicy }}"
+        command:
+        - sh
+        - -c
+        - |
+          #!/usr/bin/env bash
+          cp -r /tmp/configfolder/*  /tmp/config/
+        resources:
+          {{- toYaml .Values.initResources | nindent 10 }}
+        volumeMounts:
+          - mountPath: /tmp/config/
+            name: config-emptydir
+        {{- range $path, $config := .Values.config }}
+          - name: config
+            mountPath: /tmp/configfolder/{{ $path }}
+            subPath: {{ $path }}
+        {{- end -}}
 {{- end }}
 {{- if .Values.keystore }}
       - name: keystore
@@ -470,7 +493,7 @@ spec:
           {{- end }}
         {{- end }}
         {{- range $path, $config := .Values.config }}
-        - name: config
+        - name: config-emptydir
           mountPath: {{ $.Values.opensearchHome }}/config/{{ $path }}
           subPath: {{ $path }}
         {{- end -}}
