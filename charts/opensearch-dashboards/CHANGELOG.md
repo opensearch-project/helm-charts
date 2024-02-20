@@ -7,8 +7,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ---
 ## [Unreleased]
 ### Added
-- Added support for pod topology spread constraints in Dashboards
 ### Changed
+### Deprecated
+### Removed
+### Fixed
+### Security
+---
+## [2.16.0]
+### Added
+### Breaking
+### Changed
+- Updated OpenSearch Dashboards appVersion to 2.12.0
 ### Deprecated
 ### Removed
 ### Fixed
@@ -17,6 +26,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [2.15.0]
 ### Added
 - Updated OpenSearch Dashboards appVersion to 2.11.1
+- Added support for pod topology spread constraints in Dashboards
 ### Changed
 ### Deprecated
 ### Removed
