@@ -14,6 +14,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Security
 
 ---
+
+## [2.18.0]
+### Added
+### Breaking
+ - Requires an initial admin password to be setup starting from App Version OpenSearch 2.12.0. Refer this github issue: https://github.com/opensearch-project/security/issues/3622
+ - Updated OpenSearch appVersion to 2.12.0
+### Changed
+### Deprecated
+### Removed
+### Fixed
+### Security
+
+---
 ## [2.17.3]
 ### Added
 ### Changed
@@ -384,7 +397,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Security
 
 
-[Unreleased]: https://github.com/opensearch-project/helm-charts/compare/opensearch-2.17.3...HEAD
+[Unreleased]: https://github.com/opensearch-project/helm-charts/compare/opensearch-2.18.0...HEAD
+[2.18.0]: https://github.com/opensearch-project/helm-charts/compare/opensearch-2.17.3...opensearch-2.18.0
 [2.17.3]: https://github.com/opensearch-project/helm-charts/compare/opensearch-2.17.2...opensearch-2.17.3
 [2.17.2]: https://github.com/opensearch-project/helm-charts/compare/opensearch-2.17.1...opensearch-2.17.2
 [2.17.1]: https://github.com/opensearch-project/helm-charts/compare/opensearch-2.17.0...opensearch-2.17.1

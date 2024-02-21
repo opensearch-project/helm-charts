@@ -1,6 +1,6 @@
 <img src="https://opensearch.org/assets/brand/SVG/Logo/opensearch_logo_default.svg" height="64px"/>
 
-- [OpenSearch Project Helm-Charts](#helm-charts)
+- [OpenSearch Project Helm-Charts](#opensearch-project-helm-charts)
 - [Status](#status)
 - [Version and Branching](#version-and-branching)
 - [Installation](#installation)
@@ -11,7 +11,7 @@
 - [Security](#security)
 - [License](#license)
 
-## Helm-Charts
+## OpenSearch Project Helm Charts
 
 A community repository for Helm Charts of OpenSearch Project.
 
@@ -57,6 +57,21 @@ helm install my-deployment opensearch/<chart name>
 ```
 
 Please see the `README.md` in the [OpenSearch](charts/opensearch) and [OpenSearch Dashboards](charts/opensearch-dashboards) directories for installation instructions.
+
+
+### Breaking Change 
+For OpenSearch Chart version 2.18.0 and App Version OpenSearch version 2.12.0 and above require a custom strong password to be provided in order to setup demo admin user during the first time cluster installation, without this password the cluster would not spin up, unless demo config install is disabled or the cluster security settings are handled by the user.
+
+Note: This wont impact users who already installed the cluster and where the security index created, only impacts users starting the brand new cluster with OpenSearch version `2.12.0` and above.
+
+The custom admin password can be supplied by adding the environment variable `OPENSEARCH_INITIAL_ADMIN_PASSWORD` in the `value.yml` as:
+```
+extraEnvs:
+  - name: OPENSEARCH_INITIAL_ADMIN_PASSWORD
+    value: <strong-password>
+```
+or during the installation example as `helm install opensearch opensearch/opensearch --set extraEnvs[0].name=OPENSEARCH_INITIAL_ADMIN_PASSWORD,extraEnvs[0].value=$OPENSEARCH_INITIAL_ADMIN_PASSWORD`
+
 
 ### Notes About Default Installation
 
