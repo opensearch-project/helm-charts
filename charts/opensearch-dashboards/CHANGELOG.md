@@ -13,6 +13,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 ### Security
 ---
+## [2.16.1]
+### Added
+### Changed
+### Deprecated
+### Removed
+### Fixed
+- Fixed pod topology spread constraints in Dashboards
+### Security
+---
 ## [2.16.0]
 ### Added
 - Updated OpenSearch Dashboards appVersion to 2.12.0 
