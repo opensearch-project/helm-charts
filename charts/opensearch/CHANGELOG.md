@@ -672,7 +672,8 @@ config:
 ### Fixed
 ### Security
 
-[Unreleased]: https://github.com/opensearch-project/helm-charts/compare/opensearch-1.24.0...HEAD
+[Unreleased]: https://github.com/opensearch-project/helm-charts/compare/opensearch-1.25.0...HEAD
+[1.25.0]: https://github.com/opensearch-project/helm-charts/compare/opensearch-1.24.0...opensearch-1.25.0
 [1.24.0]: https://github.com/opensearch-project/helm-charts/compare/opensearch-1.23.0...opensearch-1.24.0
 [1.23.0]: https://github.com/opensearch-project/helm-charts/compare/opensearch-1.22.0...opensearch-1.23.0
 [1.22.0]: https://github.com/opensearch-project/helm-charts/compare/opensearch-1.21.1...opensearch-1.22.0
