@@ -17,6 +17,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [2.18.0]
 ### Added
+ - Add `service : spec.port[].appProtocol` value according to `Value.protocol` so it could be used with GKE Gateway Controller 
+### Breaking
+### Changed
+### Deprecated
+### Removed
+### Fixed
+### Security
+
+---
+
+## [2.18.0]
+### Added
 ### Breaking
  - Requires an initial admin password to be setup starting from App Version OpenSearch 2.12.0. Refer this github issue: https://github.com/opensearch-project/security/issues/3622
  - Updated OpenSearch appVersion to 2.12.0
