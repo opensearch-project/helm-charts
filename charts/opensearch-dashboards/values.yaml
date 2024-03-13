@@ -274,3 +274,5 @@ plugins:
   enabled: false
   installList: []
   # - example-fake-plugin-downloadable-url
+  removeList: []
+  # - securityDashboards
