@@ -199,7 +199,9 @@ autoscaling:
   enabled: false
   minReplicas: 1
   maxReplicas: 10
-  targetCPUUtilizationPercentage: 80
+  # The legacy `targetCPUUtilizationPercentage` key has been deprecated in favor of `targetCPU`
+  targetCPU: "80"
+  targetMemory: "80"
 
 updateStrategy:
   type: "Recreate"

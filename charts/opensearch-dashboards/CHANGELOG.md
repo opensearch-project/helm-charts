@@ -13,9 +13,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 ### Security
 ---
+## [2.17.0]
+### Added
+- Support for newer HorizontalPodAutoscaler api in Dashboards
+- Ability to configure HorizontalPodAutoscaler to use memory as a metric source type
+### Changed
+### Deprecated
+### Removed
+### Fixed
+### Security
+---
 ## [2.16.0]
 ### Added
-- Updated OpenSearch Dashboards appVersion to 2.12.0 
+- Updated OpenSearch Dashboards appVersion to 2.12.0
 ### Changed
 ### Deprecated
 ### Removed
