@@ -13,7 +13,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 ### Security
 ---
-## [2.17.0]
+## [2.16.1]
 ### Added
 - Support for newer HorizontalPodAutoscaler api in Dashboards
 - Ability to configure HorizontalPodAutoscaler to use memory as a metric source type
