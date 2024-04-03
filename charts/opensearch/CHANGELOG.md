@@ -15,6 +15,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## [2.19.0]
+### Added
+ - Add `service : spec.port[].appProtocol` value according to `Value.protocol` so it could be used with GKE Gateway Controller 
+### Breaking
+### Changed
+### Deprecated
+### Removed
+### Fixed
+### Security
+
+---
+
 ## [2.18.0]
 ### Added
 ### Breaking

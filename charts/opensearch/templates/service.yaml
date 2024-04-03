@@ -66,6 +66,7 @@ spec:
   ports:
   - name: {{ .Values.service.httpPortName | default "http" }}
     port: {{ .Values.httpPort }}
+    appProtocol: {{ upper .Values.protocol }}
   - name: {{ .Values.service.transportPortName | default "transport" }}
     port: {{ .Values.transportPort }}
   - name: {{ .Values.service.metricsPortName | default "metrics" }}
