@@ -529,3 +529,8 @@ extraObjects: []
   #      selector:
   #        matchLabels:
   #          {{- include "opensearch.selectorLabels" . | nindent 6 }}
+
+serviceMonitor:
+  enabled: false
+  path: /metrics
+  interval: 10s
