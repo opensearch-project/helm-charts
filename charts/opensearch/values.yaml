@@ -532,5 +532,5 @@ extraObjects: []
 
 serviceMonitor:
   enabled: false
-  path: /metrics
+  path: /_prometheus/metrics
   interval: 10s
