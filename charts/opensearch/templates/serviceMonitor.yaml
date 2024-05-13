@@ -9,7 +9,7 @@ metadata:
 spec:
   selector:
     matchLabels:
-      {{- include "opensearch.labels" . | nindent 4 }}
+      {{- include "opensearch.selectorLabels" . | nindent 6 }}
   endpoints:
   - port: {{ .Values.metricsPort }}
     interval: {{ .Values.serviceMonitor.interval }}
