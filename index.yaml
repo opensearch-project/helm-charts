@@ -2,6 +2,27 @@ apiVersion: v1
 entries:
   opensearch:
   - apiVersion: v2
+    appVersion: 2.14.0
+    created: "2024-05-14T22:54:27.269895895Z"
+    description: A Helm chart for OpenSearch
+    digest: e09b9d82cf94ef43eebba4c71fe0a1aeef899b6a5bde6fa1c8454fe2d8ea2406
+    home: https://opensearch.org
+    maintainers:
+    - name: DandyDeveloper
+    - name: bbarani
+    - name: gaiksaya
+    - name: peterzhuamazon
+    - name: prudhvigodithi
+    - name: TheAlgo
+    name: opensearch
+    sources:
+    - https://github.com/opensearch-project/opensearch
+    - https://github.com/opensearch-project/helm-charts
+    type: application
+    urls:
+    - https://github.com/opensearch-project/helm-charts/releases/download/opensearch-2.20.0/opensearch-2.20.0.tgz
+    version: 2.20.0
+  - apiVersion: v2
     appVersion: 2.13.0
     created: "2024-04-03T03:57:48.493940954Z"
     description: A Helm chart for OpenSearch
@@ -1985,6 +2006,23 @@ entries:
     version: 1.0.3
   opensearch-dashboards:
   - apiVersion: v2
+    appVersion: 2.14.0
+    created: "2024-05-14T22:54:27.368081217Z"
+    description: A Helm chart for OpenSearch Dashboards
+    digest: bc2f088eccac51638b1c796949a5e6265895eb57aeb7fe0369899f9fc400d9f2
+    maintainers:
+    - name: DandyDeveloper
+    - name: bbarani
+    - name: gaiksaya
+    - name: peterzhuamazon
+    - name: prudhvigodithi
+    - name: TheAlgo
+    name: opensearch-dashboards
+    type: application
+    urls:
+    - https://github.com/opensearch-project/helm-charts/releases/download/opensearch-dashboards-2.18.0/opensearch-dashboards-2.18.0.tgz
+    version: 2.18.0
+  - apiVersion: v2
     appVersion: 2.13.0
     created: "2024-04-03T03:57:48.602144472Z"
     description: A Helm chart for OpenSearch Dashboards
@@ -3345,4 +3383,4 @@ entries:
     urls:
     - https://github.com/opensearch-project/helm-charts/releases/download/opensearch-dashboards-1.0.3/opensearch-dashboards-1.0.3.tgz
     version: 1.0.3
-generated: "2024-04-23T22:41:39.306316848Z"
+generated: "2024-05-14T22:54:27.370689566Z"
