@@ -13,6 +13,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 ### Security
 ---
+## [2.18.0]
+### Added
+- Updated OpenSearch Dashboards appVersion to 2.14.0
+### Changed
+### Deprecated
+### Removed
+### Fixed
+### Security
+---
 ## [2.17.0]
 ### Added
 - Updated OpenSearch Dashboards appVersion to 2.13.0
@@ -322,7 +331,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 ### Security
 
-[Unreleased]: https://github.com/opensearch-project/helm-charts/compare/opensearch-dashboards-2.17.0...HEAD
+[Unreleased]: https://github.com/opensearch-project/helm-charts/compare/opensearch-dashboards-2.18.0...HEAD
+[2.18.0]: https://github.com/opensearch-project/helm-charts/compare/opensearch-dashboards-2.17.0...opensearch-dashboards-2.18.0
 [2.17.0]: https://github.com/opensearch-project/helm-charts/compare/opensearch-dashboards-2.16.0...opensearch-dashboards-2.17.0
 [2.16.0]: https://github.com/opensearch-project/helm-charts/compare/opensearch-dashboards-2.15.1...opensearch-dashboards-2.16.0
 [2.15.1]: https://github.com/opensearch-project/helm-charts/compare/opensearch-dashboards-2.15.0...opensearch-dashboards-2.15.1
