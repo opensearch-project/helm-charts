@@ -6,7 +6,6 @@ This document contains a list of maintainers in this repo. See [opensearch-proje
 
 | Maintainer        | GitHub ID                                           | Affiliation |
 | ----------------- | --------------------------------------------------- | ----------- |
-
 | Peter Zhu         | [peterzhuamazon](https://github.com/peterzhuamazon) | Amazon      |
 | Sayali Gaikawad   | [gaiksaya](https://github.com/gaiksaya)             | Amazon      |
 | Prudhvi Godithi   | [prudhvigodithi](https://github.com/prudhvigodithi) | Amazon      |
