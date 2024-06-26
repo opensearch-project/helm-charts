@@ -27,9 +27,9 @@ spec:
         {{- range $key, $value := .Values.podAnnotations }}
         {{ $key }}: {{ $value | quote }}
         {{- end }}
-        {{- /* This forces a restart if the configmap has changed */}}
+        {{- /* This forces a restart if the secret has changed */}}
         {{- if .Values.config }}
-        configchecksum: {{ include (print .Template.BasePath "/configmap.yaml") . | sha256sum | trunc 63 }}
+        configchecksum: {{ include (print .Template.BasePath "/secret.yaml") . | sha256sum | trunc 63 }}
         {{- end }}
     spec:
 {{- if .Values.priorityClassName }}
@@ -49,8 +49,8 @@ spec:
         {{- end }}
         {{- if .Values.config }}
         - name: config
-          configMap:
-            name: {{ template "opensearch-dashboards.fullname" . }}-config
+          secret:
+            secretName: {{ template "opensearch-dashboards.fullname" . }}-config
             {{- if .Values.opensearchDashboardsYml.defaultMode }}
             defaultMode: {{ .Values.opensearchDashboardsYml.defaultMode }}
             {{- end }}
