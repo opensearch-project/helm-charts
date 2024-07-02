@@ -13,6 +13,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 ### Security
 ---
+## [2.21.1]
+### Added
+- Allow user-defined labels on persistent volume claim
+### Changed
+### Deprecated
+### Removed
+### Fixed
+### Security
+---
 ## [2.21.0]
 ### Added
 - Updated OpenSearch appVersion to 2.15.0

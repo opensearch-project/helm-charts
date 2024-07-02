@@ -30,6 +30,9 @@ spec:
     {{- if .Values.persistence.labels.enabled }}
       labels:
         {{- include "opensearch.labels" . | nindent 8 }}
+        {{- with .Values.persistence.labels.additionalLabels }}
+        {{- toYaml . | nindent 8 }}
+        {{- end }}
     {{- end }}
     {{- with .Values.persistence.annotations  }}
       annotations:
