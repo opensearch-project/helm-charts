@@ -1,5 +1,39 @@
 apiVersion: v1
 entries:
+  data-prepper:
+  - annotations:
+      artifacthub.io/category: monitoring-logging
+      artifacthub.io/license: Apache-2.0
+      artifacthub.io/links: |
+        - name: Data Prepper Documentation
+          url: https://opensearch.org/docs/latest/data-prepper/
+        - name: OpenSearch Project
+          url: https://opensearch.org
+    apiVersion: v2
+    appVersion: 2.8.0
+    created: "2024-07-03T17:46:30.978078874Z"
+    description: A Helm chart for Data Prepper
+    digest: c52b71b27fbf78e57792a11bdfbb009f63e2c6269b79e36ac9c9e5351bc740ce
+    home: https://opensearch.org/docs/latest/data-prepper/
+    maintainers:
+    - name: gaiksaya
+      url: https://github.com/gaiksaya
+    - name: peterzhuamazon
+      url: https://github.com/peterzhuamazon
+    - name: prudhvigodithi
+      url: https://github.com/prudhvigodithi
+    - name: sergk
+      url: https://github.com/sergk
+    - name: TheAlgo
+      url: https://github.com/TheAlgo
+    name: data-prepper
+    sources:
+    - https://github.com/opensearch-project/data-prepper
+    - https://github.com/opensearch-project/helm-charts
+    type: application
+    urls:
+    - https://github.com/opensearch-project/helm-charts/releases/download/data-prepper-0.1.0/data-prepper-0.1.0.tgz
+    version: 0.1.0
   opensearch:
   - apiVersion: v2
     appVersion: 2.15.0
@@ -3455,4 +3489,4 @@ entries:
     urls:
     - https://github.com/opensearch-project/helm-charts/releases/download/opensearch-dashboards-1.0.3/opensearch-dashboards-1.0.3.tgz
     version: 1.0.3
-generated: "2024-06-25T23:39:59.437121506Z"
+generated: "2024-07-03T17:46:30.979616808Z"
