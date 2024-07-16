@@ -404,12 +404,12 @@ spec:
           valueFrom:
             fieldRef:
               fieldPath: metadata.name
-        {{- if (and (has "master" .Values.roles) (not .Values.singleNode)) }}
-        - name: cluster.initial_master_nodes
+        {{- if (and (or (has "master" .Values.roles) (has "cluster_manager" .Values.roles)) (not .Values.singleNode)) }}
+        - name: cluster.initial_cluster_manager_nodes
           value: "{{ template "opensearch.endpoints" . }}"
         {{- end }}
         - name: discovery.seed_hosts
-          value: "{{ template "opensearch.masterService" . }}-headless"
+          value: "{{ template "opensearch.clusterManagerService" . }}-headless"
         - name: cluster.name
           value: "{{ .Values.clusterName }}"
         - name: network.host
@@ -512,10 +512,10 @@ spec:
 {{ toYaml .Values.extraVolumeMounts | indent 8 }}
         {{- end }}
         {{- end }}
-      {{- if .Values.masterTerminationFix }}
-      {{- if has "master" .Values.roles }}
-      # This sidecar will prevent slow master re-election
-      - name: opensearch-master-graceful-termination-handler
+      {{- if .Values.clusterManagerTerminationFix }}
+      {{- if or (has "master" .Values.roles) (has "cluster_manager" .Values.roles) }}
+      # This sidecar will prevent slow cluster-manager re-election
+      - name: opensearch-cluster-manager-graceful-termination-handler
         image: "{{ template "opensearch.dockerRegistry" . }}{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
         imagePullPolicy: "{{ .Values.image.pullPolicy }}"
         command:
@@ -532,17 +532,17 @@ spec:
               else
                 BASIC_AUTH=''
               fi
-              curl -XGET -s -k --fail ${BASIC_AUTH} {{ .Values.protocol }}://{{ template "opensearch.masterService" . }}:{{ .Values.httpPort }}${path}
+              curl -XGET -s -k --fail ${BASIC_AUTH} {{ .Values.protocol }}://{{ template "opensearch.clusterManagerService" . }}:{{ .Values.httpPort }}${path}
           }
 
           cleanup () {
             while true ; do
-              local master="$(http "/_cat/master?h=node" || echo "")"
-              if [[ $master == "{{ template "opensearch.masterService" . }}"* && $master != "${NODE_NAME}" ]]; then
-                echo "This node is not master."
+              local cluster_manager="$(http "/_cat/cluster_manager?h=node" || echo "")"
+              if [[ $cluster_manager == "{{ template "opensearch.clusterManagerService" . }}"* && $cluster_manager != "${NODE_NAME}" ]]; then
+                echo "This node is not cluster-manager."
                 break
               fi
-              echo "This node is still master, waiting gracefully for it to step down"
+              echo "This node is still cluster-manager, waiting gracefully for it to step down"
               sleep 1
             done
 
