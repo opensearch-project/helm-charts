@@ -23,11 +23,10 @@ version: 2.20.1
 # incremented each time you make changes to the application. Versions are not expected to
 # follow Semantic Versioning. They should reflect the version the application is using.
 # It is recommended to use it with quotes.
-appVersion: "2.14.0"
+appVersion: "2.15.0"
 
 maintainers:
   - name: DandyDeveloper
-  - name: bbarani
   - name: gaiksaya
   - name: peterzhuamazon
   - name: prudhvigodithi

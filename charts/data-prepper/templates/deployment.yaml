@@ -1,0 +1,112 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "data-prepper.fullname" . }}
+  labels:
+    {{- include "data-prepper.labels" . | nindent 4 }}
+spec:
+  {{- if not .Values.autoscaling.enabled }}
+  replicas: {{ .Values.replicaCount }}
+  {{- end }}
+  selector:
+    matchLabels:
+      {{- include "data-prepper.selectorLabels" . | nindent 6 }}
+  template:
+    metadata:
+      annotations:
+      {{- with .Values.podAnnotations }}
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- if .Values.config }}
+        checksum/config: {{ include (print .Template.BasePath "/configmap.yaml") . | sha256sum | trunc 63 }}
+      {{- end }}
+      {{- if .Values.pipelineConfig.enabled }}
+        checksum/pipelineconfig: {{ include (print .Template.BasePath "/secret.yaml") . | sha256sum | trunc 63 }}
+      {{- end }}
+      labels:
+        {{- include "data-prepper.labels" . | nindent 8 }}
+        {{- with .Values.podLabels }}
+        {{- toYaml . | nindent 8 }}
+        {{- end }}
+    spec:
+      {{- with .Values.imagePullSecrets }}
+      imagePullSecrets:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      serviceAccountName: {{ include "data-prepper.serviceAccountName" . }}
+      securityContext:
+        {{- toYaml .Values.podSecurityContext | nindent 8 }}
+      containers:
+        - name: {{ .Chart.Name }}
+          env:
+            {{- with .Values.extraEnvs }}
+              {{- toYaml . | nindent 12 }}
+            {{- end }}
+          securityContext:
+            {{- toYaml .Values.securityContext | nindent 12 }}
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          ports:
+          {{- range .Values.ports }}
+            - name: {{ .name }}
+              containerPort: {{ .port }}
+              protocol: TCP
+          {{- end }}
+            - name: server
+              containerPort: {{ (.Values.config).serverPort | default 4900 }}
+              protocol: TCP
+          livenessProbe:
+            httpGet:
+              path: /list
+              port: server
+              {{- if not ( empty (.Values.config).ssl ) }}
+              scheme: HTTPS
+              {{- end }}
+            periodSeconds: 10
+            initialDelaySeconds: 2
+            failureThreshold: 2
+          readinessProbe:
+            httpGet:
+              path: /list
+              port: server
+              {{- if not ( empty (.Values.config).ssl ) }}
+              scheme: HTTPS
+              {{- end }}
+          resources:
+            {{- toYaml .Values.resources | nindent 12 }}
+          volumeMounts:
+            - name: data-prepper-config
+              mountPath: /usr/share/data-prepper/config
+              readOnly: true
+            - name: data-prepper-pipelines
+              mountPath: /usr/share/data-prepper/pipelines
+              readOnly: true
+          {{- with .Values.volumeMounts }}
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
+      volumes:
+        - name: data-prepper-config
+          configMap:
+            name: {{ include "data-prepper.fullname" . }}-config
+        - name: data-prepper-pipelines
+          secret:
+          {{- if .Values.pipelineConfig.enabled }}
+            secretName: {{ include "data-prepper.fullname" . }}-pipeline
+          {{- else }}
+            secretName: {{ required "A valid .Values.pipelineConfig.existingSecret entry required!" .Values.pipelineConfig.existingSecret }}
+          {{- end }}
+      {{- with .Values.volumes }}
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.nodeSelector }}
+      nodeSelector:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.affinity }}
+      affinity:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.tolerations }}
+      tolerations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}

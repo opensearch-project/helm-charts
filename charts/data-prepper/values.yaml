@@ -1,0 +1,354 @@
+# Copyright OpenSearch Contributors
+# SPDX-License-Identifier: Apache-2.0
+
+# Default values for data-prepper.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+replicaCount: 1
+
+image:
+  # -- The image repository from which to pull the Data Prepper image
+  repository: opensearchproject/data-prepper
+  # -- The image tag to pull. Default: IfNotPresent
+  pullPolicy: IfNotPresent
+  # -- Overrides the image tag whose default is the chart appVersion.
+  tag: ""
+
+# -- List of imagePullSecrets to use if the Docker image is stored in a private registry
+imagePullSecrets: []
+# -- Override the default name for the deployment
+nameOverride: ""
+# -- Override the default fullname for the deployment
+fullnameOverride: ""
+
+# -- Extra environment variables to pass to the Data Prepper container
+extraEnvs: []
+  # - name: "JAVA_OPTS"
+  #   value: "-Dlog4j2.debug=true"
+
+# Check https://opensearch.org/docs/latest/data-prepper/managing-data-prepper/configuring-data-prepper/
+# for more information on the configuration options
+# -- Data Prepper configuration
+config:
+  # -- Main Data Prepper configuration file content
+  data-prepper-config.yaml: |
+    ssl: false
+    # circuit_breakers:
+    #   heap:
+    #     usage: 2gb
+    #     reset: 30s
+    #     check_interval: 5s
+
+  # -- Log4j2 configuration for Data Prepper logging
+  log4j2-rolling.properties: |
+    #
+    # Copyright OpenSearch Contributors
+    # SPDX-License-Identifier: Apache-2.0
+    #
+
+    status = error
+    dest = err
+    name = PropertiesConfig
+
+    property.filename = log/data-prepper/data-prepper.log
+
+    appender.console.type = Console
+    appender.console.name = STDOUT
+    appender.console.layout.type = PatternLayout
+    appender.console.layout.pattern = %d{ISO8601} [%t] %-5p %40C - %m%n
+
+    appender.rolling.type = RollingFile
+    appender.rolling.name = RollingFile
+    appender.rolling.fileName = ${filename}
+    appender.rolling.filePattern = logs/data-prepper.log.%d{MM-dd-yy-HH}-%i.gz
+    appender.rolling.layout.type = PatternLayout
+    appender.rolling.layout.pattern = %d{ISO8601} [%t] %-5p %40C - %m%n
+    appender.rolling.policies.type = Policies
+    appender.rolling.policies.time.type = TimeBasedTriggeringPolicy
+    appender.rolling.policies.time.interval = 1
+    appender.rolling.policies.time.modulate = true
+    appender.rolling.policies.size.type = SizeBasedTriggeringPolicy
+    appender.rolling.policies.size.size=100MB
+    appender.rolling.strategy.type = DefaultRolloverStrategy
+    appender.rolling.strategy.max = 168
+
+    rootLogger.level = warn
+    rootLogger.appenderRef.stdout.ref = STDOUT
+    rootLogger.appenderRef.file.ref = RollingFile
+
+    logger.pipeline.name = org.opensearch.dataprepper.pipeline
+    logger.pipeline.level = info
+
+    logger.parser.name = org.opensearch.dataprepper.parser
+    logger.parser.level = info
+
+    logger.plugins.name = org.opensearch.dataprepper.plugins
+    logger.plugins.level = info
+
+# For OpenSearch Data Prepper is crucial for defining the behavior and structure of your data processing pipelines.
+# Each pipeline is defined with a unique name and can include `source`, `processor`, and `sink` components to ingest,
+# process, and output data respectively. This flexible configuration allows for the creation of complex data processing
+# flows, including the routing of data between pipelines.
+# For detailed information on the available options and to get the most up-to-date guidance on configuring `pipeline.yaml`,
+# please consult the [OpenSearch Documentation on Pipelines](https://opensearch.org/docs/2.4/data-prepper/pipelines/pipelines/).
+# This resource provides comprehensive examples and explanations of each component, ensuring you can tailor your Data Prepper
+# deployment to meet your specific data processing needs.
+
+# -- Pipeline configuration
+pipelineConfig:
+  # If enabled, a secret containing the pipeline configuration will be created based on the 'config' section below.
+  enabled: true
+  # -- The name of the existing secret containing the pipeline configuration.
+  # If enabled is false existingSecret is used. The existingSecret must have a key named `pipelines.yaml`.
+  existingSecret: ""
+  # The configuration of the pipeline see https://opensearch.org/docs/2.4/data-prepper/pipelines/pipelines/
+  config:
+    ## Simple Example
+    simple-sample-pipeline:
+      workers: 2      # the number of workers
+      delay: 5000     # in milliseconds, how long workers wait between read attempts
+      source:
+        random:
+      buffer:
+        bounded_blocking:
+          buffer_size: 1024     # max number of records the buffer accepts
+          batch_size: 256       # max number of records the buffer drains after each read
+      processor:
+        - string_converter:
+            upper_case: true
+      sink:
+        - stdout:
+
+    ## More Complex example
+    # otel-logs-pipeline:
+    #   workers: 5
+    #   delay: 10
+    #   source:
+    #     otel_logs_source:
+    #       ssl: false
+    #   buffer:
+    #     bounded_blocking:
+    #   sink:
+    #     - opensearch:
+    #         hosts: ["https://opensearch-cluster-master:9200"]
+    #         username: "admin"
+    #         password: "admin"
+    #         insecure: true
+    #         index_type: custom
+    #         index: events-%{yyyy.MM.dd}
+    #         #max_retries: 20
+    #         bulk_size: 4
+    # otel-trace-pipeline:
+    #   # workers is the number of threads processing data in each pipeline.
+    #   # We recommend same value for all pipelines.
+    #   # default value is 1, set a value based on the machine you are running Data Prepper
+    #   workers: 8
+    #   # delay in milliseconds is how often the worker threads should process data.
+    #   # Recommend not to change this config as we want the otel-trace-pipeline to process as quick as possible
+    #   # default value is 3_000 ms
+    #   delay: "100"
+    #   source:
+    #     otel_trace_source:
+    #       ssl: false # Change this to enable encryption in transit
+    #   buffer:
+    #     bounded_blocking:
+    #       # buffer_size is the number of ExportTraceRequest from otel-collector the data prepper should hold in memeory.
+    #       # We recommend to keep the same buffer_size for all pipelines.
+    #       # Make sure you configure sufficient heap
+    #       # default value is 12800
+    #       buffer_size: 25600
+    #       # This is the maximum number of request each worker thread will process within the delay.
+    #       # Default is 200.
+    #       # Make sure buffer_size >= workers * batch_size
+    #       batch_size: 400
+    #   sink:
+    #     - pipeline:
+    #         name: "raw-traces-pipeline"
+    #     - pipeline:
+    #         name: "otel-service-map-pipeline"
+    # raw-traces-pipeline:
+    #   workers: 5
+    #   delay: 3000
+    #   source:
+    #     pipeline:
+    #       name: "otel-trace-pipeline"
+    #   buffer:
+    #     bounded_blocking:
+    #       buffer_size: 25600 # max number of records the buffer accepts
+    #       batch_size: 400 # max number of records the buffer drains after each read
+    #   processor:
+    #     - otel_traces:
+    #     - otel_trace_group:
+    #         hosts: [ "https://opensearch-cluster-master:9200" ]
+    #         insecure: true
+    #         username: "admin"
+    #         password: "admin"
+    #   sink:
+    #     - opensearch:
+    #         hosts: ["https://opensearch-cluster-master:9200"]
+    #         username: "admin"
+    #         password: "admin"
+    #         insecure: true
+    #         index_type: trace-analytics-raw
+    # otel-service-map-pipeline:
+    #   workers: 5
+    #   delay: 3000
+    #   source:
+    #     pipeline:
+    #       name: "otel-trace-pipeline"
+    #   processor:
+    #     - service_map:
+    #         # The window duration is the maximum length of time the data prepper stores the most recent trace data to evaluvate service-map relationships.
+    #         # The default is 3 minutes, this means we can detect relationships between services from spans reported in last 3 minutes.
+    #         # Set higher value if your applications have higher latency.
+    #         window_duration: 180
+    #   buffer:
+    #       bounded_blocking:
+    #         # buffer_size is the number of ExportTraceRequest from otel-collector the data prepper should hold in memeory.
+    #         # We recommend to keep the same buffer_size for all pipelines.
+    #         # Make sure you configure sufficient heap
+    #         # default value is 12800
+    #         buffer_size: 25600
+    #         # This is the maximum number of request each worker thread will process within the delay.
+    #         # Default is 200.
+    #         # Make sure buffer_size >= workers * batch_size
+    #         batch_size: 400
+    #   sink:
+    #     - opensearch:
+    #         hosts: ["https://opensearch-cluster-master:9200"]
+    #         username: "admin"
+    #         password: "admin"
+    #         insecure: true
+    #         index_type: trace-analytics-service-map
+    #         #index: otel-v1-apm-span-%{yyyy.MM.dd}
+    #         #max_retries: 20
+    #         bulk_size: 4
+    # otel-metrics-pipeline:
+    #   workers: 8
+    #   delay: 3000
+    #   source:
+    #     otel_metrics_source:
+    #       health_check_service: true
+    #       ssl: false
+    #   buffer:
+    #     bounded_blocking:
+    #       buffer_size: 1024 # max number of records the buffer accepts
+    #       batch_size: 1024 # max number of records the buffer drains after each read
+    #   processor:
+    #     - otel_metrics:
+    #         calculate_histogram_buckets: true
+    #         calculate_exponential_histogram_buckets: true
+    #         exponential_histogram_max_allowed_scale: 10
+    #         flatten_attributes: false
+    #   sink:
+    #     - opensearch:
+    #         hosts: ["https://opensearch-cluster-master:9200"]
+    #         username: "admin"
+    #         password: "admin"
+    #         insecure: true
+    #         index_type: custom
+    #         index: metrics-%{yyyy.MM.dd}
+    #         #max_retries: 20
+    #         bulk_size: 4
+
+# -- Data Prepper ports
+ports:
+  # -- The port that the source is running on. Default value is 2021. Valid options are between 0 and 65535.
+  # https://opensearch.org/docs/latest/data-prepper/pipelines/configuration/sources/http-source/
+  - name: http-source
+    port: 2021
+  # -- The port that the otel_trace_source source runs on. Default value is 21890.
+  # https://opensearch.org/docs/latest/data-prepper/pipelines/configuration/sources/otel-trace-source/
+  - name: otel-traces
+    port: 21890
+  # -- The port that the OpenTelemtry metrics source runs on. Default value is 21891.
+  # https://opensearch.org/docs/latest/data-prepper/pipelines/configuration/sources/otel-metrics-source/
+  - name: otel-metrics
+    port: 21891
+  # -- Represents the port that the otel_logs_source source is running on. Default value is 21892.
+  # https://opensearch.org/docs/latest/data-prepper/pipelines/configuration/sources/otel-logs-source/
+  - name: otel-logs
+    port: 21892
+
+serviceAccount:
+  # -- Specifies whether a service account should be created
+  create: true
+  # -- Automatically mount a ServiceAccount's API credentials?
+  automount: true
+  # -- Annotations to add to the service account
+  annotations: {}
+  # -- The name of the service account to use.
+  # If not set and create is true, a name is generated using the fullname template
+  name: ""
+
+podAnnotations: {}
+podLabels: {}
+
+podSecurityContext: {}
+  # fsGroup: 2000
+
+securityContext: {}
+  # capabilities:
+  #   drop:
+  #   - ALL
+  # readOnlyRootFilesystem: true
+  # runAsNonRoot: true
+  # runAsUser: 1000
+
+service:
+  type: ClusterIP
+
+ingress:
+  enabled: false
+  className: ""
+  annotations: {}
+    # kubernetes.io/ingress.class: nginx
+    # kubernetes.io/tls-acme: "true"
+  hosts:
+    - host: chart-example.local
+      paths:
+        - path: /
+          pathType: ImplementationSpecific
+  tls: []
+  #  - secretName: chart-example-tls
+  #    hosts:
+  #      - chart-example.local
+
+resources: {}
+  # We usually recommend not to specify default resources and to leave this as a conscious
+  # choice for the user. This also increases chances charts run on environments with little
+  # resources, such as Minikube. If you do want to specify resources, uncomment the following
+  # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
+  # limits:
+  #   cpu: 100m
+  #   memory: 128Mi
+  # requests:
+  #   cpu: 100m
+  #   memory: 128Mi
+
+autoscaling:
+  enabled: false
+  minReplicas: 1
+  maxReplicas: 100
+  targetCPUUtilizationPercentage: 80
+  # targetMemoryUtilizationPercentage: 80
+
+# Additional volumes on the output Deployment definition.
+volumes: []
+# - name: foo
+#   secret:
+#     secretName: mysecret
+#     optional: false
+
+# Additional volumeMounts on the output Deployment definition.
+volumeMounts: []
+# - name: foo
+#   mountPath: "/etc/foo"
+#   readOnly: true
+
+nodeSelector: {}
+
+tolerations: []
+
+affinity: {}
