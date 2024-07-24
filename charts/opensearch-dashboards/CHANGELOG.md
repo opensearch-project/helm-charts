@@ -13,6 +13,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 ### Security
 ---
+## [2.19.1]
+### Added
+### Changed
+### Deprecated
+### Removed
+### Fixed
+- Fixed pod topology spread constraints in Dashboards
+### Security
+---
 ## [2.19.0]
 ### Added
 - Updated OpenSearch Dashboards appVersion to 2.15.0
@@ -340,7 +349,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 ### Security
 
-[Unreleased]: https://github.com/opensearch-project/helm-charts/compare/opensearch-dashboards-2.19.0...HEAD
+[Unreleased]: https://github.com/opensearch-project/helm-charts/compare/opensearch-dashboards-2.19.1...HEAD
+[2.19.1]: https://github.com/opensearch-project/helm-charts/compare/opensearch-dashboards-2.19.0...opensearch-dashboards-2.19.1
 [2.19.0]: https://github.com/opensearch-project/helm-charts/compare/opensearch-dashboards-2.18.0...opensearch-dashboards-2.19.0
 [2.18.0]: https://github.com/opensearch-project/helm-charts/compare/opensearch-dashboards-2.17.0...opensearch-dashboards-2.18.0
 [2.17.0]: https://github.com/opensearch-project/helm-charts/compare/opensearch-dashboards-2.16.0...opensearch-dashboards-2.17.0
