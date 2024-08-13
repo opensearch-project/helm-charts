@@ -440,7 +440,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Security
 
 
-[Unreleased]: https://github.com/opensearch-project/helm-charts/compare/opensearch-2.22.0...HEAD
+[Unreleased]: https://github.com/opensearch-project/helm-charts/compare/opensearch-2.22.1...HEAD
+[2.22.1]: https://github.com/opensearch-project/helm-charts/compare/opensearch-2.22.0...opensearch-2.22.1
 [2.22.0]: https://github.com/opensearch-project/helm-charts/compare/opensearch-2.21.0...opensearch-2.22.0
 [2.21.0]: https://github.com/opensearch-project/helm-charts/compare/opensearch-2.20.0...opensearch-2.21.0
 [2.20.0]: https://github.com/opensearch-project/helm-charts/compare/opensearch-2.19.0...opensearch-2.20.0
