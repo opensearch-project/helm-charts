@@ -12,6 +12,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 ### Security
 ---
+## [1.28.1]
+### Added
+### Changed
+### Deprecated
+### Removed
+### Fixed
+- Fixed opensearchJavaOpts defaults in README
+### Security
+---
 ## [1.28.0]
 ### Added
 ### Changed
@@ -699,7 +708,8 @@ config:
 ### Fixed
 ### Security
 
-[Unreleased]: https://github.com/opensearch-project/helm-charts/compare/opensearch-1.28.0...HEAD
+[Unreleased]: https://github.com/opensearch-project/helm-charts/compare/opensearch-1.28.1...HEAD
+[1.28.1]: https://github.com/opensearch-project/helm-charts/compare/opensearch-1.28.0...opensearch-1.28.1
 [1.28.0]: https://github.com/opensearch-project/helm-charts/compare/opensearch-1.27.0...opensearch-1.28.0
 [1.27.0]: https://github.com/opensearch-project/helm-charts/compare/opensearch-1.26.0...opensearch-1.27.0
 [1.26.0]: https://github.com/opensearch-project/helm-charts/compare/opensearch-1.25.0...opensearch-1.26.0
