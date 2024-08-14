@@ -80,6 +80,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [2.15.1]
 ### Added
 - Added support for pod topology spread constraints in Dashboards
+- store opensearch-dashboards configs in Secret (#426)
 ### Changed
 ### Deprecated
 ### Removed
