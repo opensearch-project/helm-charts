@@ -14,7 +14,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 ### Security
 ---
-## [2.20.1]
+## [2.21.0]
 ### Added
 - Added `ServiceMonitor` support for Prometheus monitoring
 ### Changed
@@ -368,8 +368,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 ### Security
 
-[Unreleased]: https://github.com/opensearch-project/helm-charts/compare/opensearch-dashboards-2.20.1...HEAD
-[2.20.1]: https://github.com/opensearch-project/helm-charts/compare/opensearch-dashboards-2.20.0...opensearch-dashboards-2.20.1
+[Unreleased]: https://github.com/opensearch-project/helm-charts/compare/opensearch-dashboards-2.21.0...HEAD
+[2.21.0]: https://github.com/opensearch-project/helm-charts/compare/opensearch-dashboards-2.20.0...opensearch-dashboards-2.21.0
 [2.20.0]: https://github.com/opensearch-project/helm-charts/compare/opensearch-dashboards-2.19.1...opensearch-dashboards-2.20.0
 [2.19.1]: https://github.com/opensearch-project/helm-charts/compare/opensearch-dashboards-2.19.0...opensearch-dashboards-2.19.1
 [2.19.0]: https://github.com/opensearch-project/helm-charts/compare/opensearch-dashboards-2.18.0...opensearch-dashboards-2.19.0
