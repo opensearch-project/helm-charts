@@ -14,7 +14,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 ### Security
 ---
-## [2.22.1]
+## [2.20.1]
 ### Added
 - Added `ServiceMonitor` support for Prometheus monitoring
 ### Changed
