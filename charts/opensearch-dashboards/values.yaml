@@ -276,3 +276,21 @@ plugins:
   enabled: false
   installList: []
   # - example-fake-plugin-downloadable-url
+
+# ServiceMonitor Configuration for Prometheus
+# Enabling this option will create a ServiceMonitor resource that allows Prometheus to scrape metrics from the OpenSearch service.
+serviceMonitor:
+  # Set to true to enable the ServiceMonitor resource for OpenSearch Dashboards
+  enabled: false
+
+  # HTTP path where metrics are exposed by OpenSearch Dashboards.
+  # Ensure this path is correctly set in your service.
+  path: /_prometheus/metrics
+
+  # Frequency at which Prometheus will scrape metrics.
+  # Modify as needed for your monitoring requirements.
+  interval: 10s
+
+# Port configuration for metrics.
+# This should match the port exposed by the OpenSearch Dashboards service.
+metricsPort: 9601

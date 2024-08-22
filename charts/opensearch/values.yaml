@@ -529,3 +529,17 @@ extraObjects: []
   #      selector:
   #        matchLabels:
   #          {{- include "opensearch.selectorLabels" . | nindent 6 }}
+
+# ServiceMonitor Configuration for Prometheus
+# Enabling this option will create a ServiceMonitor resource that allows Prometheus to scrape metrics from the OpenSearch service.
+serviceMonitor:
+  # Set to true to enable the ServiceMonitor resource
+  enabled: false
+
+  # HTTP path where metrics are exposed.
+  # Ensure this matches your OpenSearch service configuration.
+  path: /_prometheus/metrics
+
+  # Frequency at which Prometheus will scrape metrics.
+  # Adjust based on your needs.
+  interval: 10s
