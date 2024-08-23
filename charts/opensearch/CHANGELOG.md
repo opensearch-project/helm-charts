@@ -1,11 +1,23 @@
 # Changelog
+
 All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+
 ---
 ## [Unreleased]
 ### Added
+### Changed
+### Deprecated
+### Removed
+### Fixed
+### Security
+---
+## [1.30.0]
+### Added
+- Added `ServiceMonitor` support for Prometheus monitoring
+- Added `protocol` setting in `Service` metrics
 ### Changed
 ### Deprecated
 ### Removed
@@ -717,7 +729,8 @@ config:
 ### Fixed
 ### Security
 
-[Unreleased]: https://github.com/opensearch-project/helm-charts/compare/opensearch-1.29.0...HEAD
+[Unreleased]: https://github.com/opensearch-project/helm-charts/compare/opensearch-1.30.0...HEAD
+[1.30.0]: https://github.com/opensearch-project/helm-charts/compare/opensearch-1.29.0...opensearch-1.30.0
 [1.29.0]: https://github.com/opensearch-project/helm-charts/compare/opensearch-1.28.1...opensearch-1.29.0
 [1.28.1]: https://github.com/opensearch-project/helm-charts/compare/opensearch-1.28.0...opensearch-1.28.1
 [1.28.0]: https://github.com/opensearch-project/helm-charts/compare/opensearch-1.27.0...opensearch-1.28.0
