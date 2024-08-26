@@ -11,7 +11,7 @@ spec:
     matchLabels:
       {{- include "opensearch-dashboards.selectorLabels" . | nindent 6 }}
   endpoints:
-  - port: {{ .Values.metricsPort }}
+  - port: {{ .Values.serviceMonitor.portName }}
     interval: {{ .Values.serviceMonitor.interval }}
     path: {{ .Values.serviceMonitor.path }}
 {{- end }}

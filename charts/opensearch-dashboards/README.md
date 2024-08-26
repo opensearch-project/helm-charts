@@ -92,9 +92,9 @@ helm uninstall my-release
 | `opensearchDashboardsYml.defaultMode` | Allow you to set the defaultMode for the opensearch_dashboards.yml mounted as configMap | |
 | `dashboardAnnotations` | Allows you to configure custom annotation in the deployement of the OpenSearchDashboards container | {} |
 | `serviceMonitor.enabled` | Enables the creation of a [ServiceMonitor] resource for Prometheus monitoring. Requires the Prometheus Operator to be installed in your Kubernetes cluster. | `false` |
+| `serviceMonitor.portName` | Name of the port in the OpenSearch Dashboards service that exposes metrics. This should match the port name defined in your OpenSearch service configuration. Applicable only if `serviceMonitor.enabled` is set to `true`. | `metrics` |
 | `serviceMonitor.path` | Path where metrics are exposed. Applicable only if `serviceMonitor.enabled` is set to `true`. | `/_prometheus/metrics` |
 | `serviceMonitor.interval` | Interval at which metrics should be scraped by Prometheus. Applicable only if `serviceMonitor.enabled` is set to `true`. | `10s` |
-| `metricsPort` | The metrics port (for Performance Analyzer) that Kubernetes will use for the service. | `9601` |
 
 [environment from variables]: https://kubernetes.io/docs/tasks/configure-pod-container/configure-pod-configmap/#configure-all-key-value-pairs-in-a-configmap-as-container-environment-variables
 

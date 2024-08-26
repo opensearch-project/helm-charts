@@ -536,6 +536,10 @@ serviceMonitor:
   # Set to true to enable the ServiceMonitor resource
   enabled: false
 
+  # Specify the port name that Prometheus will use to scrape metrics.
+  # This should match the name of the port defined in your OpenSearch service that exposes metrics.
+  portName: metrics
+
   # HTTP path where metrics are exposed.
   # Ensure this matches your OpenSearch service configuration.
   path: /_prometheus/metrics
