@@ -534,7 +534,7 @@ extraObjects: []
 # Enabling this option will create a ServiceMonitor resource that allows Prometheus to scrape metrics from the OpenSearch service.
 serviceMonitor:
   # Set to true to enable the ServiceMonitor resource
-  enabled: true
+  enabled: false
 
   # HTTP path where metrics are exposed.
   # Ensure this matches your OpenSearch service configuration.
