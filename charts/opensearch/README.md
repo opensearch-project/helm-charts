@@ -126,7 +126,6 @@ helm uninstall my-release
 | `lifecycle` | Allows you to configure lifecycle hooks for the OpenSearch container in the StatefulSet | {} |
 | `openSearchAnnotations` | Allows you to configure custom annotation in the StatefullSet of the OpenSearch container | {} |
 | `serviceMonitor.enabled` | Enables the creation of a [ServiceMonitor] resource for Prometheus monitoring. Requires the Prometheus Operator to be installed in your Kubernetes cluster. | `false` |
-| `serviceMonitor.portName` | Name of the port in the OpenSearch service that exposes metrics. This should match the port name defined in your OpenSearch service configuration. Applicable only if `serviceMonitor.enabled` is set to `true`. | `metrics` |
 | `serviceMonitor.path` | Path where metrics are exposed. Applicable only if `serviceMonitor.enabled` is set to `true`. | `/_prometheus/metrics` |
 | `serviceMonitor.interval` | Interval at which metrics should be scraped by Prometheus. Applicable only if `serviceMonitor.enabled` is set to `true`. | `10s` |
 
