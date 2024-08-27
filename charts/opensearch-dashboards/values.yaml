@@ -156,6 +156,7 @@ service:
   # ipFamilies:
   # - IPv4
   port: 5601
+  metricsPort: 9601
   loadBalancerIP: ""
   nodePort: ""
   labels: {}
@@ -163,6 +164,7 @@ service:
   loadBalancerSourceRanges: []
   # 0.0.0.0/0
   httpPortName: http
+  metricsPortName: metrics
 
 ingress:
   enabled: false
@@ -281,11 +283,7 @@ plugins:
 # Enabling this option will create a ServiceMonitor resource that allows Prometheus to scrape metrics from the OpenSearch service.
 serviceMonitor:
   # Set to true to enable the ServiceMonitor resource for OpenSearch Dashboards
-  enabled: false
-
-  # Specify the port name that Prometheus will use to scrape metrics.
-  # This should match the name of the port defined in your OpenSearch Dashboards service that exposes metrics.
-  portName: metrics
+  enabled: true
 
   # HTTP path where metrics are exposed by OpenSearch Dashboards.
   # Ensure this path is correctly set in your service.

@@ -75,6 +75,8 @@ helm uninstall my-release
 | `service.type` | OpenSearch [Service Types][] | `ClusterIP` |
 | `service.ipFamilyPolicy` | This sets the preferred ip addresses in case of a dual-stack server, there are three options [PreferDualStack, SingleStack, RequireDualStack], [more information on dual stack](https://kubernetes.io/docs/concepts/services-networking/dual-stack/) | `""` |
 | `service.ipFamilies` | Sets the preferred IP variants and in which order they are preferred, the first family you list is used for the legacy .spec.ClusterIP field, [more information on dual stack](https://kubernetes.io/docs/concepts/services-networking/dual-stack/) | `""` |
+| `service.metricsPort` | The metrics port (for Performance Analyzer) that Kubernetes will use for the service. | `9601` |
+| `service.metricsPortName` | The name of the metrics port (for Performance Analyzer) within the service | `metrics` |
 | `tolerations` | Configurable [tolerations][] | `[]` |
 | `topologySpreadConstraints` | Configuration for pod [topologySpreadConstraints][] | `[]` |
 | `updateStrategy` | The [updateStrategy][] for the StatefulSet. By default Kubernetes will wait for the cluster to be green after upgrading each pod. Setting this to `OnDelete` will allow you to manually delete each pod during upgrades | `RollingUpdate` |
@@ -92,7 +94,6 @@ helm uninstall my-release
 | `opensearchDashboardsYml.defaultMode` | Allow you to set the defaultMode for the opensearch_dashboards.yml mounted as configMap | |
 | `dashboardAnnotations` | Allows you to configure custom annotation in the deployement of the OpenSearchDashboards container | {} |
 | `serviceMonitor.enabled` | Enables the creation of a [ServiceMonitor] resource for Prometheus monitoring. Requires the Prometheus Operator to be installed in your Kubernetes cluster. | `false` |
-| `serviceMonitor.portName` | Name of the port in the OpenSearch Dashboards service that exposes metrics. This should match the port name defined in your OpenSearch service configuration. Applicable only if `serviceMonitor.enabled` is set to `true`. | `metrics` |
 | `serviceMonitor.path` | Path where metrics are exposed. Applicable only if `serviceMonitor.enabled` is set to `true`. | `/_prometheus/metrics` |
 | `serviceMonitor.interval` | Interval at which metrics should be scraped by Prometheus. Applicable only if `serviceMonitor.enabled` is set to `true`. | `10s` |
 
