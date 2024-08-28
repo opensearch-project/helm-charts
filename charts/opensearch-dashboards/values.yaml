@@ -156,6 +156,7 @@ service:
   # ipFamilies:
   # - IPv4
   port: 5601
+  metricsPort: 9601
   loadBalancerIP: ""
   nodePort: ""
   labels: {}
@@ -163,6 +164,7 @@ service:
   loadBalancerSourceRanges: []
   # 0.0.0.0/0
   httpPortName: http
+  metricsPortName: metrics
 
 ingress:
   enabled: false
@@ -290,7 +292,3 @@ serviceMonitor:
   # Frequency at which Prometheus will scrape metrics.
   # Modify as needed for your monitoring requirements.
   interval: 10s
-
-# Port configuration for metrics.
-# This should match the port exposed by the OpenSearch Dashboards service.
-metricsPort: 9601

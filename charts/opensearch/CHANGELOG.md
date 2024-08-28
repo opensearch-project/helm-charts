@@ -14,6 +14,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 ### Security
 ---
+## [2.23.1]
+### Added
+### Changed
+### Deprecated
+### Removed
+### Fixed
+- Fixed `ServiceMonitor` bug for `port` value
+### Security
+---
 ## [2.23.0]
 ### Added
 - Added `ServiceMonitor` support for Prometheus monitoring
@@ -450,7 +459,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Security
 
 
-[Unreleased]: https://github.com/opensearch-project/helm-charts/compare/opensearch-2.23.0...HEAD
+[Unreleased]: https://github.com/opensearch-project/helm-charts/compare/opensearch-2.23.1...HEAD
+[2.23.1]: https://github.com/opensearch-project/helm-charts/compare/opensearch-2.23.0...opensearch-2.23.1
 [2.23.0]: https://github.com/opensearch-project/helm-charts/compare/opensearch-2.22.1...opensearch-2.23.0
 [2.22.1]: https://github.com/opensearch-project/helm-charts/compare/opensearch-2.22.0...opensearch-2.22.1
 [2.22.0]: https://github.com/opensearch-project/helm-charts/compare/opensearch-2.21.0...opensearch-2.22.0
