@@ -292,3 +292,6 @@ serviceMonitor:
   # Frequency at which Prometheus will scrape metrics.
   # Modify as needed for your monitoring requirements.
   interval: 10s
+
+  # additional labels to be added to the ServiceMonitor
+  labels: {}
