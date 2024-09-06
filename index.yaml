@@ -949,6 +949,26 @@ entries:
     version: 2.0.0
   - apiVersion: v2
     appVersion: 1.3.19
+    created: "2024-09-06T23:40:12.118649232Z"
+    description: A Helm chart for OpenSearch
+    digest: 021b371d63b39167975b6c71f48ab92db18c762202beb104998f5d621000f3f0
+    home: https://opensearch.org
+    maintainers:
+    - name: DandyDeveloper
+    - name: gaiksaya
+    - name: peterzhuamazon
+    - name: prudhvigodithi
+    - name: TheAlgo
+    name: opensearch
+    sources:
+    - https://github.com/opensearch-project/opensearch
+    - https://github.com/opensearch-project/helm-charts
+    type: application
+    urls:
+    - https://github.com/opensearch-project/helm-charts/releases/download/opensearch-1.30.0/opensearch-1.30.0.tgz
+    version: 1.30.0
+  - apiVersion: v2
+    appVersion: 1.3.19
     created: "2024-08-27T22:45:58.689561382Z"
     description: A Helm chart for OpenSearch
     digest: e1deac9b9f0d93d7d42a4a180751135295eab13ad566e51aafc4cf63d1dcca65
@@ -2949,6 +2969,22 @@ entries:
     version: 2.0.0
   - apiVersion: v2
     appVersion: 1.3.19
+    created: "2024-09-06T23:40:12.303600195Z"
+    description: A Helm chart for OpenSearch Dashboards
+    digest: 8656cc2ed34966f11e8a89c873d6f35c48f0502e5cabb4e7abe3b2f4e17993d1
+    maintainers:
+    - name: DandyDeveloper
+    - name: gaiksaya
+    - name: peterzhuamazon
+    - name: prudhvigodithi
+    - name: TheAlgo
+    name: opensearch-dashboards
+    type: application
+    urls:
+    - https://github.com/opensearch-project/helm-charts/releases/download/opensearch-dashboards-1.23.0/opensearch-dashboards-1.23.0.tgz
+    version: 1.23.0
+  - apiVersion: v2
+    appVersion: 1.3.19
     created: "2024-08-27T22:45:58.917445086Z"
     description: A Helm chart for OpenSearch Dashboards
     digest: 2431ea5b6e6437e96cf8c9c13d5be6d02e9905180287aedb6fdf896098b8975d
@@ -3761,4 +3797,4 @@ entries:
     urls:
     - https://github.com/opensearch-project/helm-charts/releases/download/opensearch-dashboards-1.0.3/opensearch-dashboards-1.0.3.tgz
     version: 1.0.3
-generated: "2024-09-05T23:42:22.982511997Z"
+generated: "2024-09-06T23:40:12.304047778Z"
