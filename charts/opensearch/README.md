@@ -22,7 +22,7 @@ Once you've added this Helm repository as per the repository-level [README](../.
  helm install my-release opensearch/opensearch
  ```
 
-The command deploys OpenSearch with its associated components (data statefulsets, masters, clients) on the Kubernetes cluster in the default configuration.
+The command deploys OpenSearch with its associated components (data statefulsets, cluster managers, clients) on the Kubernetes cluster in the default configuration.
 
 **NOTE:** If using Helm 2 then you'll need to add the [`--name`](https://v2.helm.sh/docs/helm/#options-21) command line argument. If unspecified, Helm 2 will autogenerate a name for you.
 
@@ -40,6 +40,7 @@ helm uninstall my-release
 | :--- | :--- | :--- |
 | `antiAffinityTopologyKey` | The [anti-affinity][] topology key. By default this will prevent multiple Opensearch nodes from running on the same Kubernetes node | `kubernetes.io/hostname` |
 | `antiAffinity` | Setting this to `hard` enforces the [anti-affinity][] rules. If it is set to `soft` it will be done "best effort". Setting it to `custom` will use whatever is set in the `customAntiAffinity` parameter. Other values will be ignored. | `hard` |
+| `clusterManagerService` | The service name used to connect to the cluster managers. You only need to set this if your cluster manager `nodeGroup` is set to something other than `manager` | `""` |
 | `clusterName` | This will be used as the OpenSearch cluster name and should be unique per cluster in the namespace | `opensearch-cluster` |
 | `customAntiAffinity` | Allows passing in custom anti-affinity settings as defined in the [anti-affinity][] rules. Using this parameter requires setting the `antiAffinity` parameter to `custom`. | `{}` |
 | `enableServiceLinks` | Set to false to disabling service links, which can cause slow pod startup times when there are many services in the current namespace. | `true` |
@@ -65,14 +66,13 @@ helm uninstall my-release
 | `initResources` | Allows you to set the [resources][] for the `initContainer` in the StatefulSet | `{}` |
 | `keystore` | Allows you map Kubernetes secrets into the keystore. | `[]` |
 | `labels` | Configurable [labels][] applied to all OpenSearch pods | `{}` |
-| `masterService` | The service name used to connect to the masters. You only need to set this if your master `nodeGroup` is set to something other than `master` | `""` |
 | `maxUnavailable` | The [maxUnavailable][] value for the pod disruption budget. By default this will prevent Kubernetes from having more than 1 unhealthy pod in the node group | `1` |
 | `metricsPort` | The metrics port (for Performance Analyzer) that Kubernetes will use for the service. | `9600` |
 | `nameOverride` | Overrides the `clusterName` when used in the naming of resources | `""` |
 | `networkHost` | Value for the `network.host OpenSearch setting` | `0.0.0.0` |
 | `networkPolicy.create` | Enable network policy creation for OpenSearch | `false` |
 | `nodeAffinity` | Value for the [node affinity settings][] | `{}` |
-| `nodeGroup` | This is the name that will be used for each group of nodes in the cluster. The name will be `clusterName-nodeGroup-X` , `nameOverride-nodeGroup-X` if a `nameOverride` is specified, and `fullnameOverride-X` if a `fullnameOverride` is specified | `master` |
+| `nodeGroup` | This is the name that will be used for each group of nodes in the cluster. The name will be `clusterName-nodeGroup-X` , `nameOverride-nodeGroup-X` if a `nameOverride` is specified, and `fullnameOverride-X` if a `fullnameOverride` is specified | `manager` |
 | `nodeSelector` | Configurable [nodeSelector][] so that you can target specific nodes for your OpenSearch cluster | `{}` |
 | `persistence` | Enables a persistent volume for OpenSearch data. | see [values.yaml][] |
 | `persistence.enableInitChown` | Disable the `fsgroup-volume` initContainer that will update permissions on the persistent disk. | `true` |

@@ -14,6 +14,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 ### Security
 ---
+## [2.22.0]
+### Added
+### Changed
+- Updated OpenSearch language to follow the OpenSearch Project's inclusive language standards
+### Deprecated
+### Removed
+### Fixed
+### Security
+---
 ## [2.21.2]
 ### Added
 ### Changed
@@ -386,7 +395,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 ### Security
 
-[Unreleased]: https://github.com/opensearch-project/helm-charts/compare/opensearch-dashboards-2.21.2...HEAD
+[Unreleased]: https://github.com/opensearch-project/helm-charts/compare/opensearch-dashboards-2.22.0...HEAD
+[2.21.2]: https://github.com/opensearch-project/helm-charts/compare/opensearch-dashboards-2.21.2...opensearch-dashboards-2.22.0
 [2.21.2]: https://github.com/opensearch-project/helm-charts/compare/opensearch-dashboards-2.21.1...opensearch-dashboards-2.21.2
 [2.21.1]: https://github.com/opensearch-project/helm-charts/compare/opensearch-dashboards-2.21.0...opensearch-dashboards-2.21.1
 [2.21.0]: https://github.com/opensearch-project/helm-charts/compare/opensearch-dashboards-2.20.0...opensearch-dashboards-2.21.0

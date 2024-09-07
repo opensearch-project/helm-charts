@@ -1,15 +1,15 @@
 ---
 clusterName: "opensearch-cluster"
-nodeGroup: "master"
+nodeGroup: "manager"
 
-# The service that non master groups will try to connect to when joining the cluster
-# This should be set to clusterName + "-" + nodeGroup for your master group
-masterService: "opensearch-cluster-master"
+# The service that non cluster manager groups will try to connect to when joining the cluster
+# This should be set to clusterName + "-" + nodeGroup for your cluster manager group
+clusterManagerService: "opensearch-cluster-manager"
 
 # OpenSearch roles that will be applied to this nodeGroup
-# These will be set as environment variable "node.roles". E.g. node.roles=master,ingest,data,remote_cluster_client
+# These will be set as environment variable "node.roles". E.g. node.roles=cluster_manager,ingest,data,remote_cluster_client
 roles:
-  - master
+  - cluster_manager
   - ingest
   - data
   - remote_cluster_client
@@ -367,7 +367,7 @@ ingress:
 nameOverride: ""
 fullnameOverride: ""
 
-masterTerminationFix: false
+clusterManagerTerminationFix: false
 
 lifecycle: {}
   # preStop:
@@ -396,9 +396,9 @@ networkPolicy:
   ## In order for a Pod to access OpenSearch, it needs to have the following label:
   ## {{ template "uname" . }}-client: "true"
   ## Example for default configuration to access HTTP port:
-  ## opensearch-master-http-client: "true"
+  ## opensearch-cluster-manager-http-client: "true"
   ## Example for default configuration to access transport port:
-  ## opensearch-master-transport-client: "true"
+  ## opensearch-cluster-manager-transport-client: "true"
 
   http:
     enabled: false

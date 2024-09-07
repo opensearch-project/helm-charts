@@ -7,4 +7,5 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 ### Added
 - Create initial version of data-prepper helm chart
-
+### Changed
+- Updated OpenSearch language to follow the OpenSearch Project's inclusive language standards

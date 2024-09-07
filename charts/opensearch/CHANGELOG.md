@@ -14,6 +14,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 ### Security
 ---
+## [2.24.0]
+### Added
+### Changed
+- Updated OpenSearch language to follow the OpenSearch Project's inclusive language standards
+### Deprecated
+### Removed
+### Fixed
+### Security
+---
 ## [2.23.2]
 ### Added
 - Metrics configuration in both `Service` templates
@@ -48,7 +57,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Deprecated
 ### Removed
 ### Fixed
-- Fixed opensearchJavaOpts defaults in README 
+- Fixed opensearchJavaOpts defaults in README
 ### Security
 ---
 ## [2.22.0]
@@ -60,7 +69,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 ### Security
 ---
-
 ## [2.21.0]
 ### Added
 - Updated OpenSearch appVersion to 2.15.0
@@ -469,7 +477,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Security
 
 
-[Unreleased]: https://github.com/opensearch-project/helm-charts/compare/opensearch-2.23.2...HEAD
+[Unreleased]: https://github.com/opensearch-project/helm-charts/compare/opensearch-2.24.0...HEAD
+[2.23.2]: https://github.com/opensearch-project/helm-charts/compare/opensearch-2.23.2...opensearch-2.24.0
 [2.23.2]: https://github.com/opensearch-project/helm-charts/compare/opensearch-2.23.1...opensearch-2.23.2
 [2.23.1]: https://github.com/opensearch-project/helm-charts/compare/opensearch-2.23.0...opensearch-2.23.1
 [2.23.0]: https://github.com/opensearch-project/helm-charts/compare/opensearch-2.22.1...opensearch-2.23.0
@@ -517,4 +526,3 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 [2.2.0]: https://github.com/opensearch-project/helm-charts/compare/opensearch-2.1.0...opensearch-2.2.0
 [2.1.0]: https://github.com/opensearch-project/helm-charts/compare/opensearch-2.0.1...opensearch-2.1.0
 [2.0.1]: https://github.com/opensearch-project/helm-charts/compare/opensearch-2.0.0...opensearch-2.0.1
-
