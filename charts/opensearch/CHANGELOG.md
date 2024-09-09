@@ -14,6 +14,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 ### Security
 ---
+## [2.23.3]
+### Added
+- Allow user-defined labels on persistent volume claim
+### Changed
+### Deprecated
+### Removed
+### Fixed
+### Security
+---
 ## [2.23.2]
 ### Added
 - Metrics configuration in both `Service` templates
