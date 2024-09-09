@@ -543,3 +543,8 @@ serviceMonitor:
   # Frequency at which Prometheus will scrape metrics.
   # Adjust based on your needs.
   interval: 10s
+
+  # additional labels to be added to the ServiceMonitor
+  # labels:
+  #  k8s.example.com/prometheus: kube-prometheus
+  labels: {}
