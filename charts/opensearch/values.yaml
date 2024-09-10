@@ -281,7 +281,7 @@ enableServiceLinks: true
 protocol: https
 httpPort: 9200
 transportPort: 9300
-metricsPort: 9600
+metricsPort: 9200
 httpHostPort: ""
 transportHostPort: ""
 
@@ -534,6 +534,12 @@ extraObjects: []
 
 # ServiceMonitor Configuration for Prometheus
 # Enabling this option will create a ServiceMonitor resource that allows Prometheus to scrape metrics from the OpenSearch service.
+# This only creates the serviceMonitor, to actually have metrics Make sure to install the prometheus-exporter plugin needed for 
+# serving metrics over the `.Values.plugins` value:
+# plugins:
+#   enabled: true
+#   installList:
+#     - https://github.com/aiven/prometheus-exporter-plugin-for-opensearch/releases/download/x.x.x.x/prometheus-exporter-x.x.x.x.zip
 serviceMonitor:
   # Set to true to enable the ServiceMonitor resource
   enabled: false
