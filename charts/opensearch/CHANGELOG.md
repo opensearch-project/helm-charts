@@ -14,6 +14,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 ### Security
 ---
+## [1.31.0]
+### Added
+- Ability to add additional `labels` to `serviceMonitor`
+### Changed
+### Deprecated
+### Removed
+### Fixed
+### Security
+---
 ## [1.30.0]
 ### Added
 - Added `ServiceMonitor` support for Prometheus monitoring
@@ -266,7 +275,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 ### Security
 ---
-
 ## [1.14.0]
 ### Added
 - Update OpenSearch appVersion to 1.3.5.
@@ -479,10 +487,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 **BREAKING CHANGE**
 This version introduces a change in the service name definitions that will break Helm upgrades due to changes in the `StatefulSet`.
-
 To resolve: Simply delete the existing statefulset in the cluster and ensure the PVC is retained (by default, this should be the case). `kubectl delete sts opensearch-cluster-master`
 After deleting the statefulset and upgrading the helm chart again, the new replacement statefulset will be created and should consume the same PVC as before.
-
 ### Changed
 ### Deprecated
 ### Removed
@@ -542,7 +548,6 @@ After deleting the statefulset and upgrading the helm chart again, the new repla
 ### Removed
 ### Fixed
 ### Security
-
 ---
 ## [1.4.3]
 ### Added
@@ -552,7 +557,6 @@ After deleting the statefulset and upgrading the helm chart again, the new repla
 ### Fixed
 - Fixed links to values.yaml in README.md.
 ### Security
-
 ---
 ## [1.4.2]
 ### Added
@@ -577,14 +581,12 @@ After deleting the statefulset and upgrading the helm chart again, the new repla
 - Changed support for any kind of configuration type. Including `log4j2.properties` file. Added example.
 ### BREAKING CHANGE
 - `.Values.config` items must now be interpreted as a string. Existing items must now be updated from YAML to string:
-
 Change from YAML:
 ```yaml
 config:
   opensearch.yml:
     cluster.name: opensearch-cluster
 ```
-
 Change to YAML multiline string:
 ```yaml
 config:
@@ -622,7 +624,6 @@ config:
 ## [1.2.3]
 ### Added
 - Support to disable the initContainer `fsgroup-volume` for chown updates.
-
 ---
 ## [1.2.2]
 ### Added
@@ -632,7 +633,6 @@ config:
 ### Fixed
 - [Issue #105](https://github.com/opensearch-project/helm-charts/issues/105) OpenSearch chart fails when RBAC is enabled.
 ### Security
-
 ---
 ## [1.2.1]
 ### Added
@@ -642,7 +642,6 @@ config:
 ### Fixed
 - Missing `labels` key is added into role.yaml.
 ### Security
-
 ---
 ## [1.2.0]
 ### Added
@@ -652,7 +651,6 @@ config:
 ### Removed
 ### Fixed
 ### Security
-
 ---
 ## [1.1.0]
 ### Added
@@ -662,7 +660,6 @@ config:
 ### Removed
 ### Fixed
 ### Security
-
 ---
 ## [1.0.8]
 ### Added
@@ -673,17 +670,12 @@ config:
 ### Removed
 ### Fixed
 ### Security
-
 ---
 ## [1.0.6]
-
 ### Added
 - Added the ability to define plugins on node startup via plugins.enabled option.
-
 ### Changed
 - Incremented the version to `1.0.6`.
-
-
 ---
 ## [1.0.5]
 ### Added
@@ -693,7 +685,6 @@ config:
 ### Removed
 ### Fixed
 ### Security
-
 ---
 ## [1.0.5]
 ### Added
@@ -703,7 +694,6 @@ config:
 ### Removed
 ### Fixed
 ### Security
-
 ---
 ## [1.0.4]
 ### Added
@@ -714,22 +704,19 @@ config:
 ### Fixed
 - [ISSUE-65](https://github.com/opensearch-project/helm-charts/issues/65): Incorrect indentation for `extraVolumeMounts`, `extraEnvs`, `envFrom` in `statefulset.yaml`.
 ### Security
-
 ---
 ## [1.0.2]
-
 ### Added
 - Added this change log in compliance with [Keep A Change Log](https://keepachangelog.com/en/1.0.0/).
-
 ### Changed
 - Incremented the version to `1.0.2`.
-
 ### Deprecated
 ### Removed
 ### Fixed
 ### Security
 
-[Unreleased]: https://github.com/opensearch-project/helm-charts/compare/opensearch-1.30.0...HEAD
+[Unreleased]: https://github.com/opensearch-project/helm-charts/compare/opensearch-1.31.0...HEAD
+[1.31.0]: https://github.com/opensearch-project/helm-charts/compare/opensearch-1.29.0...opensearch-1.31.0
 [1.30.0]: https://github.com/opensearch-project/helm-charts/compare/opensearch-1.29.0...opensearch-1.30.0
 [1.29.0]: https://github.com/opensearch-project/helm-charts/compare/opensearch-1.28.1...opensearch-1.29.0
 [1.28.1]: https://github.com/opensearch-project/helm-charts/compare/opensearch-1.28.0...opensearch-1.28.1

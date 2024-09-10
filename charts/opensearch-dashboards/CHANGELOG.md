@@ -14,6 +14,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 ### Security
 ---
+## [1.24.0]
+### Added
+- Ability to add additional `labels` to `serviceMonitor`
+### Changed
+### Deprecated
+### Removed
+### Fixed
+### Security
+---
 ## [1.23.0]
 ### Added
 - Added `ServiceMonitor` support for Prometheus monitoring
@@ -187,7 +196,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ---
 ## [1.8.4]
 ### Added
-- Healthchecks 
+- Healthchecks
 ### Changed
 ### Deprecated
 ### Removed
@@ -275,7 +284,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Removed
 ### Fixed
 ### Security
-
 ---
 ## [1.6.1]
 ### Added
@@ -285,7 +293,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Removed
 ### Fixed
 ### Security
-
 ---
 ## [1.6.0]
 ### Added
@@ -295,7 +302,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Removed
 ### Fixed
 ### Security
-
 ---
 ## [1.5.1]
 ### Added
@@ -382,7 +388,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 - Fixed rendering of `opensearch-dashboard.yml` in `configmap.yaml`.
 ### Security
-
 ---
 ## [1.2.0]
 ### Added
@@ -392,7 +397,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Removed
 ### Fixed
 ### Security
-
 ---
 ## [1.1.2]
 ### Added
@@ -402,7 +406,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Removed
 ### Fixed
 ### Security
-
 ---
 ## [1.1.1]
 ### Added
@@ -412,7 +415,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Removed
 ### Fixed
 ### Security
-
 ---
 ## [1.1.0]
 ### Added
@@ -422,7 +424,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Removed
 ### Fixed
 ### Security
-
 ---
 ## [1.0.8]
 ### Added
@@ -432,7 +433,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Removed
 ### Fixed
 ### Security
-
 ---
 ## [1.0.7]
 ### Added
@@ -442,7 +442,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Removed
 ### Fixed
 ### Security
-
 ---
 ## [1.0.6]
 ### Added
@@ -452,7 +451,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Removed
 ### Fixed
 ### Security
-
 ---
 ## [1.0.5]
 ### Added
@@ -462,7 +460,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Removed
 ### Fixed
 ### Security
-
 ---
 ## [1.0.4]
 ### Added
@@ -472,22 +469,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Removed
 ### Fixed
 ### Security
-
 ---
 ## [1.0.2]
-
 ### Added
 - Added this change log in compliance with [Keep A Change Log](https://keepachangelog.com/en/1.0.0/).
-
 ### Changed
 - Incremented the version to `1.0.2`.
-
 ### Deprecated
 ### Removed
 ### Fixed
 ### Security
 
-[Unreleased]: https://github.com/opensearch-project/helm-charts/compare/opensearch-dashboards-1.23.0...HEAD
+[Unreleased]: https://github.com/opensearch-project/helm-charts/compare/opensearch-dashboards-1.24.0...HEAD
+[1.24.0]: https://github.com/opensearch-project/helm-charts/compare/opensearch-1.22.0...opensearch-1.24.0
 [1.23.0]: https://github.com/opensearch-project/helm-charts/compare/opensearch-1.22.0...opensearch-1.23.0
 [1.22.0]: https://github.com/opensearch-project/helm-charts/compare/opensearch-1.21.0...opensearch-1.22.0
 [1.21.0]: https://github.com/opensearch-project/helm-charts/compare/opensearch-1.20.0...opensearch-1.21.0
