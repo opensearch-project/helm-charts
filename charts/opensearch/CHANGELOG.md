@@ -716,7 +716,7 @@ config:
 ### Security
 
 [Unreleased]: https://github.com/opensearch-project/helm-charts/compare/opensearch-1.31.0...HEAD
-[1.31.0]: https://github.com/opensearch-project/helm-charts/compare/opensearch-1.29.0...opensearch-1.31.0
+[1.31.0]: https://github.com/opensearch-project/helm-charts/compare/opensearch-1.30.0...opensearch-1.31.0
 [1.30.0]: https://github.com/opensearch-project/helm-charts/compare/opensearch-1.29.0...opensearch-1.30.0
 [1.29.0]: https://github.com/opensearch-project/helm-charts/compare/opensearch-1.28.1...opensearch-1.29.0
 [1.28.1]: https://github.com/opensearch-project/helm-charts/compare/opensearch-1.28.0...opensearch-1.28.1
