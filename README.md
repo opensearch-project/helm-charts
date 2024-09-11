@@ -62,7 +62,7 @@ Please see the `README.md` in the [OpenSearch](charts/opensearch) and [OpenSearc
 ### Breaking Change 
 For OpenSearch Chart version 2.18.0 and App Version OpenSearch version 2.12.0 and above require a custom strong password to be provided in order to setup demo admin user during the first time cluster installation, without this password the cluster would not spin up, unless demo config install is disabled or the cluster security settings are handled by the user.
 
-Note: This wont impact users who already installed the cluster and where the security index created, only impacts users starting the brand new cluster with OpenSearch version `2.12.0` and above.
+Note: This won’t impact users who have already installed the cluster and created the security index. It only affects users starting a brand new cluster with OpenSearch version 2.12.0 and above.
 
 The custom admin password can be supplied by adding the environment variable `OPENSEARCH_INITIAL_ADMIN_PASSWORD` in the `value.yml` as:
 ```
@@ -75,9 +75,9 @@ or during the installation example as `helm install opensearch opensearch/opense
 
 ### Notes About Default Installation
 
-By default, on startup, the `install_demo_configuration.sh` is runned via the `opensearch-docker-entrypoint.sh` script if `DISABLE_INSTALL_DEMO_CONFIG` is not `true`.
+By default, on startup, the `install_demo_configuration.sh` is run via the `opensearch-docker-entrypoint.sh` script if `DISABLE_INSTALL_DEMO_CONFIG` is not `true`.
 
-In case custom certificates are used and `allow_unsafe_democertificates` is set to `false` in the configuration, this can prevent pods to start with the following error: `Demo certificates found but plugins.security.allow_unsafe_democertificates is set to false.`
+If custom certificates are used and `allow_unsafe_democertificates` is set to `false` in the configuration, this can prevent pods from starting with the following error: `Demo certificates found but plugins.security.allow_unsafe_democertificates is set to false.`
 
 This can be solved by adding an environment variable in the `value.yml`:
 ```
