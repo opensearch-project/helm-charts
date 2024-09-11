@@ -14,6 +14,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 ### Security
 ---
+## [2.24.1]
+### Added
+### Changed
+### Deprecated
+### Removed
+### Fixed
+- `metricsPort` used and explanation about plugins to be used for metrics
+### Security
+---
 ## [2.24.0]
 ### Added
 - Ability to add additional `labels` to `serviceMonitor`
@@ -476,8 +485,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 ### Security
 
-[Unreleased]: https://github.com/opensearch-project/helm-charts/compare/opensearch-2.24.0...HEAD
-[2.24.0]: https://github.com/opensearch-project/helm-charts/compare/opensearch-2.23.1...opensearch-2.24.0
+[Unreleased]: https://github.com/opensearch-project/helm-charts/compare/opensearch-2.24.1...HEAD
+[2.24.1]: https://github.com/opensearch-project/helm-charts/compare/opensearch-2.24.0...opensearch-2.24.1
+[2.24.0]: https://github.com/opensearch-project/helm-charts/compare/opensearch-2.23.2...opensearch-2.24.0
 [2.23.2]: https://github.com/opensearch-project/helm-charts/compare/opensearch-2.23.1...opensearch-2.23.2
 [2.23.1]: https://github.com/opensearch-project/helm-charts/compare/opensearch-2.23.0...opensearch-2.23.1
 [2.23.0]: https://github.com/opensearch-project/helm-charts/compare/opensearch-2.22.1...opensearch-2.23.0
