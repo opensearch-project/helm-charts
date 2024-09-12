@@ -57,9 +57,9 @@ Please see the `README.md` in the [OpenSearch](charts/opensearch) and [OpenSearc
 
 ### Notes About Default Installation
 
-By default, on startup, the `install_demo_configuration.sh` is runned via the `opensearch-docker-entrypoint.sh` script if `DISABLE_INSTALL_DEMO_CONFIG` is not `true`.
+By default, on startup, the `install_demo_configuration.sh` is run via the `opensearch-docker-entrypoint.sh` script if `DISABLE_INSTALL_DEMO_CONFIG` is not `true`.
 
-In case custom certificates are used and `allow_unsafe_democertificates` is set to `false` in the configuration, this can prevent pods to start with the following error: `Demo certificates found but plugins.security.allow_unsafe_democertificates is set to false.`
+If case custom certificates are used and `allow_unsafe_democertificates` is set to `false` in the configuration, this can prevent pods from starting with the following error: `Demo certificates found but plugins.security.allow_unsafe_democertificates is set to false.`
 
 This can be solved by adding an environment variable in the `value.yml`:
 ```
