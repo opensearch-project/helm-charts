@@ -27,11 +27,13 @@ spec:
   volumeClaimTemplates:
   - metadata:
       name: {{ template "opensearch.uname" . }}
-    {{- if .Values.persistence.labels.enabled }}
+    {{- if or .Values.persistence.labels.enabled .Values.persistence.labels.additionalLabels }}
       labels:
-        {{- include "opensearch.labels" . | nindent 8 }}
+        {{- if .Values.persistence.labels.enabled }}
+          {{- include "opensearch.labels" . | nindent 8 }}
+        {{- end }}
         {{- with .Values.persistence.labels.additionalLabels }}
-        {{- toYaml . | nindent 8 }}
+          {{- toYaml . | nindent 8 }}
         {{- end }}
     {{- end }}
     {{- with .Values.persistence.annotations  }}
