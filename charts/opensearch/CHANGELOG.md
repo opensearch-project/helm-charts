@@ -14,6 +14,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 ### Security
 ---
+## [2.25.0]
+### Added
+- Updated OpenSearch Dashboards appVersion to 2.17.0
+### Changed
+### Deprecated
+### Removed
+### Fixed
+### Security
+---
 ## [2.24.1]
 ### Added
 - Allow user-defined labels on persistent volume claim
