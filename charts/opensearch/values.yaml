@@ -208,13 +208,13 @@ persistence:
     # Add custom labels for the volumeClaimTemplate of the StatefulSet
     additionalLabels: {}
   # OpenSearch Persistent Volume Storage Class
-  # If defined, storageClassName: <storageClass>
+  # If defined, storageClassName: <storageClassName>
   # If set to "-", storageClassName: "", which disables dynamic provisioning
   # If undefined (the default) or set to null, no storageClassName spec is
   #   set, choosing the default provisioner.  (gp2 on AWS, standard on
   #   GKE, AWS & OpenStack)
   #
-  # storageClass: "-"
+  # storageClassName: "-"
   accessModes:
     - ReadWriteOnce
   size: 8Gi
