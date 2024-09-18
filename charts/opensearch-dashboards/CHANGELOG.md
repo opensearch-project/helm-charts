@@ -1,4 +1,5 @@
 # Changelog
+
 All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
@@ -11,6 +12,69 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Deprecated
 ### Removed
 ### Fixed
+### Security
+---
+## [2.23.0]
+### Added
+- Updated OpenSearch Dashboards appVersion to 2.17.0
+### Changed
+### Deprecated
+### Removed
+### Fixed
+### Security
+---
+## [2.22.0]
+### Added
+- Ability to add additional `labels` to `serviceMonitor`
+### Changed
+### Deprecated
+### Removed
+### Fixed
+### Security
+---
+## [2.21.2]
+### Added
+### Changed
+### Deprecated
+### Removed
+### Fixed
+- Bug `protocol` missing for metrics in `Service`
+### Security
+---
+## [2.21.1]
+### Added
+### Changed
+### Deprecated
+### Removed
+### Fixed
+- Fixed `ServiceMonitor` bug for `port` value
+### Security
+---
+## [2.21.0]
+### Added
+- Added `ServiceMonitor` support for Prometheus monitoring
+### Changed
+### Deprecated
+### Removed
+### Fixed
+### Security
+---
+## [2.20.0]
+### Added
+- Updated OpenSearch Dashboards appVersion to 2.16.0
+### Changed
+### Deprecated
+### Removed
+### Fixed
+### Security
+---
+## [2.19.1]
+### Added
+### Changed
+### Deprecated
+### Removed
+### Fixed
+- Fixed pod topology spread constraints in Dashboards
 ### Security
 ---
 ## [2.19.0]
@@ -103,7 +167,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Removed
 ### Fixed
 ### Security
-
 ---
 ## [2.11.1]
 ### Added
@@ -340,7 +403,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 ### Security
 
-[Unreleased]: https://github.com/opensearch-project/helm-charts/compare/opensearch-dashboards-2.19.0...HEAD
+[Unreleased]: https://github.com/opensearch-project/helm-charts/compare/opensearch-dashboards-2.23.0...HEAD
+[2.23.0]: https://github.com/opensearch-project/helm-charts/compare/opensearch-dashboards-2.22.0...opensearch-dashboards-2.23.0
+[2.22.0]: https://github.com/opensearch-project/helm-charts/compare/opensearch-dashboards-2.21.1...opensearch-dashboards-2.22.0
+[2.21.2]: https://github.com/opensearch-project/helm-charts/compare/opensearch-dashboards-2.21.1...opensearch-dashboards-2.21.2
+[2.21.1]: https://github.com/opensearch-project/helm-charts/compare/opensearch-dashboards-2.21.0...opensearch-dashboards-2.21.1
+[2.21.0]: https://github.com/opensearch-project/helm-charts/compare/opensearch-dashboards-2.20.0...opensearch-dashboards-2.21.0
+[2.20.0]: https://github.com/opensearch-project/helm-charts/compare/opensearch-dashboards-2.19.1...opensearch-dashboards-2.20.0
+[2.19.1]: https://github.com/opensearch-project/helm-charts/compare/opensearch-dashboards-2.19.0...opensearch-dashboards-2.19.1
 [2.19.0]: https://github.com/opensearch-project/helm-charts/compare/opensearch-dashboards-2.18.0...opensearch-dashboards-2.19.0
 [2.18.0]: https://github.com/opensearch-project/helm-charts/compare/opensearch-dashboards-2.17.0...opensearch-dashboards-2.18.0
 [2.17.0]: https://github.com/opensearch-project/helm-charts/compare/opensearch-dashboards-2.16.0...opensearch-dashboards-2.17.0

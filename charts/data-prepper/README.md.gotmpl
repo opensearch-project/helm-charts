@@ -1,0 +1,71 @@
+# Data Prepper Helm Chart
+
+{{ template "chart.deprecationWarning" . }}
+
+{{ template "chart.badgesSection" . }}
+
+{{ template "chart.description" . }}
+
+{{ template "chart.homepageLine" . }}
+
+Data Prepper is an essential component of the OpenSearch project, designed for high-volume data transformation and ingestion into OpenSearch. This Helm chart simplifies deploying Data Prepper on Kubernetes environments, ensuring you can easily set up your data processing pipelines.
+
+## Requirements
+
+Before installing the Data Prepper Helm chart, ensure your environment meets the following requirements:
+
+* Kubernetes >= 1.14
+* Helm >= 2.17.0
+* We recommend having at least 4 GiB of memory available for this deployment. A minimum of 2 GiB may suffice, but less than that could lead to deployment failures.
+
+## Installation
+
+To install the Data Prepper Helm chart, follow these steps:
+
+* Add the OpenSearch Helm repository if you haven't already:
+
+```bash
+helm repo add opensearch https://opensearch-project.github.io/helm-charts/
+helm repo update
+```
+
+* Install the Data Prepper chart with:
+
+```bash
+helm install my-data-prepper-release opensearch/data-prepper
+```
+
+Replace my-data-prepper-release with your desired release name.
+
+## Configuration
+
+The Data Prepper Helm chart comes with a variety of configuration options to tailor the deployment to your needs.
+The default values are specified in the [values.yaml](values.yaml) file. You can override these values by providing your own values.yaml file during installation or by specifying configuration options with --set flags.
+
+For a detailed list of configuration options, refer to the values.yaml file or the [Data Prepper documentation](https://opensearch.org/docs/latest/data-prepper/managing-data-prepper/configuring-data-prepper/).
+
+## Uninstalling the Chart
+
+To uninstall/delete the my-data-prepper deployment:
+
+```bash
+helm delete my-data-prepper
+```
+
+This command removes all the Kubernetes components associated with the chart and deletes the release.
+
+## Contributing
+
+We welcome contributions! Please read our [CONTRIBUTING.md](../../CONTRIBUTING.md) for details on how to submit contributions to this project.
+
+{{ template "chart.maintainersSection" . }}
+
+{{ template "chart.sourcesSection" . }}
+
+{{ template "chart.requirementsSection" . }}
+
+{{ template "chart.valuesSection" . }}
+
+## License
+
+This project is licensed under the Apache License 2.0 - see the [LICENSE.txt](../../LICENSE.txt) file for details.

@@ -1,6 +1,6 @@
 apiVersion: v2
-name: opensearch-dashboards
-description: A Helm chart for OpenSearch Dashboards
+name: data-prepper
+description: A Helm chart for Data Prepper
 
 # A chart can be either an 'application' or a 'library' chart.
 #
@@ -15,17 +15,36 @@ type: application
 # This is the chart version. This version number should be incremented each time you make changes
 # to the chart and its templates, including the app version.
 # Versions are expected to follow Semantic Versioning (https://semver.org/)
-version: 2.23.0
+version: 0.1.0
 
 # This is the version number of the application being deployed. This version number should be
 # incremented each time you make changes to the application. Versions are not expected to
 # follow Semantic Versioning. They should reflect the version the application is using.
 # It is recommended to use it with quotes.
-appVersion: "2.17.0"
+appVersion: "2.8.0"
 
 maintainers:
-  - name: DandyDeveloper
   - name: gaiksaya
+    url: https://github.com/gaiksaya
   - name: peterzhuamazon
+    url: https://github.com/peterzhuamazon
   - name: prudhvigodithi
+    url: https://github.com/prudhvigodithi
+  - name: sergk
+    url: https://github.com/sergk
   - name: TheAlgo
+    url: https://github.com/TheAlgo
+
+home: https://opensearch.org/docs/latest/data-prepper/
+sources:
+  - https://github.com/opensearch-project/data-prepper
+  - https://github.com/opensearch-project/helm-charts
+
+annotations:
+  artifacthub.io/category: monitoring-logging
+  artifacthub.io/license: Apache-2.0
+  artifacthub.io/links: |
+    - name: Data Prepper Documentation
+      url: https://opensearch.org/docs/latest/data-prepper/
+    - name: OpenSearch Project
+      url: https://opensearch.org
