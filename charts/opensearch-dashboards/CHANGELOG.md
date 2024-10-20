@@ -14,6 +14,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 ### Security
 ---
+## [1.24.1]
+### Added
+### Changed
+### Deprecated
+### Removed
+### Fixed
+- Resolved `helm lint` errors with extraObjects
+### Security
+---
 ## [1.24.0]
 ### Added
 - Ability to add additional `labels` to `serviceMonitor`
@@ -480,7 +489,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 ### Security
 
-[Unreleased]: https://github.com/opensearch-project/helm-charts/compare/opensearch-dashboards-1.24.0...HEAD
+[Unreleased]: https://github.com/opensearch-project/helm-charts/compare/opensearch-dashboards-1.24.1...HEAD
+[1.24.1]: https://github.com/opensearch-project/helm-charts/compare/opensearch-1.24.0...opensearch-1.24.1
 [1.24.0]: https://github.com/opensearch-project/helm-charts/compare/opensearch-1.23.0...opensearch-1.24.0
 [1.23.0]: https://github.com/opensearch-project/helm-charts/compare/opensearch-1.22.0...opensearch-1.23.0
 [1.22.0]: https://github.com/opensearch-project/helm-charts/compare/opensearch-1.21.0...opensearch-1.22.0
