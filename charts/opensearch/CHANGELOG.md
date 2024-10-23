@@ -14,6 +14,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 ### Security
 ---
+## [1.31.1]
+### Added
+### Changed
+### Deprecated
+### Removed
+### Fixed
+- Fix `image.pullPolicy` not being respected by `persistence` init container
+### Security
+---
 ## [1.31.0]
 ### Added
 - Ability to add additional `labels` to `serviceMonitor`
