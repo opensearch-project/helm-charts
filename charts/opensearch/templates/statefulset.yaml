@@ -232,6 +232,7 @@ spec:
 {{- if and .Values.persistence.enabled .Values.persistence.enableInitChown }}
       - name: fsgroup-volume
         image: "{{ template "opensearch.dockerRegistry" . }}{{ .Values.persistence.image | default "busybox" }}:{{ .Values.persistence.imageTag | default "latest" }}"
+        imagePullPolicy: "{{ .Values.image.pullPolicy }}"
         command: ['sh', '-c']
         args:
           - 'chown -R 1000:1000 /usr/share/opensearch/data'
