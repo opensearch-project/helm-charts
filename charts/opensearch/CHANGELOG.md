@@ -20,6 +20,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Deprecated
 ### Removed
 ### Fixed
+- Resolved `helm lint` errors with extraObjects
 - Fix `image.pullPolicy` not being respected by `persistence` init container
 ### Security
 ---
@@ -724,7 +725,8 @@ config:
 ### Fixed
 ### Security
 
-[Unreleased]: https://github.com/opensearch-project/helm-charts/compare/opensearch-1.31.0...HEAD
+[Unreleased]: https://github.com/opensearch-project/helm-charts/compare/opensearch-1.31.1...HEAD
+[1.31.1]: https://github.com/opensearch-project/helm-charts/compare/opensearch-1.31.0...opensearch-1.31.1
 [1.31.0]: https://github.com/opensearch-project/helm-charts/compare/opensearch-1.30.0...opensearch-1.31.0
 [1.30.0]: https://github.com/opensearch-project/helm-charts/compare/opensearch-1.29.0...opensearch-1.30.0
 [1.29.0]: https://github.com/opensearch-project/helm-charts/compare/opensearch-1.28.1...opensearch-1.29.0
