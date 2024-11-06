@@ -14,13 +14,22 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 ### Security
 ---
-## [1.32.0]
+## [1.31.2]
 ### Added
 - Allow user-defined labels on persistent volume claim
 ### Changed
 ### Deprecated
 ### Removed
 ### Fixed
+### Security
+---
+## [1.31.1]
+### Added
+### Changed
+### Deprecated
+### Removed
+### Fixed
+- Resolved `helm lint` errors with extraObjects
 ### Security
 ---
 ## [1.31.0]
@@ -724,8 +733,9 @@ config:
 ### Fixed
 ### Security
 
-[Unreleased]: https://github.com/opensearch-project/helm-charts/compare/opensearch-1.32.0...HEAD
-[1.32.0]: https://github.com/opensearch-project/helm-charts/compare/opensearch-1.31.0...opensearch-1.32.0
+[Unreleased]: https://github.com/opensearch-project/helm-charts/compare/opensearch-1.31.2...HEAD
+[1.31.2]: https://github.com/opensearch-project/helm-charts/compare/opensearch-1.31.1...opensearch-1.31.2
+[1.31.1]: https://github.com/opensearch-project/helm-charts/compare/opensearch-1.31.0...opensearch-1.31.1
 [1.31.0]: https://github.com/opensearch-project/helm-charts/compare/opensearch-1.30.0...opensearch-1.31.0
 [1.30.0]: https://github.com/opensearch-project/helm-charts/compare/opensearch-1.29.0...opensearch-1.30.0
 [1.29.0]: https://github.com/opensearch-project/helm-charts/compare/opensearch-1.28.1...opensearch-1.29.0
