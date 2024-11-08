@@ -14,13 +14,22 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 ### Security
 ---
-## [1.31.2]
+## [1.31.3]
 ### Added
 ### Changed
 ### Deprecated
 ### Removed
 ### Fixed
 - Fix `image.pullPolicy` not being respected by `persistence` init container
+### Security
+---
+## [1.31.2]
+### Added
+- Allow user-defined labels on persistent volume claim
+### Changed
+### Deprecated
+### Removed
+### Fixed
 ### Security
 ---
 ## [1.31.1]
@@ -733,7 +742,8 @@ config:
 ### Fixed
 ### Security
 
-[Unreleased]: https://github.com/opensearch-project/helm-charts/compare/opensearch-1.31.1...HEAD
+[Unreleased]: https://github.com/opensearch-project/helm-charts/compare/opensearch-1.31.2...HEAD
+[1.31.2]: https://github.com/opensearch-project/helm-charts/compare/opensearch-1.31.1...opensearch-1.31.2
 [1.31.1]: https://github.com/opensearch-project/helm-charts/compare/opensearch-1.31.0...opensearch-1.31.1
 [1.31.0]: https://github.com/opensearch-project/helm-charts/compare/opensearch-1.30.0...opensearch-1.31.0
 [1.30.0]: https://github.com/opensearch-project/helm-charts/compare/opensearch-1.29.0...opensearch-1.30.0
