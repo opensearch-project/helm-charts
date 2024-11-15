@@ -17,13 +17,21 @@ spec:
   - port: {{ .Values.service.httpPortName | default "http" }}
     interval: {{ .Values.serviceMonitor.interval }}
     path: {{ .Values.serviceMonitor.path }}
-    {{- if .Values.serviceMonitor.basicAuth }}
+    {{- if .Values.serviceMonitor.basicAuth.enabled }}
     basicAuth:
       username: 
-        name: {{ .Values.serviceMonitor.basicAuth.username.secretName}}
-        key: {{ .Values.serviceMonitor.basicAuth.username.secretKey}}
+        {{- if .Values.serviceMonitor.basicAuth.existingSecret }}
+        name: {{ .Values.serviceMonitor.basicAuth.existingSecret }}
+        {{- else }}
+        name: {{ template "opensearch.uname" . }}-service-monitor-credentials
+        {{- end }}
+        key: username
       password:
-        name: {{ .Values.serviceMonitor.basicAuth.password.secretName}}
-        key: {{ .Values.serviceMonitor.basicAuth.password.secretKey}}
+        {{- if .Values.serviceMonitor.basicAuth.existingSecret }}
+        name: {{ .Values.serviceMonitor.basicAuth.existingSecret }}
+        {{- else }}
+        name: {{ template "opensearch.uname" . }}-service-monitor-credentials
+        {{- end }}
+        key: password
     {{- end }}
 {{- end }}

@@ -558,11 +558,12 @@ serviceMonitor:
   labels: {}
 
   # Basic Auth configuration for the service monitor
+  # You can either use existingSecret, which expects a secret to be already present with data.username and data.password
+  # or set the credentials over the helm values, making helm create a secret for you
   # basicAuth:
-  #   username:
-  #     secretName: credentials
-  #     secretKey: username
-  #   password:
-  #     secretName: credentials
-  #     secretKey: password
-  basicAuth: {} 
+  #   enaled: true
+  #   existingSecret: my-secret
+  #   username:  my-username
+  #   password: my-password
+  basicAuth:
+    enabled: false
