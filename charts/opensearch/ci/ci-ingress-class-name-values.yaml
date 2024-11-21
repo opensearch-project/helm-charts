@@ -51,8 +51,8 @@ config:
     # Setting network.host to a non-loopback address enables the annoying bootstrap checks. "Single-node" mode disables them again.
     # discovery.type: single-node
 
-    # Start OpenSearch Security Demo Configuration
-    # WARNING: revise all the lines below before you go into production
+    # # Start OpenSearch Security Demo Configuration
+    # # WARNING: revise all the lines below before you go into production
     # plugins:
     #   security:
     #     ssl:
@@ -91,7 +91,7 @@ config:
     #           ".opendistro-notebooks",
     #           ".opendistro-asynchronous-search-response*",
     #         ]
-    ######## End OpenSearch Security Demo Configuration ########
+    # ######## End OpenSearch Security Demo Configuration ########
   # log4j2.properties:
 
 # Extra environment variables to append to this nodeGroup
