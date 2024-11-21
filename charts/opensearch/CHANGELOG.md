@@ -14,6 +14,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 ### Security
 ---
+## [1.31.3]
+### Added
+### Changed
+### Deprecated
+### Removed
+### Fixed
+- Fix `image.pullPolicy` not being respected by `persistence` init container
+### Security
+---
 ## [1.31.2]
 ### Added
 - Allow user-defined labels on persistent volume claim
