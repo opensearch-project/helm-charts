@@ -14,6 +14,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 ### Security
 ---
+## [2.27.1]
+### Added
+### Changed
+### Deprecated
+### Removed
+### Fixed
+- Remove default opensearch.yml config in Values.yaml to avoid security plugin conflicts
+### Security
+---
 ## [2.27.0]
 ### Added
 - Updated OpenSearch appVersion to 2.18.0
