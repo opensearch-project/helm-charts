@@ -46,7 +46,7 @@ config:
   #
   #   rootLogger.level = info
   #   rootLogger.appenderRef.console.ref = console
-  #opensearch.yml: |
+  # opensearch.yml: |
   #  cluster.name: opensearch-cluster
   #
   #  # Bind to all interfaces because we don't know what IP address Docker will assign to us.
