@@ -119,6 +119,9 @@ We welcome contributions! Please read our [CONTRIBUTING.md](../../CONTRIBUTING.m
 | tolerations | list | `[]` |  |
 | volumeMounts | list | `[]` |  |
 | volumes | list | `[]` |  |
+| serviceMonitor.enabled | Enables the creation of a [ServiceMonitor] resource for Prometheus monitoring. Requires the Prometheus Operator to be installed in your Kubernetes cluster. | `false` |
+| serviceMonitor.path | Path where metrics are exposed | `/metrics/sys` |
+| serviceMonitor.interval | Interval at which metrics should be scraped by Prometheus | `30s` |
 
 ## License
 
