@@ -109,7 +109,7 @@ pipelineConfig:
       workers: 2      # the number of workers
       delay: 5000     # in milliseconds, how long workers wait between read attempts
       source:
-        random:
+        random: {}
       buffer:
         bounded_blocking:
           buffer_size: 1024     # max number of records the buffer accepts
@@ -118,7 +118,7 @@ pipelineConfig:
         - string_converter:
             upper_case: true
       sink:
-        - stdout:
+        - stdout: {}
 
     ## More Complex example
     # otel-logs-pipeline:
@@ -128,7 +128,7 @@ pipelineConfig:
     #     otel_logs_source:
     #       ssl: false
     #   buffer:
-    #     bounded_blocking:
+    #     bounded_blocking: {}
     #   sink:
     #     - opensearch:
     #         hosts: ["https://opensearch-cluster-master:9200"]
@@ -178,7 +178,7 @@ pipelineConfig:
     #       buffer_size: 25600 # max number of records the buffer accepts
     #       batch_size: 400 # max number of records the buffer drains after each read
     #   processor:
-    #     - otel_traces:
+    #     - otel_traces: {}
     #     - otel_trace_group:
     #         hosts: [ "https://opensearch-cluster-master:9200" ]
     #         insecure: true
