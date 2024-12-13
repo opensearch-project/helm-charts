@@ -534,7 +534,7 @@ extraObjects: []
 
 # ServiceMonitor Configuration for Prometheus
 # Enabling this option will create a ServiceMonitor resource that allows Prometheus to scrape metrics from the OpenSearch service.
-# This only creates the serviceMonitor, to actually have metrics Make sure to install the prometheus-exporter plugin needed for 
+# This only creates the serviceMonitor, to actually have metrics Make sure to install the prometheus-exporter plugin needed for
 # serving metrics over the `.Values.plugins` value:
 # plugins:
 #   enabled: true
