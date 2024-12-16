@@ -14,6 +14,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 ### Security
 ---
+## [2.28.0]
+### Added
+### Changed
+### Deprecated
+### Removed
+### Fixed
+- Fix metricsPort and plugins usage info in values.yaml
+### Security
+---
 ## [2.27.1]
 ### Added
 ### Changed
@@ -530,7 +539,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 ### Security
 
-[Unreleased]: https://github.com/opensearch-project/helm-charts/compare/opensearch-2.27.1...HEAD
+[Unreleased]: https://github.com/opensearch-project/helm-charts/compare/opensearch-2.28.0...HEAD
+[2.28.0]: https://github.com/opensearch-project/helm-charts/compare/opensearch-2.27.1...opensearch-2.28.0
 [2.27.1]: https://github.com/opensearch-project/helm-charts/compare/opensearch-2.27.0...opensearch-2.27.1
 [2.27.0]: https://github.com/opensearch-project/helm-charts/compare/opensearch-2.26.1...opensearch-2.27.0
 [2.26.1]: https://github.com/opensearch-project/helm-charts/compare/opensearch-2.26.0...opensearch-2.26.1
