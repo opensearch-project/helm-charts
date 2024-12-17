@@ -90,10 +90,12 @@ spec:
             name: {{ include "data-prepper.fullname" . }}-config
         - name: data-prepper-pipelines
           secret:
-          {{- if .Values.pipelineConfig.enabled }}
+          {{- if .Values.pipelineConfig.demoPipeline }}
+            secretName: {{ include "data-prepper.fullname" . }}-demo-pipeline
+          {{- else if .Values.pipelineConfig.enabled }}
             secretName: {{ include "data-prepper.fullname" . }}-pipeline
           {{- else }}
-            secretName: {{ required "A valid .Values.pipelineConfig.existingSecret entry required!" .Values.pipelineConfig.existingSecret }}
+            secretName: {{ required "A valid pipeline configuration is required! Please set one of:\npipelineConfig.existingSecret - for your custom pipeline secret\npipelineConfig.enabled - for inline configuration in values.yaml or\npipelineConfig.demoPipeline=true - for a sample demo pipeline using random source and stdout sink." .Values.pipelineConfig.existingSecret }}
           {{- end }}
       {{- with .Values.volumes }}
         {{- toYaml . | nindent 8 }}
