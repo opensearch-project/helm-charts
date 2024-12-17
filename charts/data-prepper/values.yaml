@@ -352,3 +352,18 @@ nodeSelector: {}
 tolerations: []
 
 affinity: {}
+
+# ServiceMonitor Configuration
+# Allows Prometheus to scrape metrics from the Data Prepper server.
+serviceMonitor:
+  # Set to true to enable the ServiceMonitor resource
+  enabled: false
+
+  # HTTP path where metrics are exposed.
+  path: /metrics/sys
+
+  # Frequency at which Prometheus will scrape metrics.
+  interval: 30s
+
+  # additional labels to be added to the ServiceMonitor
+  labels: {}
