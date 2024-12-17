@@ -14,7 +14,7 @@ spec:
     matchLabels:
       {{- include "opensearch.selectorLabels" . | nindent 6 }}
   endpoints:
-  - port: {{ .Values.service.metricsPortName | default "metrics" }}
+  - port: {{ .Values.service.httpPortName | default "http" }}
     interval: {{ .Values.serviceMonitor.interval }}
     path: {{ .Values.serviceMonitor.path }}
 {{- end }}
