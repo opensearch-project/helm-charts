@@ -60,3 +60,14 @@ Create the name of the service account to use
 {{- default "default" .Values.serviceAccount.name }}
 {{- end }}
 {{- end }}
+
+{{/*
+Create the dockerRegistry prefix if defined
+*/}}
+{{- define "data-prepper.dockerRegistry" -}}
+{{- if eq .Values.global.dockerRegistry "" -}}
+  {{- .Values.global.dockerRegistry -}}
+{{- else -}}
+  {{- .Values.global.dockerRegistry | trimSuffix "/" | printf "%s/" -}}
+{{- end -}}
+{{- end -}}
