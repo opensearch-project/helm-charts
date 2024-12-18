@@ -1,195 +1,115 @@
-# OpenSearch Helm Chart
+<img src="https://opensearch.org/assets/brand/SVG/Logo/opensearch_logo_default.svg" height="64px"/>
 
-This Helm chart installs [OpenSearch](https://github.com/opensearch-project/OpenSearch) with configurable TLS, RBAC and much more configurations. This chart caters a number of different use cases and setups.
+- [OpenSearch Project Helm-Charts](#opensearch-project-helm-charts)
+- [Status](#status)
+- [Version and Branching](#version-and-branching)
+- [Installation](#installation)
+- [Change Logs](#change-logs)
+- [Contributing](#contributing)
+- [Getting Help](#getting-help)
+- [Code of Conduct](#code-of-conduct)
+- [Security](#security)
+- [License](#license)
 
-- [OpenSearch Helm Chart](#opensearch-helm-chart)
-- [Requirements](#requirements)
-- [Installing](#installing)
-- [Uninstalling](#uninstalling)
-- [Configuration](#configuration)
+## OpenSearch Project Helm Charts
 
-## Requirements
+A community repository for Helm Charts of OpenSearch Project.
 
-- Kubernetes >= 1.14
-- Helm >= 2.17.0
-- We recommend you to have 8 GiB of memory available for this deployment, or at least 4 GiB for the minimum requirement. Else, the deployment is expected to fail.
+## Status
 
-## Installing
+[![Lint and Test Charts](https://github.com/opensearch-project/helm-charts/actions/workflows/lint-test.yaml/badge.svg)](https://github.com/opensearch-project/helm-charts/actions/workflows/lint-test.yaml)
+ [![Release Charts](https://github.com/opensearch-project/helm-charts/actions/workflows/release.yaml/badge.svg)](https://github.com/opensearch-project/helm-charts/actions/workflows/release.yaml)
 
-Once you've added this Helm repository as per the repository-level [README](../../README.md#installing) then you can install the chart as follows:
+## Version and Branching
+As of now, this helm-charts repository maintains 3 branches:
+* _main_ (Version is 2.x.x for both `version` and `appVersion` in `Chart.yaml`)
+* _1.x_ (Version is 1.x.x for both `version` and `appVersion` in `Chart.yaml`)
+* _gh-pages_ (Reserved branch for publishing helm-charts through github pages)
+<br>
 
- ```shell
- helm install my-release opensearch/opensearch
- ```
+Contributors should choose the corresponding branch(es) when commiting their change(s):
+* If you have a change for a specific version, only open PR to specific branch
+* If you have a change for all available versions, first open a PR on `main`, then open a backport PR with `[backport 1.x]` in the title, with label `backport 1.x`, etc.
+* No changes should be commited to `gh-pages` by any contributor, as this branch should be only changed by github actions `chart-releaser`
 
-The command deploys OpenSearch with its associated components (data statefulsets, masters, clients) on the Kubernetes cluster in the default configuration.
+## Kubernetes Version Support
+* This helm-chart repository is tested with kubernetes version 1.19 and above
 
-**NOTE:** If using Helm 2 then you'll need to add the [`--name`](https://v2.helm.sh/docs/helm/#options-21) command line argument. If unspecified, Helm 2 will autogenerate a name for you.
+## Installation
 
-## Uninstalling
-
-To delete/uninstall the chart with the release name `my-release`:
+To install the OpenSearch Helm charts, execute the following commands:
 
 ```shell
-helm uninstall my-release
+helm repo add opensearch https://opensearch-project.github.io/helm-charts/
+helm repo update
 ```
 
-## Configuration
+Once the charts repository reference is added, you can run the following command to see the charts.
 
-| Parameter | Description | Default |
-| :--- | :--- | :--- |
-| `antiAffinityTopologyKey` | The [anti-affinity][] topology key. By default this will prevent multiple Opensearch nodes from running on the same Kubernetes node | `kubernetes.io/hostname` |
-| `antiAffinity` | Setting this to `hard` enforces the [anti-affinity][] rules. If it is set to `soft` it will be done "best effort". Setting it to `custom` will use whatever is set in the `customAntiAffinity` parameter. Other values will be ignored. | `hard` |
-| `clusterName` | This will be used as the OpenSearch cluster name and should be unique per cluster in the namespace | `opensearch-cluster` |
-| `customAntiAffinity` | Allows passing in custom anti-affinity settings as defined in the [anti-affinity][] rules. Using this parameter requires setting the `antiAffinity` parameter to `custom`. | `{}` |
-| `enableServiceLinks` | Set to false to disabling service links, which can cause slow pod startup times when there are many services in the current namespace. | `true` |
-| `envFrom` | Templatable string to be passed to the [environment from variables][] which will be appended to the `envFrom:` definition for the container | `[]` |
-| `config` | Allows you to add any config files in `/usr/share/opensearch/config/` such as `opensearch.yml` and `log4j2.properties`. String or map format may be used for specifying content of each configuration file. In case of string format, the whole content of the config file will be replaced by new config file value when in case of using map format content of configuration file will be a result of merge. In both cases content passed through tpl. See [values.yaml][] for an example of the formatting (passed through tpl) | `{}` |
-| `opensearchJavaOpts` | Java options for OpenSearch. This is where you should configure the jvm heap size | `-Xmx512M -Xms512M` |
-| `majorVersion` | Used to set major version specific configuration. If you are using a custom image and not running the default OpenSearch version you will need to set this to the version you are running (e.g. `majorVersion: 1`) | `""` |
-| `global.dockerRegistry` | Set if you want to change the default docker registry, e.g. a private one. | `""` |
-| `extraContainers` | Array of extra containers | `""` |
-| `extraEnvs` | Extra environments variables to be passed to OpenSearch services | `[]` |
-| `extraInitContainers` | Array of extra init containers | `[]` |
-| `extraVolumeMounts` | Array of extra volume mounts | `[]` |
-| `extraVolumes` | Array of extra volumes to be added | `[]` |
-| `fullnameOverride` | Overrides the `clusterName` and `nodeGroup` when used in the naming of resources. This should only be used when using a single `nodeGroup`, otherwise you will have name conflicts | `""` |
-| `hostAliases` | Configurable [hostAliases][] | `[]` |
-| `httpHostPort` | Expose another http-port as hostPort. Refer to documentation for more information and requirements about using hostPorts. | `""` |
-| `httpPort` | The http port that Kubernetes will use for the healthchecks and the service. If you change this you will also need to set `http.port` in `extraEnvs` | `9200` |
-| `image.pullPolicy` | The Kubernetes [imagePullPolicy][] value | `IfNotPresent` |
-| `imagePullSecrets` | Configuration for [imagePullSecrets][] so that you can use a private registry for your image | `[]` |
-| `image.tag` | The OpenSearch Docker image tag | `1.0.0` |
-| `image.repository` | The OpenSearch Docker image | `opensearchproject/opensearch` |
-| `ingress` | Configurable [ingress][] to expose the OpenSearch service. See [values.yaml][] for an example | see [values.yaml][] |
-| `initResources` | Allows you to set the [resources][] for the `initContainer` in the StatefulSet | `{}` |
-| `keystore` | Allows you map Kubernetes secrets into the keystore. | `[]` |
-| `labels` | Configurable [labels][] applied to all OpenSearch pods | `{}` |
-| `masterService` | The service name used to connect to the masters. You only need to set this if your master `nodeGroup` is set to something other than `master` | `""` |
-| `maxUnavailable` | The [maxUnavailable][] value for the pod disruption budget. By default this will prevent Kubernetes from having more than 1 unhealthy pod in the node group | `1` |
-| `metricsPort` | The metrics port (for Performance Analyzer) that Kubernetes will use for the service. | `9600` |
-| `nameOverride` | Overrides the `clusterName` when used in the naming of resources | `""` |
-| `networkHost` | Value for the `network.host OpenSearch setting` | `0.0.0.0` |
-| `networkPolicy.create` | Enable network policy creation for OpenSearch | `false` |
-| `nodeAffinity` | Value for the [node affinity settings][] | `{}` |
-| `nodeGroup` | This is the name that will be used for each group of nodes in the cluster. The name will be `clusterName-nodeGroup-X` , `nameOverride-nodeGroup-X` if a `nameOverride` is specified, and `fullnameOverride-X` if a `fullnameOverride` is specified | `master` |
-| `nodeSelector` | Configurable [nodeSelector][] so that you can target specific nodes for your OpenSearch cluster | `{}` |
-| `persistence` | Enables a persistent volume for OpenSearch data. | see [values.yaml][] |
-| `persistence.enableInitChown` | Disable the `fsgroup-volume` initContainer that will update permissions on the persistent disk. | `true` |
-| `podAffinity` | Value for the [pod affinity settings][] | `{}` |
-| `podAnnotations` | Configurable [annotations][] applied to all OpenSearch pods | `{}` |
-| `podManagementPolicy` | By default Kubernetes [deploys StatefulSets serially][]. This deploys them in parallel so that they can discover each other | `Parallel` |
-| `podSecurityContext` | Allows you to set the [securityContext][] for the pod | see [values.yaml][] |
-| `podSecurityPolicy` | Configuration for create a pod security policy with minimal permissions to run this Helm chart with `create: true`. Also can be used to reference an external pod security policy with `name: "externalPodSecurityPolicy"` | see [values.yaml][] |
-| `priorityClassName` | The name of the [PriorityClass][]. No default is supplied as the PriorityClass must be created first | `""` |
-| `rbac` | Configuration for creating a role, role binding and ServiceAccount as part of this Helm chart with `create: true`. Also can be used to reference an external ServiceAccount with `serviceAccountName: "externalServiceAccountName"` | see [values.yaml][] |
-| `rbac.automountServiceAccountToken` | Controls whether a service account token should be automatically mounted to the Pods. | `true` |
-| `replicas` | Kubernetes replica count for the StatefulSet (i.e. how many pods) | `3` |
-| `resources` | Allows you to set the [resources][] for the StatefulSet | see [values.yaml][] |
-| `roles` | A list of the specific node [roles][] for the `nodeGroup` | see [values.yaml][] |
-| `singleNode` | If `discovery.type` in the opensearch configuration is set to `"single-node"`, this should be set to `true`. If `true`, replicas will be forced to `1`. | `false` |
-| `schedulerName` | Name of the [alternate scheduler][] | `""` |
-| `secretMounts` | Allows you easily mount a secret as a file inside the StatefulSet. Useful for mounting certificates and other secrets. See [values.yaml][] for an example | `[]` |
-| `securityConfig` | Configure the opensearch security plugin. There are multiple ways to inject configuration into the chart, see [values.yaml][] details. | By default an insecure demonstration configuration is set. This **must** be changed before going to production. |
-| `securityContext` | Allows you to set the [securityContext][] for the container | see [values.yaml][] |
-| `service.annotations` | [LoadBalancer annotations][] that Kubernetes will use for the service. This will configure load balancer if `service.type` is `LoadBalancer` | `{}` |
-| `service.headless.annotations` | Allow you to set annotations on the headless service | `{}` |
-| `service.externalTrafficPolicy` | Some cloud providers allow you to specify the [LoadBalancer externalTrafficPolicy][]. Kubernetes will use this to preserve the client source IP. This will configure load balancer if `service.type` is `LoadBalancer` | `""` |
-| `service.httpPortName` | The name of the http port within the service | `http` |
-| `service.labelsHeadless` | Labels to be added to headless service | `{}` |
-| `service.labels` | Labels to be added to non-headless service | `{}` |
-| `service.loadBalancerIP` | Some cloud providers allow you to specify the [loadBalancer][] IP. If the `loadBalancerIP` field is not specified, the IP is dynamically assigned. If you specify a `loadBalancerIP` but your cloud provider does not support the feature, it is ignored. | `""` |
-| `service.loadBalancerSourceRanges` | The IP ranges that are allowed to access | `[]` |
-| `service.metricsPortName` | The name of the metrics port (for Performance Analyzer) within the service | `metrics` |
-| `service.nodePort` | Custom [nodePort][] port that can be set if you are using `service.type: nodePort` | `""` |
-| `service.transportPortName` | The name of the transport port within the service | `transport` |
-| `service.type` | OpenSearch [Service Types][] | `ClusterIP` |
-| `service.ipFamilyPolicy` | This sets the preferred ip addresses in case of a dual-stack server, there are three options [PreferDualStack, SingleStack, RequireDualStack], [more information on dual stack](https://kubernetes.io/docs/concepts/services-networking/dual-stack/) | `""` |
-| `service.ipFamilies` | Sets the preferred IP variants and in which order they are preferred, the first family you list is used for the legacy .spec.ClusterIP field, [more information on dual stack](https://kubernetes.io/docs/concepts/services-networking/dual-stack/) | `""` |
-| `sidecarResources` | Allows you to set the [resources][] for the sidecar containers in the StatefulSet | {} |
-| `sysctlInit` | Allows you to enable the `sysctlInit` to set sysctl vm.max_map_count through privileged `initContainer`. | `enabled: false` |
-| `sysctlVmMaxMapCount` | Sets the [vm.max_map_count][] needed for OpenSearch | `262144` |
-| `terminationGracePeriod` | The [terminationGracePeriod][] in seconds used when trying to stop the pod | `120` |
-| `tolerations` | Configurable [tolerations][] | `[]` |
-| `topologySpreadConstraints` | Configuration for pod [topologySpreadConstraints][] | `[]` |
-| `transportHostPort` | Expose another transport port as hostPort. Refer to documentation for more information and requirements about using hostPorts. | `""` |
-| `transportPort` | The transport port that Kubernetes will use for the service. If you change this you will also need to set transport port configuration in `extraEnvs` | `9300` |
-| `updateStrategy` | The [updateStrategy][] for the StatefulSet. By default Kubernetes will wait for the cluster to be green after upgrading each pod. Setting this to `OnDelete` will allow you to manually delete each pod during upgrades | `RollingUpdate` |
-| `volumeClaimTemplate` | Configuration for the [volumeClaimTemplate for StatefulSets][]. You will want to adjust the storage (default `30Gi` ) and the `storageClassName` if you are using a different storage class | see [values.yaml][] |
-| `extraObjects` | Array of extra K8s manifests to deploy | list `[]` |
-| `livenessProbe` | Configuration fields for the liveness [probe][] | see [exampleLiveness][] in `values.yaml` |
-| `readinessProbe` | Configuration fields for the readiness [probe][] | see [exampleReadiness][] in `values.yaml` |
-| `startupProbe` | Configuration fields for the startup [probe][] | see [exampleStartup][] in `values.yaml` |
-| `plugins.enabled` | Allow/disallow to add 3rd Party / Custom plugins not offered in the default OpenSearchDashboards image | false |
-| `plugins.installList` | Array containing the Opensearch Dashboards plugins to be installed in container | \[] |
-| `opensearchLifecycle` | Allows you to configure lifecycle hooks for the OpenSearch container in the StatefulSet | {} |
-| `lifecycle` | Allows you to configure lifecycle hooks for the OpenSearch container in the StatefulSet | {} |
-| `openSearchAnnotations` | Allows you to configure custom annotation in the StatefullSet of the OpenSearch container | {} |
-| `serviceMonitor.enabled` | Enables the creation of a [ServiceMonitor] resource for Prometheus monitoring. Requires the Prometheus Operator to be installed in your Kubernetes cluster. | `false` |
-| `serviceMonitor.path` | Path where metrics are exposed. Applicable only if `serviceMonitor.enabled` is set to `true`. | `/_prometheus/metrics` |
-| `serviceMonitor.interval` | Interval at which metrics should be scraped by Prometheus. Applicable only if `serviceMonitor.enabled` is set to `true`. | `10s` |
-| `serviceMonitor.basicAuth.enabled`        | Wheter or not the serviceMonitor should use basic auth                                                                                                                                                                                                                                                                                                                                                                                                                                                                             | `false`                                                                                                         |
-| `serviceMonitor.basicAuth.existingSecret` | When using basicAuth for the serviceMonitory, use an existing secret                                                                                                                                                                                                                                                                                                                                                                                                                                                               | `""`                                                                                                            |
-| `serviceMonitor.basicAuth.username`       | Username to be used for basic auth                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 | `""`                                                                                                            |
-| `serviceMonitor.basicAuth.password`       | Password to be used for basic auth                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 | `""`              
+```shell
+helm search repo opensearch
+```
 
-[anti-affinity]: https://kubernetes.io/docs/concepts/configuration/assign-pod-node/#affinity-and-anti-affinity
+You can now deploy charts with this command.
 
-[environment from variables]: https://kubernetes.io/docs/tasks/configure-pod-container/configure-pod-configmap/#configure-all-key-value-pairs-in-a-configmap-as-container-environment-variables
+```shell
+helm install my-deployment opensearch/<chart name>
+```
 
-[values.yaml]:https://github.com/opensearch-project/helm-charts/blob/main/charts/opensearch/values.yaml
+Please see the `README.md` in the [OpenSearch](charts/opensearch) and [OpenSearch Dashboards](charts/opensearch-dashboards) directories for installation instructions.
 
-[hostAliases]: https://kubernetes.io/docs/concepts/services-networking/add-entries-to-pod-etc-hosts-with-host-aliases/
 
-[imagepullPolicy]: https://kubernetes.io/docs/concepts/containers/images/#updating-images
-[imagePullSecrets]: https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/
-[ingress]: https://kubernetes.io/docs/concepts/services-networking/ingress/
-[resources]: https://kubernetes.io/docs/concepts/configuration/manage-compute-resources-container/
+### Breaking Change 
+For OpenSearch Chart version 2.18.0 and App Version OpenSearch version 2.12.0 and above require a custom strong password to be provided in order to setup demo admin user during the first time cluster installation, without this password the cluster would not spin up, unless demo config install is disabled or the cluster security settings are handled by the user.
 
-[labels]: https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/
+Note: This won’t impact users who have already installed the cluster and created the security index. It only affects users starting a brand new cluster with OpenSearch version 2.12.0 and above.
 
-[maxUnavailable]: https://kubernetes.io/docs/tasks/run-application/configure-pdb/#specifying-a-poddisruptionbudget
+The custom admin password can be supplied by adding the environment variable `OPENSEARCH_INITIAL_ADMIN_PASSWORD` in the `value.yml` as:
+```
+extraEnvs:
+  - name: OPENSEARCH_INITIAL_ADMIN_PASSWORD
+    value: <strong-password>
+```
+or during the installation example as `helm install opensearch opensearch/opensearch --set extraEnvs[0].name=OPENSEARCH_INITIAL_ADMIN_PASSWORD,extraEnvs[0].value=$OPENSEARCH_INITIAL_ADMIN_PASSWORD`
 
-[node affinity settings]: https://kubernetes.io/docs/concepts/configuration/assign-pod-node/#node-affinity-beta-feature
 
-[pod affinity settings]: https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/#types-of-inter-pod-affinity-and-anti-affinity
+### Notes About Default Installation
 
-[nodeSelector]: https://kubernetes.io/docs/concepts/configuration/assign-pod-node/#nodeselector
+By default, on startup, the `install_demo_configuration.sh` is run via the `opensearch-docker-entrypoint.sh` script if `DISABLE_INSTALL_DEMO_CONFIG` is not `true`.
 
-[annotations]: https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations/
+If custom certificates are used and `allow_unsafe_democertificates` is set to `false` in the configuration, this can prevent pods from starting with the following error: `Demo certificates found but plugins.security.allow_unsafe_democertificates is set to false.`
 
-[deploys statefulsets serially]: https://kubernetes.io/docs/concepts/workloads/controllers/statefulset/#pod-management-policies
+This can be solved by adding an environment variable in the `value.yml`:
+```
+extraEnvs:
+  - name: DISABLE_INSTALL_DEMO_CONFIG
+    value: "true"
+```
 
-[securityContext]: https://kubernetes.io/docs/tasks/configure-pod-container/security-context/
+## Change Logs
 
-[priorityClass]: https://kubernetes.io/docs/concepts/configuration/pod-priority-preemption/#priorityclass
+Please review the [OpenSearch](charts/opensearch/CHANGELOG.md) and the
+[OpenSearch Dashboards](charts/opensearch-dashboards/CHANGELOG.md) change logs for the latest
+release details.
 
-[roles]: https://opensearch.org/docs/opensearch/cluster/
+## Contributing
 
-[alternate scheduler]: https://kubernetes.io/docs/tasks/administer-cluster/configure-multiple-schedulers/#specify-schedulers-for-pods
+See [developer guide](DEVELOPER_GUIDE.md) and [how to contribute to this project](CONTRIBUTING.md).
 
-[loadBalancer annotations]: https://kubernetes.io/docs/concepts/services-networking/service/#ssl-support-on-aws
-[loadBalancer externalTrafficPolicy]: https://kubernetes.io/docs/tasks/access-application-cluster/create-external-load-balancer/#preserving-the-client-source-ip
-[loadBalancer]: https://kubernetes.io/docs/concepts/services-networking/service/#loadbalancer
+## Getting Help
 
-[nodePort]: https://kubernetes.io/docs/concepts/services-networking/service/#nodeport
+If you find a bug, or have a feature request, please don't hesitate to open an issue in this repository.
 
-[vm.max_map_count]: https://opensearch.org/docs/opensearch/install/important-settings/
+For more information, see [project website](https://opensearch.org/) and [documentation](https://opensearch.org/docs). If you need help and are unsure where to open an issue, try [forums](https://discuss.opendistrocommunity.dev/).
 
-[terminationGracePeriod]: https://kubernetes.io/docs/concepts/workloads/pods/pod/#termination-of-pods
-[tolerations]: https://kubernetes.io/docs/concepts/configuration/taint-and-toleration/
+## Code of Conduct
 
-[updateStrategy]: https://kubernetes.io/docs/concepts/workloads/controllers/statefulset/
-[volumeClaimTemplate for statefulsets]: https://kubernetes.io/docs/concepts/workloads/controllers/statefulset/#stable-storage
+This project has adopted the [Amazon Open Source Code of Conduct](CODE_OF_CONDUCT.md). For more information see the [Code of Conduct FAQ](https://aws.github.io/code-of-conduct-faq), or contact [opensource-codeofconduct@amazon.com](mailto:opensource-codeofconduct@amazon.com) with any additional questions or comments.
 
-[service types]: https://kubernetes.io/docs/concepts/services-networking/service/#publishing-services-service-types
+## Security
 
-[topologySpreadConstraints]: https://kubernetes.io/docs/concepts/workloads/pods/pod-topology-spread-constraints
+If you discover a potential security issue in this project we ask that you notify AWS/Amazon Security via our [vulnerability reporting page](http://aws.amazon.com/security/vulnerability-reporting/). Please do **not** create a public GitHub issue.
 
-[probe]: https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-startup-probes/#define-readiness-probes
+## License
 
-[exampleStartup]: https://github.com/opensearch-project/helm-charts/blob/main/charts/opensearch/values.yaml#332
-[exampleLiveness]: https://github.com/opensearch-project/helm-charts/blob/main/charts/opensearch/values.yaml#340
-[exampleReadiness]: https://github.com/opensearch-project/helm-charts/blob/main/charts/opensearch/values.yaml#349
-
-[ServiceMonitor]: https://github.com/prometheus-operator/prometheus-operator/blob/main/Documentation/api.md#servicemonitor
+This project is licensed under the [Apache v2.0 License](LICENSE.txt).
