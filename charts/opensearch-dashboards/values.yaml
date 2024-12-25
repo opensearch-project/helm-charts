@@ -279,7 +279,7 @@ plugins:
   installList: []
   # - example-fake-plugin-downloadable-url
   removeList: []
-  # - securityDashboards
+  # - examplePluginName
 
 # ServiceMonitor Configuration for Prometheus
 # Enabling this option will create a ServiceMonitor resource that allows Prometheus to scrape metrics from the OpenSearch service.
