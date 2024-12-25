@@ -14,6 +14,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 ### Security
 ---
+## [2.29.0]
+### Added
+- Added plugins.removeList to allow remove plugins
+### Changed
+### Deprecated
+### Removed
+### Fixed
+### Security
+---
 ## [2.28.0]
 ### Added
 ### Changed
