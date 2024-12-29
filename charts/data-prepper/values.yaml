@@ -7,6 +7,10 @@
 
 replicaCount: 1
 
+global:
+  # Set if you want to change the default docker registry, e.g. a private one.
+  dockerRegistry: ""
+
 image:
   # -- The image repository from which to pull the Data Prepper image
   repository: opensearchproject/data-prepper
