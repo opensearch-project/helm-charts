@@ -62,25 +62,25 @@ app.kubernetes.io/instance: {{ .Release.Name }}
 {{- end -}}
 {{- end -}}
 
-{{- define "opensearch.masterService" -}}
-{{- if empty .Values.masterService -}}
+{{- define "opensearch.clusterManagerService" -}}
+{{- if empty .Values.clusterManagerService -}}
 {{- if empty .Values.fullnameOverride -}}
 {{- if empty .Values.nameOverride -}}
-{{ .Values.clusterName }}-master
+{{ .Values.clusterName }}-manager
 {{- else -}}
-{{ .Values.nameOverride }}-master
+{{ .Values.nameOverride }}-manager
 {{- end -}}
 {{- else -}}
 {{ .Values.fullnameOverride }}
 {{- end -}}
 {{- else -}}
-{{ .Values.masterService }}
+{{ .Values.clusterManagerService }}
 {{- end -}}
 {{- end -}}
 
 {{- define "opensearch.serviceName" -}}
-{{- if eq .Values.nodeGroup "master" }}
-{{- include "opensearch.masterService" . }}
+{{- if or (eq .Values.nodeGroup "master") (eq .Values.nodeGroup "manager") }}
+{{- include "opensearch.clusterManagerService" . }}
 {{- else }}
 {{- include "opensearch.uname" . }}
 {{- end }}

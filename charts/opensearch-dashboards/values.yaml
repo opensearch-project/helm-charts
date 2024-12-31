@@ -5,7 +5,7 @@
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 
-opensearchHosts: "https://opensearch-cluster-master:9200"
+opensearchHosts: "https://opensearch-cluster-manager:9200"
 replicaCount: 1
 
 image:

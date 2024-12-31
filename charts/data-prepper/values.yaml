@@ -135,7 +135,7 @@ pipelineConfig:
     #     bounded_blocking:
     #   sink:
     #     - opensearch:
-    #         hosts: ["https://opensearch-cluster-master:9200"]
+    #         hosts: ["https://opensearch-cluster-manager:9200"]
     #         username: "admin"
     #         password: "admin"
     #         insecure: true
@@ -184,13 +184,13 @@ pipelineConfig:
     #   processor:
     #     - otel_traces:
     #     - otel_trace_group:
-    #         hosts: [ "https://opensearch-cluster-master:9200" ]
+    #         hosts: [ "https://opensearch-cluster-manager:9200" ]
     #         insecure: true
     #         username: "admin"
     #         password: "admin"
     #   sink:
     #     - opensearch:
-    #         hosts: ["https://opensearch-cluster-master:9200"]
+    #         hosts: ["https://opensearch-cluster-manager:9200"]
     #         username: "admin"
     #         password: "admin"
     #         insecure: true
@@ -220,7 +220,7 @@ pipelineConfig:
     #         batch_size: 400
     #   sink:
     #     - opensearch:
-    #         hosts: ["https://opensearch-cluster-master:9200"]
+    #         hosts: ["https://opensearch-cluster-manager:9200"]
     #         username: "admin"
     #         password: "admin"
     #         insecure: true
@@ -247,7 +247,7 @@ pipelineConfig:
     #         flatten_attributes: false
     #   sink:
     #     - opensearch:
-    #         hosts: ["https://opensearch-cluster-master:9200"]
+    #         hosts: ["https://opensearch-cluster-manager:9200"]
     #         username: "admin"
     #         password: "admin"
     #         insecure: true
