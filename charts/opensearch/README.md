@@ -126,6 +126,10 @@ helm uninstall my-release
 | `serviceMonitor.enabled` | Enables the creation of a [ServiceMonitor] resource for Prometheus monitoring. Requires the Prometheus Operator to be installed in your Kubernetes cluster. | `false` |
 | `serviceMonitor.path` | Path where metrics are exposed. Applicable only if `serviceMonitor.enabled` is set to `true`. | `/_prometheus/metrics` |
 | `serviceMonitor.interval` | Interval at which metrics should be scraped by Prometheus. Applicable only if `serviceMonitor.enabled` is set to `true`. | `10s` |
+| `serviceMonitor.basicAuth.enabled`        | Wheter or not the serviceMonitor should use basic auth | `false` |
+| `serviceMonitor.basicAuth.existingSecret` | When using basicAuth for the serviceMonitor, use an existing secret | `""` |
+| `serviceMonitor.basicAuth.username`       | Username to be used for basic auth | `""` |
+| `serviceMonitor.basicAuth.password`       | Password to be used for basic auth | `""` |
 
 [anti-affinity]: https://kubernetes.io/docs/concepts/configuration/assign-pod-node/#affinity-and-anti-affinity
 
