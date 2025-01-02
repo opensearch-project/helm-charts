@@ -14,6 +14,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 ### Security
 ---
+## [1.34.0]
+### Added
+- Ability to set a basic auth configuration to the `serviceMonitor`
+### Changed
+### Deprecated
+### Removed
+### Fixed
+### Security
+---
 ## [1.33.0]
 ### Added
 ### Changed
@@ -760,7 +769,8 @@ config:
 ### Fixed
 ### Security
 
-[Unreleased]: https://github.com/opensearch-project/helm-charts/compare/opensearch-1.33.0...HEAD
+[Unreleased]: https://github.com/opensearch-project/helm-charts/compare/opensearch-1.34.0...HEAD
+[1.34.0]: https://github.com/opensearch-project/helm-charts/compare/opensearch-1.34.0...opensearch-1.33.0
 [1.33.0]: https://github.com/opensearch-project/helm-charts/compare/opensearch-1.32.0...opensearch-1.33.0
 [1.32.0]: https://github.com/opensearch-project/helm-charts/compare/opensearch-1.31.2...opensearch-1.32.0
 [1.31.2]: https://github.com/opensearch-project/helm-charts/compare/opensearch-1.31.1...opensearch-1.31.2
