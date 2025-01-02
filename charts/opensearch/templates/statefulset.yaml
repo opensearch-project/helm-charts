@@ -365,6 +365,12 @@ spec:
           #!/usr/bin/env bash
           set -euo pipefail
 
+          {{- range $plugin := .Values.plugins.removeList }}
+          if ./bin/opensearch-plugin list | grep -q {{ $plugin }}; then
+          ./bin/opensearch-plugin remove {{ $plugin }}
+          fi
+          {{- end }}
+
           {{- range $plugin := .Values.plugins.installList }}
           ./bin/opensearch-plugin install -b {{ $plugin }}
           {{- end }}
