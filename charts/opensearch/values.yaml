@@ -471,6 +471,8 @@ plugins:
   enabled: false
   installList: []
   # - example-fake-plugin
+  removeList: []
+  # - example-fake-plugin
 
 # -- Array of extra K8s manifests to deploy
 extraObjects: []
