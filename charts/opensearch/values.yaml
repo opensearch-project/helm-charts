@@ -561,7 +561,7 @@ serviceMonitor:
   # labels:
   #  k8s.example.com/prometheus: kube-prometheus
   labels: {}
-  
+
   # additional tlsConfig to be added to the ServiceMonitor
   tlsConfig: {}
 
