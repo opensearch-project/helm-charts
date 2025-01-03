@@ -17,9 +17,14 @@ spec:
   - port: {{ .Values.service.httpPortName | default "http" }}
     interval: {{ .Values.serviceMonitor.interval }}
     path: {{ .Values.serviceMonitor.path }}
+    scheme: {{ .Values.serviceMonitor.scheme }}
+    {{- with .Values.serviceMonitor.tlsConfig }}
+    tlsConfig:
+      {{- toYaml . | nindent 8 }}
+    {{- end }}
     {{- if .Values.serviceMonitor.basicAuth.enabled }}
     basicAuth:
-      username: 
+      username:
         {{- if .Values.serviceMonitor.basicAuth.existingSecret }}
         name: {{ .Values.serviceMonitor.basicAuth.existingSecret }}
         {{- else }}
