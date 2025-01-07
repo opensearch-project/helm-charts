@@ -90,7 +90,7 @@ spec:
             name: {{ include "data-prepper.fullname" . }}-config
         - name: data-prepper-pipelines
           secret:
-          {{- if .Values.pipelineConfig.demoPipeline }}
+          {{- if eq "true" (include "data-prepper.demoPipeline" .) }}
             secretName: {{ include "data-prepper.fullname" . }}-demo-pipeline
           {{- else if .Values.pipelineConfig.enabled }}
             secretName: {{ include "data-prepper.fullname" . }}-pipeline

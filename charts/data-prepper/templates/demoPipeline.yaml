@@ -1,4 +1,4 @@
-{{- if .Values.pipelineConfig.demoPipeline }}
+{{- if eq "true" (include "data-prepper.demoPipeline" .) }}
 apiVersion: v1
 kind: Secret
 metadata:

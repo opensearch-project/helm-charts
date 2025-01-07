@@ -101,8 +101,9 @@ config:
 
 # -- Pipeline configuration
 pipelineConfig:
-  # If enabled, a secret containing a demo pipeline configuration with random source and stdout sink will be created.
-  demoPipeline: false
+  # If 'true', a secret containing a demo pipeline configuration with random source and stdout sink will be created.
+  # If left undefined, the demo pipeline will be used only when no other pipeline is configured below
+  demoPipeline: ""
   # -- The name of the existing secret containing the pipeline configuration.
   # If enabled is false existingSecret is used. The existingSecret must have a key named `pipelines.yaml`.
   existingSecret: ""

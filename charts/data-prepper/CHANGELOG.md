@@ -6,7 +6,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [0.3.0]
 ### Added
-- Demo pipeline not part of values.yaml. New value `pipelineConfig.demoPipeline` to enable demo pipeline.
+- Demo pipeline not part of values.yaml. New value `pipelineConfig.demoPipeline` controls creation of demo pipeline.
 
 ## [0.2.0]
 ### Added

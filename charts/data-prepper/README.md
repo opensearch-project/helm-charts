@@ -27,13 +27,13 @@ helm repo add opensearch https://opensearch-project.github.io/helm-charts/
 helm repo update
 ```
 
-* Install the Data Prepper chart with demo pipeline:
+* Install the Data Prepper chart with:
 
 ```bash
-helm install my-data-prepper-release opensearch/data-prepper --set pipelineConfig.demoPipeline=true
+helm install my-data-prepper-release opensearch/data-prepper
 ```
 
-Replace my-data-prepper-release with your desired release name.
+Replace my-data-prepper-release with your desired release name. When no explicit pipeline is defined, this will configure a demo pipeline using a random source and stdout sink.
 
 ## Configuration
 
@@ -102,7 +102,7 @@ We welcome contributions! Please read our [CONTRIBUTING.md](../../CONTRIBUTING.m
 | pipelineConfig | object | (See below) | Pipeline configuration |
 | pipelineConfig.enabled | boolean | `false` | Enable inline configuration in `config` sub key. |
 | pipelineConfig.config | object | `{}` | Pipeline configuration file inline if `enabled` is set to true |
-| pipelineConfig.demoPipeline | boolean | `false` | If set, a demo pipeline will be provisioned with source `random` and sink `stdout`. |
+| pipelineConfig.demoPipeline | boolean | "" | If set, a demo pipeline will be provisioned with source `random` and sink `stdout`. |
 | pipelineConfig.existingSecret | string | `""` | The name of an existing secret containing the pipeline configuration. If enabled is false existingSecret is used. The existingSecret must have a key named `pipelines.yaml`. |
 | podAnnotations | object | `{}` |  |
 | podLabels | object | `{}` |  |
