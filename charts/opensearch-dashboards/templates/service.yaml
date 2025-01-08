@@ -40,5 +40,4 @@ spec:
     protocol: TCP
     port: {{ .Values.service.metricsPort }}
   selector:
-    app.kubernetes.io/name: {{ .Chart.Name }}
-    app.kubernetes.io/version: {{ .Release.Name | quote }}
+{{- include "opensearch-dashboards.selectorLabels" . | nindent 4 }}
