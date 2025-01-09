@@ -167,6 +167,11 @@ spec:
           - |
             #!/usr/bin/bash
             set -e
+            {{- range $plugin := .Values.plugins.removeList }}
+            if ./bin/opensearch-dashboards-plugin list | grep -q {{ $plugin }}; then
+              ./bin/opensearch-dashboards-plugin remove {{ $plugin }}
+            fi
+            {{- end }}
             {{- range $plugin := .Values.plugins.installList }}
             ./bin/opensearch-dashboards-plugin install {{ $plugin }}
             {{- end }}

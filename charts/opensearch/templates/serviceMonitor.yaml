@@ -14,7 +14,24 @@ spec:
     matchLabels:
       {{- include "opensearch.selectorLabels" . | nindent 6 }}
   endpoints:
-  - port: {{ .Values.service.metricsPortName | default "metrics" }}
+  - port: {{ .Values.service.httpPortName | default "http" }}
     interval: {{ .Values.serviceMonitor.interval }}
     path: {{ .Values.serviceMonitor.path }}
+    {{- if .Values.serviceMonitor.basicAuth.enabled }}
+    basicAuth:
+      username: 
+        {{- if .Values.serviceMonitor.basicAuth.existingSecret }}
+        name: {{ .Values.serviceMonitor.basicAuth.existingSecret }}
+        {{- else }}
+        name: {{ template "opensearch.uname" . }}-service-monitor-credentials
+        {{- end }}
+        key: username
+      password:
+        {{- if .Values.serviceMonitor.basicAuth.existingSecret }}
+        name: {{ .Values.serviceMonitor.basicAuth.existingSecret }}
+        {{- else }}
+        name: {{ template "opensearch.uname" . }}-service-monitor-credentials
+        {{- end }}
+        key: password
+    {{- end }}
 {{- end }}
