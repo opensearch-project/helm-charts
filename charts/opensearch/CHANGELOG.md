@@ -14,6 +14,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 ### Security
 ---
+## [1.35.1]
+### Added
+- Added scheme for serviceMonitor and optional tlsConfig
+### Changed
+### Deprecated
+### Removed
+### Fixed
+### Security
+---
 ## [1.35.0]
 ### Added
 - Added plugins.removeList to allow remove plugins
@@ -778,7 +787,8 @@ config:
 ### Fixed
 ### Security
 
-[Unreleased]: https://github.com/opensearch-project/helm-charts/compare/opensearch-1.35.0...HEAD
+[Unreleased]: https://github.com/opensearch-project/helm-charts/compare/opensearch-1.35.1...HEAD
+[1.35.1]: https://github.com/opensearch-project/helm-charts/compare/opensearch-1.35.0...opensearch-1.35.1
 [1.35.0]: https://github.com/opensearch-project/helm-charts/compare/opensearch-1.34.0...opensearch-1.35.0
 [1.34.0]: https://github.com/opensearch-project/helm-charts/compare/opensearch-1.34.0...opensearch-1.33.0
 [1.33.0]: https://github.com/opensearch-project/helm-charts/compare/opensearch-1.32.0...opensearch-1.33.0
