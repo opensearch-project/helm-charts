@@ -71,3 +71,25 @@ Create the dockerRegistry prefix if defined
   {{- .Values.global.dockerRegistry | trimSuffix "/" | printf "%s/" -}}
 {{- end -}}
 {{- end -}}
+
+{{/*
+Utility to decide whether demoPipeline should be enabled.
+If pipelineConfig.demoPipeline is true/false, return that value.
+If pipelineConfig.demoPipeline is undefined, return true if no other pipeline is configured.
+*/}}
+{{- define "data-prepper.demoPipeline" -}}
+{{- $demoPipeline := .Values.pipelineConfig.demoPipeline | toString -}}
+{{- if eq $demoPipeline "true" -}}
+{{ true }}
+{{- else if eq $demoPipeline "false" -}}
+{{ false }}
+{{- else if or (not $demoPipeline) (eq $demoPipeline "") -}}
+{{- if and (not .Values.pipelineConfig.enabled) (not .Values.pipelineConfig.existingSecret) -}}
+{{ true }}
+{{- else -}}
+{{ false }}
+{{- end -}}
+{{- else -}}
+{{ false }}
+{{- end -}}
+{{- end -}}

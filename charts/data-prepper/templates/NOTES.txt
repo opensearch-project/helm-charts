@@ -20,3 +20,11 @@
   echo "Visit http://127.0.0.1:8080 to use your application"
   kubectl --namespace {{ .Release.Namespace }} port-forward $POD_NAME 8080:$CONTAINER_PORT
 {{- end }}
+
+{{- if eq "true" (include "data-prepper.demoPipeline" .) }}
+The demo pipeline configuration is enabled, using the `random` source and `stdout` sink.
+{{- else if .Values.pipelineConfig.enabled }}
+Inline pipeline configuration is enabled. Please refer to the values.yaml file for the configuration.
+{{- else }}
+Pipeline configuration from secret {{ .Values.pipelineConfig.existingSecret }} is enabled.
+{{- end }}
