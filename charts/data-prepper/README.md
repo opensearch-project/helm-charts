@@ -33,12 +33,12 @@ helm repo update
 helm install my-data-prepper-release opensearch/data-prepper
 ```
 
-Replace my-data-prepper-release with your desired release name.
+Replace my-data-prepper-release with your desired release name. When no explicit pipeline is defined, this will configure a demo pipeline using a random source and stdout sink.
 
 ## Configuration
 
 The Data Prepper Helm chart comes with a variety of configuration options to tailor the deployment to your needs.
-The default values are specified in the [values.yaml](values.yaml) file. You can override these values by providing your own values.yaml file during installation or by specifying configuration options with --set flags.
+The default values are specified in the [values.yaml](values.yaml) file. You can override these values by providing your own `values.yaml` file during installation or by specifying configuration options with --set flags.
 
 For a detailed list of configuration options, refer to the values.yaml file or the [Data Prepper documentation](https://opensearch.org/docs/latest/data-prepper/managing-data-prepper/configuring-data-prepper/).
 
@@ -99,8 +99,11 @@ We welcome contributions! Please read our [CONTRIBUTING.md](../../CONTRIBUTING.m
 | ingress.tls | list | `[]` |  |
 | nameOverride | string | `""` | Override the default name for the deployment |
 | nodeSelector | object | `{}` |  |
-| pipelineConfig | object | `{"config":{"simple-sample-pipeline":{"buffer":{"bounded_blocking":{"batch_size":256,"buffer_size":1024}},"delay":5000,"processor":[{"string_converter":{"upper_case":true}}],"sink":[{"stdout":null}],"source":{"random":null},"workers":2}},"enabled":true,"existingSecret":""}` | Pipeline configuration |
-| pipelineConfig.existingSecret | string | `""` | The name of the existing secret containing the pipeline configuration. If enabled is false existingSecret is used. The existingSecret must have a key named `pipelines.yaml`. |
+| pipelineConfig | object | (See below) | Pipeline configuration |
+| pipelineConfig.enabled | boolean | `false` | Enable inline configuration in `config` sub key. |
+| pipelineConfig.config | object | `{}` | Pipeline configuration file inline if `enabled` is set to true |
+| pipelineConfig.demoPipeline | boolean | "" | If set, a demo pipeline will be provisioned with source `random` and sink `stdout`. |
+| pipelineConfig.existingSecret | string | `""` | The name of an existing secret containing the pipeline configuration. If enabled is false existingSecret is used. The existingSecret must have a key named `pipelines.yaml`. |
 | podAnnotations | object | `{}` |  |
 | podLabels | object | `{}` |  |
 | podSecurityContext | object | `{}` |  |
