@@ -11,6 +11,39 @@ entries:
           url: https://opensearch.org
     apiVersion: v2
     appVersion: 2.8.0
+    created: "2025-01-28T11:56:53.031011479Z"
+    description: A Helm chart for Data Prepper
+    digest: cf5d43136e62665e13c9718662f9b9790a6bdbaf8542416982b994925152d3b6
+    home: https://opensearch.org/docs/latest/data-prepper/
+    maintainers:
+    - name: gaiksaya
+      url: https://github.com/gaiksaya
+    - name: peterzhuamazon
+      url: https://github.com/peterzhuamazon
+    - name: prudhvigodithi
+      url: https://github.com/prudhvigodithi
+    - name: sergk
+      url: https://github.com/sergk
+    - name: TheAlgo
+      url: https://github.com/TheAlgo
+    name: data-prepper
+    sources:
+    - https://github.com/opensearch-project/data-prepper
+    - https://github.com/opensearch-project/helm-charts
+    type: application
+    urls:
+    - https://github.com/opensearch-project/helm-charts/releases/download/data-prepper-0.3.1/data-prepper-0.3.1.tgz
+    version: 0.3.1
+  - annotations:
+      artifacthub.io/category: monitoring-logging
+      artifacthub.io/license: Apache-2.0
+      artifacthub.io/links: |
+        - name: Data Prepper Documentation
+          url: https://opensearch.org/docs/latest/data-prepper/
+        - name: OpenSearch Project
+          url: https://opensearch.org
+    apiVersion: v2
+    appVersion: 2.8.0
     created: "2025-01-23T12:18:31.705601819Z"
     description: A Helm chart for Data Prepper
     digest: cfd7370bd853eefcb2031d286256299a65bac1c2990a0d12dd7a54c51863ae11
@@ -4423,4 +4456,4 @@ entries:
     urls:
     - https://github.com/opensearch-project/helm-charts/releases/download/opensearch-dashboards-1.0.3/opensearch-dashboards-1.0.3.tgz
     version: 1.0.3
-generated: "2025-01-23T12:18:31.705998725Z"
+generated: "2025-01-28T11:56:53.031388708Z"
