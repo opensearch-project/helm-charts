@@ -107,6 +107,7 @@ We welcome contributions! Please read our [CONTRIBUTING.md](../../CONTRIBUTING.m
 | podAnnotations | object | `{}` |  |
 | podLabels | object | `{}` |  |
 | podSecurityContext | object | `{}` |  |
+| initContainers | list | `[]` | Optional list of init containers for the pod | 
 | ports | list | `[{"name":"http-source","port":2021},{"name":"otel-traces","port":21890},{"name":"otel-metrics","port":21891},{"name":"otel-logs","port":21892}]` | Data Prepper ports |
 | ports[0] | object | `{"name":"http-source","port":2021}` | The port that the source is running on. Default value is 2021. Valid options are between 0 and 65535. https://opensearch.org/docs/latest/data-prepper/pipelines/configuration/sources/http-source/ |
 | ports[1] | object | `{"name":"otel-traces","port":21890}` | The port that the otel_trace_source source runs on. Default value is 21890. https://opensearch.org/docs/latest/data-prepper/pipelines/configuration/sources/otel-trace-source/ |

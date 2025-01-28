@@ -171,6 +171,8 @@ securityContext: {}
   # runAsNonRoot: true
   # runAsUser: 1000
 
+initContainers: []
+
 service:
   type: ClusterIP
 
