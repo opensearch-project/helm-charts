@@ -16,8 +16,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ---
 ## [2.27.1]
 ### Added
-- Updated app labels with common labels `app.kubernetes.io`
 ### Changed
+- Updated app labels with common labels `app.kubernetes.io`
 ### Deprecated
 ### Removed
 ### Fixed
@@ -25,8 +25,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ---
 ## [2.27.0]
 ### Added
-### Changed
 - Updated OpenSearch Dashboards appVersion to 2.19.0
+### Changed
 ### Deprecated
 ### Removed
 ### Fixed
