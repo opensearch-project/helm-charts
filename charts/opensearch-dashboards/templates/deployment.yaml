@@ -13,13 +13,11 @@ spec:
 {{ toYaml .Values.updateStrategy | indent 4 }}
   selector:
     matchLabels:
-      app: {{ .Chart.Name }}
-      release: {{ .Release.Name | quote }}
+{{- include "opensearch-dashboards.selectorLabels" . | nindent 6 }}
   template:
     metadata:
       labels:
-        app: {{ .Chart.Name }}
-        release: {{ .Release.Name | quote }}
+{{- include "opensearch-dashboards.selectorLabels" . | nindent 8 }}
         {{- range $key, $value := .Values.labels }}
         {{ $key }}: {{ $value | quote }}
         {{- end }}
