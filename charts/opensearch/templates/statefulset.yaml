@@ -25,7 +25,9 @@ spec:
     type: {{ .Values.updateStrategy }}
   {{- if .Values.persistence.enabled }}
   volumeClaimTemplates:
-  - metadata:
+  - apiVersion: v1
+    kind: PersistentVolumeClaim
+    metadata:
       name: {{ template "opensearch.uname" . }}
     {{- if or .Values.persistence.labels.enabled .Values.persistence.labels.additionalLabels }}
       labels:
