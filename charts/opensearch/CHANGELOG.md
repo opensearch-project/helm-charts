@@ -14,6 +14,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 ### Security
 ---
+## [2.31.1]
+### Added
+- Updated statefulset to inlcude verbose PVC reference
+### Changed
+### Deprecated
+### Removed
+### Fixed
+### Security
+---
 ## [2.31.0]
 ### Added
 - Updated OpenSearch appVersion to 2.19.0
