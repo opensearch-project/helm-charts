@@ -14,6 +14,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 ### Security
 ---
+## [2.32.1]
+### Added
+- Modified to run as user 1000 for fsgroup-volume and the sysctl containers in statefulset.yaml
+### Changed
+### Deprecated
+### Removed
+### Fixed
+### Security
+---
 ## [2.32.0]
 ### Added
 - Updated OpenSearch appVersion to 2.19.1
