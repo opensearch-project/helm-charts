@@ -17,6 +17,14 @@ spec:
   - port: {{ .Values.service.httpPortName | default "http" }}
     interval: {{ .Values.serviceMonitor.interval }}
     path: {{ .Values.serviceMonitor.path }}
+    {{- if .Values.serviceMonitor.metricRelabelings }}
+    metricRelabelings:
+    {{ tpl (toYaml .Values.serviceMonitor.metricRelabelings | nindent 6) . }}
+    {{- end }}
+    {{- if .Values.serviceMonitor.relabelings }}
+    relabelings:
+    {{ tpl (toYaml .Values.serviceMonitor.relabelings | nindent 6) . }}
+    {{- end }}
     scheme: {{ .Values.serviceMonitor.scheme }}
     {{- with .Values.serviceMonitor.tlsConfig }}
     tlsConfig:
