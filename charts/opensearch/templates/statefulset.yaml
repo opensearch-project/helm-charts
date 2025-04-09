@@ -255,7 +255,7 @@ spec:
         args:
           - 'chown -R 1000:1000 /usr/share/opensearch/data'
         securityContext:
-          runAsUser: 0
+          runAsUser: 1000
         resources:
           {{- toYaml .Values.initResources | nindent 10 }}
         volumeMounts:
@@ -277,7 +277,7 @@ spec:
             sysctl -w vm.max_map_count=$DESIRED
           fi
         securityContext:
-          runAsUser: 0
+          runAsUser: 1000
           privileged: true
         resources:
           {{- toYaml .Values.initResources | nindent 10 }}
