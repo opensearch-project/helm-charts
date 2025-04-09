@@ -163,6 +163,7 @@ service:
   annotations: {}
   loadBalancerSourceRanges: []
   # 0.0.0.0/0
+  # protocol: HTTP
   httpPortName: http
   metricsPortName: metrics
 

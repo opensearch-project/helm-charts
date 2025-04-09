@@ -65,6 +65,7 @@ helm uninstall my-release
 | `service.annotations` | [LoadBalancer annotations][] that Kubernetes will use for the service. This will configure load balancer if `service.type` is `LoadBalancer` | `{}` |
 | `service.headless.annotations` | Allow you to set annotations on the headless service | `{}` |
 | `service.externalTrafficPolicy` | Some cloud providers allow you to specify the [LoadBalancer externalTrafficPolicy][]. Kubernetes will use this to preserve the client source IP. This will configure load balancer if `service.type` is `LoadBalancer` | `""` |
+| `service.protocol` | The name of protocol within the service | `TCP` |
 | `service.httpPortName` | The name of the http port within the service | `http` |
 | `service.labelsHeadless` | Labels to be added to headless service | `{}` |
 | `service.labels` | Labels to be added to non-headless service | `{}` |
