@@ -14,6 +14,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 ### Security
 ---
+## [2.28.1]
+### Added
+- Added opensearchURL parameter to the values.yaml to 2.28.1
+### Changed
+### Deprecated
+### Removed
+### Fixed
+### Security
+---
 ## [2.28.0]
 ### Added
 - Updated OpenSearch Dashboards appVersion to 2.19.1

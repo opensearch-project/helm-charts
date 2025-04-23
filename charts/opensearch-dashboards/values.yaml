@@ -7,7 +7,7 @@
 
 opensearchHosts: "https://opensearch-cluster-master:9200"
 replicaCount: 1
-
+opensearchURL:""
 image:
   repository: "opensearchproject/opensearch-dashboards"
   # override image tag, which is .Chart.AppVersion by default
