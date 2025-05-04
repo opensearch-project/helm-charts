@@ -21,8 +21,9 @@ A community repository for Helm Charts of OpenSearch Project.
  [![Release Charts](https://github.com/opensearch-project/helm-charts/actions/workflows/release.yaml/badge.svg)](https://github.com/opensearch-project/helm-charts/actions/workflows/release.yaml)
 
 ## Version and Branching
-As of now, this helm-charts repository maintains 3 branches:
-* _main_ (Version is 2.x.x for both `version` and `appVersion` in `Chart.yaml`)
+As of now, this helm-charts repository maintains these branches:
+* _main_ (Version is 3.x.x for both `version` and `appVersion` in `Chart.yaml`)
+* _2.x_ (Version is 2.x.x for both `version` and `appVersion` in `Chart.yaml`)
 * _1.x_ (Version is 1.x.x for both `version` and `appVersion` in `Chart.yaml`)
 * _gh-pages_ (Reserved branch for publishing helm-charts through github pages)
 <br>
