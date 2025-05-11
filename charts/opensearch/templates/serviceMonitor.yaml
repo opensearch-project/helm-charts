@@ -13,6 +13,9 @@ spec:
   selector:
     matchLabels:
       {{- include "opensearch.selectorLabels" . | nindent 6 }}
+      {{- with .Values.serviceMonitor.selectorLabels }}
+        {{- toYaml . | nindent 6 }}
+      {{- end }}
   endpoints:
   - port: {{ .Values.service.httpPortName | default "http" }}
     interval: {{ .Values.serviceMonitor.interval }}
