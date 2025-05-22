@@ -55,6 +55,9 @@ spec:
       storageClassName: "{{ .Values.persistence.storageClass }}"
     {{- end }}
     {{- end }}
+    {{- if .Values.persistence.volumeAttributesClassName }}
+      volumeAttributesClassName: "{{ .Values.persistence.volumeAttributesClassName }}"
+    {{- end }}
   {{- end }}
   template:
     metadata:
