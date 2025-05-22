@@ -215,6 +215,10 @@ persistence:
   #   GKE, AWS & OpenStack)
   #
   # storageClass: "-"
+
+  # If feature enabled, assign the class name for advanced storage configuraion (EBS on AWS)
+  # volumeAttributesClassName: <volume_attribute_class_name>
+  
   accessModes:
     - ReadWriteOnce
   size: 8Gi
