@@ -8,7 +8,7 @@
 replicaCount: 1
 
 global:
-  # Set if you want to change the default docker registry, e.g. a private one.
+  # -- Set if you want to change the default docker registry, e.g. a private one.
   dockerRegistry: ""
 
 image:
@@ -30,6 +30,19 @@ fullnameOverride: ""
 extraEnvs: []
   # - name: "JAVA_OPTS"
   #   value: "-Dlog4j2.debug=true"
+
+# -- Array of extra objects to deploy with the release
+extraDeploy: []
+  # - apiVersion: v1
+  #   kind: Secret
+  #   metadata:
+  #     name: data-prepper-password
+  #     labels:
+  #       app.kubernetes.io/name: data-prepper
+  #       app.kubernetes.io/instance: data-prepper
+  #   type: Opaque
+  #   data:
+  #     password: c29tZXRoaW5nCg==
 
 # Check https://opensearch.org/docs/latest/data-prepper/managing-data-prepper/configuring-data-prepper/
 # for more information on the configuration options
@@ -95,21 +108,21 @@ config:
 # process, and output data respectively. This flexible configuration allows for the creation of complex data processing
 # flows, including the routing of data between pipelines.
 # For detailed information on the available options and to get the most up-to-date guidance on configuring `pipeline.yaml`,
-# please consult the [OpenSearch Documentation on Pipelines](https://opensearch.org/docs/2.4/data-prepper/pipelines/pipelines/).
+# please consult the [OpenSearch Documentation on Pipelines](https://opensearch.org/docs/latest/data-prepper/pipelines/pipelines/).
 # This resource provides comprehensive examples and explanations of each component, ensuring you can tailor your Data Prepper
 # deployment to meet your specific data processing needs.
 
 # -- Pipeline configuration
 pipelineConfig:
-  # If 'true', a secret containing a demo pipeline configuration with random source and stdout sink will be created.
+  # -- If 'true', a secret containing a demo pipeline configuration with random source and stdout sink will be created.
   # If left undefined, the demo pipeline will be used only when no other pipeline is configured below
   demoPipeline: ""
   # -- The name of the existing secret containing the pipeline configuration.
   # If enabled is false existingSecret is used. The existingSecret must have a key named `pipelines.yaml`.
   existingSecret: ""
-  # If enabled, a secret containing the pipeline configuration will be created based on the 'config' section below.
+  # -- If enabled, a secret containing the pipeline configuration will be created based on the 'config' section below.
   enabled: false
-  # The configuration of the pipeline see https://opensearch.org/docs/2.4/data-prepper/pipelines/pipelines/
+  # -- The configuration of the pipeline see https://opensearch.org/docs/latest/data-prepper/pipelines/pipelines/
   config:
     ## Provide your pipeline configuration here if 'enabled' is set to true. See documentation for more advanced pipelines
     # simple-sample-pipeline:
@@ -157,7 +170,12 @@ serviceAccount:
   # If not set and create is true, a name is generated using the fullname template
   name: ""
 
+# -- Annotations to add to secret
+secretAnnotations: {}
+
+# -- Annotations for pods
 podAnnotations: {}
+# -- Labels for pods
 podLabels: {}
 
 podSecurityContext: {}
@@ -171,6 +189,7 @@ securityContext: {}
   # runAsNonRoot: true
   # runAsUser: 1000
 
+# -- Optional list of init containers for the pod
 initContainers: []
 
 service:
