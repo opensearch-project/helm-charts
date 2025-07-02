@@ -63,7 +63,7 @@ spec:
               scheme: HTTPS
               {{- end }}
             periodSeconds: 10
-            initialDelaySeconds: 10
+            initialDelaySeconds: 30
             failureThreshold: 2
           readinessProbe:
             httpGet:
