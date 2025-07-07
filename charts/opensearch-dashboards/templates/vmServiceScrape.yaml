@@ -1,0 +1,28 @@
+{{- if .Values.vmServiceScrape.enabled }}
+apiVersion: operator.victoriametrics.com/v1beta1
+kind: VMServiceScrape
+metadata:
+  name: {{ template "opensearch.uname" . }}-vmservicescrape
+  namespace: {{ .Release.Namespace }}
+  labels:
+    {{- include "opensearch.labels" . | nindent 4 }}
+    {{- with .Values.vmServiceScrape.labels }}
+      {{- toYaml . | nindent 4 }}
+    {{- end }}
+spec:
+  selector:
+    matchLabels:
+      {{- include "opensearch.selectorLabels" . | nindent 6 }}
+  namespaceSelector:
+    matchNames:
+      - {{ .Release.Namespace }}
+  endpoints:
+    - port: {{ .Values.service.httpPortName | default "http" }}
+      interval: {{ .Values.vmServiceScrape.interval }}
+      path: {{ .Values.vmServiceScrape.path }}
+      scheme: {{ .Values.vmServiceScrape.scheme }}
+      {{- with .Values.vmServiceScrape.tlsConfig }}
+      tlsConfig:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+{{- end }}
