@@ -12,7 +12,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Deprecated
 ### Removed
 ### Fixed
+
+- Added missing security context to configfile and keystore init containers to support restricted Kubernetes environments
+
 ### Security
+
 ---
 ## [3.0.0]
 ### Added
