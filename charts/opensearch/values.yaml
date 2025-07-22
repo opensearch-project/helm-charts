@@ -569,7 +569,49 @@ serviceMonitor:
   # You can either use existingSecret, which expects a secret to be already present with data.username and data.password
   # or set the credentials over the helm values, making helm create a secret for you
   # basicAuth:
-  #   enaled: true
+  #   enabled: true
+  #   existingSecret: my-secret
+  #   username:  my-username
+  #   password: my-password
+  basicAuth:
+    enabled: false
+
+# VMServiceScrape Configuration for VictoriaMetrics
+# Enabling this option will create a VMServiceScrape resource that allows VictoriaMetrics to scrape metrics from the OpenSearch service.
+# This only creates the VMServiceScrape, to actually have metrics Make sure to install the prometheus-exporter plugin needed for
+# serving metrics over the `.Values.plugins` value:
+# plugins:
+#   enabled: true
+#   installList:
+#     - https://github.com/aiven/prometheus-exporter-plugin-for-opensearch/releases/download/x.x.x.x/prometheus-exporter-x.x.x.x.zip
+vmServiceScrape:
+  # Set to true to enable the VMServiceScrape resource
+  enabled: false
+
+  # HTTP path where metrics are exposed.
+  # Ensure this matches your OpenSearch service configuration.
+  path: /_prometheus/metrics
+
+  # Scheme to use for scraping.
+  scheme: http
+
+  # Frequency at which VictoriaMetrics will scrape metrics.
+  # Adjust based on your needs.
+  interval: 10s
+
+  # additional labels to be added to the VMServiceScrape
+  # labels:
+  #  k8s.example.com/prometheus: kube-prometheus
+  labels: {}
+
+  # additional tlsConfig to be added to the VMServiceScrape
+  tlsConfig: {}
+
+  # Basic Auth configuration for the VMServiceScrape
+  # You can either use existingSecret, which expects a secret to be already present with data.username and data.password
+  # or set the credentials over the helm values, making helm create a secret for you
+  # basicAuth:
+  #   enabled: true
   #   existingSecret: my-secret
   #   username:  my-username
   #   password: my-password
