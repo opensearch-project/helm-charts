@@ -14,6 +14,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 ### Security
 ---
+## [2.31.0]
+### Added
+- Updated OpenSearch Dashboards appVersion to 2.19.3
+### Changed
+### Deprecated
+### Removed
+### Fixed
+### Security
+---
 ## [2.30.0]
 ### Added
 - Switch 2.x.x to be released from 2.x branch
@@ -484,7 +493,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 ### Security
 
-[Unreleased]: https://github.com/opensearch-project/helm-charts/compare/opensearch-dashboards-2.30.0...HEAD
+[Unreleased]: https://github.com/opensearch-project/helm-charts/compare/opensearch-dashboards-2.31.0...HEAD
+[2.31.0]: https://github.com/opensearch-project/helm-charts/compare/opensearch-dashboards-2.30.0...opensearch-dashboards-2.31.0
 [2.30.0]: https://github.com/opensearch-project/helm-charts/compare/opensearch-dashboards-2.29.0...opensearch-dashboards-2.30.0
 [2.29.0]: https://github.com/opensearch-project/helm-charts/compare/opensearch-dashboards-2.28.0...opensearch-dashboards-2.29.0
 [2.28.0]: https://github.com/opensearch-project/helm-charts/compare/opensearch-dashboards-2.27.1...opensearch-dashboards-2.28.0
