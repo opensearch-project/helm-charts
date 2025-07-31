@@ -77,6 +77,7 @@ helm uninstall my-release
 | `service.ipFamilies` | Sets the preferred IP variants and in which order they are preferred, the first family you list is used for the legacy .spec.ClusterIP field, [more information on dual stack](https://kubernetes.io/docs/concepts/services-networking/dual-stack/) | `""` |
 | `service.metricsPort` | The metrics port (for Performance Analyzer) that Kubernetes will use for the service. | `9601` |
 | `service.metricsPortName` | The name of the metrics port (for Performance Analyzer) within the service | `metrics` |
+| `serviceAccount.automountServiceAccountToken` | Specifies whether the Kubernetes API token for the ServiceAccount should be automatically mounted to the pod. | `true` |
 | `tolerations` | Configurable [tolerations][] | `[]` |
 | `topologySpreadConstraints` | Configuration for pod [topologySpreadConstraints][] | `[]` |
 | `updateStrategy` | The [updateStrategy][] for the StatefulSet. By default Kubernetes will wait for the cluster to be green after upgrading each pod. Setting this to `OnDelete` will allow you to manually delete each pod during upgrades | `RollingUpdate` |
