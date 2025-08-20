@@ -14,6 +14,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 ### Security
 ---
+## [3.2.1]
+### Added
+### Changed
+- Correct changelogs
+### Deprecated
+### Removed
+### Fixed
+### Security
+---
 ## [3.2.0]
 ### Added
 - Updated OpenSearch Dashboards appVersion to 3.2.0
