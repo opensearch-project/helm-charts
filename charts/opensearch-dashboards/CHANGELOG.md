@@ -31,7 +31,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Removed
 ### Fixed
 ### Security
+---
+## [3.2.0]
+### Added
+- Updated OpenSearch Dashboards appVersion to 3.2.0
+### Changed
+### Deprecated
+### Removed
+### Fixed
+### Security
 
-[Unreleased]: https://github.com/opensearch-project/helm-charts/compare/opensearch-dashboards-3.1.0...HEAD
+[Unreleased]: https://github.com/opensearch-project/helm-charts/compare/opensearch-dashboards-3.2.0...HEAD
+[3.2.0]: https://github.com/opensearch-project/helm-charts/compare/opensearch-dashboards-3.1.0...opensearch-dashboards-3.2.0
 [3.1.0]: https://github.com/opensearch-project/helm-charts/compare/opensearch-dashboards-3.0.0...opensearch-dashboards-3.1.0
 [3.0.0]: https://github.com/opensearch-project/helm-charts/compare/opensearch-dashboards-2.29.0...opensearch-dashboards-3.0.0
