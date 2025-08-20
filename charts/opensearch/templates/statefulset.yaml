@@ -292,6 +292,8 @@ spec:
         - |
           #!/usr/bin/env bash
           cp -r /tmp/configfolder/*  /tmp/config/
+        securityContext:
+{{ toYaml .Values.securityContext | indent 10 }}
         resources:
           {{- toYaml .Values.initResources | nindent 10 }}
         volumeMounts:
@@ -332,6 +334,8 @@ spec:
           cp -a {{ .Values.opensearchHome }}/config/opensearch.keystore /tmp/keystore/
         env: {{ toYaml .Values.extraEnvs | nindent 10 }}
         envFrom: {{ toYaml .Values.envFrom | nindent 10 }}
+        securityContext:
+{{ toYaml .Values.securityContext | indent 10 }}
         resources:
           {{- toYaml .Values.initResources | nindent 10 }}
         volumeMounts:

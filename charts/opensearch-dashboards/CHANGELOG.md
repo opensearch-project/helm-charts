@@ -14,9 +14,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 ### Security
 ---
-## [3.0.0]
+## [3.2.0]
 ### Added
-- Switch main branch to be 3.x with 3.0.0 as 1st release
+- Updated OpenSearch Dashboards appVersion to 3.2.0
 ### Changed
 ### Deprecated
 ### Removed
@@ -32,9 +32,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 ### Security
 ---
-## [3.2.0]
+## [3.0.0]
 ### Added
-- Updated OpenSearch Dashboards appVersion to 3.2.0
+- Switch main branch to be 3.x with 3.0.0 as 1st release
 ### Changed
 ### Deprecated
 ### Removed
