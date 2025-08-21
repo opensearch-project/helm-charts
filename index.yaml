@@ -136,6 +136,26 @@ entries:
   opensearch:
   - apiVersion: v2
     appVersion: 3.2.0
+    created: "2025-08-21T14:11:53.487913911Z"
+    description: A Helm chart for OpenSearch
+    digest: 512fe5fa3cc154a7200443838cd21b803e06d1a4d482f1bbd28b92b787f48f6f
+    home: https://opensearch.org
+    maintainers:
+    - name: DandyDeveloper
+    - name: gaiksaya
+    - name: peterzhuamazon
+    - name: prudhvigodithi
+    - name: TheAlgo
+    name: opensearch
+    sources:
+    - https://github.com/opensearch-project/opensearch
+    - https://github.com/opensearch-project/helm-charts
+    type: application
+    urls:
+    - https://github.com/opensearch-project/helm-charts/releases/download/opensearch-3.2.1/opensearch-3.2.1.tgz
+    version: 3.2.1
+  - apiVersion: v2
+    appVersion: 3.2.0
     created: "2025-08-20T17:59:54.441048306Z"
     description: A Helm chart for OpenSearch
     digest: 5b1610286a3455721262f7a988388c8bf8c873b8c3d72e85383811dc67591199
@@ -2920,6 +2940,22 @@ entries:
   opensearch-dashboards:
   - apiVersion: v2
     appVersion: 3.2.0
+    created: "2025-08-21T14:11:53.743526102Z"
+    description: A Helm chart for OpenSearch Dashboards
+    digest: af8ced37aa93b75c7974b4d3b3b3859bd64bc8d50d22e14336c46ccb53850845
+    maintainers:
+    - name: DandyDeveloper
+    - name: gaiksaya
+    - name: peterzhuamazon
+    - name: prudhvigodithi
+    - name: TheAlgo
+    name: opensearch-dashboards
+    type: application
+    urls:
+    - https://github.com/opensearch-project/helm-charts/releases/download/opensearch-dashboards-3.2.1/opensearch-dashboards-3.2.1.tgz
+    version: 3.2.1
+  - apiVersion: v2
+    appVersion: 3.2.0
     created: "2025-08-20T17:59:54.64833686Z"
     description: A Helm chart for OpenSearch Dashboards
     digest: c7178a8a3859f365908ac2cdee4b255205d695460319e798e29c76013016d001
@@ -4760,4 +4796,4 @@ entries:
     urls:
     - https://github.com/opensearch-project/helm-charts/releases/download/opensearch-dashboards-1.0.3/opensearch-dashboards-1.0.3.tgz
     version: 1.0.3
-generated: "2025-08-20T17:59:54.649479296Z"
+generated: "2025-08-21T14:11:53.744242386Z"
