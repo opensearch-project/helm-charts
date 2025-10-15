@@ -14,9 +14,23 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 ### Security
 ---
+## [3.3.0]
+### Added
+- Updated OpenSearch Dashboards appVersion to 3.3.0
+### Changed
+### Deprecated
+### Removed
+### Fixed
+### Security
+---
 ## [3.2.2]
 ### Added
 - Support for disabling automountServiceAccountToken
+### Changed
+### Deprecated
+### Removed
+### Fixed
+### Security
 ---
 ## [3.2.1]
 ### Added
@@ -54,7 +68,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 ### Security
 
-[Unreleased]: https://github.com/opensearch-project/helm-charts/compare/opensearch-dashboards-3.2.2...HEAD
+[Unreleased]: https://github.com/opensearch-project/helm-charts/compare/opensearch-dashboards-3.3.0...HEAD
+[3.3.0]: https://github.com/opensearch-project/helm-charts/compare/opensearch-dashboards-3.2.2...opensearch-dashboards-3.3.0
 [3.2.2]: https://github.com/opensearch-project/helm-charts/compare/opensearch-dashboards-3.2.1...opensearch-dashboards-3.2.2
 [3.2.1]: https://github.com/opensearch-project/helm-charts/compare/opensearch-dashboards-3.2.0...opensearch-dashboards-3.2.1
 [3.2.0]: https://github.com/opensearch-project/helm-charts/compare/opensearch-dashboards-3.1.0...opensearch-dashboards-3.2.0
