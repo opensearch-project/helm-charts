@@ -181,6 +181,7 @@ ingress:
     - host: chart-example.local
       paths:
         - path: /
+          pathType: Prefix
           backend:
             serviceName: ""
             servicePort: ""
