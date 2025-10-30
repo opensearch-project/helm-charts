@@ -2,6 +2,7 @@
 {{- $fullName := include "opensearch.serviceName" . -}}
 {{- $servicePort := .Values.httpPort -}}
 {{- $ingressPath := .Values.ingress.path -}}
+{{- $ingressPathType := .Values.ingress.pathType -}}
 {{- $ingressApiIsStable := eq (include "opensearch.ingress.isStable" .) "true" -}}
 {{- $ingressSupportsIngressClassName := eq (include "opensearch.ingress.supportsIngressClassName" .) "true" -}}
 {{- if semverCompare ">=1.19-0" .Capabilities.KubeVersion.GitVersion -}}
@@ -44,7 +45,7 @@ spec:
       http:
         paths:
           - path: {{ $ingressPath }}
-            pathType: Prefix
+            pathType: {{ $ingressPathType }}
             backend:
               service:
                 name: {{ $fullName }}

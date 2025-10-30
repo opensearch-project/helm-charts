@@ -411,6 +411,7 @@ ingress:
     # kubernetes.io/tls-acme: "true"
   ingressLabels: {}
   path: /
+  pathType: Prefix
   hosts:
     - chart-example.local
   tls: []
