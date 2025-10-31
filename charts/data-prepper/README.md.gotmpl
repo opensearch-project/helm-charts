@@ -35,12 +35,12 @@ helm repo update
 helm install my-data-prepper-release opensearch/data-prepper
 ```
 
-Replace my-data-prepper-release with your desired release name.
+Replace my-data-prepper-release with your desired release name. When no explicit pipeline is defined, this will configure a demo pipeline using a random source and stdout sink.
 
 ## Configuration
 
 The Data Prepper Helm chart comes with a variety of configuration options to tailor the deployment to your needs.
-The default values are specified in the [values.yaml](values.yaml) file. You can override these values by providing your own values.yaml file during installation or by specifying configuration options with --set flags.
+The default values are specified in the [values.yaml](values.yaml) file. You can override these values by providing your own `values.yaml` file during installation or by specifying configuration options with --set flags.
 
 For a detailed list of configuration options, refer to the values.yaml file or the [Data Prepper documentation](https://opensearch.org/docs/latest/data-prepper/managing-data-prepper/configuring-data-prepper/).
 
