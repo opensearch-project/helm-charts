@@ -502,7 +502,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 ### Security
 
-[Unreleased]: https://github.com/opensearch-project/helm-charts/compare/opensearch-dashboards-2.31.0...HEAD
+[Unreleased]: https://github.com/opensearch-project/helm-charts/compare/opensearch-dashboards-2.32.0...HEAD
+[2.32.0]: https://github.com/opensearch-project/helm-charts/compare/opensearch-dashboards-2.31.0...opensearch-dashboards-2.32.0
 [2.31.0]: https://github.com/opensearch-project/helm-charts/compare/opensearch-dashboards-2.30.0...opensearch-dashboards-2.31.0
 [2.30.0]: https://github.com/opensearch-project/helm-charts/compare/opensearch-dashboards-2.29.0...opensearch-dashboards-2.30.0
 [2.29.0]: https://github.com/opensearch-project/helm-charts/compare/opensearch-dashboards-2.28.0...opensearch-dashboards-2.29.0
