@@ -275,6 +275,26 @@ entries:
     - https://github.com/opensearch-project/helm-charts/releases/download/opensearch-3.0.0/opensearch-3.0.0.tgz
     version: 3.0.0
   - apiVersion: v2
+    appVersion: 2.19.4
+    created: "2025-11-07T00:08:04.682092312Z"
+    description: A Helm chart for OpenSearch
+    digest: 3514f06b71557ada61f212fbe4145fd228e734c570b8bbcd41133beff8d896a1
+    home: https://opensearch.org
+    maintainers:
+    - name: DandyDeveloper
+    - name: gaiksaya
+    - name: peterzhuamazon
+    - name: prudhvigodithi
+    - name: TheAlgo
+    name: opensearch
+    sources:
+    - https://github.com/opensearch-project/opensearch
+    - https://github.com/opensearch-project/helm-charts
+    type: application
+    urls:
+    - https://github.com/opensearch-project/helm-charts/releases/download/opensearch-2.36.0/opensearch-2.36.0.tgz
+    version: 2.36.0
+  - apiVersion: v2
     appVersion: 2.19.3
     created: "2025-08-21T16:10:46.224810343Z"
     description: A Helm chart for OpenSearch
@@ -3115,6 +3135,22 @@ entries:
     - https://github.com/opensearch-project/helm-charts/releases/download/opensearch-dashboards-3.0.0/opensearch-dashboards-3.0.0.tgz
     version: 3.0.0
   - apiVersion: v2
+    appVersion: 2.19.4
+    created: "2025-11-07T00:08:04.799069538Z"
+    description: A Helm chart for OpenSearch Dashboards
+    digest: 9700f707d28c19e776d0c041b3a82195a2b665e010c49b5e1d27ed6751f2cd9b
+    maintainers:
+    - name: DandyDeveloper
+    - name: gaiksaya
+    - name: peterzhuamazon
+    - name: prudhvigodithi
+    - name: TheAlgo
+    name: opensearch-dashboards
+    type: application
+    urls:
+    - https://github.com/opensearch-project/helm-charts/releases/download/opensearch-dashboards-2.32.0/opensearch-dashboards-2.32.0.tgz
+    version: 2.32.0
+  - apiVersion: v2
     appVersion: 2.19.3
     created: "2025-07-24T00:56:01.006524104Z"
     description: A Helm chart for OpenSearch Dashboards
@@ -4908,4 +4944,4 @@ entries:
     urls:
     - https://github.com/opensearch-project/helm-charts/releases/download/opensearch-dashboards-1.0.3/opensearch-dashboards-1.0.3.tgz
     version: 1.0.3
-generated: "2025-10-30T21:03:46.684072192Z"
+generated: "2025-11-07T00:08:04.800133678Z"
