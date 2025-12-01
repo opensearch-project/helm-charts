@@ -220,6 +220,12 @@ persistence:
   size: 8Gi
   annotations: {}
 
+  # This allows to automatically delete PVCs on StatefulSet deletion like described in
+  # https://kubernetes.io/docs/concepts/workloads/controllers/statefulset/#persistentvolumeclaim-retention
+  persistentVolumeClaimRetentionPolicy:
+    whenDeleted: Retain
+    whenScaled: Retain
+
 extraVolumes: []
   # - name: extras
   #   emptyDir: {}
@@ -284,7 +290,6 @@ transportPort: 9300
 metricsPort: 9600
 httpHostPort: ""
 transportHostPort: ""
-
 
 service:
   labels: {}

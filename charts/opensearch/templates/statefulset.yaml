@@ -55,6 +55,11 @@ spec:
       storageClassName: "{{ .Values.persistence.storageClass }}"
     {{- end }}
     {{- end }}
+  {{- if (semverCompare ">= 1.32-0" .Capabilities.KubeVersion.Version) }}
+  persistentVolumeClaimRetentionPolicy:
+    whenDeleted: {{ .Values.persistence.persistentVolumeClaimRetentionPolicy.whenDeleted }}
+    whenScaled: {{ .Values.persistence.persistentVolumeClaimRetentionPolicy.whenScaled }}
+  {{- end }}
   {{- end }}
   template:
     metadata:
