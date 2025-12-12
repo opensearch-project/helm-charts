@@ -39,6 +39,7 @@ helm uninstall my-release
 | :--- | :--- | :--- |
 | `envFrom` | Templatable string to be passed to the [environment from variables][] which will be appended to the `envFrom:` definition for the container | `[]` |
 | `config` | Allows you to add any config files in `/usr/share/opensearch-dashboards/` such as `opensearch_dashboards.yml`. String or map format may be used for specifying content of each configuration file. In case of string format, the whole content of the config file will be replaced by new config file value when in case of using map format content of configuration file will be a result of merge. In both cases content passed through tpl. See [values.yaml][] for an example of the formatting | `{}` |
+| `enableServiceLinks` | Set to false to disabling service links, which can cause slow pod startup times when there are many services in the current namespace. | `true` |
 | `extraContainers` | Array of extra containers | `""` |
 | `extraEnvs` | Extra environments variables to be passed to OpenSearch services | `[]` |
 | `extraInitContainers` | Array of extra init containers | `[]` |

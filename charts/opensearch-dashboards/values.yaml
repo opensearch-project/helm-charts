@@ -148,6 +148,8 @@ hostAliases: []
 
 serverHost: "0.0.0.0"
 
+enableServiceLinks: true
+
 service:
   type: ClusterIP
   # The IP family and IP families options are to set the behaviour in a dual-stack environment
