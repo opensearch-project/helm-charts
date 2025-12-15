@@ -14,7 +14,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 ### Security
 ---
-## [3.3.2-1]
+## [3.3.3]
 ### Added
 ### Changed
 - allow loadBalancerClass on Opensearch service
