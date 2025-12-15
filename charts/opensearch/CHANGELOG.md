@@ -14,6 +14,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 ### Security
 ---
+## [3.3.2-1]
+### Added
+### Changed
+- allow loadBalancerClass on Opensearch service
+### Deprecated
+### Removed
+### Fixed
+### Security
+---
 ## [3.3.2]
 ### Added
 - Updated OpenSearch appVersion to 3.3.2
