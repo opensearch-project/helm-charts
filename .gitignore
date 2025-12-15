@@ -3,3 +3,6 @@
 
 # Windows
 Thumbs.db
+
+# package helm
+charts/*.tgz

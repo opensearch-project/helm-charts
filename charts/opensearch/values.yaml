@@ -305,6 +305,7 @@ service:
   transportPortName: transport
   metricsPortName: metrics
   loadBalancerIP: ""
+  loadBalancerClass: ""
   loadBalancerSourceRanges: []
   externalTrafficPolicy: ""
 
