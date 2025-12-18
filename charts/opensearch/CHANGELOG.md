@@ -14,6 +14,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 ### Security
 ---
+## [3.4.1]
+### Added
+### Changed
+### Deprecated
+### Removed
+### Fixed
+- Allow specification of ServiceAccountName for StatefulSet without creating a new ServiceAccount
+### Security
+---
 ## [3.4.0]
 ### Added
 - Updated OpenSearch appVersion to 3.4.0
