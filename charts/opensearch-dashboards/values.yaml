@@ -158,6 +158,7 @@ service:
   # ipFamilies:
   # - IPv4
   port: 5601
+  targetPort: 5601
   metricsPort: 9601
   loadBalancerIP: ""
   nodePort: ""
