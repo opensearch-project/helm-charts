@@ -14,6 +14,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 ### Security
 ---
+## [3.4.1]
+### Added
+- envTpl values key to allow overriding core opensearch container env
+### Changed
+### Deprecated
+### Removed
+### Fixed
+### Security
+---
 ## [3.4.0]
 ### Added
 - Updated OpenSearch appVersion to 3.4.0
