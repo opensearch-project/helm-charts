@@ -410,28 +410,7 @@ spec:
         resources:
           {{- toYaml .Values.resources | nindent 10 }}
         env:
-        - name: node.name
-          valueFrom:
-            fieldRef:
-              fieldPath: metadata.name
-        {{- if (and (has "master" .Values.roles) (not .Values.singleNode)) }}
-        - name: cluster.initial_master_nodes
-          value: "{{ template "opensearch.endpoints" . }}"
-        {{- end }}
-        - name: discovery.seed_hosts
-          value: "{{ template "opensearch.masterService" . }}-headless"
-        - name: cluster.name
-          value: "{{ .Values.clusterName }}"
-        - name: network.host
-          value: "{{ .Values.networkHost }}"
-        - name: OPENSEARCH_JAVA_OPTS
-          value: "{{ .Values.opensearchJavaOpts }}"
-        - name: node.roles
-          value: "{{ template "opensearch.roles" . }}"
-        {{- if .Values.singleNode }}
-        - name: discovery.type
-          value: "single-node"
-        {{- end }}
+{{ tpl .Values.envTpl . | indent 8 -}}
 {{- if .Values.extraEnvs }}
 {{ toYaml .Values.extraEnvs | indent 8 }}
 {{- end }}
