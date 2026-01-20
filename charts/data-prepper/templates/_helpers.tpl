@@ -93,3 +93,14 @@ If pipelineConfig.demoPipeline is undefined, return true if no other pipeline is
 {{ false }}
 {{- end -}}
 {{- end -}}
+
+{{/*
+Renders a value that contains template.
+*/}}
+{{- define "data-prepper.render" -}}
+{{-   if typeIs "string" .value }}
+{{-     tpl .value .context }}
+{{-   else }}
+{{-     tpl (.value | toYaml) .context }}
+{{-   end }}
+{{- end -}}
