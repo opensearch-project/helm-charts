@@ -53,6 +53,10 @@ spec:
             defaultMode: {{ .Values.opensearchDashboardsYml.defaultMode }}
             {{- end }}
         {{- end }}
+        {{- if .Values.securityContext.readOnlyRootFilesystem }}
+        - name: dashboards-data
+          emptyDir: {}
+        {{- end }}
         {{- if .Values.extraVolumes }}
         # Currently some extra blocks accept strings
         # to continue with backwards compatibility this is being kept
@@ -195,6 +199,10 @@ spec:
           - name: config
             mountPath: /usr/share/opensearch-dashboards/config/{{ $path }}
             subPath: {{ $path }}
+          {{- end }}
+          {{- if .Values.securityContext.readOnlyRootFilesystem }}
+          - name: dashboards-data
+            mountPath: /usr/share/opensearch-dashboards/data
           {{- end }}
           {{- if .Values.extraVolumeMounts }}
           # Currently some extra blocks accept strings

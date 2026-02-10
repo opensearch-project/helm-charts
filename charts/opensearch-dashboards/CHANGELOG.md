@@ -12,6 +12,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Deprecated
 ### Removed
 ### Fixed
+- Added emptyDir volume for /usr/share/opensearch-dashboards/data to support readOnlyRootFilesystem (issue #368)
 ### Security
 ---
 ## [3.5.0]
