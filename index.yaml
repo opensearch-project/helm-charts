@@ -135,6 +135,26 @@ entries:
     version: 0.1.0
   opensearch:
   - apiVersion: v2
+    appVersion: 3.5.0
+    created: "2026-02-10T23:37:04.02859234Z"
+    description: A Helm chart for OpenSearch
+    digest: 752cb1ab8932908a714a5be5b08da6e5250f67e0951c76f30b51db8c653a7071
+    home: https://opensearch.org
+    maintainers:
+    - name: DandyDeveloper
+    - name: gaiksaya
+    - name: peterzhuamazon
+    - name: prudhvigodithi
+    - name: TheAlgo
+    name: opensearch
+    sources:
+    - https://github.com/opensearch-project/opensearch
+    - https://github.com/opensearch-project/helm-charts
+    type: application
+    urls:
+    - https://github.com/opensearch-project/helm-charts/releases/download/opensearch-3.5.0/opensearch-3.5.0.tgz
+    version: 3.5.0
+  - apiVersion: v2
     appVersion: 3.4.0
     created: "2025-12-18T03:15:23.398951829Z"
     description: A Helm chart for OpenSearch
@@ -3059,6 +3079,22 @@ entries:
     version: 1.0.3
   opensearch-dashboards:
   - apiVersion: v2
+    appVersion: 3.5.0
+    created: "2026-02-10T23:37:04.206299324Z"
+    description: A Helm chart for OpenSearch Dashboards
+    digest: a946a189149baf3587db3681132af3d5e8baaee11b3fc79923939e9dffdd0e6c
+    maintainers:
+    - name: DandyDeveloper
+    - name: gaiksaya
+    - name: peterzhuamazon
+    - name: prudhvigodithi
+    - name: TheAlgo
+    name: opensearch-dashboards
+    type: application
+    urls:
+    - https://github.com/opensearch-project/helm-charts/releases/download/opensearch-dashboards-3.5.0/opensearch-dashboards-3.5.0.tgz
+    version: 3.5.0
+  - apiVersion: v2
     appVersion: 3.4.0
     created: "2025-12-18T03:15:23.658172727Z"
     description: A Helm chart for OpenSearch Dashboards
@@ -4980,4 +5016,4 @@ entries:
     urls:
     - https://github.com/opensearch-project/helm-charts/releases/download/opensearch-dashboards-1.0.3/opensearch-dashboards-1.0.3.tgz
     version: 1.0.3
-generated: "2025-12-18T03:15:23.658929837Z"
+generated: "2026-02-10T23:37:04.207127686Z"
