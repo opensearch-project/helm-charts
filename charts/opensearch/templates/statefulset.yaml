@@ -227,6 +227,18 @@ spec:
         secret: {{ toYaml . | nindent 12 }}
       {{- end }}
 {{ end }}
+      {{- if .Values.securityContext.readOnlyRootFilesystem }}
+      - name: opensearch-config
+        emptyDir: {}
+      - name: opensearch-logs
+        emptyDir: {}
+      - name: opensearch-tmp
+        emptyDir: {}
+      {{- if not .Values.persistence.enabled }}
+      - name: opensearch-data
+        emptyDir: {}
+      {{- end }}
+      {{- end }}
       {{- if .Values.extraVolumes }}
       # Currently some extra blocks accept strings
       # to continue with backwards compatibility this is being kept
@@ -245,8 +257,23 @@ spec:
       {{- if .Values.hostAliases }}
       hostAliases: {{ toYaml .Values.hostAliases | nindent 8 }}
       {{- end }}
-      {{- if or (.Values.extraInitContainers) (.Values.keystore) (.Values.persistence.enabled) (.Values.sysctlInit.enabled) (.Values.config)  }}
+      {{- if or (.Values.extraInitContainers) (.Values.keystore) (.Values.persistence.enabled) (.Values.sysctlInit.enabled) (.Values.config) (.Values.securityContext.readOnlyRootFilesystem)  }}
       initContainers:
+{{- if .Values.securityContext.readOnlyRootFilesystem }}
+      - name: config-dir-setup
+        image: "{{ template "opensearch.dockerRegistry" . }}{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
+        imagePullPolicy: "{{ .Values.image.pullPolicy }}"
+        command:
+        - sh
+        - -c
+        - |
+          cp -a {{ .Values.opensearchHome }}/config/* /tmp/opensearch-config/
+        resources:
+          {{- toYaml .Values.initResources | nindent 10 }}
+        volumeMounts:
+          - mountPath: /tmp/opensearch-config/
+            name: opensearch-config
+{{- end }}
 {{- if and .Values.persistence.enabled .Values.persistence.enableInitChown }}
       - name: fsgroup-volume
         image: "{{ template "opensearch.dockerRegistry" . }}{{ .Values.persistence.image | default "busybox" }}:{{ .Values.persistence.imageTag | default "latest" }}"
@@ -512,6 +539,18 @@ spec:
           mountPath: {{ $.Values.opensearchHome }}/config/{{ $path }}
           subPath: {{ $path }}
         {{- end -}}
+        {{- if .Values.securityContext.readOnlyRootFilesystem }}
+        - name: opensearch-config
+          mountPath: {{ .Values.opensearchHome }}/config
+        - name: opensearch-logs
+          mountPath: {{ .Values.opensearchHome }}/logs
+        - name: opensearch-tmp
+          mountPath: /tmp
+        {{- if not .Values.persistence.enabled }}
+        - name: opensearch-data
+          mountPath: {{ .Values.opensearchHome }}/data
+        {{- end }}
+        {{- end }}
         {{- if .Values.extraVolumeMounts }}
         # Currently some extra blocks accept strings
         # to continue with backwards compatibility this is being kept
