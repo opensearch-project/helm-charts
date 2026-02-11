@@ -55,6 +55,18 @@ spec:
             - name: server
               containerPort: {{ (.Values.config).serverPort | default 4900 }}
               protocol: TCP
+          {{- if and (not ( empty .Values.startupProbe )) .Values.startupProbe.enabled }}
+          startupProbe:
+            {{- if (empty .Values.startupProbe.probe ) }}
+            tcpSocket:
+              port: server
+            {{- else }}
+            {{ toYaml .Values.startupProbe.probe | nindent 12}}
+            {{- end}}
+            periodSeconds: {{ (.Values.startupProbe | default dict).periodSeconds | default 10 }}
+            initialDelaySeconds: {{ (.Values.startupProbe | default dict).initialDelaySeconds | default 15 }}
+            failureThreshold: {{ (.Values.startupProbe | default dict).failureThreshold | default 10 }}
+          {{- end }}
           livenessProbe:
             httpGet:
               path: /list
@@ -62,9 +74,9 @@ spec:
               {{- if not ( empty (.Values.config).ssl ) }}
               scheme: HTTPS
               {{- end }}
-            periodSeconds: 10
-            initialDelaySeconds: 2
-            failureThreshold: 2
+            periodSeconds: {{ (.Values.livenessProbe | default dict).periodSeconds | default 10 }}
+            initialDelaySeconds: {{ (.Values.livenessProbe | default dict).initialDelaySeconds | default 2 }}
+            failureThreshold: {{ (.Values.livenessProbe | default dict).failureThreshold | default 2 }}
           readinessProbe:
             httpGet:
               path: /list
