@@ -1,6 +1,6 @@
 # Data Prepper Helm Chart
 
-![Version: 0.1.0](https://img.shields.io/badge/Version-0.1.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 2.8.0](https://img.shields.io/badge/AppVersion-2.8.0-informational?style=flat-square)
+![Version: 0.3.2](https://img.shields.io/badge/Version-0.3.2-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 2.8.0](https://img.shields.io/badge/AppVersion-2.8.0-informational?style=flat-square)
 
 A Helm chart for Data Prepper
 
@@ -83,6 +83,7 @@ We welcome contributions! Please read our [CONTRIBUTING.md](../../CONTRIBUTING.m
 | config | object | `{"data-prepper-config.yaml":"ssl: false\n# circuit_breakers:\n#   heap:\n#     usage: 2gb\n#     reset: 30s\n#     check_interval: 5s\n","log4j2-rolling.properties":"#\n# Copyright OpenSearch Contributors\n# SPDX-License-Identifier: Apache-2.0\n#\n\nstatus = error\ndest = err\nname = PropertiesConfig\n\nproperty.filename = log/data-prepper/data-prepper.log\n\nappender.console.type = Console\nappender.console.name = STDOUT\nappender.console.layout.type = PatternLayout\nappender.console.layout.pattern = %d{ISO8601} [%t] %-5p %40C - %m%n\n\nappender.rolling.type = RollingFile\nappender.rolling.name = RollingFile\nappender.rolling.fileName = ${filename}\nappender.rolling.filePattern = logs/data-prepper.log.%d{MM-dd-yy-HH}-%i.gz\nappender.rolling.layout.type = PatternLayout\nappender.rolling.layout.pattern = %d{ISO8601} [%t] %-5p %40C - %m%n\nappender.rolling.policies.type = Policies\nappender.rolling.policies.time.type = TimeBasedTriggeringPolicy\nappender.rolling.policies.time.interval = 1\nappender.rolling.policies.time.modulate = true\nappender.rolling.policies.size.type = SizeBasedTriggeringPolicy\nappender.rolling.policies.size.size=100MB\nappender.rolling.strategy.type = DefaultRolloverStrategy\nappender.rolling.strategy.max = 168\n\nrootLogger.level = warn\nrootLogger.appenderRef.stdout.ref = STDOUT\nrootLogger.appenderRef.file.ref = RollingFile\n\nlogger.pipeline.name = org.opensearch.dataprepper.pipeline\nlogger.pipeline.level = info\n\nlogger.parser.name = org.opensearch.dataprepper.parser\nlogger.parser.level = info\n\nlogger.plugins.name = org.opensearch.dataprepper.plugins\nlogger.plugins.level = info\n"}` | Data Prepper configuration |
 | config."data-prepper-config.yaml" | string | `"ssl: false\n# circuit_breakers:\n#   heap:\n#     usage: 2gb\n#     reset: 30s\n#     check_interval: 5s\n"` | Main Data Prepper configuration file content |
 | config."log4j2-rolling.properties" | string | `"#\n# Copyright OpenSearch Contributors\n# SPDX-License-Identifier: Apache-2.0\n#\n\nstatus = error\ndest = err\nname = PropertiesConfig\n\nproperty.filename = log/data-prepper/data-prepper.log\n\nappender.console.type = Console\nappender.console.name = STDOUT\nappender.console.layout.type = PatternLayout\nappender.console.layout.pattern = %d{ISO8601} [%t] %-5p %40C - %m%n\n\nappender.rolling.type = RollingFile\nappender.rolling.name = RollingFile\nappender.rolling.fileName = ${filename}\nappender.rolling.filePattern = logs/data-prepper.log.%d{MM-dd-yy-HH}-%i.gz\nappender.rolling.layout.type = PatternLayout\nappender.rolling.layout.pattern = %d{ISO8601} [%t] %-5p %40C - %m%n\nappender.rolling.policies.type = Policies\nappender.rolling.policies.time.type = TimeBasedTriggeringPolicy\nappender.rolling.policies.time.interval = 1\nappender.rolling.policies.time.modulate = true\nappender.rolling.policies.size.type = SizeBasedTriggeringPolicy\nappender.rolling.policies.size.size=100MB\nappender.rolling.strategy.type = DefaultRolloverStrategy\nappender.rolling.strategy.max = 168\n\nrootLogger.level = warn\nrootLogger.appenderRef.stdout.ref = STDOUT\nrootLogger.appenderRef.file.ref = RollingFile\n\nlogger.pipeline.name = org.opensearch.dataprepper.pipeline\nlogger.pipeline.level = info\n\nlogger.parser.name = org.opensearch.dataprepper.parser\nlogger.parser.level = info\n\nlogger.plugins.name = org.opensearch.dataprepper.plugins\nlogger.plugins.level = info\n"` | Log4j2 configuration for Data Prepper logging |
+| extraDeploy | list | `[]` | Array of extra objects to deploy with the release |
 | extraEnvs | list | `[]` | Extra environment variables to pass to the Data Prepper container |
 | fullnameOverride | string | `""` | Override the default fullname for the deployment |
 | global.dockerRegistry | string | `""` | Set if you want to change the default docker registry, e.g. a private one. |
@@ -97,17 +98,17 @@ We welcome contributions! Please read our [CONTRIBUTING.md](../../CONTRIBUTING.m
 | ingress.hosts[0].paths[0].path | string | `"/"` |  |
 | ingress.hosts[0].paths[0].pathType | string | `"ImplementationSpecific"` |  |
 | ingress.tls | list | `[]` |  |
+| initContainers | list | `[]` | Optional list of init containers for the pod |
 | nameOverride | string | `""` | Override the default name for the deployment |
 | nodeSelector | object | `{}` |  |
-| pipelineConfig | object | (See below) | Pipeline configuration |
-| pipelineConfig.enabled | boolean | `false` | Enable inline configuration in `config` sub key. |
-| pipelineConfig.config | object | `{}` | Pipeline configuration file inline if `enabled` is set to true |
-| pipelineConfig.demoPipeline | boolean | "" | If set, a demo pipeline will be provisioned with source `random` and sink `stdout`. |
-| pipelineConfig.existingSecret | string | `""` | The name of an existing secret containing the pipeline configuration. If enabled is false existingSecret is used. The existingSecret must have a key named `pipelines.yaml`. |
-| podAnnotations | object | `{}` |  |
-| podLabels | object | `{}` |  |
+| pipelineConfig | object | `{"config":null,"demoPipeline":"","enabled":false,"existingSecret":""}` | Pipeline configuration |
+| pipelineConfig.config | string | `nil` | The configuration of the pipeline see https://opensearch.org/docs/latest/data-prepper/pipelines/pipelines/ |
+| pipelineConfig.demoPipeline | string | `""` | If 'true', a secret containing a demo pipeline configuration with random source and stdout sink will be created. If left undefined, the demo pipeline will be used only when no other pipeline is configured below |
+| pipelineConfig.enabled | bool | `false` | If enabled, a secret containing the pipeline configuration will be created based on the 'config' section below. |
+| pipelineConfig.existingSecret | string | `""` | The name of the existing secret containing the pipeline configuration. If enabled is false existingSecret is used. The existingSecret must have a key named `pipelines.yaml`. |
+| podAnnotations | object | `{}` | Annotations for pods |
+| podLabels | object | `{}` | Labels for pods |
 | podSecurityContext | object | `{}` |  |
-| initContainers | list | `[]` | Optional list of init containers for the pod | 
 | ports | list | `[{"name":"http-source","port":2021},{"name":"otel-traces","port":21890},{"name":"otel-metrics","port":21891},{"name":"otel-logs","port":21892}]` | Data Prepper ports |
 | ports[0] | object | `{"name":"http-source","port":2021}` | The port that the source is running on. Default value is 2021. Valid options are between 0 and 65535. https://opensearch.org/docs/latest/data-prepper/pipelines/configuration/sources/http-source/ |
 | ports[1] | object | `{"name":"otel-traces","port":21890}` | The port that the otel_trace_source source runs on. Default value is 21890. https://opensearch.org/docs/latest/data-prepper/pipelines/configuration/sources/otel-trace-source/ |
@@ -115,6 +116,7 @@ We welcome contributions! Please read our [CONTRIBUTING.md](../../CONTRIBUTING.m
 | ports[3] | object | `{"name":"otel-logs","port":21892}` | Represents the port that the otel_logs_source source is running on. Default value is 21892. https://opensearch.org/docs/latest/data-prepper/pipelines/configuration/sources/otel-logs-source/ |
 | replicaCount | int | `1` |  |
 | resources | object | `{}` |  |
+| secretAnnotations | object | `{}` | Annotations to add to secret |
 | securityContext | object | `{}` |  |
 | service.type | string | `"ClusterIP"` |  |
 | serviceAccount.annotations | object | `{}` | Annotations to add to the service account |
