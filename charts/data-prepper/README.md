@@ -124,6 +124,7 @@ We welcome contributions! Please read our [CONTRIBUTING.md](../../CONTRIBUTING.m
 | tolerations | list | `[]` |  |
 | volumeMounts | list | `[]` |  |
 | volumes | list | `[]` |  |
+| extraContainers | list | `[]` | Optional list of sidecar containers which runs along the data-prepper container |
 
 ## License
 

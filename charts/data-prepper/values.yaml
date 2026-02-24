@@ -173,6 +173,8 @@ securityContext: {}
 
 initContainers: []
 
+extraContainers: []
+
 service:
   type: ClusterIP
 
