@@ -23,6 +23,14 @@ If release name contains chart name it will be used as a full name.
 {{- end }}
 {{- end }}
 
+
+{{/*
+Service annotations
+*/}}
+{{- define "data-prepper.annotations" -}}
+{{- toYaml .Values.service.annotations }}
+{{- end }}
+
 {{/*
 Create chart name and version as used by the chart label.
 */}}
