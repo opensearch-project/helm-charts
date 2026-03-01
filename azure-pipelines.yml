@@ -1,0 +1,35 @@
+# Starter pipeline
+- task: HelmDeploy@0
+  inputs:
+    connectionType: 'Azure Resource Manager'
+    azureSubscription: 'Azure subscription 1(a0a53d3b-60ec-47b8-8503-2f4baa4453a4)'
+    azureResourceGroup: 'myapp-rg'
+    kubernetesCluster: 'myapp'
+    namespace: 'default'
+    command: 'ls'
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+
+trigger:
+- main
+
+pool:
+  vmImage: ubuntu-latest
+
+steps:
+- script: echo Hello, world!
+  displayName: 'Run a one-line script'
+
+- script: |
+    echo Add other tasks to build, test, and deploy your project.
+    echo See https://aka.ms/yaml
+  displayName: 'Run a multi-line script'
+- task: HelmDeploy@0
+  inputs:
+    connectionType: 'Azure Resource Manager'
+    azureSubscription: 'Azure subscription 1(a0a53d3b-60ec-47b8-8503-2f4baa4453a4)'
+    azureResourceGroup: 'KubernetesRG'
+    kubernetesCluster: 'aks-vega'
+    namespace: 'default'
+    command: 'ls'
