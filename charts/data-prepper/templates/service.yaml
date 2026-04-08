@@ -2,6 +2,8 @@ apiVersion: v1
 kind: Service
 metadata:
   name: {{ include "data-prepper.fullname" . }}
+  annotations:
+    {{- include "data-prepper.annotations" . | nindent 4 }}
   labels:
     {{- include "data-prepper.labels" . | nindent 4 }}
 spec:
