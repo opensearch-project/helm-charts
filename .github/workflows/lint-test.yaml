@@ -17,9 +17,7 @@ jobs:
           persist-credentials: false
 
       - name: Install Helm
-        uses: azure/setup-helm@18bc76811624f360dbd7f18c2d4ecb32c7b87bab # v1.1
-        # as of 2022/12 the set-output still not fixed in this action
-        # https://github.com/Azure/setup-helm/issues/103
+        uses: azure/setup-helm@18bc76811624f360dbd7f18c2d4ecb32c7b87bab # v1.1 # TODO: update version
         with:
           version: v3.7.0
 
