@@ -30,15 +30,9 @@ jobs:
         with:
           version: v3.7.0
 
-      - uses: actions/create-github-app-token@bcd2ba49218906704ab6c1aa796996da409d3eb1 # v3.2.0
-        id: app-token
-        with:
-          client-id: ${{ secrets.APP_GH_PAGES_ID }}
-          private-key: ${{ secrets.APP_GH_PAGES_PRIVATE_KEY }}
-
       # See https://github.com/helm/chart-releaser
       # See https://github.com/helm/chart-releaser-action
       - name: Run chart-releaser
         uses: helm/chart-releaser-action@a917fd15b20e8b64b94d9158ad54cd6345335584 # v1.6.0
         env:
-          CR_TOKEN: "${{ steps.app-token.outputs.token }}"
+          CR_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
