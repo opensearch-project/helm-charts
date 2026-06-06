@@ -5,6 +5,14 @@
   http{{ if $.Values.ingress.tls }}s{{ end }}://{{ $host.host }}{{ .path }}
   {{- end }}
 {{- end }}
+{{- else if .Values.gateway.enabled }}
+{{- if .Values.gateway.hostnames }}
+{{- range .Values.gateway.hostnames }}
+  https://{{ . }}
+{{- end }}
+{{- else }}
+  HTTPRoute attached to gateway(s): {{ range .Values.gateway.parentRefs }}{{ .name }}{{ if .namespace }}.{{ .namespace }}{{ end }} {{ end }}
+{{- end }}
 {{- else if contains "NodePort" .Values.service.type }}
   export NODE_PORT=$(kubectl get --namespace {{ .Release.Namespace }} -o jsonpath="{.spec.ports[0].nodePort}" services {{ include "opensearch-dashboards.fullname" . }})
   export NODE_IP=$(kubectl get nodes --namespace {{ .Release.Namespace }} -o jsonpath="{.items[0].status.addresses[0].address}")
