@@ -18,10 +18,14 @@ jobs:
           fetch-depth: 0
           persist-credentials: false
 
-      - name: Configure Git
+      - name: Configure the Git and CR binaries
         run: |
           git config user.name "$GITHUB_ACTOR"
           git config user.email "$GITHUB_ACTOR@users.noreply.github.com"
+          echo "Download custom cr patched binary to support immutable release"
+          mkdir ./cr-patched
+          curl -SfL https://ci.opensearch.org/ci/dbc/tools/cr-587-immutable -o ./cr-patched/cr
+          chomd 755 ./cr-patched/cr
 
       - name: Install Helm
         uses: azure/setup-helm@18bc76811624f360dbd7f18c2d4ecb32c7b87bab # v1.1 # TODO: update version
@@ -32,5 +36,7 @@ jobs:
       # See https://github.com/helm/chart-releaser-action
       - name: Run chart-releaser
         uses: helm/chart-releaser-action@a917fd15b20e8b64b94d9158ad54cd6345335584 # v1.6.0
+        with:
+          install_dir: ./cr-patched
         env:
           CR_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
