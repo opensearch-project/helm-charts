@@ -25,7 +25,7 @@ jobs:
           echo "Download custom cr patched binary to support immutable release"
           mkdir ./cr-patched
           curl -SfL https://ci.opensearch.org/ci/dbc/tools/cr-587-immutable -o ./cr-patched/cr
-          chomd 755 ./cr-patched/cr
+          chmod 755 ./cr-patched/cr
 
       - name: Install Helm
         uses: azure/setup-helm@18bc76811624f360dbd7f18c2d4ecb32c7b87bab # v1.1 # TODO: update version
