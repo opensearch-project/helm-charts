@@ -116,6 +116,7 @@ We welcome contributions! Please read our [CONTRIBUTING.md](../../CONTRIBUTING.m
 | replicaCount | int | `1` |  |
 | resources | object | `{}` |  |
 | securityContext | object | `{}` |  |
+| service.headless | bool | `false` | If true, the service is deployed as headless (`clusterIP: None`). Requires `service.type` to be `ClusterIP`. |
 | service.type | string | `"ClusterIP"` |  |
 | serviceAccount.annotations | object | `{}` | Annotations to add to the service account |
 | serviceAccount.automount | bool | `true` | Automatically mount a ServiceAccount's API credentials? |

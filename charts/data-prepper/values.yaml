@@ -174,7 +174,11 @@ securityContext: {}
 initContainers: []
 
 service:
+  # -- Kubernetes service type. Must be `ClusterIP` when `service.headless` is true.
   type: ClusterIP
+  # -- If true, the service is deployed as headless (`clusterIP: None`), exposing
+  # individual pod DNS records instead of a single virtual IP. Requires `service.type` to be `ClusterIP`.
+  headless: false
 
 ingress:
   enabled: false
