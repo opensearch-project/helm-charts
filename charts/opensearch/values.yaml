@@ -220,6 +220,15 @@ persistence:
   size: 8Gi
   annotations: {}
 
+  # Controls whether the StatefulSet's PVCs are deleted or retained when the
+  # StatefulSet is deleted (whenDeleted) or scaled down (whenScaled). See
+  # https://kubernetes.io/docs/concepts/workloads/controllers/statefulset/#persistentvolumeclaim-retention
+  # Only rendered on Kubernetes >= 1.27 (feature is enabled by default from then).
+  # Defaults to Retain/Retain to preserve the previous behavior.
+  persistentVolumeClaimRetentionPolicy:
+    whenDeleted: Retain
+    whenScaled: Retain
+
 extraVolumes: []
   # - name: extras
   #   emptyDir: {}

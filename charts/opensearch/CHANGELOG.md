@@ -14,6 +14,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 ### Security
 ---
+## [3.7.1]
+### Added
+- Support for configuring `persistentVolumeClaimRetentionPolicy` on the OpenSearch StatefulSet (Kubernetes >= 1.27; defaults to `Retain`/`Retain`)
+---
 ## [3.7.0]
 ### Added
 - Updated OpenSearch appVersion to 3.7.0
