@@ -2,6 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: {{ template "opensearch-dashboards.fullname" . }}
+  namespace: {{ .Release.Namespace }}
   labels: {{- include "opensearch-dashboards.labels" . | nindent 4 }}
   {{- with .Values.dashboardAnnotations }}
   annotations:

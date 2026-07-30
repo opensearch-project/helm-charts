@@ -3,6 +3,7 @@ apiVersion: {{ include "opensearch-dashboards.hpa.apiVersion" . }}
 kind: HorizontalPodAutoscaler
 metadata:
   name: {{ template "opensearch-dashboards.fullname" . }}-hpa
+  namespace: {{ .Release.Namespace }}
   labels: {{- include "opensearch-dashboards.labels" . | nindent 4 }}
 spec:
   maxReplicas: {{ .Values.autoscaling.maxReplicas }}

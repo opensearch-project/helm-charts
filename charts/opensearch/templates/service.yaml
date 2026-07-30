@@ -3,6 +3,7 @@ kind: Service
 apiVersion: v1
 metadata:
   name: {{ template "opensearch.serviceName" . }}
+  namespace: {{ .Release.Namespace }}
   labels:
     {{- include "opensearch.labels" . | nindent 4 }}
 {{- if .Values.service.labels }}
@@ -50,6 +51,7 @@ kind: Service
 apiVersion: v1
 metadata:
   name: {{ template "opensearch.serviceName" . }}-headless
+  namespace: {{ .Release.Namespace }}
   labels:
     {{- include "opensearch.labels" . | nindent 4 }}
 {{- if .Values.service.labelsHeadless }}

@@ -1,6 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
+  namespace: {{ .Release.Namespace }}
   name: {{ include "data-prepper.fullname" . }}
   labels:
     {{- include "data-prepper.labels" . | nindent 4 }}
