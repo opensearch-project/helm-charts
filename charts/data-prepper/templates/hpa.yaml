@@ -2,6 +2,7 @@
 apiVersion: autoscaling/v2
 kind: HorizontalPodAutoscaler
 metadata:
+  namespace: {{ .Release.Namespace }}
   name: {{ include "data-prepper.fullname" . }}
   labels:
     {{- include "data-prepper.labels" . | nindent 4 }}

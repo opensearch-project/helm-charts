@@ -4,6 +4,7 @@ kind: RoleBinding
 metadata:
   labels: {{- include "opensearch-dashboards.labels" . | nindent 4 }}
   name: {{ template "opensearch-dashboards.fullname" . }}-dashboards-rolebinding
+  namespace: {{ .Release.Namespace }}
 roleRef:
   kind: Role
   name: {{ template "opensearch-dashboards.serviceAccountName" . }}
