@@ -1,0 +1,4 @@
+{{- range .Values.extraDeploy }}
+---
+{{ include "data-prepper.render" (dict "value" . "context" $) }}
+{{- end }}
