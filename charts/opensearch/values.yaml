@@ -569,7 +569,7 @@ serviceMonitor:
   # You can either use existingSecret, which expects a secret to be already present with data.username and data.password
   # or set the credentials over the helm values, making helm create a secret for you
   # basicAuth:
-  #   enaled: true
+  #   enabled: true
   #   existingSecret: my-secret
   #   username:  my-username
   #   password: my-password
