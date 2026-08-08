@@ -62,9 +62,9 @@ spec:
               {{- if not ( empty (.Values.config).ssl ) }}
               scheme: HTTPS
               {{- end }}
-            periodSeconds: 10
-            initialDelaySeconds: 2
-            failureThreshold: 2
+            periodSeconds: {{ .Values.livenessProbe.periodSeconds }}
+            initialDelaySeconds: {{ .Values.livenessProbe.initialDelaySeconds }}
+            failureThreshold: {{ .Values.livenessProbe.failureThreshold }}
           readinessProbe:
             httpGet:
               path: /list
@@ -72,6 +72,9 @@ spec:
               {{- if not ( empty (.Values.config).ssl ) }}
               scheme: HTTPS
               {{- end }}
+              periodSeconds: {{ .Values.readinessProbe.periodSeconds }}
+              initialDelaySeconds: {{ .Values.readinessProbe.initialDelaySeconds }}
+              failureThreshold: {{ .Values.readinessProbe.failureThreshold }}
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
           volumeMounts:
