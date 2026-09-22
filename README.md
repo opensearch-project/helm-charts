@@ -30,7 +30,7 @@ As of now, this helm-charts repository maintains these branches:
 
 Contributors should choose the corresponding branch(es) when commiting their change(s):
 * If you have a change for a specific version, only open PR to specific branch
-* If you have a change for all available versions, first open a PR on `main`, then open a backport PR with `[backport 1.x]` in the title, with label `backport 1.x`, etc.
+* If you have a change for all available versions, first open a PR on `main`. Once it merges, add a `backport <branch>` label (e.g. `backport 1.x`) and the backport workflow opens the backport PR automatically.
 * No changes should be commited to `gh-pages` by any contributor. This branch is updated only through the release workflow, which opens a PR to update `index.yaml`.
 
 ## Releasing
