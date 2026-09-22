@@ -8,7 +8,7 @@ Releases are driven by git tags, one per chart, each versioned independently:
 
 To release:
 
-1. Update the chart's `Chart.yaml` `version` (and `appVersion` if applicable) and merge it. _(Maintainer)_
+1. Fold the chart's `changeset/` fragments into `CHANGELOG.md` under the new version, delete the fragments, bump `Chart.yaml` `version` (and `appVersion` if applicable), and merge it. _(Maintainer)_
 2. Cut and push the `<chart>-<version>` tag on the release commit ([example request](https://github.com/opensearch-project/.github/issues/657)). _(Admin)_
 3. Package the chart, create a pre-release with the `.tgz` attached, and open a `gh-pages` PR updating `index.yaml`. _(Workflow)_
 4. Merge the `gh-pages` PR. The chart is not served until merged. _(Maintainer)_
