@@ -14,6 +14,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 ### Security
 ---
+## [3.8.1]
+### Added
+### Changed
+### Deprecated
+### Removed
+### Fixed
+- Corrected the image.tag default and pointed the image rows at the OpenSearch Dashboards image in the chart README
+### Security
+---
 ## [3.8.0]
 ### Added
 - Updated OpenSearch Dashboards appVersion to 3.8.0

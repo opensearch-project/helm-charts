@@ -48,8 +48,8 @@ helm uninstall my-release
 | `hostAliases` | Configurable [hostAliases][] | `[]` |
 | `image.pullPolicy` | The Kubernetes [imagePullPolicy][] value | `IfNotPresent` |
 | `imagePullSecrets` | Configuration for [imagePullSecrets][] so that you can use a private registry for your image | `[]` |
-| `image.tag` | The OpenSearch Docker image tag | `1.0.0` |
-| `image.repository` | The OpenSearch Docker image | `opensearchproject/opensearch` |
+| `image.tag` | The OpenSearch Dashboards Docker image tag | `""` |
+| `image.repository` | The OpenSearch Dashboards Docker image | `opensearchproject/opensearch-dashboards` |
 | `ingress` | Configurable [ingress][] to expose the OpenSearch service. See [values.yaml][] for an example | see [values.yaml][] |
 | `labels` | Configurable [labels][] applied to all OpenSearch pods | `{}` |
 | `lifecycle` | Allows you to add [lifecycle hooks](https://kubernetes.io/docs/concepts/containers/container-lifecycle-hooks/). See [values.yaml][] for an example | `{}` |
