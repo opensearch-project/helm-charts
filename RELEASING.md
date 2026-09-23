@@ -2,8 +2,8 @@
 
 Releases are driven by git tags, one per chart, each versioned independently:
 
-* `opensearch-<chart-version>` (e.g. `opensearch-3.8.0`): OpenSearch Helm chart release.
-* `opensearch-dashboards-<chart-version>` (e.g. `opensearch-dashboards-3.8.0`): OpenSearch Dashboards Helm chart release.
+* `opensearch-<chart-version>` (e.g. `opensearch-2.38.0`): OpenSearch Helm chart release.
+* `opensearch-dashboards-<chart-version>` (e.g. `opensearch-dashboards-2.34.0`): OpenSearch Dashboards Helm chart release.
 * `data-prepper-<chart-version>` (e.g. `data-prepper-0.3.1`): Data Prepper Helm chart release.
 
 To release:
