@@ -16,6 +16,6 @@
   Before submitting a pull request make sure you have validated the following:
   1. Check the [Version and Branching](https://github.com/opensearch-project/helm-charts/blob/main/README.md#version-and-branching) section before commiting a change through PR.
   1. All the individual commits in the PR should be signed off. See DCO [section](https://github.com/opensearch-project/.github/blob/main/CONTRIBUTING.md#developer-certificate-of-origin) for more details. 
-  1. Chart version should be bumped for every code change except docoumentation change. Refer the PR [#179](https://github.com/opensearch-project/helm-charts/pull/179) for an example.
+  1. For changes to a chart under `charts/`, add a changeset file to that chart's `changeset/` directory rather than bumping the version or editing `CHANGELOG.md`. Copy `changeset/example.md`, rename it, and describe the change. Maintainers fold changesets into `CHANGELOG.md` and bump the version at release. Infra, CI, and docs changes need no changeset.
   1. Make sure the PR does not have any merge conflicts. If there are any conflicts please rebase your commits over the code in `main` branch. 
   1. Ensure the linting and testing checks passes once you raise the PR. Unless the lint is passing the PR cannot be merged. You will be able to see the results of the workflows. In case it is failing you can use it to debug further.
