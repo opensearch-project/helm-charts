@@ -26,6 +26,22 @@ nameOverride: ""
 # -- Override the default fullname for the deployment
 fullnameOverride: ""
 
+# -- StartupProbe configuration
+# startupProbe:
+# -- Enable or disable startup probe
+#   enabled: false
+# -- Override default tcpSocklet probe
+#   probe:
+#     httpGet:
+#       path: /list
+#       port: server   
+
+# -- Override a liveness probe parameters
+# livenessProbe:
+#   periodSeconds: 10
+#   initialDelaySeconds: 2
+#   failureThreshold: 2
+
 # -- Extra environment variables to pass to the Data Prepper container
 extraEnvs: []
   # - name: "JAVA_OPTS"
