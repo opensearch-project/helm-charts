@@ -21,7 +21,7 @@ roles:
 
 replicas: 3
 
-# if not set, falls back to parsing .Values.imageTag, then .Chart.appVersion.
+# if not set, falls back to parsing .Values.image.tag, then .Chart.appVersion.
 majorVersion: ""
 
 global:
