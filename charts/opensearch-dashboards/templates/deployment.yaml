@@ -102,17 +102,15 @@ spec:
         imagePullPolicy: "{{ .Values.image.pullPolicy }}"
         {{- if .Values.readinessProbe }}
         readinessProbe:
-{{ toYaml .Values.readinessProbe | indent 10 }}
+{{ include "opensearch-dashboards.probe" .Values.readinessProbe | indent 10 }}
         {{- end }}
         {{- if .Values.livenessProbe }}
         livenessProbe:
-{{ toYaml .Values.livenessProbe | indent 10 }}
+{{ include "opensearch-dashboards.probe" .Values.livenessProbe | indent 10 }}
         {{- end }}
-        {{- if semverCompare ">=1.16-0" .Capabilities.KubeVersion.Version }}
-        {{- if .Values.readinessProbe }}
+        {{- if and (semverCompare ">=1.16-0" .Capabilities.KubeVersion.Version) .Values.startupProbe }}
         startupProbe:
-{{ toYaml .Values.startupProbe | indent 10 }}
-        {{- end }}
+{{ include "opensearch-dashboards.probe" .Values.startupProbe | indent 10 }}
         {{- end }}
         env:
         {{- if .Values.opensearchURL }}
