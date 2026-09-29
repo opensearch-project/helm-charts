@@ -410,6 +410,16 @@ spec:
         resources:
           {{- toYaml .Values.resources | nindent 10 }}
         env:
+        - name: OPENSEARCH_INITIAL_ADMIN_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              {{- if empty .Values.adminPasswordSecret }}
+              name: {{ include "opensearch.fullname" . }}
+              key: adminPasssword
+              {{- else -}}
+              name: {{ .Values.adminPasswordSecret.name }}
+              key: {{ .Values.adminPasswordSecret.key }}
+              {{- end }}
         - name: node.name
           valueFrom:
             fieldRef:
