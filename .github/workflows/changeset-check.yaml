@@ -26,7 +26,19 @@ jobs:
               - 'charts/*/changeset/**'
 
       - name: Require a changeset when a chart changes
-        if: steps.changed.outputs.charts_any_changed == 'true' && steps.changed.outputs.changeset_any_changed != 'true'
+        env:
+          CHARTS_CHANGED: ${{ steps.changed.outputs.charts_any_changed }}
+          CHANGESET_CHANGED: ${{ steps.changed.outputs.changeset_any_changed }}
         run: |
+          if [ "${CHARTS_CHANGED}" != "true" ]; then
+            echo "No chart changes detected. Skipping changeset requirement."
+            exit 0
+          fi
+
+          if [ "${CHANGESET_CHANGED}" == "true" ]; then
+            echo "Chart changed and changeset added."
+            exit 0
+          fi
+
           echo "::error::Chart changed but no changeset added. Copy a chart's changeset/example.md and describe your change."
           exit 1
