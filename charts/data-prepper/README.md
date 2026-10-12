@@ -97,6 +97,7 @@ We welcome contributions! Please read our [CONTRIBUTING.md](../../CONTRIBUTING.m
 | ingress.hosts[0].paths[0].path | string | `"/"` |  |
 | ingress.hosts[0].paths[0].pathType | string | `"ImplementationSpecific"` |  |
 | ingress.tls | list | `[]` |  |
+| livenessProbe | object | `{"failureThreshold":2,"initialDelaySeconds":2,"periodSeconds":10}` | Timing settings merged into the liveness probe (`httpGet` on `/list` is set by the chart) |
 | nameOverride | string | `""` | Override the default name for the deployment |
 | nodeSelector | object | `{}` |  |
 | pipelineConfig | object | (See below) | Pipeline configuration |
@@ -113,6 +114,7 @@ We welcome contributions! Please read our [CONTRIBUTING.md](../../CONTRIBUTING.m
 | ports[1] | object | `{"name":"otel-traces","port":21890}` | The port that the otel_trace_source source runs on. Default value is 21890. https://opensearch.org/docs/latest/data-prepper/pipelines/configuration/sources/otel-trace-source/ |
 | ports[2] | object | `{"name":"otel-metrics","port":21891}` | The port that the OpenTelemtry metrics source runs on. Default value is 21891. https://opensearch.org/docs/latest/data-prepper/pipelines/configuration/sources/otel-metrics-source/ |
 | ports[3] | object | `{"name":"otel-logs","port":21892}` | Represents the port that the otel_logs_source source is running on. Default value is 21892. https://opensearch.org/docs/latest/data-prepper/pipelines/configuration/sources/otel-logs-source/ |
+| readinessProbe | object | `{}` | Timing settings merged into the readiness probe (`httpGet` on `/list` is set by the chart) |
 | replicaCount | int | `1` |  |
 | resources | object | `{}` |  |
 | securityContext | object | `{}` |  |
@@ -121,6 +123,7 @@ We welcome contributions! Please read our [CONTRIBUTING.md](../../CONTRIBUTING.m
 | serviceAccount.automount | bool | `true` | Automatically mount a ServiceAccount's API credentials? |
 | serviceAccount.create | bool | `true` | Specifies whether a service account should be created |
 | serviceAccount.name | string | `""` | The name of the service account to use. If not set and create is true, a name is generated using the fullname template |
+| startupProbe | object | `{}` | Optional startup probe on `/list`, rendered when non-empty. Gives slow JVM starts time before the liveness probe applies. |
 | tolerations | list | `[]` |  |
 | volumeMounts | list | `[]` |  |
 | volumes | list | `[]` |  |

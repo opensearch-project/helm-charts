@@ -55,6 +55,16 @@ spec:
             - name: server
               containerPort: {{ (.Values.config).serverPort | default 4900 }}
               protocol: TCP
+          {{- if .Values.startupProbe }}
+          startupProbe:
+            httpGet:
+              path: /list
+              port: server
+              {{- if not ( empty (.Values.config).ssl ) }}
+              scheme: HTTPS
+              {{- end }}
+            {{- toYaml .Values.startupProbe | nindent 12 }}
+          {{- end }}
           livenessProbe:
             httpGet:
               path: /list
@@ -62,9 +72,9 @@ spec:
               {{- if not ( empty (.Values.config).ssl ) }}
               scheme: HTTPS
               {{- end }}
-            periodSeconds: 10
-            initialDelaySeconds: 2
-            failureThreshold: 2
+            {{- with .Values.livenessProbe }}
+            {{- toYaml . | nindent 12 }}
+            {{- end }}
           readinessProbe:
             httpGet:
               path: /list
@@ -72,6 +82,9 @@ spec:
               {{- if not ( empty (.Values.config).ssl ) }}
               scheme: HTTPS
               {{- end }}
+            {{- with .Values.readinessProbe }}
+            {{- toYaml . | nindent 12 }}
+            {{- end }}
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
           volumeMounts:

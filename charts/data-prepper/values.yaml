@@ -173,6 +173,20 @@ securityContext: {}
 
 initContainers: []
 
+# -- Timing settings merged into the liveness probe (`httpGet` on `/list` is set by the chart)
+livenessProbe:
+  periodSeconds: 10
+  initialDelaySeconds: 2
+  failureThreshold: 2
+
+# -- Timing settings merged into the readiness probe (`httpGet` on `/list` is set by the chart)
+readinessProbe: {}
+
+# -- Optional startup probe on `/list`, rendered when non-empty. Gives slow JVM starts time before the liveness probe applies.
+startupProbe: {}
+  # periodSeconds: 10
+  # failureThreshold: 30
+
 service:
   type: ClusterIP
 
