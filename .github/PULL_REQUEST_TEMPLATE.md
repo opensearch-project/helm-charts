@@ -7,9 +7,8 @@
 ### Check List
 - [ ] Commits are signed per the DCO using --signoff
 
-For any changes to files within Helm chart directories:
-- [ ] Helm chart version bumped
-- [ ] Helm chart `CHANGELOG.md` updated to reflect change
+For changes to a chart under `charts/`:
+- [ ] Changeset added to the chart's `changeset/` directory
 
 By submitting this pull request, I confirm that my contribution is made under the terms of the Apache 2.0 license.
 For more information on following Developer Certificate of Origin and signing off your commits, please check [here](https://github.com/opensearch-project/helm-charts/blob/main/CONTRIBUTING.md#developer-certificate-of-origin).
