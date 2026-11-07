@@ -1,0 +1,20 @@
+---
+# Test values for rendering the Gateway API HTTPRoute of the opensearch-dashboards chart.
+# Used by the "Test Gateway API HTTPRoute" workflow with `helm template`.
+httpRoute:
+  enabled: true
+  apiVersion: gateway.networking.k8s.io/v1
+  annotations:
+    test-annotation: "true"
+  labels:
+    test-label: "true"
+  parentRefs:
+    - name: my-gateway
+      namespace: gateway-system
+      sectionName: https
+  hostnames:
+    - dashboards.example.com
+  matches:
+    path:
+      type: PathPrefix
+      value: /
