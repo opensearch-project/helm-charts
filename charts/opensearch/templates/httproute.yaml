@@ -1,0 +1,38 @@
+{{- if .Values.httpRoute.enabled -}}
+{{- $fullName := include "opensearch.serviceName" . -}}
+{{- $servicePort := .Values.httpPort -}}
+apiVersion: {{ .Values.httpRoute.apiVersion }}
+kind: HTTPRoute
+metadata:
+  name: {{ $fullName }}
+  labels:
+    {{- include "opensearch.labels" . | nindent 4 }}
+    {{- with .Values.httpRoute.labels }}
+      {{- toYaml . | nindent 4 }}
+    {{- end }}
+  {{- with .Values.httpRoute.annotations }}
+  annotations:
+    {{- toYaml . | nindent 4 }}
+  {{- end }}
+spec:
+  {{- with .Values.httpRoute.parentRefs }}
+  parentRefs:
+    {{- toYaml . | nindent 4 }}
+  {{- end }}
+  {{- with .Values.httpRoute.hostnames }}
+  hostnames:
+    {{- toYaml . | nindent 4 }}
+  {{- end }}
+  rules:
+    {{- if .Values.httpRoute.rules }}
+    {{- toYaml .Values.httpRoute.rules | nindent 4 }}
+    {{- else }}
+    - matches:
+        - path:
+            type: {{ .Values.httpRoute.matches.path.type | default "PathPrefix" }}
+            value: {{ .Values.httpRoute.matches.path.value | default "/" }}
+      backendRefs:
+        - name: {{ $fullName }}
+          port: {{ $servicePort }}
+    {{- end }}
+{{- end }}
