@@ -101,3 +101,26 @@ Return if ingress supports ingressClassName.
 {{- define "opensearch-dashboards.ingress.supportsIngressClassName" -}}
   {{- or (eq (include "opensearch-dashboards.ingress.isStable" .) "true") (and (eq (include "opensearch-dashboards.ingress.apiVersion" .) "networking.k8s.io/v1beta1") (semverCompare ">= 1.18-0" .Capabilities.KubeVersion.Version)) -}}
 {{- end -}}
+
+{{/*
+Render a probe with exactly one handler.
+This allows users to override the default tcpSocket probe with exec/httpGet/grpc
+without inheriting multiple handlers through Helm values merging.
+*/}}
+{{- define "opensearch-dashboards.probe" -}}
+{{- $probe := . -}}
+{{- $rendered := dict -}}
+{{- if hasKey $probe "exec" -}}
+{{- $_ := set $rendered "exec" (get $probe "exec") -}}
+{{- else if hasKey $probe "httpGet" -}}
+{{- $_ := set $rendered "httpGet" (get $probe "httpGet") -}}
+{{- else if hasKey $probe "tcpSocket" -}}
+{{- $_ := set $rendered "tcpSocket" (get $probe "tcpSocket") -}}
+{{- else if hasKey $probe "grpc" -}}
+{{- $_ := set $rendered "grpc" (get $probe "grpc") -}}
+{{- end -}}
+{{- range $key, $value := omit $probe "exec" "httpGet" "tcpSocket" "grpc" -}}
+{{- $_ := set $rendered $key $value -}}
+{{- end -}}
+{{- toYaml $rendered -}}
+{{- end -}}
