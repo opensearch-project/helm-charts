@@ -418,6 +418,29 @@ ingress:
   #    hosts:
   #      - chart-example.local
 
+gateway:
+  enabled: false
+  annotations: {}
+  labels: {}
+  # parentRefs defines the Gateway(s) this HTTPRoute should attach to.
+  # To enable TLS, reference a listener with sectionName pointing to an HTTPS listener on your Gateway.
+  parentRefs: []
+  #  - name: my-gateway
+  #    namespace: gateway-namespace
+  #    sectionName: https   # Reference an HTTPS listener for TLS termination
+  #    port: 443
+  # hostnames restricts the HTTPRoute to requests matching these hostnames.
+  hostnames: []
+  #  - chart-example.local
+  # rules defines the routing rules. If empty, all traffic is forwarded to the service on httpPort.
+  rules: []
+  #  - matches:
+  #      - path:
+  #          type: PathPrefix
+  #          value: /
+  #    backendRefs: []   # Defaults to the opensearch service on httpPort (9200)
+  #    filters: []
+
 nameOverride: ""
 fullnameOverride: ""
 
