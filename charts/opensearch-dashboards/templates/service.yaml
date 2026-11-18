@@ -35,7 +35,7 @@ spec:
 {{- end }}
     protocol: TCP
     name: {{ .Values.service.httpPortName | default "http" }}
-    targetPort: {{ .Values.service.port }}
+    targetPort: {{ .Values.service.targetPort }}
   - name: {{ .Values.service.metricsPortName | default "metrics" }}
     protocol: TCP
     port: {{ .Values.service.metricsPort }}
