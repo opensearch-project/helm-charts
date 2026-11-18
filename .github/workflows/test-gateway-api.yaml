@@ -1,0 +1,65 @@
+# Renders the Gateway API HTTPRoute templates and asserts the output.
+# This is a template-render test only: it needs no cluster and no Gateway API
+# CRDs, so it is independent of the kind-based matrix in lint-test.yaml.
+name: Test Gateway API HTTPRoute
+
+on:
+  pull_request:
+    paths:
+      - 'charts/opensearch/templates/httproute.yaml'
+      - 'charts/opensearch/tests/httproute-test-values.yaml'
+      - 'charts/opensearch-dashboards/templates/httproute.yaml'
+      - 'charts/opensearch-dashboards/tests/httproute-test-values.yaml'
+      - '.github/workflows/test-gateway-api.yaml'
+  workflow_dispatch:
+
+jobs:
+  render:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
+        with:
+          persist-credentials: false
+
+      - name: Install Helm
+        uses: azure/setup-helm@18bc76811624f360dbd7f18c2d4ecb32c7b87bab # v1.1 # TODO: update version
+        with:
+          version: v3.7.0
+
+      - name: Render and verify opensearch HTTPRoute
+        run: |
+          set -euo pipefail
+          out=$(helm template os charts/opensearch \
+            -f charts/opensearch/tests/httproute-test-values.yaml \
+            --show-only templates/httproute.yaml)
+          echo "$out"
+          echo "$out" | grep -q 'kind: HTTPRoute'
+          echo "$out" | grep -q 'apiVersion: gateway.networking.k8s.io/v1'
+          echo "$out" | grep -q 'name: my-gateway'
+          echo "$out" | grep -q 'opensearch.example.com'
+          echo "$out" | grep -q 'port: 9200'
+
+      - name: Render and verify opensearch-dashboards HTTPRoute
+        run: |
+          set -euo pipefail
+          out=$(helm template osd charts/opensearch-dashboards \
+            -f charts/opensearch-dashboards/tests/httproute-test-values.yaml \
+            --show-only templates/httproute.yaml)
+          echo "$out"
+          echo "$out" | grep -q 'kind: HTTPRoute'
+          echo "$out" | grep -q 'apiVersion: gateway.networking.k8s.io/v1'
+          echo "$out" | grep -q 'name: my-gateway'
+          echo "$out" | grep -q 'dashboards.example.com'
+          echo "$out" | grep -q 'port: 5601'
+
+      - name: Verify HTTPRoute is not rendered when disabled
+        run: |
+          set -euo pipefail
+          for chart in opensearch opensearch-dashboards; do
+            if helm template t "charts/$chart" --show-only templates/httproute.yaml 2>/dev/null; then
+              echo "ERROR: $chart rendered an HTTPRoute while httpRoute.enabled=false"
+              exit 1
+            fi
+            echo "OK: $chart renders no HTTPRoute when disabled"
+          done

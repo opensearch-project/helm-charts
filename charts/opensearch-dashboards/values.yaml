@@ -189,6 +189,38 @@ ingress:
   #    hosts:
   #      - chart-example.local
 
+# Gateway API HTTPRoute (https://gateway-api.sigs.k8s.io/).
+# A modern alternative to ingress that attaches OpenSearch Dashboards to an existing Gateway.
+httpRoute:
+  enabled: false
+  # apiVersion of the HTTPRoute resource. Override if your cluster still serves v1beta1.
+  apiVersion: gateway.networking.k8s.io/v1
+  annotations: {}
+  labels: {}
+  # References to the Gateway(s) this route should attach to.
+  parentRefs: []
+    # - name: my-gateway
+    #   namespace: gateway-system
+    #   sectionName: https
+  # Hostnames that this route matches.
+  hostnames: []
+    # - chart-example.local
+  # Default single-rule match. Ignored when `rules` below is set.
+  matches:
+    path:
+      type: PathPrefix
+      value: /
+  # Provide a full list of HTTPRoute rules to take complete control of routing.
+  # When set, this overrides the `matches` default above.
+  rules: []
+    # - matches:
+    #     - path:
+    #         type: PathPrefix
+    #         value: /
+    #   backendRefs:
+    #     - name: opensearch-dashboards
+    #       port: 5601
+
 resources:
   requests:
     cpu: "100m"
