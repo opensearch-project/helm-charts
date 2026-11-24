@@ -15,7 +15,7 @@ jobs:
   release:
     name: Release ${{ github.ref_name }}
     if: github.repository == 'opensearch-project/helm-charts'
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     permissions:
       contents: write
     steps:
