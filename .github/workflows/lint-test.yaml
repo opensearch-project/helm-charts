@@ -9,7 +9,7 @@ on:
 
 jobs:
   lint-test:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     strategy:
       matrix:
         k8s: ["1.19.16", "1.21.14", "1.22.9", "1.23.12", "1.24.7", "1.25.2"]
